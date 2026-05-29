@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 430" role="img" aria-label="MCP server build workflow">
+  <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#64748b"/></marker><style>.title{font:700 23px Inter,Arial,sans-serif;fill:#172554}.label{font:700 16px Inter,Arial,sans-serif}.note{font:500 13px Inter,Arial,sans-serif;fill:#475569}.small{font:600 12px Inter,Arial,sans-serif;fill:#64748b}</style></defs>
+  <rect width="760" height="430" rx="22" fill="#f8fafc"/><rect x="24" y="22" width="712" height="58" rx="15" fill="#fff" stroke="#7c3aed" stroke-width="2"/><text x="380" y="59" text-anchor="middle" class="title">Build an MCP server</text>
+  <rect x="42" y="104" width="676" height="262" rx="20" fill="#fff" stroke="#dbe4f0" stroke-width="2"/>
+  <text x="72" y="138" class="small">A REPEATABLE SERVER SETUP</text>
+  <rect x="72" y="178" width="140" height="86" rx="16" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/><text x="142" y="212" text-anchor="middle" class="label" fill="#1d4ed8">Define</text><text x="142" y="237" text-anchor="middle" class="note">tools + resources</text>
+  <line x1="212" y1="221" x2="246" y2="221" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="246" y="178" width="140" height="86" rx="16" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/><text x="316" y="212" text-anchor="middle" class="label" fill="#6d28d9">Expose</text><text x="316" y="237" text-anchor="middle" class="note">schemas + docs</text>
+  <line x1="386" y1="221" x2="420" y2="221" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="420" y="178" width="140" height="86" rx="16" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/><text x="490" y="212" text-anchor="middle" class="label" fill="#047857">Connect</text><text x="490" y="237" text-anchor="middle" class="note">stdio or HTTP</text>
+  <line x1="560" y1="221" x2="594" y2="221" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="594" y="178" width="92" height="86" rx="16" fill="#fff7ed" stroke="#f97316" stroke-width="2"/><text x="640" y="212" text-anchor="middle" class="label" fill="#c2410c">Discover</text><text x="640" y="237" text-anchor="middle" class="note">from host</text>
+  <text x="380" y="398" text-anchor="middle" class="note">A clear contract makes your server discoverable and reusable by many clients.</text>
+</svg>

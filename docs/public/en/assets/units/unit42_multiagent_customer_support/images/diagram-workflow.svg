@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img" aria-label="Multi-agent shared context workflow">
+  <defs><marker id="arrow" markerWidth="4" markerHeight="4" refX="8" refY="4" orient="auto" markerUnits="strokeWidth" viewBox="0 0 8 8"><path d="M0 0L8 4L0 8Z" fill="#64748b"/></marker></defs>
+  <rect width="900" height="500" rx="24" fill="#f8fafc"/><text x="54" y="58" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#4c1d95">Shared Context, Controlled Handoff</text><text x="54" y="88" font-family="Arial,sans-serif" font-size="15" fill="#64748b">Specialists report evidence; the manager owns the final answer</text>
+  <g font-family="Arial,sans-serif">
+    <rect x="54" y="180" width="156" height="100" rx="18" fill="#eff6ff" stroke="#3b82f6" stroke-width="3"/><text x="132" y="219" text-anchor="middle" font-size="18" font-weight="700" fill="#1d4ed8">CASE</text><text x="132" y="249" text-anchor="middle" font-size="14" fill="#334155">request + IDs</text><text x="132" y="269" text-anchor="middle" font-size="13" fill="#64748b">traceable context</text>
+    <line x1="210" y1="230" x2="258" y2="230" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="258" y="154" width="176" height="152" rx="18" fill="#eef2ff" stroke="#6366f1" stroke-width="3"/><text x="346" y="195" text-anchor="middle" font-size="18" font-weight="700" fill="#4338ca">MANAGER</text><text x="346" y="226" text-anchor="middle" font-size="14" fill="#334155">assign · merge</text><text x="346" y="251" text-anchor="middle" font-size="14" fill="#334155">check contradictions</text><text x="346" y="278" text-anchor="middle" font-size="13" fill="#64748b">escalate when unsure</text>
+    <path d="M434 230H460" fill="none" stroke="#64748b" stroke-width="3"/>
+    <path d="M460 230V136H486" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M460 230H486" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M460 230V324H486" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+    <circle cx="460" cy="230" r="4" fill="#64748b"/>
+    <rect x="486" y="98" width="170" height="76" rx="18" fill="#fff7ed" stroke="#f59e0b" stroke-width="3"/><text x="571" y="130" text-anchor="middle" font-size="16" font-weight="700" fill="#b45309">SPECIALIST A</text><text x="571" y="153" text-anchor="middle" font-size="13" fill="#64748b">evidence + result</text>
+    <rect x="486" y="192" width="170" height="76" rx="18" fill="#fff7ed" stroke="#f59e0b" stroke-width="3"/><text x="571" y="224" text-anchor="middle" font-size="16" font-weight="700" fill="#b45309">SPECIALIST B</text><text x="571" y="247" text-anchor="middle" font-size="13" fill="#64748b">evidence + result</text>
+    <rect x="486" y="286" width="170" height="76" rx="18" fill="#fff7ed" stroke="#f59e0b" stroke-width="3"/><text x="571" y="318" text-anchor="middle" font-size="16" font-weight="700" fill="#b45309">SPECIALIST C</text><text x="571" y="341" text-anchor="middle" font-size="13" fill="#64748b">evidence + result</text>
+    <path d="M656 136H680V230" fill="none" stroke="#64748b" stroke-width="3"/>
+    <path d="M656 230H680" fill="none" stroke="#64748b" stroke-width="3"/>
+    <path d="M656 324H680V230" fill="none" stroke="#64748b" stroke-width="3"/>
+    <circle cx="680" cy="230" r="4" fill="#64748b"/>
+    <path d="M680 230H708" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="708" y="184" width="138" height="92" rx="18" fill="#ecfdf5" stroke="#10b981" stroke-width="3"/><text x="777" y="220" text-anchor="middle" font-size="17" font-weight="700" fill="#047857">FINAL</text><text x="777" y="247" text-anchor="middle" font-size="13" fill="#64748b">answer + audit</text>
+    <rect x="196" y="404" width="510" height="42" rx="14" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="451" y="431" text-anchor="middle" font-size="14" fill="#475569">Handoffs carry only the context and evidence needed next</text>
+  </g>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-label="LangChain RAG workflow where a question and retrieved context merge before the prompt template">
+  <defs>
+    <marker id="a" markerWidth="4" markerHeight="4" refX="8" refY="4" markerUnits="strokeWidth" viewBox="0 0 8 8" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#64748b"/></marker>
+    <marker id="blue" markerWidth="4" markerHeight="4" refX="8" refY="4" markerUnits="strokeWidth" viewBox="0 0 8 8" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#2563eb"/></marker>
+    <filter id="s" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity=".10"/></filter>
+  </defs>
+  <rect width="1200" height="700" rx="28" fill="#f8fafc"/>
+  <text x="70" y="78" font-family="DejaVu Sans,sans-serif" font-size="32" font-weight="800" fill="#172554">Compose with LCEL</text>
+  <text x="70" y="113" font-family="DejaVu Sans,sans-serif" font-size="17" fill="#64748b">The retriever uses the question to find context; the prompt combines both before the model answers.</text>
+
+  <g filter="url(#s)">
+    <rect x="50" y="270" width="140" height="140" rx="22" fill="#fff" stroke="#2563eb" stroke-width="3"/>
+    <text x="120" y="325" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="21" font-weight="800" fill="#1d4ed8">Question</text>
+    <text x="120" y="360" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" fill="#475569">user input</text>
+  </g>
+  <g filter="url(#s)">
+    <rect x="230" y="270" width="160" height="140" rx="22" fill="#fff" stroke="#0f766e" stroke-width="3"/>
+    <text x="310" y="325" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="21" font-weight="800" fill="#0f766e">Retriever</text>
+    <text x="310" y="360" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" fill="#475569">relevant docs</text>
+  </g>
+  <g filter="url(#s)">
+    <rect x="430" y="270" width="180" height="140" rx="22" fill="#fff" stroke="#64748b" stroke-width="3"/>
+    <text x="520" y="312" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="18" font-weight="800" fill="#475569">MERGE</text>
+    <text x="520" y="344" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" fill="#475569">question + retrieved</text>
+    <text x="520" y="368" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" fill="#475569">context</text>
+  </g>
+  <g filter="url(#s)">
+    <rect x="650" y="270" width="180" height="140" rx="22" fill="#fff" stroke="#7c3aed" stroke-width="3"/>
+    <text x="740" y="312" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="19" font-weight="800" fill="#6d28d9">Prompt</text>
+    <text x="740" y="338" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="19" font-weight="800" fill="#6d28d9">template</text>
+    <text x="740" y="370" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="14" fill="#475569">question + context</text>
+  </g>
+  <g filter="url(#s)">
+    <rect x="860" y="270" width="160" height="140" rx="22" fill="#fff" stroke="#f59e0b" stroke-width="3"/>
+    <text x="940" y="325" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="800" fill="#b45309">Chat model</text>
+    <text x="940" y="360" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" fill="#475569">generate</text>
+  </g>
+  <g filter="url(#s)">
+    <rect x="1050" y="270" width="100" height="140" rx="22" fill="#fff" stroke="#16a34a" stroke-width="3"/>
+    <text x="1100" y="325" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="19" font-weight="800" fill="#15803d">Parser</text>
+    <text x="1100" y="360" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" fill="#475569">clean</text>
+  </g>
+
+  <path d="M190 340H210" fill="none" stroke="#64748b" stroke-width="3"/>
+  <circle cx="210" cy="340" r="5" fill="#64748b"/>
+  <path d="M210 340H230" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M210 340V215H520V270" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#blue)"/>
+  <path d="M390 340H430" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M610 340H650" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M830 340H860" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M1020 340H1050" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#a)"/>
+  <text x="365" y="190" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="700" fill="#2563eb">question remains available</text>
+  <text x="600" y="610" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="19" font-weight="700" fill="#334155">Retriever output is an input to the prompt—not a replacement for the question.</text>
+</svg>

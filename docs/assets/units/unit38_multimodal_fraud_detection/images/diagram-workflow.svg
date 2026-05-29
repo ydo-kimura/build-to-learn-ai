@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" role="img" aria-label="Text and image signals are evaluated in parallel, fused, and routed to review">
+  <defs>
+    <filter id="s"><feDropShadow dx="0" dy="6" stdDeviation="7" flood-opacity=".1"/></filter>
+    <marker id="a" markerWidth="4" markerHeight="4" refX="8" refY="4" orient="auto" markerUnits="strokeWidth" viewBox="0 0 8 8"><path d="M0 0L8 4L0 8Z" fill="#475569"/></marker>
+  </defs>
+  <rect width="700" height="380" rx="20" fill="#f8fafc"/>
+  <rect x="24" y="20" width="652" height="56" rx="14" fill="#fff" stroke="#7c3aed" stroke-width="2" filter="url(#s)"/>
+  <text x="350" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" fill="#6d28d9" font-weight="700">Fraud signals</text>
+  <rect x="52" y="96" width="596" height="210" rx="18" fill="#fff" stroke="#ede9fe" stroke-width="2" filter="url(#s)"/>
+  <rect x="84" y="124" width="132" height="62" rx="12" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+  <text x="150" y="150" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#b91c1c" font-weight="700">Text signal</text>
+  <text x="150" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">suspicious wording</text>
+  <rect x="84" y="216" width="132" height="62" rx="12" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/>
+  <text x="150" y="242" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#b45309" font-weight="700">Image signal</text>
+  <text x="150" y="262" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">visual mismatch</text>
+  <rect x="304" y="160" width="152" height="82" rx="12" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="380" y="197" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#6d28d9" font-weight="700">Signal fusion</text>
+  <text x="380" y="219" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#64748b">combine evidence</text>
+  <path d="M216 155H260V201" fill="none" stroke="#475569" stroke-width="2"/>
+  <path d="M216 247H260V201" fill="none" stroke="#475569" stroke-width="2"/>
+  <circle cx="260" cy="201" r="4" fill="#475569"/>
+  <path d="M260 201H304" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+  <rect x="512" y="172" width="104" height="58" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="564" y="197" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#b91c1c" font-weight="700">High score</text>
+  <text x="564" y="216" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#64748b">review</text>
+  <path d="M456 201H512" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+  <text x="350" y="348" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#475569">Independent signals become one reviewable decision</text>
+</svg>

@@ -1,0 +1,198 @@
+/**
+ * レイアウト幅の調整
+ * - 左右を端寄せし、サイドバー・アウトラインに十分な表示幅を確保
+ * - ドキュメント本文の幅制限を緩和
+ */
+:root {
+  --vp-layout-max-width: min(1920px, calc(100vw - 32px));
+  --vp-layout-margin: 16px;
+  --vp-sidebar-inset: 24px;
+  --vp-sidebar-width: 340px;
+  --vp-aside-width: 300px;
+}
+
+/* ── サイドバー: 左端揃え・幅拡大 ── */
+@media (min-width: 960px) {
+  .VPSidebar {
+    padding-left: var(--vp-sidebar-inset) !important;
+    padding-right: 12px !important;
+    width: var(--vp-sidebar-width) !important;
+  }
+
+  /* デフォルトの width 計算（-64px）は旧パディング前提のため上書き */
+  .VPSidebar .group {
+    width: 100% !important;
+  }
+
+  .VPContent.has-sidebar {
+    padding-left: var(--vp-sidebar-width) !important;
+    padding-right: 0 !important;
+  }
+
+  /* 外側コンテナのみ対象（内側 a.title への二重パディングを防ぐ） */
+  .VPNavBar.has-sidebar > .wrapper > .container > .title {
+    padding-left: var(--vp-sidebar-inset) !important;
+    padding-right: 12px !important;
+    width: var(--vp-sidebar-width) !important;
+  }
+
+  .VPNavBar.has-sidebar .VPNavBarTitle .title {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: auto !important;
+  }
+
+  .VPNavBar.has-sidebar .content {
+    padding-left: var(--vp-sidebar-width) !important;
+    padding-right: var(--vp-layout-margin) !important;
+  }
+
+  .VPNavBar.has-sidebar .divider {
+    padding-left: var(--vp-sidebar-width) !important;
+  }
+}
+
+/* 1440px 以上でも中央寄せの余白計算を使わない */
+@media (min-width: 1440px) {
+  .VPSidebar {
+    padding-left: var(--vp-sidebar-inset) !important;
+    padding-right: 12px !important;
+    width: var(--vp-sidebar-width) !important;
+  }
+
+  .VPContent.has-sidebar {
+    padding-left: var(--vp-sidebar-width) !important;
+    padding-right: 0 !important;
+  }
+
+  .VPNavBar.has-sidebar > .wrapper > .container > .title {
+    padding-left: var(--vp-sidebar-inset) !important;
+    padding-right: 12px !important;
+    width: var(--vp-sidebar-width) !important;
+  }
+
+  .VPNavBar.has-sidebar .VPNavBarTitle .title {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: auto !important;
+  }
+
+  .VPNavBar.has-sidebar .content {
+    padding-left: var(--vp-sidebar-width) !important;
+    padding-right: var(--vp-layout-margin) !important;
+  }
+
+  .VPNavBar.has-sidebar .divider {
+    padding-left: var(--vp-sidebar-width) !important;
+  }
+}
+
+/* ── ドキュメント本文 ── */
+.VPDoc.has-aside .content-container {
+  max-width: none !important;
+}
+
+@media (min-width: 1280px) {
+  .VPDoc.has-aside .container {
+    justify-content: flex-start !important;
+  }
+
+  .VPDoc.has-aside .content {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+/* ── On this page: 右端揃え・幅拡大・省略なし ── */
+@media (min-width: 1280px) {
+  .VPDoc.has-aside .aside {
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+    width: var(--vp-aside-width) !important;
+    max-width: var(--vp-aside-width) !important;
+    padding-left: 16px !important;
+    padding-right: 0 !important;
+  }
+
+  .VPDoc.has-aside .aside-container,
+  .VPDoc.has-aside .aside-curtain {
+    width: var(--vp-aside-width) !important;
+    right: var(--vp-layout-margin) !important;
+    left: auto !important;
+  }
+}
+
+.VPDocOutlineItem .outline-link {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  line-height: 1.45 !important;
+  padding: 5px 0 !important;
+}
+
+/* サイドバーなしのドキュメントページ */
+@media (min-width: 960px) {
+  .VPDoc:not(.has-sidebar) .container {
+    max-width: min(1200px, calc(100vw - 48px)) !important;
+  }
+
+  .VPDoc:not(.has-sidebar) .content {
+    max-width: min(960px, calc(100vw - 96px)) !important;
+  }
+}
+
+@media (min-width: 1440px) {
+  .VPDoc:not(.has-sidebar) .container {
+    max-width: min(1400px, calc(100vw - 48px)) !important;
+  }
+
+  .VPDoc:not(.has-sidebar) .content {
+    max-width: min(1100px, calc(100vw - 96px)) !important;
+  }
+}
+
+/* ホームページのヒーロー・機能カード */
+.VPHero .container,
+.VPFeatures .container {
+  max-width: min(1600px, calc(100vw - 48px)) !important;
+}
+
+/* VPHero の親コンテナとテキストの幅制限を緩和（日本語・英語タイトルの不自然な改行を防止） */
+.VPHero .content,
+.VPHero .text,
+.VPHero .name {
+  max-width: 800px !important;
+}
+
+/* カリキュラム各ユニットのヒーロー画像 */
+.unit-hero {
+  margin: 0 0 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
+  background: #fff;
+}
+
+.unit-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* セクション内の説明図 */
+.unit-diagram {
+  display: block;
+  margin: 1.25rem auto 1.5rem;
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
+}
+
+/* renderer の既定 50vh 上限で縦長の Mermaid 図が切れないようにする */
+.mermaid-container:not(:fullscreen):not(.dialog-fullscreen-active) {
+  max-height: none !important;
+  overflow: visible !important;
+}

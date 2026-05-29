@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-labelledby="title desc">
+  <title id="title">LSTM uses three parallel gates and a cell state</title>
+  <desc id="desc">The input and previous hidden state branch to forget, input, and output gates; the first two update the cell state and the output gate exposes the hidden state.</desc>
+  <defs><marker id="a" markerWidth="4" markerHeight="4" refX="8" refY="4" markerUnits="strokeWidth" viewBox="0 0 8 8" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#64748b"/></marker></defs>
+  <rect width="900" height="600" rx="24" fill="#f8fafc"/>
+  <rect x="32" y="28" width="836" height="72" rx="16" fill="#fff" stroke="#7c3aed" stroke-width="3"/>
+  <text x="64" y="74" font-family="DejaVu Sans,sans-serif" font-size="28" font-weight="700" fill="#2e1065">LSTM controls memory with three gates</text>
+  <text x="838" y="73" text-anchor="end" font-family="DejaVu Sans,sans-serif" font-size="16" fill="#7c3aed">parallel control</text>
+  <g font-family="DejaVu Sans,sans-serif">
+    <rect x="55" y="245.5" width="150" height="110" rx="18" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="130" y="282.5" text-anchor="middle" font-size="18" font-weight="700" fill="#1d4ed8">Inputs</text>
+    <text x="130" y="314.5" text-anchor="middle" font-size="17" fill="#334155">xₜ, hₜ₋₁</text>
+    <circle cx="235" cy="300.5" r="12" fill="#fff" stroke="#64748b" stroke-width="2"/>
+
+    <rect x="280" y="135" width="170" height="95" rx="18" fill="#fff" stroke="#ef4444" stroke-width="2"/>
+    <text x="365" y="174" text-anchor="middle" font-size="18" font-weight="700" fill="#b91c1c">Forget gate</text>
+    <text x="365" y="204" text-anchor="middle" font-size="15" fill="#475569">remove old signal</text>
+    <rect x="280" y="253" width="170" height="95" rx="18" fill="#fff" stroke="#22c55e" stroke-width="2"/>
+    <text x="365" y="292" text-anchor="middle" font-size="18" font-weight="700" fill="#15803d">Input gate</text>
+    <text x="365" y="322" text-anchor="middle" font-size="15" fill="#475569">add new signal</text>
+    <rect x="280" y="371" width="170" height="95" rx="18" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+    <text x="365" y="410" text-anchor="middle" font-size="18" font-weight="700" fill="#1d4ed8">Output gate</text>
+    <text x="365" y="440" text-anchor="middle" font-size="15" fill="#475569">expose state</text>
+
+    <rect x="560" y="135" width="275" height="95" rx="18" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+    <text x="697.5" y="174" text-anchor="middle" font-size="18" font-weight="700" fill="#5b21b6">Cell state</text>
+    <text x="697.5" y="204" text-anchor="middle" font-size="16" fill="#475569">cₜ₋₁ → update → cₜ</text>
+    <rect x="560" y="371" width="275" height="95" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="697.5" y="410" text-anchor="middle" font-size="18" font-weight="700" fill="#1d4ed8">Hidden output</text>
+    <text x="697.5" y="440" text-anchor="middle" font-size="16" fill="#475569">hₜ for the next step</text>
+
+    <path d="M205 300.5H223" fill="none" stroke="#64748b" stroke-width="3"/>
+    <path d="M235 288.5V182.5H280" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#a)"/>
+    <path d="M247 300.5H280" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#a)"/>
+    <path d="M235 312.5V418.5H280" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#a)"/>
+    <path d="M450 182.5H560" fill="none" stroke="#ef4444" stroke-width="3" marker-end="url(#a)"/>
+    <path d="M450 300.5L500 212H560" fill="none" stroke="#22c55e" stroke-width="3" marker-end="url(#a)"/>
+    <path d="M450 418.5H560" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#a)"/>
+    <path d="M697.5 230V371" fill="none" stroke="#7c3aed" stroke-width="3" marker-end="url(#a)"/>
+
+    <text x="450" y="530" text-anchor="middle" font-size="17" font-weight="600" fill="#5b21b6">Forget and input gates update cₜ; the output gate exposes hₜ.</text>
+  </g>
+</svg>

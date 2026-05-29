@@ -1,0 +1,23 @@
+{
+  "name": "ai-curriculum",
+  "version": "1.0.0",
+  "description": "AI Engineering curriculum",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev docs --host 0.0.0.0",
+    "docs:check-mermaid": "python3 scripts/verify_mermaid_blocks.py",
+    "docs:check-diagrams": "python3 scripts/verify_curriculum_diagrams.py && python3 scripts/verify_curriculum_diagram_geometry.py && pnpm run docs:check-mermaid",
+    "docs:build": "pnpm run docs:check-diagrams && vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^17.1.0",
+    "mermaid": "^11.15.0",
+    "prettier": "^3.9.5",
+    "vitepress": "^1.6.4",
+    "vitepress-mermaid-renderer": "1.1.28",
+    "vue": "^3.4.0"
+  }
+}

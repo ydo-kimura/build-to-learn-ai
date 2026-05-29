@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="K-Nearest Neighbors majority vote">
+  <rect width="640" height="360" rx="12" fill="#f8fafc"/>
+  <text x="200" y="32" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#1e293b" font-weight="700">K-NN: K=3 majority vote</text>
+  <circle cx="150" cy="120" r="18" fill="#f97316" opacity="0.9"/>
+  <text x="150" y="125" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#fff" font-weight="700">S</text>
+  <circle cx="200" cy="180" r="18" fill="#f97316" opacity="0.9"/>
+  <text x="200" y="185" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#fff" font-weight="700">S</text>
+  <circle cx="120" cy="220" r="18" fill="#f97316" opacity="0.9"/>
+  <text x="120" y="225" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#fff" font-weight="700">S</text>
+  <circle cx="450" cy="130" r="18" fill="#8b5cf6" opacity="0.9"/>
+  <text x="450" y="135" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#fff" font-weight="700">C</text>
+  <circle cx="500" cy="200" r="18" fill="#8b5cf6" opacity="0.9"/>
+  <text x="500" y="205" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#fff" font-weight="700">C</text>
+  <circle cx="420" cy="250" r="18" fill="#8b5cf6" opacity="0.9"/>
+  <text x="420" y="255" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#fff" font-weight="700">C</text>
+  <circle cx="300" cy="170" r="22" fill="#fbbf24" stroke="#1e293b" stroke-width="3"/>
+  <text x="300" y="176" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#1e293b" font-weight="700">?</text>
+  <line x1="300" y1="170" x2="200" y2="180" stroke="#64748b" stroke-width="2" stroke-dasharray="6 4"/>
+  <line x1="300" y1="170" x2="150" y2="120" stroke="#64748b" stroke-width="2" stroke-dasharray="6 4"/>
+  <circle cx="200" cy="180" r="28" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="4 3"/>
+  <circle cx="150" cy="120" r="28" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="4 3"/>
+  <rect x="180" y="290" width="280" height="50" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <text x="320" y="320" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#c2410c" font-weight="700">Vote: Sports, Sports, Culture -&gt; Sports</text>
+</svg>

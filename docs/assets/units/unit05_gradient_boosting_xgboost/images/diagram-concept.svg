@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Gradient boosting adds small trees that learn the residual error of the previous model">
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#64748b"/></marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#0f172a" flood-opacity=".10"/></filter>
+  </defs>
+  <rect width="900" height="520" rx="28" fill="#f7f9fc"/>
+  <rect x="32" y="28" width="836" height="76" rx="18" fill="#fff" stroke="#2563eb" stroke-width="2" filter="url(#shadow)"/>
+  <text x="64" y="60" font-family="DejaVu Sans, sans-serif" font-size="14" letter-spacing="2" fill="#2563eb" font-weight="700">GRADIENT BOOSTING</text>
+  <text x="64" y="86" font-family="DejaVu Sans, sans-serif" font-size="22" fill="#0f172a" font-weight="700">Each new tree learns what the ensemble still gets wrong</text>
+  <rect x="32" y="126" width="836" height="356" rx="22" fill="#fff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="76" y="164" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#64748b" font-weight="700">PREDICTION → RESIDUAL → CORRECTION</text>
+  <g filter="url(#shadow)">
+    <rect x="77" y="198" width="186" height="124" rx="18" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="170" y="232" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#1d4ed8" font-weight="700">Tree 1</text>
+    <path d="M170 250l-22 24m22-24l22 24m-22-24v34" fill="none" stroke="#3b82f6" stroke-width="3"/>
+    <text x="170" y="302" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#475569">first estimate</text>
+    <rect x="357" y="198" width="186" height="124" rx="18" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+    <text x="450" y="232" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#c2410c" font-weight="700">Tree 2</text>
+    <path d="M450 250l-22 24m22-24l22 24m-22-24v34" fill="none" stroke="#f97316" stroke-width="3"/>
+    <text x="450" y="302" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#475569">learns residuals</text>
+    <rect x="637" y="198" width="186" height="124" rx="18" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+    <text x="730" y="232" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#15803d" font-weight="700">Tree 3 …</text>
+    <path d="M730 250l-22 24m22-24l22 24m-22-24v34" fill="none" stroke="#16a34a" stroke-width="3"/>
+    <text x="730" y="302" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#475569">smaller corrections</text>
+    <rect x="252" y="386" width="396" height="54" rx="16" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+    <text x="450" y="420" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#6d28d9" font-weight="700">sum of trees → better prediction</text>
+  </g>
+  <path d="M263 260H357" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M543 260H637" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M170 322V350H450" fill="none" stroke="#94a3b8" stroke-width="2"/>
+  <path d="M450 322V350" fill="none" stroke="#94a3b8" stroke-width="2"/>
+  <path d="M730 322V350H450" fill="none" stroke="#94a3b8" stroke-width="2"/>
+  <circle cx="450" cy="350" r="5" fill="#94a3b8"/>
+  <path d="M450 350V386" fill="none" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="76" y="458" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#64748b">The sequence is intentional: later trees focus on the errors left by earlier trees.</text>
+</svg>

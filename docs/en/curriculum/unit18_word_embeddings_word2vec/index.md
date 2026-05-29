@@ -1,0 +1,182 @@
+# Unit 18: Word Embeddings (Word2Vec)
+
+<p class="unit-hero">
+  <img src="/en/assets/units/unit18_word_embeddings_word2vec/images/hero.png" alt="Hero: Word Embeddings (Word2Vec)" />
+</p>
+
+## 1. Understanding Word Embeddings
+
+<img src="/en/assets/units/unit18_word_embeddings_word2vec/images/diagram-concept.svg" alt="Diagram: Word2Vec idea" class="unit-diagram" />
+
+TF-IDF from Unit 17 is powerful, but it has a major weakness: **it does not understand word meaning**.
+For example, "dog" and "puppy" are similar in meaning, but TF-IDF treats them as completely different tokens.
+
+**Word Embeddings** map words to **coordinates in space (vectors)**.
+
+### 📌 Everyday analogy: a "personality test" for words
+
+When classifying people, personality tests score traits like "extroverted vs introverted" or "logical vs emotional."
+Word Embeddings are exactly **a personality test for words**.
+
+For example, score "King," "Queen," and "Apple" on two axes:
+
+| Word  | Royalty (0–1) | Food (0–1) |
+| :---- | :-----------: | :--------: |
+| King  |     0.99      |    0.01    |
+| Queen |     0.98      |    0.02    |
+| Apple |     0.00      |    0.95    |
+
+With numeric scores (vectors), two powerful things become possible:
+
+1. **Similar words cluster nearby**: "King" and "Queen" sit close on the graph.
+2. **Word arithmetic works**: The famous example `King - Man + Woman ≈ Queen`.
+
+### 📌 What is Word2Vec?
+
+**Word2Vec** is a representative algorithm for building word embeddings.
+It assumes **"words used in similar contexts have similar meanings."**
+(Example: "I eat bread" / "I eat rice" → bread and rice appear in similar contexts, so they are related.)
+
+### 📌 Two Word2Vec training modes
+
+Word2Vec has **two training approaches**—like two styles of personality assessment.
+
+**① CBOW (Continuous Bag of Words)—guess the center from context**
+Use surrounding words to **predict the middle word**.
+Example: "I ___ drink" → from "I," "は," "を," "drink," guess the middle is "**coffee**."
+
+**② Skip-gram—guess context from the center**
+Use one center word to **predict surrounding words**.
+Example: "**coffee**" → nearby words might be "I," "drink," "café."
+
+| Comparison           | CBOW                       | Skip-gram              |
+| :------------------- | :------------------------- | :--------------------- |
+| Prediction direction | Context → center word      | Center word → context  |
+| Best for             | Large data, frequent words | Small data, rare words |
+| Training speed       | Faster                     | Slower (more thorough) |
+| gensim setting       | `sg=0` (default)           | `sg=1`                 |
+
+In gensim, `Word2Vec(sentences, sg=0)` is CBOW and `sg=1` is Skip-gram. The implementation example below uses the default (CBOW).
+
+> 💡 **Important**: The "royalty" and "food" axes were for illustration—in real Word2Vec, **humans do not design axes; the model discovers hundreds of unnamed dimensions** from large corpora. Similar words still end up close—that is the magic.
+
+### 💡 Concrete Business Use Cases
+
+- **E-commerce related-product recommendations**: Treat user views/purchases like "words" and learn product similarity with Word2Vec.
+- **Search that handles spelling variants**: "smartphone," "smart phone," and "iPhone" sit near each other in embedding space for meaning-aware search.
+- **Chatbot intent understanding (synonyms)**: Match user questions to intents even when exact keywords differ, using embedding similarity.
+
+<img src="/en/assets/units/unit18_word_embeddings_word2vec/images/diagram-workflow.svg" alt="Diagram: Embedding layer" class="unit-diagram" />
+
+## 2. Implementation Example
+
+Here you will train a simple Word2Vec model with Python's `gensim` library and compute word similarity.
+
+### Code walkthrough
+
+1. **Prepare sentences**: Lists of tokenized words.
+2. **Train model**: `Word2Vec` learns a vector ("coordinate") for each word.
+3. **Find similar words**: Input "king" and find nearest neighbors in space.
+
+```python
+# Use the gensim library (pip install gensim required)
+from gensim.models import Word2Vec
+
+# 1. Prepare sentence data
+# Lists of tokenized English sentences
+sentences = [
+    ["the", "king", "is", "a", "strong", "man"],
+    ["the", "queen", "is", "a", "wise", "woman"],
+    ["a", "boy", "is", "a", "young", "man"],
+    ["a", "girl", "is", "a", "young", "woman"],
+    ["apple", "is", "a", "delicious", "fruit"],
+    ["banana", "is", "a", "sweet", "fruit"]
+]
+
+# 2. Train Word2Vec model
+# vector_size: embedding dimension per word
+# min_count: minimum token frequency to include (1 = include all tokens here)
+# window: context window size on each side
+print("Starting model training...")
+model = Word2Vec(sentences, vector_size=10, min_count=1, window=2)
+print("Training complete!\n")
+
+# 3. Find similar words
+# Top 3 words most similar to "king"
+print("--- Words similar to 'king' ---")
+similar_words = model.wv.most_similar("king", topn=3)
+for word, score in similar_words:
+    print(f"Word: {word}, similarity score: {score:.3f}")
+
+# 4. Inspect a word vector
+print("\n--- Vector for 'king' (10 dimensions) ---")
+print(model.wv["king"])
+```
+
+### Key takeaways after running the code
+
+- `model.wv.most_similar("king")` returns contextually similar words with similarity scores. On this tiny corpus, do not assume a fixed word will always appear at the top.
+- `model.wv["king"]` shows the word as an array of 10 numbers—the "personality test result."
+
+## 3. Practice
+
+Train Word2Vec on a slightly larger set of pet-related sentences.
+
+**【Requirements】**
+
+1. Use the `pet_sentences` dataset below.
+2. Train a `Word2Vec` model (`vector_size=5, min_count=1, window=2`).
+3. Find the single word most similar to `"dog"` and print it.
+4. Compute similarity between `"cat"` and `"dog"` and print it.
+
+**【Dataset】**
+
+```python
+pet_sentences = [
+    ["i", "love", "my", "cute", "dog"],
+    ["my", "dog", "barks", "loudly", "at", "strangers"],
+    ["i", "love", "my", "cute", "cat"],
+    ["my", "cat", "meows", "softly", "at", "night"],
+    ["the", "dog", "chases", "the", "ball"],
+    ["the", "cat", "chases", "the", "mouse"]
+]
+```
+
+**【Hints】**
+
+- Use `model.wv.similarity("word1", "word2")` for pairwise similarity.
+
+## 4. Answer Key
+
+<details>
+<summary>View sample solution (click to expand)</summary>
+
+```python
+from gensim.models import Word2Vec
+
+# Prepare data
+pet_sentences = [
+    ["i", "love", "my", "cute", "dog"],
+    ["my", "dog", "barks", "loudly", "at", "strangers"],
+    ["i", "love", "my", "cute", "cat"],
+    ["my", "cat", "meows", "softly", "at", "night"],
+    ["the", "dog", "chases", "the", "ball"],
+    ["the", "cat", "chases", "the", "mouse"]
+]
+
+# Train model
+model = Word2Vec(pet_sentences, vector_size=5, min_count=1, window=2)
+
+# Word most similar to "dog" (topn=1)
+most_similar_to_dog = model.wv.most_similar("dog", topn=1)
+print(f"Word most similar to 'dog': {most_similar_to_dog[0][0]} (similarity: {most_similar_to_dog[0][1]:.3f})")
+
+# Similarity between "cat" and "dog"
+cat_dog_similarity = model.wv.similarity("cat", "dog")
+print(f"Similarity between 'cat' and 'dog': {cat_dog_similarity:.3f}")
+```
+
+**Solution explanation:**
+"dog" and "cat" share contexts like "i love my cute ___" and "the ___ chases the," so Word2Vec learns they are very similar and assigns a high similarity score.
+
+</details>
