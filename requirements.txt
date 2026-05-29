@@ -1,0 +1,17 @@
+numpy
+pandas
+scikit-learn
+optuna
+xgboost
+torch
+torchvision
+nltk
+gensim
+openai
+chromadb
+langchain
+langchain-openai
+langchain-core
+langchain-community
+streamlit
+numexpr
