@@ -4,10 +4,14 @@
     "dockerfile": "Dockerfile",
     "context": "."
   },
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
+  ],
   "features": {
     "ghcr.io/devcontainers/features/common-utils:1": {
       "configureZshAsDefaultShell": true
-    }
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "postCreateCommand": "pnpm install",
   "customizations": {
