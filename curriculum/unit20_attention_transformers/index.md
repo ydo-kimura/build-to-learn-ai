@@ -2,7 +2,7 @@
 
 ## 1. Attention Mechanism と Transformer の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit20_attention_transformers/images/concept.png" width="400" alt="コンセプト図解">
 
 RNNやLSTMは「記憶をバケツリレーのように渡していく」仕組みでした。しかし、長い文章になると最後のほうで最初の内容を忘れてしまう問題がありました。
 これを完全に解決し、現代のAI（ChatGPTなど）の心臓部となったのが **Attention（注意機構）** と、それを使った **Transformer** というアーキテクチャです。

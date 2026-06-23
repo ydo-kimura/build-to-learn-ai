@@ -2,7 +2,7 @@
 
 ## 1. LLM-as-a-Judge と安全ガードレールの理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit37_guardrails_evaluation_harness/images/concept.png" width="400" alt="コンセプト図解">
 
 これまで、さまざまな LLM 応用システムや AI エージェントの構築方法を学習してきました。Unit 34ではLLM-as-a-Judgeによる自動評価の基本原理を学びましたが、本Unitではその評価手法を、入力・出力の両面から防御する**エンタープライズ向けGuardrailsアーキテクチャ**に拡張します。これらを**「実際のエンタープライズ（企業実務）環境」**で一般公開するとなると、避けて通れない最大の壁が存在します。それが**「安全性（Safety）」**と**「信頼性（Reliability）」**の担保です。
 

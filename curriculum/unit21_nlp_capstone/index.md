@@ -2,7 +2,7 @@
 
 ## 1. 総合自然言語処理（Transformer 構築）の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit21_nlp_capstone/images/concept.png" width="400" alt="コンセプト図解">
 
 第3章（Unit 17〜20）において、テキストの分かち書きや TF-IDF に始まる自然言語処理の基礎から、単語の持つ意味を多次元ベクトル化する Word2Vec、系列データに文脈を適用させる RNN / LSTM、そして現在のLLMのすべての基盤となっている **Attention（注意機構）と Transformer アーキテクチャ** を学びました。
 

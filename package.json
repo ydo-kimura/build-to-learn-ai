@@ -1,7 +1,7 @@
 {
   "name": "ai-curriculum",
   "version": "1.0.0",
-  "description": "24-unit AI Engineering curriculum",
+  "description": "AI Engineering curriculum",
   "type": "module",
   "scripts": {
     "docs:dev": "vitepress dev --host 0.0.0.0",

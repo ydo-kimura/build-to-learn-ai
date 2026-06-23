@@ -2,7 +2,7 @@
 
 ## 1. クラスタリングの理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit06_clustering_algorithms/images/concept.png" width="400" alt="コンセプト図解">
 
 これまでのUnit（線形回帰やランダムフォレストなど）はすべて、**「正解（目的変数）」が分かっているデータ**を使って、「このデータはAですか？Bですか？」と予測する手法でした。これを「教師あり学習」と呼びます。
 

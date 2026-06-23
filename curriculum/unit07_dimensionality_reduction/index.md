@@ -2,7 +2,7 @@
 
 ## 1. 次元削減とPCAの理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit07_dimensionality_reduction/images/concept.png" width="400" alt="コンセプト図解">
 
 データ分析の世界では、「データ（特徴量）は多ければ多いほど良い」と思われがちですが、実はそうではありません。
 特徴量が多すぎると、計算に時間がかかったり、ノイズが増えて精度が落ちたり、人間がグラフにして見ることができなくなったりします。これを**「次元の呪い」**と呼びます。

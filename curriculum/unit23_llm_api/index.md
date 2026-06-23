@@ -8,7 +8,7 @@
 
 ## 1. LLM API Usage & Prompting の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解" style="display:none;">
+<img src="../../assets/units/unit23_llm_api/images/concept.png" width="400" alt="コンセプト図解" style="display:none;">
 
 ### LLM APIとは？
 みなさんは普段、ChatGPTを使う時にブラウザを開いて文字を打ち込んでいると思います。しかし、自作のアプリやシステムにAIを組み込む場合、毎回人間が手で打ち込むわけにはいきません。

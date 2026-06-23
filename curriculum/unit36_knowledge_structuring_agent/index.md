@@ -2,7 +2,7 @@
 
 ## 1. 非構造化データからナレッジ抽出と構造化の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit36_knowledge_structuring_agent/images/concept.png" width="400" alt="コンセプト図解">
 
 これまで、Unit 26 において RAG 特化フレームワークである `LlamaIndex` を学び、Unit 31 において Python コードを自ら書きながら自律的に動作する `smolagents` （CodeAgent）を学習しました。
 

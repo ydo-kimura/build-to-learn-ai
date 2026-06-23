@@ -9,7 +9,7 @@
 
 ## 1. ニューラルネットワークの理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit10_nn_from_scratch/images/concept.png" width="400" alt="コンセプト図解">
 
 ニューラルネットワークを理解するために、**「会社での稟議（りんぎ）の決裁プロセス」**に例えてみましょう。
 

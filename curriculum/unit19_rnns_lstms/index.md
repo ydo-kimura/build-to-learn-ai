@@ -2,7 +2,7 @@
 
 ## 1. RNN と LSTM の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit19_rnns_lstms/images/concept.png" width="400" alt="コンセプト図解">
 
 Word Embeddings（単語の分散表現）によって、AIは単語の意味を理解できるようになりました。しかし、まだ足りないものがあります。それは**「文脈（時間の流れ）」**です。
 例えば、「私は」「昨日」「リンゴを」「_____」と来た時、次に続く言葉は「食べた」や「買った」になる可能性が高いですよね。これは、前の単語の流れ（記憶）があるからです。

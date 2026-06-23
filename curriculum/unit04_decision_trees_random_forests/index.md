@@ -2,7 +2,7 @@
 
 ## 1. 決定木とランダムフォレストの理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit04_decision_trees_random_forests/images/concept.png" width="400" alt="コンセプト図解">
 
 これまで数式や境界線を使ってデータを分けてきましたが、今回はもっと人間の思考回路に近い、非常に分かりやすいアルゴリズム「決定木（Decision Tree）」と、その進化系である「ランダムフォレスト（Random Forest）」について学びます。
 

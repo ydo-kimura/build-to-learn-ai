@@ -6,7 +6,7 @@
 
 ## 1. CNN Basics の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit14_cnn_basics/images/concept.png" width="400" alt="コンセプト図解">
 
 これまで学んできたニューラルネットワーク（MLP）は、画像を扱うのが大の苦手でした。なぜなら、画像を「1列の長〜いデータ」に引き延ばして処理してしまうため、画像の「縦・横の繋がり（形や輪郭）」という大切な情報が失われてしまうからです。
 

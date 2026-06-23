@@ -2,7 +2,7 @@
 
 ## 1. ハーネスエンジニアリング（LLM自動評価）の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit34_llm_harness_capstone/images/concept.png" width="400" alt="コンセプト図解">
 
 第4章（Unit 22〜33）において、LLMのAPI利用、ゼロからのRAG（検索拡張生成）構築、LangChainの基礎、プロンプトの連結（Chaining）、 Web UIチャットボット、および自律動作する AIエージェントの構築までを網羅的に学習してきました。
 

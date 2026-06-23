@@ -2,7 +2,7 @@
 
 ## 1. エンドツーエンド機械学習パイプラインの理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit09_classical_ml_capstone/images/concept.png" width="400" alt="コンセプト図解">
 
 これまでUnit 1からUnit 8にかけて、様々な機械学習のアルゴリズムや評価方法、チューニングの手法を個別に学んできました。しかし、実際のビジネス現場におけるAIエンジニアの仕事は、アルゴリズムを呼び出すだけではありません。
 
