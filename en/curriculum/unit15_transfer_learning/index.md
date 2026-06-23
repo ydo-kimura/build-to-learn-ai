@@ -42,11 +42,11 @@ import torch
 import torch.nn as nn
 import torchvision.models as models
 
-# 1. 一流シェフ（学習済みのResNet18）をダウンロードして呼んでくる
-# weights=models.ResNet18_Weights.DEFAULT と指定することで、知識が詰まった状態のモデルをダウンロードできます。
+# 1. Download pretrained ResNet18
+# weights=models.ResNet18_Weights.DEFAULT loads ImageNet-trained weights
 resnet = models.resnet18(weights=models.ResNet18_Weights.DEFAULT)
 
-print(resnet) # 中身を見ると、膨大な量の層（虫眼鏡）が連なっているのがわかります
+print(resnet) # Many stacked layers (conv blocks)
 ```
 
 This chef was trained on ImageNet and can distinguish **1000** object classes. You only need **2**—dog or cat.
@@ -54,21 +54,21 @@ This chef was trained on ImageNet and can distinguish **1000** object classes. Y
 So replace only the "final decision layer (fully connected layer)" in the chef's head.
 
 ```python
-# 2. シェフの今までの知識（虫眼鏡の部分）を「凍結（Freeze）」する
-# 「今まで培った包丁の使い方はそのままでいいよ、変えないでね」という指示です。
+# 2. Freeze existing feature layers
+# Keep pretrained weights fixed; do not update them
 for param in resnet.parameters():
-    param.requires_grad = False # 勾配計算（学習）をストップする
+    param.requires_grad = False # Stop gradient computation for frozen layers
 
-# 3. 最後の全結合層（推理パート）だけを、2クラス分類用に新しく付け替える
-# resnetの最後の層は「fc (Fully Connected)」という名前がついています。
-# そこで、元のfc層に入力されるはずだった特徴量の数（in_features）を調べます。
+# 3. Replace the final fully connected layer for 2-class classification
+# ResNet's last layer is named "fc (Fully Connected)"
+# Check how many features feed into the original fc layer
 num_features = resnet.fc.in_features 
 
-# 古い1000クラス用の層を捨てて、新しい2クラス用の層をくっつけます！
-# 新しく作ったこの層だけは requires_grad = True (学習する) になります。
+# Swap the 1000-class head for a new 2-class head
+# Only the new layer will have requires_grad = True (trainable)
 resnet.fc = nn.Linear(num_features, 2)
 
-print("最後の層が2クラス分類用にすり替わりました！")
+print("Final layer replaced for 2-class classification!")
 print(resnet.fc)
 ```
 
@@ -77,29 +77,28 @@ That is all the setup! Now run a training loop with this model.
 ```python
 import torch.optim as optim
 
-# 4. 学習の準備
+# 4. Training setup
 criterion = nn.CrossEntropyLoss()
 
-# ここがポイント！
-# Optimizer（乗り物）には、「新しく付け替えた最後の層 (resnet.fc.parameters())」だけを渡します。
-# 凍結した部分は学習させる必要がないためです。
+# Key point: optimize only the replaced final layer (resnet.fc.parameters())
+# Frozen layers do not need updates
 optimizer = optim.Adam(resnet.fc.parameters(), lr=0.001)
 
-# ダミーの画像データ (バッチ:4, カラー3色, 縦:224, 横:224) 
-# ※ResNetなどの有名モデルは基本的に 224x224 サイズの画像を前提にしています。
-dummy_images = torch.randn(4, 3, 224, 224)
+# Dummy images (batch: 4, RGB 3 channels, 224x224)
+# ResNet and similar models expect 224x224 input
+dummy_images = torch.randn(4,  3, 224, 224)
 dummy_labels = torch.tensor([0, 1, 0, 1])
 
-# 5. 学習ループ（1回だけ回してみるテスト）
+# 5. Training loop (single-step test)
 resnet.train()
 
 optimizer.zero_grad()
-predictions = resnet(dummy_images) # シェフに予測させる！
+predictions = resnet(dummy_images) # Forward pass
 loss = criterion(predictions, dummy_labels)
 loss.backward()
 optimizer.step()
 
-print("\n1回分の学習が完了しました！Loss:", loss.item())
+print("\nOne training step complete! Loss:", loss.item())
 ```
 
 **Explanation:**
@@ -127,10 +126,10 @@ MobileNet is lightweight so it runs smoothly on phones and other low-power devic
 **Hints:**
 ```python
 mobilenet = models.mobilenet_v2(weights=models.MobileNet_V2_Weights.DEFAULT)
-# mobilenetの最後はこうなっています
+# MobileNet ends with:
 # mobilenet.classifier = nn.Sequential(
 #     nn.Dropout(p=0.2),
-#     nn.Linear(in_features=1280, out_features=1000) <- これが classifier[1]
+#     nn.Linear(in_features=1280, out_features=1000) <- this is classifier[1]
 # )
 ```
 
@@ -144,25 +143,25 @@ import torch
 import torch.nn as nn
 import torchvision.models as models
 
-# 1. 一流シェフ（軽量級のMobileNet V2）をダウンロード
+# 1. Download pretrained MobileNet V2
 mobilenet = models.mobilenet_v2(weights=models.MobileNet_V2_Weights.DEFAULT)
 
-# 2. 既存の知識（パラメータ）をすべて凍結する
+# 2. Freeze all existing parameters
 for param in mobilenet.parameters():
     param.requires_grad = False
 
-# 3. 最後の層の入力数を調べる
-# MobileNet V2では classifier[1] が最後のLinear層です
+# 3. Check input size of the final layer
+# In MobileNet V2, classifier[1] is the final Linear layer
 num_features = mobilenet.classifier[1].in_features
 
-# 4. 10クラス分類用に最後の層をすり替える
+# 4. Replace the final layer for 10-class classification
 mobilenet.classifier[1] = nn.Linear(num_features, 10)
 
-print("転移学習の準備が完了しました！")
-print("新しい分類層:", mobilenet.classifier[1])
+print("Transfer learning setup complete!")
+print("New classification layer:", mobilenet.classifier[1])
 
-# --- （おまけ）Optimizerの設定 ---
-# 付け替えた層だけを最適化の対象にします
+# --- (Optional) Optimizer setup ---
+# Optimize only the replaced layer
 import torch.optim as optim
 optimizer = optim.Adam(mobilenet.classifier[1].parameters(), lr=0.001)
 ```

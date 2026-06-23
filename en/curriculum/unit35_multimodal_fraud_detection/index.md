@@ -104,9 +104,9 @@ from sklearn.metrics import classification_report, f1_score
 import xgboost as xgb
 
 # 1. Decision:
-# 「サンプルサイズが200件と極めて少ないため、早期融合(NNで一括結合)は確実に過学習を起こす。」
-# 「そのため、各モダルを個別のモデルで予測し、その予測確率をメタラーナー(LogisticRegression)で結合する後期融合を採用。」
-# 「メタラーナーには過学習を抑え込むために強めのL2正則化(C=0.1)を課し、不正を漏らさないためにRecallを重視した閾値設計を行う。」
+# "With only 200 samples, early fusion (single NN) will definitely overfit."
+# "Therefore we use late fusion: separate models per modality, combined by a meta-learner (LogisticRegression)."
+# "Apply strong L2 regularization (C=0.1) on the meta-learner and tune threshold for Recall to avoid missing fraud."
 
 # Data split (80% train, 20% validation)
 # ※ Fit simulation features to models for simplicity
@@ -153,7 +153,7 @@ final_pred_probs = meta_learner.predict_proba(meta_features_val)[:, 1]
 # Business decision: lower threshold from 0.5 to 0.35 to improve Recall and reduce missed fraud
 final_preds = (final_pred_probs >= 0.35).astype(int)
 
-print("--- マルチモーダル不正検知 評価レポート ---")
+print("--- Multimodal Fraud Detection Evaluation Report ---")
 print(classification_report(y_val, final_preds))
 ```
 

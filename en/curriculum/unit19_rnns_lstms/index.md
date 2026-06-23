@@ -62,77 +62,76 @@ Here you will use PyTorch to build a simple RNN/LSTM that **predicts the next ch
 import torch
 import torch.nn as nn
 
-# 1. データの準備
-# "hello" という文字列を学習させます
-# 文字と数字（インデックス）の対応表を作ります
+# 1. Prepare data
+# Train the model on the string "hello"
+# Build character-to-index mapping
 chars = ['h', 'e', 'l', 'o']
 char_to_idx = {ch: i for i, ch in enumerate(chars)}
 idx_to_char = {i: ch for i, ch in enumerate(chars)}
 
-# "hello" の入力と正解ラベルの準備
-# 入力: h, e, l, l
-# 正解: e, l, l, o
+# Input and target for "hello"
+# Input: h, e, l, l
+# Target: e, l, l, o
 x_data = [char_to_idx[c] for c in "hell"]
 y_data = [char_to_idx[c] for c in "ello"]
 
-# PyTorchのテンソル（多次元配列）に変換し、形を整えます
-# 形: (系列長, バッチサイズ, 入力サイズ) = (4, 1, 1)
+# Convert to PyTorch tensors with shape (seq_len, batch_size, input_size) = (4, 1, 1)
 x_tensor = torch.tensor(x_data, dtype=torch.float32).view(4, 1, 1)
 y_tensor = torch.tensor(y_data, dtype=torch.long)
 
-# 2. モデルの定義 (LSTMを使った予測モデル)
+# 2. Model definition (LSTM next-character predictor)
 class SimpleLSTM(nn.Module):
     def __init__(self, input_size, hidden_size, output_size):
         super(SimpleLSTM, self).__init__()
         self.hidden_size = hidden_size
-        # LSTM層：過去の記憶を保持する
+        # LSTM layer: retains past context
         self.lstm = nn.LSTM(input_size, hidden_size)
-        # 出力層：記憶をもとに次の文字（4種類のどれか）を予測する
+        # Output layer: predicts next character (one of 4)
         self.fc = nn.Linear(hidden_size, output_size)
 
     def forward(self, x):
-        # LSTMにデータを順番に流し込む（outには各ステップの出力が入る）
+        # Feed sequence through LSTM (out holds output at each step)
         out, _ = self.lstm(x)
-        # 最後の層で、どの文字になるかのスコアを計算
+        # Final layer: score for each character
         out = self.fc(out.view(-1, self.hidden_size))
         return out
 
 input_size = 1
 hidden_size = 8
-output_size = len(chars) # 4種類 (h, e, l, o)
+output_size = len(chars) # 4 characters (h, e, l, o)
 model = SimpleLSTM(input_size, hidden_size, output_size)
 
-# 学習の設定
+# Training setup
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.05)
 
-# 3. 学習（トレーニング）
-print("学習を開始します...")
+# 3. Training
+print("Starting training...")
 for epoch in range(100):
     optimizer.zero_grad()
-    # モデルに予測させる
+    # Forward pass
     outputs = model(x_tensor)
-    # 正解との誤差（Loss）を計算
+    # Compute loss against targets
     loss = criterion(outputs, y_tensor)
-    # 誤差を元にモデルを賢くする（逆伝播）
+    # Backpropagation
     loss.backward()
     optimizer.step()
     
     if (epoch+1) % 20 == 0:
         print(f"Epoch: {epoch+1}/100, Loss: {loss.item():.4f}")
-print("学習が完了しました！\n")
+print("Training complete!\n")
 
-# 4. 予測テスト
-print("--- 予測テスト ---")
-# 学習したモデルに "hell" を入力して、次に来る文字を予測させます
+# 4. Prediction test
+print("--- Prediction test ---")
+# Input "hell" and predict continuation
 with torch.no_grad():
     test_out = model(x_tensor)
-    # 最もスコアが高い（確率が高い）文字のインデックスを取得
+    # Index with highest score
     _, predicted_indices = torch.max(test_out, 1)
     
-    # 数字を文字に戻す
+    # Convert indices back to characters
     predicted_chars = [idx_to_char[idx.item()] for idx in predicted_indices]
-    print(f"入力: hell -> 予測結果: {''.join(predicted_chars)}")
+    print(f"Input: hell -> Prediction: {''.join(predicted_chars)}")
 ```
 
 ### Key takeaways after running the code
@@ -162,19 +161,19 @@ Train an LSTM to predict the word "apple."
 import torch
 import torch.nn as nn
 
-# 1. データの準備
+# 1. Prepare data
 chars = ['a', 'p', 'l', 'e']
 char_to_idx = {ch: i for i, ch in enumerate(chars)}
 idx_to_char = {i: ch for i, ch in enumerate(chars)}
 
-# "apple" の学習データ（入力: appl, 正解: pple）
+# Training data for "apple" (input: appl, target: pple)
 x_data = [char_to_idx[c] for c in "appl"]
 y_data = [char_to_idx[c] for c in "pple"]
 
 x_tensor = torch.tensor(x_data, dtype=torch.float32).view(4, 1, 1)
 y_tensor = torch.tensor(y_data, dtype=torch.long)
 
-# 2. モデルの定義
+# 2. Model definition
 class SimpleLSTM(nn.Module):
     def __init__(self, input_size, hidden_size, output_size):
         super(SimpleLSTM, self).__init__()
@@ -195,8 +194,8 @@ model = SimpleLSTM(input_size, hidden_size, output_size)
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.05)
 
-# 3. 学習
-print("学習を開始します...")
+# 3. Training
+print("Starting training...")
 for epoch in range(100):
     optimizer.zero_grad()
     outputs = model(x_tensor)
@@ -204,12 +203,12 @@ for epoch in range(100):
     loss.backward()
     optimizer.step()
 
-# 4. 予測テスト
+# 4. Prediction test
 with torch.no_grad():
     test_out = model(x_tensor)
     _, predicted_indices = torch.max(test_out, 1)
     predicted_chars = [idx_to_char[idx.item()] for idx in predicted_indices]
-    print(f"入力: appl -> 予測結果: {''.join(predicted_chars)}")
+    print(f"Input: appl -> Prediction: {''.join(predicted_chars)}")
 ```
 
 **Solution explanation:**

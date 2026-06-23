@@ -21,11 +21,11 @@ The breakthrough is **Multi-Agent Systems (division of labor and governance)**.
 Like company departments, create multiple **small child agents (Managed Agents)** with specific tools and expertise, overseen by a **parent agent (ManagerAgent)** that delegates work.
 
 ```
-                    【Main Support Agent (ManagerAgent)】
+                    [Main Support Agent (ManagerAgent)]
                                       │
               ┌───────────────────────┴───────────────────────┐
               ▼                                               ▼
-【Shipping Tracking Agent (Managed CodeAgent)】     【Payment Policy Agent (Managed CodeAgent)】
+[Shipping Tracking Agent (Managed CodeAgent)]     [Payment Policy Agent (Managed CodeAgent)]
     - Tools: shipping DB lookup only                        - Tools: refund policy text search only
     - Permission: shipping info only                        - Permission: policy verification only
 ```
@@ -64,32 +64,32 @@ model = OpenAIServerModel(
 @tool
 def track_shipping_status(order_id: str) -> str:
     """
-    指定された注文ID（Order ID）の配送ステータスと現在位置をデータベースから検索して取得します。
+    Look up shipping status and current location for the given order ID from the database.
     
     Args:
-        order_id: 'ORD-XXXX' 形式の注文ID文字列。
+        order_id: Order ID string in 'ORD-XXXX' format.
     """
     # Mock database lookup
     shipping_db = {
-        "ORD-9999": "ステータス: 配送遅延。理由: 台風の影響による配送拠点の冠水。現在位置: 東京物流センター。お届け予定: 通常より3日遅れの見込み。",
-        "ORD-1111": "ステータス: 配達完了。お届け日時: 2026-05-27 14:00。玄関前置き配で完了。"
+        "ORD-9999": "Status: Delivery delayed. Reason: Distribution center flooded due to typhoon impact. Current location: Tokyo Logistics Center. Expected delivery: approximately 3 days later than usual.",
+        "ORD-1111": "Status: Delivered. Delivery time: 2026-05-27 14:00. Left at front door."
     }
-    return shipping_db.get(order_id, f"注文ID: {order_id} はデータベースに見つかりません。")
+    return shipping_db.get(order_id, f"Order ID: {order_id} not found in database.")
 
 # --- 2. Refund policy search tool (for policy agent) ---
 @tool
 def search_refund_policy(item_condition: str) -> str:
     """
-    商品の状態（未開封、開封済みなど）に基づいて、返金ポリシー（可否基準）を検索します。
+    Search refund policy (eligibility criteria) based on item condition (unopened, opened, etc.).
     
     Args:
-        item_condition: 商品の状態（'unopened' (未開封) または 'opened' (開封済み)）。
+        item_condition: Item condition ('unopened' or 'opened').
     """
     if item_condition == "unopened":
-        return "ポリシー: 購入後14日以内かつ【未開封】の状態であれば、送料お客様負担にて全額返金対応可能です。"
+        return "Policy: Full refund available within 14 days of purchase if item is [UNOPENED], with return shipping paid by customer."
     elif item_condition == "opened":
-        return "ポリシー: 商品が【開封済み】の場合、お客様都合による返金は一切不可となります。ただし、初期不良または配送会社の過失による破損の場合は例外的に全額返金します。"
-    return "該当するポリシーが見つかりません。個別にサポート窓口へエスカレーションしてください。"
+        return "Policy: If item is [OPENED], refunds for customer convenience are not permitted. Exception: full refund for initial defect or damage due to carrier negligence."
+    return "No matching policy found. Escalate to support desk individually."
 
 # --- 3. Specialist child agents (Managed Agents) ---
 
@@ -98,7 +98,7 @@ shipping_agent = CodeAgent(
     tools=[track_shipping_status],
     model=model,
     name="shipping_specialist",
-    description="注文番号から商品の配送状況や配送遅延の理由を正確に調査する専門エージェント。"
+    description="Specialist agent that accurately investigates shipping status and delay reasons from order numbers."
 )
 
 # Refund policy specialist (policy tool only)
@@ -106,7 +106,7 @@ policy_agent = CodeAgent(
     tools=[search_refund_policy],
     model=model,
     name="policy_specialist",
-    description="商品の状態（未開封・開封済み等）から、会社の規約に基づき返金が認められるかを厳密に判定する専門エージェント。"
+    description="Specialist agent that strictly determines refund eligibility from item condition (unopened/opened) per company policy."
 )
 
 # --- 4. Main manager agent (ManagerAgent) ---
@@ -120,18 +120,18 @@ manager_agent = CodeAgent(
 
 # --- 5. Test run (angry customer complaint) ---
 unhappy_customer_email = """
-【問い合わせ内容】:
-注文ID「ORD-9999」の商品が届きません！楽しみにしていたのに非常に怒っています。
-もし届かないのであれば、全額返金してほしいです。商品は届いていないので当然「未開封」です。
-現在の配送状況と、返金が可能かどうかを調べて、私に丁寧な謝罪と解決策のメールを返信してください。
+[Inquiry]:
+My order ORD-9999 has not arrived! I was really looking forward to it and I am very upset.
+If it will not arrive, I want a full refund. The item has not been delivered so it is obviously "unopened".
+Please check the current shipping status and whether a refund is possible, and reply with a polite apology and resolution email.
 """
 
-print("--- 🤝 自律型マルチエージェントカスタマーサポート 起動 ---")
+print("--- 🤝 Autonomous Multi-Agent Customer Support Starting ---")
 response = manager_agent.run(
-    f"以下の【問い合わせ内容】に対し、専門エージェントを適切に活用して調査し、顧客への最終的な返信メール文面を作成してください。\n\n【問い合わせ内容】:\n{unhappy_customer_email}"
+    f"For the [Inquiry] below, use specialist agents appropriately to investigate and draft the final customer reply email.\n\n[Inquiry]:\n{unhappy_customer_email}"
 )
 
-print("\n--- 📩 生成された最終顧客返信メール ---")
+print("\n--- 📩 Generated Final Customer Reply Email ---")
 print(response)
 ```
 
@@ -148,17 +148,17 @@ Use the initialization code below (complex complaint, order/shipping DB, point r
 ```python
 # 1. "Ultra-difficult complaint" email from customer
 complex_complaint = """
-【ユーザーからのクレーム】:
-注文「ORD-5555」をキャンセルしたいです。旅行用だったのですが、配送遅延で出発に間に合いませんでした。
-ただ、購入時に使った「限定1000ポイント」が消滅するのではないかと心配しています。
-私はプレミアム会員（Premium）です。キャンセルに伴う『キャンセル手数料』が発生するのか、また『限定ポイント』が元の通り全額返還されるのかを調べて、私への返信メールを作成してください。
+[Customer Complaint]:
+I want to cancel order ORD-5555. It was for a trip, but shipping delay means I will miss my departure.
+However, I am worried the "limited 1000 points" I used at purchase will disappear.
+I am a Premium member. Please investigate whether a cancellation fee applies and whether the limited points will be fully refunded, and draft a reply email to me.
 """
 
 # 2. Order & shipping mock database (status and member tier)
 orders_database = {
     "ORD-5555": {
         "status": "Delayed",
-        "reason": "大雪による配送トラックの立ち往生",
+        "reason": "Delivery truck stranded due to heavy snow",
         "member_tier": "Premium",
         "points_used": 1000,
         "point_type": "Limited-Time" # Limited-time points
@@ -167,18 +167,18 @@ orders_database = {
 
 # 3. Business policy text
 cancel_fee_policy = """
-【キャンセル手数料規約】:
-- 通常会員（Standard）: お客様都合によるキャンセルの場合、一律2,000円の手数料が発生します。
-- プレミアム会員（Premium）: キャンセル手数料は常に【無料】です。
-- 例外条項: 会員ランクに関わらず、配送側の過失または不可抗力（悪天候など）による「配送遅延」が原因のキャンセルの場合、キャンセル手数料は【免除（無料）】となります。
+[Cancellation Fee Policy]:
+- Standard members: A flat 2,000 yen fee applies for customer-initiated cancellations.
+- Premium members: Cancellation fees are always [FREE].
+- Exception: Regardless of member tier, if cancellation is due to carrier fault or force majeure (e.g., bad weather) causing "shipping delay", the cancellation fee is [WAIVED (FREE)].
 """
 
 point_refund_policy = """
-【ポイント返還規約】:
-- 通常ポイント: キャンセル完了後、24時間以内に全額がアカウントに返還されます。
-- 期間限定ポイント（Limited-Time）:
-  - 通常は、キャンセル時にポイントの有効期限が切れている場合は失効します。
-  - ただし、配送遅延などの【会社側または天候過失による配送トラブルが原因のキャンセル】の場合は、有効期限に関わらず、特別救済措置として【有効期限を30日間延長した状態で全額返還】されます。
+[Point Refund Policy]:
+- Regular points: Fully refunded to account within 24 hours after cancellation completes.
+- Limited-time points (Limited-Time):
+  - Normally, points expire if past expiration date at cancellation.
+  - However, for cancellations due to [company-side or weather-related shipping trouble causing delay], as special relief, points are [FULLY REFUNDED with expiration extended by 30 days] regardless of original expiration.
 """
 ```
 
@@ -227,9 +227,9 @@ import json
 from smolagents import CodeAgent, OpenAIServerModel, tool
 
 # 1. Decision:
-# 「プレミアム会員のルールと、天候遅延特例のルールは、1つのLLMで同時に処理すると条件判定が交絡し、ハルシネーション（誤判定）を起こしやすい。」
-# 「そのため、キャンセル料判定の専門家（fee_specialist）と、ポイント返還判定の専門家（point_specialist）に完全分離する。」
-# 「さらに、顧客情報DBへの直接アクセスは配送状況調査の専門家（order_specialist）のみに限定し、セキュリティと確実性を保護する。」
+# "Premium member rules and weather-delay exceptions cause condition entanglement and misjudgment when one LLM handles both."
+# "Therefore fully separate fee specialist (fee_specialist) and point refund specialist (point_specialist)."
+# "Further restrict direct customer DB access to order/shipping specialist (order_specialist) only for security and reliability."
 
 model = OpenAIServerModel(
     model_id="gpt-4o-mini",
@@ -240,16 +240,16 @@ model = OpenAIServerModel(
 @tool
 def get_order_details(order_id: str) -> str:
     """
-    指定された注文IDの詳細情報（ステータス、遅延理由、会員ランク、使用ポイント数、ポイント種別）をデータベースから取得します。
+    Fetch order details (status, delay reason, member tier, points used, point type) from the database.
     
     Args:
-        order_id: 'ORD-XXXX' 形式の注文ID。
+        order_id: Order ID in 'ORD-XXXX' format.
     """
     # Order database (mock)
     orders_db = {
         "ORD-5555": {
             "status": "Delayed",
-            "reason": "大雪による配送トラックの立ち往生",
+            "reason": "Delivery truck stranded due to heavy snow",
             "member_tier": "Premium",
             "points_used": 1000,
             "point_type": "Limited-Time"
@@ -258,20 +258,20 @@ def get_order_details(order_id: str) -> str:
     order = orders_db.get(order_id)
     if order:
         return json.dumps(order, ensure_ascii=False)
-    return f"注文ID: {order_id} が見つかりません。"
+    return f"Order ID: {order_id} not found."
 
 # --- 3. Policy text lookup tools ---
 @tool
 def get_cancel_fee_policy() -> str:
     """
-    キャンセル手数料に関する社内規約テキストを返します。
+    Return internal policy text for cancellation fees.
     """
     return cancel_fee_policy
 
 @tool
 def get_point_refund_policy() -> str:
     """
-    ポイント返還および救済措置に関する社内規約テキストを返します。
+    Return internal policy text for point refunds and relief measures.
     """
     return point_refund_policy
 
@@ -282,7 +282,7 @@ order_specialist = CodeAgent(
     tools=[get_order_details],
     model=model,
     name="order_specialist",
-    description="注文データベースから、会員ランク、配送状況、使用されたポイント等の客観的事実を正確に取得する専門家。"
+    description="Specialist that accurately retrieves objective facts from the order database: member tier, shipping status, points used, etc."
 )
 
 # Cancellation fee specialist
@@ -290,7 +290,7 @@ fee_specialist = CodeAgent(
     tools=[get_cancel_fee_policy],
     model=model,
     name="fee_specialist",
-    description="キャンセル手数料規約に基づき、会員ランクや遅延理由を照らし合わせて、手数料が無料になるかを厳密に判定する専門家。"
+    description="Specialist that strictly determines whether cancellation fees are waived per policy, member tier, and delay reason."
 )
 
 # Point refund specialist
@@ -298,7 +298,7 @@ point_specialist = CodeAgent(
     tools=[get_point_refund_policy],
     model=model,
     name="point_specialist",
-    description="ポイント返還規約に基づき、ポイントの種別や遅延理由から、ポイントが全額返還・延長されるかを厳密に判定する専門家。"
+    description="Specialist that strictly determines whether points are fully refunded and extended per point type and delay reason."
 )
 
 # --- 5. Main ManagerAgent ---
@@ -311,17 +311,17 @@ manager = CodeAgent(
 
 # --- 6. Cooperative execution ---
 instruction = f"""
-以下の【ユーザーからのクレーム】に対し、専門エージェントたちに個別に調査を依頼し、その客観的事実と社内規約を統合したうえで、
-顧客への丁寧な謝罪と『手数料は無料になるか』『ポイントは全額返還・延長されるか』の結論を明記した返信メールを作成してください。
+For the [Customer Complaint] below, delegate investigation to specialist agents individually, integrate objective facts and internal policies,
+and draft a reply email with a polite apology stating whether fees are waived and whether points are fully refunded and extended.
 
-【ユーザーからのクレーム】:
+[Customer Complaint]:
 {complex_complaint}
 """
 
-print("--- 🤝 専門家エージェントチームによる自律審査プロセス 開始 ---")
+print("--- 🤝 Specialist Agent Team Autonomous Review Process Starting ---")
 final_mail = manager.run(instruction)
 
-print("\n--- 📩 生成された最終顧客返信メール ---")
+print("\n--- 📩 Generated Final Customer Reply Email ---")
 print(final_mail)
 ```
 

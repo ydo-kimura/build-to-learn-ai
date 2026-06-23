@@ -47,7 +47,7 @@ To control LLM output and get stable, intended answers in production, you need *
 * **Analogy**: A test where you get the real question with no practice—“Summarize this passage.”
 * **Prompt example**:
   ```
-  ユーザー入力: "次のスマートフォンのレビューを、ポジティブかネガティブで分類してください：画面が大きくて見やすいが、少し重たい。"
+  User input: "Classify the following smartphone review as positive or negative: The screen is large and easy to read, but it feels a bit heavy."
   ```
 * **Pros**: Shortest prompts; minimum token cost.
 * **Cons**: Hard to enforce complex formats or custom classification rules; answers vary more.
@@ -57,28 +57,28 @@ To control LLM output and get stable, intended answers in production, you need *
 * **Analogy**: Show example Q&A sets before the exam—“Now solve this problem.”
 * **Prompt example**:
   ```
-  指示: "入力された文章の感情を、[ポジティブ] または [ネガティブ] のいずれか1つのタグで答えてください。"
-  入力例1: "配送がとても早くて助かりました！" -> 出力例1: "[ポジティブ]"
-  入力例2: "ボタンの反応が悪く、たまにフリーズします。" -> 出力例2: "[ネガティブ]"
+  Instruction: "Classify the sentiment of the input text with exactly one tag: [Positive] or [Negative]."
+  Example input 1: "Delivery was very fast and helpful!" -> Example output 1: "[Positive]"
+  Example input 2: "The buttons respond poorly and it freezes sometimes." -> Example output 2: "[Negative]"
   
-  本番入力: "デザインは可愛いけれど、充電の持ちがイマイチです。"
+  Production input: "The design is cute, but battery life is disappointing."
   ```
-* **Why few-shot?**: Text-only instructions like “always output `[ポジティブ]` in brackets” sometimes fail (“The sentiment is positive.”). **Examples strongly mimic format and tone**, improving format compliance.
+* **Why few-shot?**: Text-only instructions like “always output `[Positive]` in brackets” sometimes fail (“The sentiment is positive.”). **Examples strongly mimic format and tone**, improving format compliance.
 
 ### ③ Chain-of-Thought (CoT) Prompting
 * **Concept**: Instead of jumping to the answer, prompt the LLM to **output reasoning steps in order**. Often triggered by “Think step by step” (Zero-shot CoT).
 * **Analogy**: “Show all intermediate steps,” not “answer only”—like math where showing work reduces errors.
 * **Prompt example**:
   ```
-  指示: "次の数学の問題を、段階的に順を追って考えながら解いてください。"
-  問題: "リンゴが5個あります。2個食べました。その後、3個入りのパックを3つ買いました。今リンゴは何個ですか？"
+  Instruction: "Solve the following math problem step by step, showing your reasoning at each stage."
+  Problem: "You have 5 apples. You ate 2. Then you bought 3 packs of 3 apples each. How many apples do you have now?"
   ```
   * *Without CoT*: “10 apples” (mental shortcut, misses ×3).
   * *With CoT*:
-    > 1. 最初にリンゴが 5 個ありました。
-    > 2. 2 個食べたので、残りは 5 - 2 = 3 個になります。
-    > 3. 次に、3個入りのパックを 3 つ買ったので、新しく増えたリンゴは 3 × 3 = 9 個です。
-    > 4. よって、最終的な合計は 3 + 9 = 12 個になります。答：12個。
+    > 1. Initially there were 5 apples.
+    > 2. After eating 2, the remainder is 5 - 2 = 3 apples.
+    > 3. Next, buying 3 packs of 3 adds 3 x 3 = 9 apples.
+    > 4. Therefore the final total is 3 + 9 = 12 apples. Answer: 12 apples.
 * **Why accuracy improves**: LLMs predict the next token probabilistically. Forcing one-shot answers lets one early mistake collapse the chain. CoT lets the model **use its own prior reasoning text as context** for the next step—dramatically improving complex math and logic.
 
 ---
@@ -105,28 +105,28 @@ Use OpenAI’s API—the most widely used worldwide—to ask the AI a question f
 import os
 from openai import OpenAI
 
-# 1. APIクライアントの準備
-# APIキーは環境変数から読み込むのが安全です
+# 1. Prepare API client
+# Loading the API key from environment variables is the safe approach
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
-# 2. プロンプト（指示書）の作成
-# system: AIの「役割」や「前提条件」を指定します
-# user: あなたからの「具体的な質問やお願い」を指定します
+# 2. Create the prompt (instruction sheet)
+# system: specify the AI's "role" and "context"
+# user: specify your "concrete question or request"
 messages = [
-    {"role": "system", "content": "あなたは初心者向けに優しく教えるプログラミング講師です。"},
-    {"role": "user", "content": "APIとは何ですか？小学生にもわかるように説明してください。"}
+    {"role": "system", "content": "You are a programming instructor who teaches beginners kindly."},
+    {"role": "user", "content": "What is an API? Explain it so an elementary school student can understand."}
 ]
 
-# 3. AI（LLM）に注文（リクエスト）を送る
+# 3. Send a request to the AI (LLM)
 response = client.chat.completions.create(
-    model="gpt-4o-mini", # 使用するAIのモデル名
-    messages=messages,   # 先ほど作成したプロンプト
-    temperature=0.7      # 回答の「創造性」（0に近いほど正確、1に近いほど自由な発想）
+    model="gpt-4o-mini", # model name to use
+    messages=messages,   # prompt created above
+    temperature=0.7      # response "creativity" (closer to 0 = more precise, closer to 1 = more creative)
 )
 
-# 4. 返ってきた回答を取り出して表示する
-# responseの中には様々なデータが含まれているので、文章の部分だけを抽出します
-print("AIの回答:")
+# 4. Extract and display the answer text
+# The response object contains various metadata; extract only the message text
+print("AI answer:")
 print(response.choices[0].message.content)
 ```
 
@@ -145,10 +145,10 @@ Now that you know the API, build a function for **sentiment analysis**.
 **【Requirements】**
 - Function name: `analyze_sentiment(text)`
 - Argument `text`: review string (product review, etc.).
-- Return value: have the AI classify as “ポジティブ”, “ネガティブ”, or “ニュートラル” and return **only that word** as a string (e.g., `"ポジティブ"`).
+- Return value: have the AI classify as “Positive”, “Negative”, or “Neutral” and return **only that word** as a string (e.g., `"Positive"`).
 
 **💡 Hint**
-- In `system`, strongly instruct: “You are a sentiment analysis system. Output exactly one of 『ポジティブ』, 『ネガティブ』, or 『ニュートラル』. No extra explanation.”
+- In `system`, strongly instruct: “You are a sentiment analysis system. Output exactly one of Positive, Negative, or Neutral. No extra explanation.”
 
 ---
 
@@ -162,14 +162,14 @@ import os
 from openai import OpenAI
 
 def analyze_sentiment(text):
-    # クライアントの初期化
+    # Initialize client
     client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
     
-    # 役割と指示を細かく設定したプロンプト
+    # Prompt with detailed role and instructions
     messages = [
         {
             "role": "system", 
-            "content": "あなたは優秀な感情分析アシスタントです。ユーザーの入力に対して、「ポジティブ」「ネガティブ」「ニュートラル」のいずれか1つの単語のみで答えてください。説明や句読点も含めないでください。"
+            "content": "You are an excellent sentiment analysis assistant. For each user input, respond with exactly one word: Positive, Negative, or Neutral. Do not include explanations or punctuation."
         },
         {
             "role": "user", 
@@ -177,22 +177,22 @@ def analyze_sentiment(text):
         }
     ]
     
-    # APIへリクエスト
+    # Send request to API
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=messages,
-        temperature=0.0 # 感情分析のように正確性が求められるタスクは0にするのがコツです
+        temperature=0.0 # use 0 for accuracy-critical tasks like sentiment analysis
     )
     
-    # 結果のテキストだけを返す
+    # Return only the result text
     return response.choices[0].message.content
 
-# テスト実行
+# Test run
 if __name__ == "__main__":
-    test_review_1 = "この商品は最高です！人生が変わりました。"
-    print(f"「{test_review_1}」 -> {analyze_sentiment(test_review_1)}")
+    test_review_1 = "This product is amazing! It changed my life."
+    print(f'"{test_review_1}" -> {analyze_sentiment(test_review_1)}')
     
-    test_review_2 = "すぐに壊れてしまいました。最悪です。"
-    print(f"「{test_review_2}」 -> {analyze_sentiment(test_review_2)}")
+    test_review_2 = "It broke immediately. Terrible."
+    print(f'"{test_review_2}" -> {analyze_sentiment(test_review_2)}')
 ```
 </details>

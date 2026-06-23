@@ -45,32 +45,32 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 
-# 1. LLMの準備
+# 1. Prepare LLM
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
 
-# 2. プロンプトの準備
-# MessagesPlaceholder を使うことで、「ここに過去の会話履歴を挿入する」という予約席を作れます
+# 2. Prepare prompt
+# MessagesPlaceholder reserves a slot where past conversation history is inserted
 prompt = ChatPromptTemplate.from_messages([
-    ("system", "あなたは親友のようにフランクに話すチャットボットです。"),
-    MessagesPlaceholder(variable_name="chat_history"), # 会話履歴が入る場所
+    ("system", "You are a chatbot that speaks casually, like a close friend."),
+    MessagesPlaceholder(variable_name="chat_history"), # slot for conversation history
     ("user", "{input}")
 ])
 
-# チェーンを作成
+# Create chain
 chain = prompt | llm
 
-# 3. 記憶（メモリ）の保存場所（データベースの代わり）
-# ユーザーごとの会話履歴を保存する辞書を用意します
+# 3. Memory storage (stand-in for a database)
+# Dictionary to store conversation history per user
 store = {}
 
-# セッションID（ユーザーID）を受け取り、その人の会話履歴を返す関数
+# Return conversation history for the given session ID (user ID)
 def get_session_history(session_id: str):
     if session_id not in store:
-        store[session_id] = ChatMessageHistory() # 新規ユーザーなら新しいノートを作成
+        store[session_id] = ChatMessageHistory() # create a new notebook for new users
     return store[session_id]
 
-# 4. チェーンに「記憶機能」を合体させる
-# history_messages_key に、プロンプトで予約した変数名(chat_history)を指定します
+# 4. Attach memory to the chain
+# history_messages_key must match the variable name reserved in the prompt (chat_history)
 with_message_history = RunnableWithMessageHistory(
     chain,
     get_session_history,
@@ -79,21 +79,21 @@ with_message_history = RunnableWithMessageHistory(
 )
 
 # =========================================
-# チャットボットとの会話シミュレーション
+# Chatbot conversation simulation
 # =========================================
-# 同じセッションIDを使うことで、「同一人物との連続した会話」になります
+# Using the same session ID makes this a continuous conversation with one person
 config = {"configurable": {"session_id": "user_123"}}
 
-print("ユーザー: 私の名前はタロウです。リンゴが好きです。")
+print("User: My name is Taro. I like apples.")
 response1 = with_message_history.invoke(
-    {"input": "私の名前はタロウです。リンゴが好きです。"},
+    {"input": "My name is Taro. I like apples."},
     config=config
 )
 print("AI:", response1.content, "\n")
 
-print("ユーザー: 私の名前を覚えていますか？好きな食べ物は何でしたっけ？")
+print("User: Do you remember my name? What was my favorite food?")
 response2 = with_message_history.invoke(
-    {"input": "私の名前を覚えていますか？好きな食べ物は何でしたっけ？"},
+    {"input": "Do you remember my name? What was my favorite food?"},
     config=config
 )
 print("AI:", response2.content)
@@ -110,7 +110,7 @@ print("AI:", response2.content)
 Create an **infinite-loop chatbot** you control from the terminal.
 
 **【Requirements】**
-- Use `while True:` and `input("あなた: ")` for user input.
+- Use `while True:` and `input("You: ")` for user input.
 - Exit on `exit` or `quit`.
 - Use `with_message_history` to keep context across turns.
 
@@ -132,7 +132,7 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
 
 prompt = ChatPromptTemplate.from_messages([
-    ("system", "あなたは優秀なアシスタントです。会話の文脈を把握して自然に応答してください。"),
+    ("system", "You are an excellent assistant. Respond naturally while keeping conversation context in mind."),
     MessagesPlaceholder(variable_name="chat_history"),
     ("user", "{input}")
 ])
@@ -155,20 +155,20 @@ chatbot = RunnableWithMessageHistory(
 config = {"configurable": {"session_id": "my_interactive_session"}}
 
 print("=======================================")
-print("チャットボットが起動しました。")
-print("終了するには 'exit' または 'quit' と入力してください。")
+print("Chatbot started.")
+print("Type 'exit' or 'quit' to end the session.")
 print("=======================================\n")
 
 while True:
-    # ユーザーからの入力を受け取る
-    user_input = input("あなた: ")
+    # Receive user input
+    user_input = input("You: ")
     
-    # 終了コマンドの確認
+    # Check exit command
     if user_input.lower() in ["exit", "quit"]:
-        print("AI: お話しできて楽しかったです。さようなら！")
+        print("AI: It was great talking with you. Goodbye!")
         break
         
-    # 入力が空でなければAIに送信
+    # Send to AI if input is not empty
     if user_input.strip() != "":
         response = chatbot.invoke(
             {"input": user_input},

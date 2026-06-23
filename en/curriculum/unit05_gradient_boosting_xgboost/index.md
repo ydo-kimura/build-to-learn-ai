@@ -44,13 +44,13 @@ Because of its speed and accuracy, XGBoost dominated competitions like **Kaggle*
 We'll use the **XGBoost library** to classify breast cancer data. (`xgboost` is separate from scikit-learn and must be installed.)
 
 ```python
-# 必要なツールのインポート
+# Import required libraries
 import xgboost as xgb
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
-# 1. データの準備と分割
+# 1. Prepare and split the data
 cancer = load_breast_cancer()
 X = cancer.data
 y = cancer.target
@@ -62,25 +62,25 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 Data prep is the same as before. scikit-learn datasets plug directly into XGBoost.
 
 ```python
-# 2. XGBoostモデルの作成
-# XGBClassifier を使います。
-# n_estimators: 作る木の数（リレーのバトンを渡す回数）
-# learning_rate: 学習率（1回のスイングの強さ。大きすぎるとカップを通り過ぎてしまいます）
+# 2. Create an XGBoost model
+# Use XGBClassifier
+# n_estimators: number of trees (relay passes)
+# learning_rate: step size per tree — too large overshoots the target
 xgb_model = xgb.XGBClassifier(
     n_estimators=100,
     learning_rate=0.1,
     random_state=42,
-    eval_metric='logloss' # 警告を消すためのおまじない
+    eval_metric='logloss' # suppresses warnings for binary classification
 )
 
-# 3. 学習
+# 3. Train
 xgb_model.fit(X_train, y_train)
 
-# 4. 予測と評価
+# 4. Predict and evaluate
 y_pred = xgb_model.predict(X_test)
 acc = accuracy_score(y_test, y_pred)
 
-print(f"XGBoostの正解率: {acc:.3f}")
+print(f"XGBoost accuracy: {acc:.3f}")
 ```
 
 **Code walkthrough**
@@ -119,29 +119,29 @@ from sklearn.datasets import load_wine
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
-# 1. データの読み込み
+# 1. Load the data
 wine = load_wine()
 X = wine.data
 y = wine.target
 
-# 2. データの分割
+# 2. Split the data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# 3. XGBoostモデルの作成と学習
-# wineデータは3クラス分類（0, 1, 2）ですが、XGBoostは自動的に対応してくれます
+# 3. Create and train an XGBoost model
+# Wine has 3 classes (0, 1, 2) — XGBoost handles multiclass automatically
 xgb_model = xgb.XGBClassifier(
     n_estimators=50,
     learning_rate=0.2,
     random_state=42,
-    eval_metric='mlogloss' # 多クラス分類用の評価指標
+    eval_metric='mlogloss' # evaluation metric for multiclass classification
 )
 xgb_model.fit(X_train, y_train)
 
-# 4. 予測と評価
+# 4. Predict and evaluate
 y_pred = xgb_model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 
-print(f"ワイン分類(XGBoost)の正解率: {accuracy:.3f}")
+print(f"Wine classification (XGBoost) accuracy: {accuracy:.3f}")
 ```
 
 **Solution walkthrough**

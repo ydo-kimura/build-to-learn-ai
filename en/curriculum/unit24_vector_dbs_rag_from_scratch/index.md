@@ -52,58 +52,57 @@ import numpy as np
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 # =========================================
-# 【準備編】Vector DBの代わりを作ろう
+# [Setup] Build a stand-in for a Vector DB
 # =========================================
 
-# 1. 知識となる文書リスト（これが社内マニュアルなどの代わりです）
+# 1. Document list serving as knowledge (e.g., internal manuals)
 documents = [
-    "AIの学習には大量のデータが必要です。",
-    "弊社の有給休暇は、入社半年後に10日付与されます。",
-    "経費精算は月末までにシステムXから申請してください。",
-    "PythonはAI開発に非常に適したプログラミング言語です。"
+    "AI training requires large amounts of data.",
+    "Our company grants 10 days of paid leave six months after joining.",
+    "Submit expense reports through System X by the end of each month.",
+    "Python is an excellent programming language for AI development."
 ]
 
-# 2. 文章を「ベクトル（数値の羅列）」に変換する関数
+# 2. Function to convert text into a vector (numeric array)
 def get_embedding(text):
     response = client.embeddings.create(
         input=text,
-        model="text-embedding-3-small" # OpenAIの埋め込みモデル
+        model="text-embedding-3-small" # OpenAI embedding model
     )
     return response.data[0].embedding
 
-# 3. すべての文書をベクトル化して保存（簡易的なVector DBの完成）
-print("文書をベクトル化しています...")
+# 3. Vectorize and store all documents (simple Vector DB complete)
+print("Vectorizing documents...")
 doc_embeddings = [get_embedding(doc) for doc in documents]
 
 # =========================================
-# 【実行編】RAGパイプラインを動かそう
+# [Execution] Run the RAG pipeline
 # =========================================
 
-# 4. ユーザーからの質問
-question = "有給休暇はいつもらえますか？"
-print(f"質問: {question}")
+# 4. User question
+question = "When do I receive paid leave?"
+print(f"Question: {question}")
 
-# 5. 質問もベクトル化する
+# 5. Vectorize the question as well
 question_embedding = get_embedding(question)
 
-# 6. 【Retrieval: 検索】質問のベクトルと、各文書のベクトルの「似ている度合い」を計算
-# cosine_similarity（コサイン類似度）は1に近いほど意味が似ていることを示します
+# 6. [Retrieval] Compute similarity between question vector and each document vector
+# cosine_similarity: closer to 1 means more semantically similar
 similarities = cosine_similarity([question_embedding], doc_embeddings)[0]
 
-# 一番類似度が高かった（意味が近かった）文書のインデックスを取得
+# Get index of the most similar (closest in meaning) document
 best_index = np.argmax(similarities)
 best_document = documents[best_index]
-print(f"見つかった参考資料: {best_document}")
+print(f"Retrieved reference: {best_document}")
 
-# 7. 【Augmentation & Generation: 情報付与と生成】
-# 見つけた資料をプロンプトに埋め込んで、LLMに回答させる
+# 7. [Augmentation & Generation] Embed retrieved material in prompt and generate answer
 prompt = f"""
-以下の【参考資料】のみに基づいて、ユーザーの【質問】に答えてください。
+Answer the user's [Question] using only the [Reference Material] below.
 
-【参考資料】
+[Reference Material]
 {best_document}
 
-【質問】
+[Question]
 {question}
 """
 
@@ -113,7 +112,7 @@ response = client.chat.completions.create(
     temperature=0.0
 )
 
-print("\nAIの最終回答:")
+print("\nFinal AI answer:")
 print(response.choices[0].message.content)
 ```
 
@@ -131,7 +130,7 @@ Extend the example to retrieve **top 3 related documents** and embed all of them
 **【Requirements】**
 - Expand the document database to about 10 entries (AI topics, company rules, etc.).
 - Instead of `np.argmax()` for one document, retrieve the **top 3** by similarity.
-- Concatenate all three in the prompt’s 【参考資料】 section and have the AI answer.
+- Concatenate all three in the prompt’s [Reference Material] section and have the AI answer.
 
 **💡 Hint**
 - `np.argsort()` returns sorted indices; reverse for descending similarity order.
@@ -155,48 +154,48 @@ def get_embedding(text):
     )
     return response.data[0].embedding
 
-# 1. 知識となる文書リスト（データを増やしました）
+# 1. Document list (expanded dataset)
 documents = [
-    "AIの学習には大量のデータが必要です。",
-    "弊社の有給休暇は、入社半年後に10日付与されます。",
-    "経費精算は月末までにシステムXから申請してください。",
-    "PythonはAI開発に非常に適したプログラミング言語です。",
-    "有給休暇を申請する場合は、1週間前までに上長に報告してください。",
-    "システムXのログインパスワードは3ヶ月ごとに変更が必要です。",
-    "特別休暇として、夏季休暇が3日間付与されます。",
-    "機械学習には教師あり学習と教師なし学習があります。"
+    "AI training requires large amounts of data.",
+    "Our company grants 10 days of paid leave six months after joining.",
+    "Submit expense reports through System X by the end of each month.",
+    "Python is an excellent programming language for AI development.",
+    "To request paid leave, notify your manager at least one week in advance.",
+    "System X login passwords must be changed every 3 months.",
+    "Three days of summer special leave are granted as additional time off.",
+    "Machine learning includes supervised learning and unsupervised learning."
 ]
 
-print("文書をベクトル化しています...")
+print("Vectorizing documents...")
 doc_embeddings = [get_embedding(doc) for doc in documents]
 
-question = "有給休暇を取るためのルールと付与日数を教えてください。"
+question = "What are the rules and allocation for taking paid leave?"
 question_embedding = get_embedding(question)
 
-# 2. 類似度計算
+# 2. Compute similarity
 similarities = cosine_similarity([question_embedding], doc_embeddings)[0]
 
-# 3. 類似度の上位3つのインデックスを取得
-# argsortは昇順なので、[::-1]で降順に反転させ、先頭3つ（[:3]）を取得
+# 3. Get indices of the top 3 highest similarities
+# argsort returns ascending order; [::-1] reverses to descending, [:3] takes top 3
 top_3_indices = np.argsort(similarities)[::-1][:3]
 
-# 4. 上位3つの文書を取り出して結合する
+# 4. Extract and combine the top 3 documents
 retrieved_docs = []
 for idx in top_3_indices:
     retrieved_docs.append(documents[idx])
 
-# 文書を改行でつなげる
+# Join documents with newlines
 context_text = "\n- ".join(retrieved_docs)
-print(f"【検索された資料】\n- {context_text}\n")
+print(f"[Retrieved materials]\n- {context_text}\n")
 
-# 5. プロンプトに埋め込んで生成
+# 5. Embed in prompt and generate
 prompt = f"""
-以下の【参考資料】のみに基づいて、ユーザーの【質問】に答えてください。
+Answer the user's [Question] using only the [Reference Material] below.
 
-【参考資料】
+[Reference Material]
 - {context_text}
 
-【質問】
+[Question]
 {question}
 """
 
@@ -206,7 +205,7 @@ response = client.chat.completions.create(
     temperature=0.0
 )
 
-print("【AIの回答】")
+print("[AI answer]")
 print(response.choices[0].message.content)
 ```
 </details>

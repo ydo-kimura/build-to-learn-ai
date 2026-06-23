@@ -43,12 +43,12 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-# 1. データの準備 (サイン波の近似)
+# 1. Prepare data (approximate a sine wave)
 torch.manual_seed(42)
-X = torch.linspace(-5, 5, 100).view(-1, 1) # -5から5までの数値を100個
-y = torch.sin(X) + torch.randn(X.size()) * 0.1 # 正解はサイン波（少しノイズを混ぜる）
+X = torch.linspace(-5, 5, 100).view(-1, 1) # 100 values from -5 to 5
+y = torch.sin(X) + torch.randn(X.size()) * 0.1 # Target is sine wave (with a little noise)
 
-# 2. ネットワークの設計図 (共通で使う)
+# 2. Network blueprint (shared by both models)
 class SimpleNet(nn.Module):
     def __init__(self):
         super(SimpleNet, self).__init__()
@@ -68,18 +68,18 @@ class SimpleNet(nn.Module):
 Next, prepare two models and assign each a different "vehicle (optimizer)."
 
 ```python
-# SGD用のモデルと、Adam用のモデルをそれぞれ用意
+# Prepare separate models for SGD and Adam
 model_sgd = SimpleNet()
 model_adam = SimpleNet()
 
-# 損失関数（ナビ）は共通でMSE（数値予測のため）
+# Shared loss function (MSE for numeric prediction)
 criterion = nn.MSELoss()
 
-# Optimizer（乗り物）の設定
-# SGDは一歩の幅（学習率 lr）を0.01に設定
+# Optimizer settings
+# SGD step size (learning rate lr) set to 0.01
 optimizer_sgd = optim.SGD(model_sgd.parameters(), lr=0.01)
 
-# Adamは賢いので同じ学習率でもスピード感が違います
+# Adam adapts step sizes, so it feels faster at the same lr
 optimizer_adam = optim.Adam(model_adam.parameters(), lr=0.01)
 ```
 
@@ -88,23 +88,23 @@ Now run both "cars" at the same time (train them) and compare.
 ```python
 epochs = 300
 
-print("--- 学習スタート ---")
+print("--- Training start ---")
 for epoch in range(epochs):
-    # --- SGDの学習 ---
+    # --- SGD training ---
     pred_sgd = model_sgd(X)
     loss_sgd = criterion(pred_sgd, y)
     optimizer_sgd.zero_grad()
     loss_sgd.backward()
     optimizer_sgd.step()
 
-    # --- Adamの学習 ---
+    # --- Adam training ---
     pred_adam = model_adam(X)
     loss_adam = criterion(pred_adam, y)
     optimizer_adam.zero_grad()
     loss_adam.backward()
     optimizer_adam.step()
 
-    # 50回ごとに結果を報告
+    # Report every 50 epochs
     if (epoch + 1) % 50 == 0:
         print(f"Epoch {epoch+1:3d} | SGD Loss: {loss_sgd.item():.4f} | Adam Loss: {loss_adam.item():.4f}")
 ```
@@ -127,10 +127,10 @@ This time, set up loss and optimizer for a classification problem.
 When using `nn.CrossEntropyLoss`, labels `y` must be of type `torch.long` (integers). You do not need Softmax on the network's final output—the loss function computes it internally!
 
 ```python
-# データの準備（ヒント）
-# 4つのデータ、それぞれ3つの特徴量
+# Prepare data (hint)
+# 4 samples, 3 features each
 X_class = torch.randn(4, 3) 
-# 正解クラスは 0, 1, 2 のどれか
+# Ground-truth class is 0, 1, or 2
 y_class = torch.tensor([0, 2, 1, 0], dtype=torch.long) 
 ```
 
@@ -144,16 +144,16 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-# 1. データの準備
+# 1. Prepare data
 torch.manual_seed(42)
-X_class = torch.randn(4, 3) # 4つのデータ、3つの入力特徴
-y_class = torch.tensor([0, 2, 1, 0], dtype=torch.long) # 正解は3クラス (0, 1, 2)
+X_class = torch.randn(4, 3) # 4 samples, 3 input features
+y_class = torch.tensor([0, 2, 1, 0], dtype=torch.long) # 3 classes (0, 1, 2)
 
-# 2. ネットワークの定義
+# 2. Define the network
 class ClassificationNet(nn.Module):
     def __init__(self):
         super(ClassificationNet, self).__init__()
-        # 3入力 -> 5隠れ層 -> 3出力（3つのクラスのそれぞれの確率スコアを出すため）
+        # 3 inputs -> 5 hidden units -> 3 outputs (score per class)
         self.net = nn.Sequential(
             nn.Linear(3, 5),
             nn.ReLU(),
@@ -164,24 +164,24 @@ class ClassificationNet(nn.Module):
 
 model = ClassificationNet()
 
-# 3. 損失関数とOptimizerの設定
-# 分類問題なのでCrossEntropyLossを使用
+# 3. Loss function and optimizer
+# CrossEntropyLoss for classification
 criterion = nn.CrossEntropyLoss()
-# OptimizerはAdamを使用
+# Adam optimizer
 optimizer = optim.Adam(model.parameters(), lr=0.05)
 
-# 4. 学習ループ
+# 4. Training loop
 epochs = 100
 
-print("--- 分類タスク 学習スタート ---")
+print("--- Classification task: training start ---")
 for epoch in range(epochs):
-    # ① 予測
+    # 1. Predict
     predictions = model(X_class)
     
-    # ② 誤差計算
+    # 2. Compute loss
     loss = criterion(predictions, y_class)
     
-    # ③〜⑤ 更新
+    # 3-5. Update
     optimizer.zero_grad()
     loss.backward()
     optimizer.step()
@@ -189,10 +189,10 @@ for epoch in range(epochs):
     if (epoch + 1) % 20 == 0:
         print(f"Epoch {epoch+1:3d} | Loss: {loss.item():.4f}")
 
-# 学習後の予測（スコアが一番高いインデックスがAIの予測したクラス）
+# Predictions after training (highest score index is the predicted class)
 final_preds = model(X_class).argmax(dim=1)
-print(f"正解ラベル: {y_class.tolist()}")
-print(f"AIの予測:   {final_preds.tolist()}")
+print(f"Ground-truth labels: {y_class.tolist()}")
+print(f"Model predictions:   {final_preds.tolist()}")
 ```
 
 </details>

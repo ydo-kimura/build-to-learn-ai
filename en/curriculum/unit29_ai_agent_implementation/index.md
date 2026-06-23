@@ -17,12 +17,12 @@ ReAct alternates **reasoning** and **acting** so the LLM solves complex tasks st
 
 ```mermaid
 graph TD
-    Start([ユーザーの指示]) --> Loop{実行ループ}
-    Loop --> Thought[Thought: 思考<br>「何をすべきか計画する」]
-    Thought --> Action[Action: 行動<br>「適切なツールを呼び出す」]
-    Action --> Observation[Observation: 観察<br>「ツールの実行結果を取り込む」]
+    Start([User instruction]) --> Loop{Execution loop}
+    Loop --> Thought[Thought: Reasoning<br>"Plan what to do next"]
+    Thought --> Action[Action: Act<br>"Call the appropriate tool"]
+    Action --> Observation[Observation: Observe<br>"Incorporate tool results"]
     Observation --> Loop
-    Loop -->|タスク完了| End([最終回答をユーザーに提示])
+    Loop -->|Task complete| End([Present final answer to user])
 ```
 
 #### Text alternative for system structure
@@ -54,12 +54,12 @@ import os
 import json
 from openai import OpenAI
 
-# 1. クライアントの初期化
+# 1. Initialize client
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
-# 2. エージェントが利用できる外部ツールの実体定義
+# 2. Define external tools available to the agent
 def get_product_price(product_name: str) -> str:
-    """データベースから製品の単価を取得する模擬ツール"""
+    """Mock tool to fetch product unit price from a database."""
     catalog = {
         "smartphone": 800,
         "laptop": 1200,
@@ -68,10 +68,10 @@ def get_product_price(product_name: str) -> str:
     price = catalog.get(product_name.lower())
     if price:
         return json.dumps({"product": product_name, "price_usd": price})
-    return json.dumps({"error": f"製品 '{product_name}' は見つかりません。"})
+    return json.dumps({"error": f"Product '{product_name}' not found."})
 
 def calculate_total_with_tax(price: float, quantity: int, tax_rate: float = 0.10) -> str:
-    """数量と税率を加算して最終支払総額を計算する計算機ツール"""
+    """Calculator tool to compute final payment including quantity and tax rate."""
     subtotal = price * quantity
     total = subtotal * (1 + tax_rate)
     return json.dumps({
@@ -80,19 +80,19 @@ def calculate_total_with_tax(price: float, quantity: int, tax_rate: float = 0.10
         "total_amount": round(total, 2)
     })
 
-# 3. OpenAI APIへ提示するツールのスキーマ定義 (Tool Definition)
+# 3. Tool schema definitions for the OpenAI API (Tool Definition)
 tools_schema = [
     {
         "type": "function",
         "function": {
             "name": "get_product_price",
-            "description": "データベースから指定された製品の現在の単価を取得します。",
+            "description": "Fetch the current unit price of the specified product from the database.",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "product_name": {
                         "type": "string",
-                        "description": "製品の名前 (例: smartphone, laptop)"
+                        "description": "Product name (e.g., smartphone, laptop)"
                     }
                 },
                 "required": ["product_name"]
@@ -103,13 +103,13 @@ tools_schema = [
         "type": "function",
         "function": {
             "name": "calculate_total_with_tax",
-            "description": "商品の価格と個数、および税率（デフォルト10%）を入力して、消費税を加算した最終支払総額を算出します。",
+            "description": "Calculate the final payment total including sales tax from unit price, quantity, and tax rate (default 10%).",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "price": {"type": "number", "description": "商品の単価"},
-                    "quantity": {"type": "integer", "description": "購入個数"},
-                    "tax_rate": {"type": "number", "description": "消費税率 (例: 0.10)"}
+                    "price": {"type": "number", "description": "Unit price of the product"},
+                    "quantity": {"type": "integer", "description": "Purchase quantity"},
+                    "tax_rate": {"type": "number", "description": "Sales tax rate (e.g., 0.10)"}
                 },
                 "required": ["price", "quantity"]
             }
@@ -117,26 +117,26 @@ tools_schema = [
     }
 ]
 
-# 4. ツールのマッピング定義 (名前から関数実体へのマッピング)
+# 4. Tool mapping (name to function implementation)
 available_functions = {
     "get_product_price": get_product_price,
     "calculate_total_with_tax": calculate_total_with_tax
 }
 
-# 5. 自律 ReAct ループエンジンの実装
+# 5. Autonomous ReAct loop engine
 def run_react_agent(user_prompt: str, max_iterations: int = 5):
-    print(f"🤖 [Agent Core] タスクを受信しました: '{user_prompt}'")
+    print(f"🤖 [Agent Core] Task received: '{user_prompt}'")
     
-    # 会話履歴のコンテキスト初期化
-    # システムプロンプトで「思考プロセス (Thought) を経てツールを呼ぶ」ように指示します
+    # Initialize conversation context
+    # System prompt instructs the agent to think (Thought) before calling tools
     messages = [
         {
             "role": "system", 
             "content": (
-                "あなたは優秀な自律エージェントです。目標を達成するために必要な情報を Thought（思考）し、"
-                "利用可能なツールを適切に Action（実行）してください。ツールの結果（Observation）を受け取ったら、"
-                "さらに必要となる思考・行動を繰り返してください。すべての必要な情報が揃ったら、"
-                "ユーザーに対して最終的な丁寧な回答を作成してループを終了してください。"
+                "You are an excellent autonomous agent. Thoughtfully determine what information you need to reach the goal, "
+                "then appropriately Action (execute) available tools. When you receive tool results (Observation), "
+                "repeat further thinking and actions as needed. Once all required information is gathered, "
+                "provide a polite final answer to the user and end the loop."
             )
         },
         {"role": "user", "content": user_prompt}
@@ -147,7 +147,7 @@ def run_react_agent(user_prompt: str, max_iterations: int = 5):
         step += 1
         print(f"\n🌀 === Loop Iteration {step} ===")
         
-        # LLMへ現在の履歴と利用可能ツールを渡して思考させる
+        # Pass current history and available tools to the LLM for reasoning
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=messages,
@@ -158,32 +158,32 @@ def run_react_agent(user_prompt: str, max_iterations: int = 5):
         response_message = response.choices[0].message
         messages.append(response_message)
         
-        # 思考内容の出力
+        # Output reasoning content
         if response_message.content:
             print(f"💭 [Thought]: {response_message.content}")
         
         tool_calls = response_message.tool_calls
         
-        # ツール呼び出し（Action）の要求がない場合は、タスク完了とみなしてループを抜ける
+        # If no tool call (Action) is requested, task is complete; exit loop
         if not tool_calls:
-            print("🎉 [Agent Core] 必要な情報が揃いました。回答を生成します。")
+            print("🎉 [Agent Core] All required information gathered. Generating answer.")
             return response_message.content
         
-        # ツール呼び出しの処理
+        # Process tool calls
         for tool_call in tool_calls:
             function_name = tool_call.function.name
             function_args = json.loads(tool_call.function.arguments)
             
-            print(f"🛠️ [Action]: ツール '{function_name}' を実行します。引数: {function_args}")
+            print(f"🛠️ [Action]: Executing tool '{function_name}'. Args: {function_args}")
             
-            # 関数の実行
+            # Execute function
             function_to_call = available_functions.get(function_name)
             if function_to_call:
-                # 実行結果（Observation）の取得
+                # Get result (Observation)
                 observation = function_to_call(**function_args)
-                print(f"👁️ [Observation]: 実行結果: {observation}")
+                print(f"👁️ [Observation]: Result: {observation}")
                 
-                # 観察結果をコンテキストへ追加
+                # Append observation to context
                 messages.append({
                     "role": "tool",
                     "tool_call_id": tool_call.id,
@@ -191,16 +191,16 @@ def run_react_agent(user_prompt: str, max_iterations: int = 5):
                     "content": observation
                 })
             else:
-                print(f"❌ エラー: ツール '{function_name}' は定義されていません。")
+                print(f"❌ Error: Tool '{function_name}' is not defined.")
                 
-    print("⚠️ [Agent Core] 最大実行ループ数を超過しました。")
-    return "申し訳ありません、時間内にタスクを完了できませんでした。"
+    print("⚠️ [Agent Core] Maximum loop iterations exceeded.")
+    return "Sorry, I could not complete the task within the time limit."
 
-# 6. エージェントの実行デモ
+# 6. Agent execution demo
 if __name__ == "__main__":
-    task = "smartphoneを3台欲しいです。最終的な消費税10%込みの支払総額はいくらになりますか？"
+    task = "I want 3 smartphones. What is the final total including 10% sales tax?"
     final_answer = run_react_agent(task)
-    print(f"\n======== 最終回答 ========\n{final_answer}")
+    print(f"\n======== Final Answer ========\n{final_answer}")
 ```
 
 ---
@@ -222,18 +222,18 @@ import json
 from datetime import datetime
 
 def check_purchase_date(order_id: str) -> str:
-    """指定された注文IDの『購入日（YYYY-MM-DD）』をデータベースから取得するツール"""
+    """Tool to fetch the purchase date (YYYY-MM-DD) for the given order ID from the database."""
     orders_db = {
-        "order_101": "2026-05-15", # 本日の日付(2026-05-29)から14日前（承認対象）
-        "order_202": "2026-04-10", # 本日の日付から49日前（期間超過のため自動却下対象）
+        "order_101": "2026-05-15", # 14 days before today (2026-05-29) — eligible for approval
+        "order_202": "2026-04-10", # 49 days before today — exceeds window, auto-reject
     }
     order_date = orders_db.get(order_id.lower())
     if order_date:
         return json.dumps({"order_id": order_id, "purchase_date": order_date})
-    return json.dumps({"error": f"注文ID '{order_id}' はデータベースに存在しません。"})
+    return json.dumps({"error": f"Order ID '{order_id}' does not exist in the database."})
 
 def execute_refund(order_id: str, amount: int) -> str:
-    """払い戻し決済処理を実行する決済連携ツール"""
+    """Payment integration tool to execute a refund transaction."""
     return json.dumps({
         "status": "REFUNDED",
         "order_id": order_id,
@@ -271,7 +271,7 @@ from openai import OpenAI
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 # ==========================================
-# 1. 外部API・データベースの実体関数
+# 1. External API / database implementation functions
 # ==========================================
 def check_purchase_date(order_id: str) -> str:
     orders_db = {
@@ -281,7 +281,7 @@ def check_purchase_date(order_id: str) -> str:
     order_date = orders_db.get(order_id.lower())
     if order_date:
         return json.dumps({"order_id": order_id, "purchase_date": order_date})
-    return json.dumps({"error": f"注文ID '{order_id}' はデータベースに存在しません。"})
+    return json.dumps({"error": f"Order ID '{order_id}' does not exist in the database."})
 
 def execute_refund(order_id: str, amount: int) -> str:
     return json.dumps({
@@ -292,20 +292,20 @@ def execute_refund(order_id: str, amount: int) -> str:
     })
 
 # ==========================================
-# 2. OpenAI ツールスキーマ定義
+# 2. OpenAI tool schema definitions
 # ==========================================
 tools_schema = [
     {
         "type": "function",
         "function": {
             "name": "check_purchase_date",
-            "description": "指定された注文IDの『購入日（YYYY-MM-DD）』をデータベースから検索して取得します。",
+            "description": "Search the database and return the purchase date (YYYY-MM-DD) for the specified order ID.",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "order_id": {
                         "type": "string",
-                        "description": "注文のID (例: order_101)"
+                        "description": "Order ID (e.g., order_101)"
                     }
                 },
                 "required": ["order_id"]
@@ -316,12 +316,12 @@ tools_schema = [
         "type": "function",
         "function": {
             "name": "execute_refund",
-            "description": "返品条件に適合した注文に対して、指定された金額（日本円）の払い戻し処理を実行します。",
+            "description": "Execute a refund for the specified amount (JPY) on an order that meets return conditions.",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "order_id": {"type": "string", "description": "対象の注文ID"},
-                    "amount": {"type": "integer", "description": "払い戻す金額 (円)"}
+                    "order_id": {"type": "string", "description": "Target order ID"},
+                    "amount": {"type": "integer", "description": "Refund amount (yen)"}
                 },
                 "required": ["order_id", "amount"]
             }
@@ -335,23 +335,23 @@ available_functions = {
 }
 
 # ==========================================
-# 3. 自律返品・払い戻しエージェントの実行
+# 3. Autonomous returns and refund review agent
 # ==========================================
 def run_refund_agent(user_prompt: str, max_iterations: int = 5):
-    print(f"\n🔍 [Refund Agent] タスク開始: '{user_prompt}'")
+    print(f"\n🔍 [Refund Agent] Task started: '{user_prompt}'")
     
-    # システムプロンプトでビジネスルールと本日のシステム日付を厳密に指示
+    # System prompt with strict business rules and today's system date
     messages = [
         {
             "role": "system", 
             "content": (
-                "あなたはアパレルECサイトの自律型返品審査エージェントです。\n"
-                "【本日のシステム日付】: 2026-05-29\n"
-                "【ビジネスルール】:\n"
-                "1. 返品を希望する注文の『購入日』を check_purchase_date ツールで確認してください。\n"
-                "2. 本日のシステム日付(2026-05-29)と購入日の差分（経過日数）を計算してください。\n"
-                "3. 購入日から『30日以内』であれば、execute_refund ツールを実行して払い戻しを自動承認・実行してください。\n"
-                "4. 購入日から『31日以上』経過している場合は、払い戻しを実行せず、速やかに『返品ポリシーの30日を超過しているため却下されました』という旨を最終回答としてユーザーに提示してください。"
+                "You are an autonomous returns review agent for an apparel e-commerce site.\n"
+                "[Today's system date]: 2026-05-29\n"
+                "[Business rules]:\n"
+                "1. Use the check_purchase_date tool to confirm the purchase date for the order requesting a return.\n"
+                "2. Calculate the elapsed days between today's system date (2026-05-29) and the purchase date.\n"
+                "3. If within 30 days of purchase, run execute_refund to auto-approve and process the refund.\n"
+                "4. If 31 or more days have elapsed, do not run a refund; promptly tell the user the return was rejected because it exceeds the 30-day return policy."
             )
         },
         {"role": "user", "content": user_prompt}
@@ -360,7 +360,7 @@ def run_refund_agent(user_prompt: str, max_iterations: int = 5):
     step = 0
     while step < max_iterations:
         step += 1
-        print(f"\n[Loop Step {step}] 思考中...")
+        print(f"\n[Loop Step {step}] Thinking...")
         
         response = client.chat.completions.create(
             model="gpt-4o-mini",
@@ -377,14 +377,14 @@ def run_refund_agent(user_prompt: str, max_iterations: int = 5):
         
         tool_calls = response_message.tool_calls
         if not tool_calls:
-            print("🎉 [Refund Agent] 意思決定プロセス完了。最終判断を提示します。")
+            print("🎉 [Refund Agent] Decision process complete. Presenting final judgment.")
             return response_message.content
         
         for tool_call in tool_calls:
             function_name = tool_call.function.name
             function_args = json.loads(tool_call.function.arguments)
             
-            print(f"🛠️ [Action]: {function_name} 実行要求。引数: {function_args}")
+            print(f"🛠️ [Action]: {function_name} execution requested. Args: {function_args}")
             
             function_to_call = available_functions.get(function_name)
             if function_to_call:
@@ -398,22 +398,22 @@ def run_refund_agent(user_prompt: str, max_iterations: int = 5):
                     "content": observation
                 })
             else:
-                print(f"❌ エラー: 指定されたツールが見つかりません。")
+                print(f"❌ Error: Specified tool not found.")
 
-    return "処理がタイムアウトしました。"
+    return "Processing timed out."
 
 # ==========================================
-# 4. 承認と却下の両シナリオテスト
+# 4. Test both approval and rejection scenarios
 # ==========================================
 if __name__ == "__main__":
-    # シナリオ 1: 承認ケース (order_101: 14日前)
-    print("\n--- シナリオ 1: 自動承認ケース (order_101) ---")
-    ans1 = run_refund_agent("注文 order_101 のスニーカー（15,000円分）を返品したいので払い戻しをお願いします。")
-    print(f"\n最終判定結果:\n{ans1}")
+    # Scenario 1: approval case (order_101: 14 days ago)
+    print("\n--- Scenario 1: Auto-approval case (order_101) ---")
+    ans1 = run_refund_agent("I want to return the sneakers from order_101 (15,000 yen) and request a refund.")
+    print(f"\nFinal decision:\n{ans1}")
     
-    # シナリオ 2: 却下ケース (order_202: 49日前)
-    print("\n--- シナリオ 2: 自動却下ケース (order_202) ---")
-    ans2 = run_refund_agent("注文 order_202 のジャケット（25,000円分）の返品・払い戻しをお願いします。")
-    print(f"\n最終判定結果:\n{ans2}")
+    # Scenario 2: rejection case (order_202: 49 days ago)
+    print("\n--- Scenario 2: Auto-rejection case (order_202) ---")
+    ans2 = run_refund_agent("Please process a return and refund for the jacket from order_202 (25,000 yen).")
+    print(f"\nFinal decision:\n{ans2}")
 ```
 </details>

@@ -42,11 +42,11 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-# 1. データの準備（ダミーデータ）
-# 入力データ (例: 勉強時間, 睡眠時間)
+# 1. Prepare data (dummy data)
+# Input data (e.g., study hours, sleep hours)
 X = torch.tensor([[2.0, 7.0], [3.0, 6.0], [5.0, 8.0], [1.0, 5.0]], dtype=torch.float32)
 
-# 正解ラベル (例: テストの点数が合格=1、不合格=0)
+# Ground-truth labels (e.g., test pass=1, fail=0)
 y = torch.tensor([[0.0], [0.0], [1.0], [0.0]], dtype=torch.float32)
 ```
 
@@ -55,24 +55,24 @@ y = torch.tensor([[0.0], [0.0], [1.0], [0.0]], dtype=torch.float32)
 Next, define the shape of the network (how the LEGO blocks fit together).
 
 ```python
-# 2. ネットワークの定義
+# 2. Define the network
 class SimpleMLP(nn.Module):
     def __init__(self):
         super(SimpleMLP, self).__init__()
-        # ブロックの準備
-        self.hidden = nn.Linear(in_features=2, out_features=4) # 隠れ層（2入力 → 4出力）
-        self.output = nn.Linear(in_features=4, out_features=1) # 出力層（4入力 → 1出力）
-        self.sigmoid = nn.Sigmoid()                            # 活性化関数（0〜1に収める）
+        # Prepare layers
+        self.hidden = nn.Linear(in_features=2, out_features=4) # Hidden layer (2 inputs -> 4 outputs)
+        self.output = nn.Linear(in_features=4, out_features=1) # Output layer (4 inputs -> 1 output)
+        self.sigmoid = nn.Sigmoid()                            # Activation (squash to 0-1)
 
     def forward(self, x):
-        # 組み立て方（データがどう流れるか）
+        # Assembly (how data flows)
         x = self.hidden(x)
         x = self.sigmoid(x)
         x = self.output(x)
         x = self.sigmoid(x)
         return x
 
-# モデルの実体を作る
+# Instantiate the model
 model = SimpleMLP()
 ```
 
@@ -83,38 +83,38 @@ Here you build your own network following the `nn.Module` "blueprint" pattern.
 Once preparation is done, define the rules for evaluating mistakes and correcting them.
 
 ```python
-# 3. 損失関数と最適化手法の定義
-criterion = nn.BCELoss() # 損失関数: 答え合わせの採点基準（今回は2値分類用）
-optimizer = optim.SGD(model.parameters(), lr=0.1) # 最適化手法: 採点をもとにパラメータをどう直すか（SGD）
+# 3. Define loss function and optimizer
+criterion = nn.BCELoss() # Loss: scoring criterion for binary classification
+optimizer = optim.SGD(model.parameters(), lr=0.1) # Optimizer: how to update parameters from the loss (SGD)
 ```
 
 Finally, run the main training loop.
 
 ```python
-# 4. 学習ループ
+# 4. Training loop
 epochs = 1000
 
 for epoch in range(epochs):
-    # ① 予測（順伝播）
+    # 1. Predict (forward pass)
     predictions = model(X)
     
-    # ② 誤差の計算
+    # 2. Compute error
     loss = criterion(predictions, y)
     
-    # ③ 前の反省をリセット（PyTorchのルール）
+    # 3. Reset previous gradients (PyTorch convention)
     optimizer.zero_grad()
     
-    # ④ 誤差逆伝播（魔法の自動計算！）
+    # 4. Backpropagation (automatic gradient computation)
     loss.backward()
     
-    # ⑤ 重みの更新（反省を活かして修正）
+    # 5. Update weights
     optimizer.step()
 
     if (epoch+1) % 200 == 0:
         print(f"Epoch {epoch+1}/{epochs}, Loss: {loss.item():.4f}")
 
-# 学習後の予測を確認
-print("\n学習後の予測結果:")
+# Check predictions after training
+print("\nPredictions after training:")
 print(model(X).detach().numpy())
 ```
 
@@ -156,11 +156,11 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-# 1. データの準備
+# 1. Prepare data
 X = torch.tensor([[2.0, 7.0], [3.0, 6.0], [5.0, 8.0], [1.0, 5.0]], dtype=torch.float32)
 y = torch.tensor([[0.0], [0.0], [1.0], [0.0]], dtype=torch.float32)
 
-# 2. ネットワークの定義 (隠れ層を2つに変更、ReLUを使用)
+# 2. Define the network (two hidden layers, ReLU activations)
 class PracticeMLP(nn.Module):
     def __init__(self):
         super(PracticeMLP, self).__init__()
@@ -182,11 +182,11 @@ class PracticeMLP(nn.Module):
 
 model = PracticeMLP()
 
-# 3. 損失関数と最適化手法の定義 (MSELossに変更)
+# 3. Define loss function and optimizer (MSELoss)
 criterion = nn.MSELoss()
 optimizer = optim.SGD(model.parameters(), lr=0.1)
 
-# 4. 学習ループ
+# 4. Training loop
 epochs = 500
 
 for epoch in range(epochs):
@@ -200,7 +200,7 @@ for epoch in range(epochs):
     if (epoch+1) % 100 == 0:
         print(f"Epoch {epoch+1}/{epochs}, Loss: {loss.item():.4f}")
 
-print("\n学習後の予測結果:")
+print("\nPredictions after training:")
 print(model(X).detach().numpy())
 ```
 

@@ -44,45 +44,45 @@ client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 test_cases = [
     {
         "id": "case_A_faithful",
-        "context": "当ホテルは15:00チェックイン、10:00チェックアウトです。ペットの同伴は禁止されています。朝食は朝7:00から1階の食堂で提供されます。",
-        "question": "チェックインの時間と、ペットを連れていけるかを教えてください。",
-        "answer": "チェックイン時間は午後3時（15:00）からでございます。また、大変申し訳ありませんが、ペットの同伴は禁止されております。"
+        "context": "Our hotel check-in is at 15:00 and check-out at 10:00. Pets are not allowed. Breakfast is served from 7:00 AM on the 1st floor dining room.",
+        "question": "What time is check-in, and can I bring my pet?",
+        "answer": "Check-in begins at 3:00 PM (15:00). We regret to inform you that pets are not permitted."
     },
     {
         "id": "case_B_hallucination",
-        "context": "当ホテルは15:00チェックイン、10:00チェックアウトです。ペットの同伴は禁止されています。朝食は朝7:00から1階の食堂で提供されます。",
-        "question": "チェックインの時間と、ペットを連れていけるかを教えてください。",
-        "answer": "チェックインは15時からです。ペットの同伴はできません。なお、全館で無料の高速Wi-Fiがご利用いただけます。"
+        "context": "Our hotel check-in is at 15:00 and check-out at 10:00. Pets are not allowed. Breakfast is served from 7:00 AM on the 1st floor dining room.",
+        "question": "What time is check-in, and can I bring my pet?",
+        "answer": "Check-in is from 3 PM. Pets are not allowed. Also, complimentary high-speed Wi-Fi is available throughout the hotel."
     }
 ]
 
 # 2. Evaluation prompt design for LLM-as-a-Judge
-EVAL_SYSTEM_PROMPT = """あなたは極めて厳格なAI品質保証（QA）監査役です。
-提供された「参照ドキュメント(Context)」と「AIの回答(Answer)」を比較し、AIの回答がドキュメントの事実にどれだけ忠実であるかを判定してください。
+EVAL_SYSTEM_PROMPT = """You are an extremely strict AI quality assurance (QA) auditor.
+Compare the provided Reference Document (Context) and AI Answer, and judge how faithfully the AI answer reflects document facts.
 
-以下の【評価基準】に従って、1から5の「整数（スコア）」と、その採点を行った「詳細な理由」を出力してください。
+Follow the [Evaluation Criteria] below and output an integer score from 1 to 5 plus a detailed reason for your score.
 
-【評価基準】
-5 - 完璧に忠実: 回答に含まれるすべての情報が、参照ドキュメントに直接記述されている。ハルシネーションや勝手な推測は1文字も含まれない。
-4 - ほぼ忠実: 基本的にはドキュメント通りだが、表現のニュアンスにわずかな飛躍がある（ただし事実は歪めていない）。
-3 - 部分的に事実と異なる/推測を含む: ドキュメントの内容に沿ってはいるが、ドキュメントに記載されていない細かな推測や前提が少し付け加えられている。
-2 - 重大なハルシネーション: ドキュメントに記述されていない情報（存在しないサービスやルールなど）が、確定的な事実として回答に含まれている。
-1 - 完全にデタラメ/矛盾: ドキュメントに書かれている事実と完全に矛盾しているか、ドキュメントの内容を完全に無視して回答している。
+[Evaluation Criteria]
+5 - Perfectly faithful: Every fact in the answer is directly stated in the reference document. No hallucinations or unsupported inferences.
+4 - Mostly faithful: Generally matches the document but with slight nuance beyond the text (facts not distorted).
+3 - Partially divergent / includes inference: Aligns with the document but adds minor assumptions not explicitly stated.
+2 - Major hallucination: States undocumented services or rules as definite facts.
+1 - Completely wrong / contradictory: Contradicts the document or ignores it entirely.
 
-出力は必ず以下のJSONフォーマットのみで返してください。余計な説明文は一切含めないでください。
+Return ONLY the following JSON format. No extra explanation.
 {
-  "score": (1から5の整数),
-  "reason": "(なぜその点数にしたのか、証拠となる文言とハルシネーション箇所を指摘した理由)"
+  "score": (integer from 1 to 5),
+  "reason": "(Why you gave this score, citing evidence and any hallucination)"
 }"""
 
 def run_evaluation_harness(case):
-    prompt_user = f"""【ユーザーの質問】
+    prompt_user = f"""[User Question]
 {case['question']}
 
-【参照ドキュメント(Context)】
+[Reference Document (Context)]
 {case['context']}
 
-【AIの回答(Answer)】
+[AI Answer]
 {case['answer']}"""
 
     response = client.chat.completions.create(
@@ -97,13 +97,13 @@ def run_evaluation_harness(case):
     return json.loads(response.choices[0].message.content)
 
 # Run harness
-print("=== 評価ハーネスの実行 ===")
+print("=== Running Evaluation Harness ===")
 for case in test_cases:
-    print(f"\n[テストケース ID: {case['id']}]")
-    print(f"AIの回答: \"{case['answer']}\"")
+    print(f"\n[Test Case ID: {case['id']}]")
+    print(f"AI Answer: \"{case['answer']}\"")
     eval_result = run_evaluation_harness(case)
-    print(f"➔ 判定スコア: {eval_result['score']} / 5")
-    print(f"➔ 採点理由: {eval_result['reason']}")
+    print(f"➔ Score: {eval_result['score']} / 5")
+    print(f"➔ Reason: {eval_result['reason']}")
 ```
 
 ---
@@ -125,13 +125,13 @@ Build a harness that automatically evaluates the two extreme test cases below.
 relevance_test_cases = [
     {
         "id": "case_C_ideal",
-        "question": "夜遅くにチェックインできますか？",
-        "answer": "はい、当ホテルのフロントデスクは24時間体制で稼働しておりますので、深夜のご到着でも安心してチェックインいただけます。お気をつけてお越しくださいませ。"
+        "question": "Can I check in late at night?",
+        "answer": "Yes, our front desk operates 24 hours a day, so you may check in safely even if you arrive late at night. We look forward to welcoming you."
     },
     {
         "id": "case_D_bad_tone",
-        "question": "夜遅くにチェックインできますか？",
-        "answer": "一応24時間やってるんで遅れても大丈夫っすよ。適当に来てください。"
+        "question": "Can I check in late at night?",
+        "answer": "Yeah we're open 24/7 so showing up late is fine. Just come whenever."
     }
 ]
 ```
@@ -189,35 +189,35 @@ from openai import OpenAI
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 # 1. Decision:
-# 「高級ホテルのコンシェルジュとして、丁寧であることは前提だが、質問に対する『的確さ（Relevance）』と『言葉の品格（Tone）』は全く別の軸である。」
-# 「そのため、これらを個別のキーで同時出力するアプローチB（2次元評価ハーネス）を構築する。」
+# "For a luxury hotel concierge, politeness is assumed, but Answer Relevance and Tone are separate axes."
+# "Therefore we build Approach B (2D evaluation harness) outputting both as separate keys."
 
-EVAL_2D_PROMPT = """あなたは高級ホテルの総支配人であり、ブランドイメージとサービス品質の最高監査役です。
-提供された「ユーザーの質問」と「AIの回答」を分析し、以下の2つの次元で厳密に採点してください。
+EVAL_2D_PROMPT = """You are the general manager of a luxury hotel and chief auditor of brand image and service quality.
+Analyze the provided User Question and AI Answer, and score strictly on the following two dimensions.
 
-1. 【Answer Relevance (回答の的確性)】
-   * 5: ユーザーの質問に対して、過不足なく、完璧かつ的確に答えている。
-   * 3: 回答としては機能しているが、無駄な話が含まれているか、情報が一部不足している。
-   * 1: ユーザーの質問に対して全く答えていない、あるいは的外れな情報を提供している。
+1. [Answer Relevance]
+   * 5: Answers the user's question completely and precisely with no excess or omission.
+   * 3: Functional answer but includes unnecessary content or missing information.
+   * 1: Does not answer the question or provides irrelevant information.
 
-2. 【Brand Safety & Tone (言葉遣いの品格)】
-   * 5: 最高級ホテルのスタッフとして完璧な敬語（丁寧語・尊敬語・謙譲語）と、温かい歓迎（「お気をつけてお越しくださいませ」等）が含まれている。
-   * 3: 失礼ではないが、「大丈夫です」「〜ですね」などカジュアルすぎる表現が含まれる。
-   * 1: 「〜っす」「適当に」のような若者言葉、タメ口、または無礼な表現が1箇所でも含まれる。
+2. [Brand Safety & Tone]
+   * 5: Perfect formal hospitality language and warm welcome (e.g., "We look forward to welcoming you").
+   * 3: Not rude but includes overly casual phrasing such as "That's fine" or "Sure thing."
+   * 1: Contains slang, overly casual speech, or rude expressions anywhere in the answer.
 
-出力は必ず以下のJSONフォーマットのみで返してください。余計な説明文は一切含めないでください。
+Return ONLY the following JSON format. No extra explanation.
 {
-  "relevance_score": (1から5の整数),
-  "relevance_reason": "(的確性に関する具体的な採点理由)",
-  "tone_score": (1から5の整数),
-  "tone_reason": "(言葉遣いの品格に関する具体的な採点理由)"
+  "relevance_score": (integer from 1 to 5),
+  "relevance_reason": "(Specific reason for relevance score)",
+  "tone_score": (integer from 1 to 5),
+  "tone_reason": "(Specific reason for tone score)"
 }"""
 
 def run_2d_evaluation_harness(case):
-    prompt_user = f"""【ユーザーの質問】
+    prompt_user = f"""[User Question]
 {case['question']}
 
-【AIの回答(Answer)】
+[AI Answer]
 {case['answer']}"""
 
     response = client.chat.completions.create(
@@ -232,16 +232,16 @@ def run_2d_evaluation_harness(case):
     return json.loads(response.choices[0].message.content)
 
 # 2. Run harness and quantify
-print("=== 2次元多角的評価ハーネスの実行 ===")
+print("=== Running 2D Multi-Faceted Evaluation Harness ===")
 for case in relevance_test_cases:
-    print(f"\n[テストケース ID: {case['id']}]")
-    print(f"回答: \"{case['answer']}\"")
+    print(f"\n[Test Case ID: {case['id']}]")
+    print(f"Answer: \"{case['answer']}\"")
     
     result = run_2d_evaluation_harness(case)
-    print(f"➔ 質問的確性 (Relevance): {result['relevance_score']} / 5")
-    print(f"  採点理由: {result['relevance_reason']}")
-    print(f"➔ 言葉の品格 (Tone): {result['tone_score']} / 5")
-    print(f"  採点理由: {result['tone_reason']}")
+    print(f"➔ Answer Relevance: {result['relevance_score']} / 5")
+    print(f"  Reason: {result['relevance_reason']}")
+    print(f"➔ Brand Tone: {result['tone_score']} / 5")
+    print(f"  Reason: {result['tone_reason']}")
 ```
 
 ### 💡 Final Production Adoption Decision

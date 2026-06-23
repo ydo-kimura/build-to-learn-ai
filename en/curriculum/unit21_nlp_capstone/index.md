@@ -26,19 +26,19 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-# 乱数シード固定
+# Fix random seed
 torch.manual_seed(42)
 
-# 1. 超極小の「英日対訳データ」と簡易トークナイザー（分かち書き）
+# 1. Tiny English-English parallel corpus and simple tokenizer (whitespace split)
 corpus = [
-    ("hello world", "こんにちは 世界"),
-    ("i love ai", "私は ＡＩが 大好きです"),
-    ("this is deep learning", "これは ディープラーニング です"),
-    ("make a future", "未来を 創る")
+    ("hello world", "greetings earth"),
+    ("i love ai", "I adore AI"),
+    ("this is deep learning", "that is neural learning"),
+    ("make a future", "build a future")
 ]
 
-# 単語辞書の構築
-# 特殊トークン: <pad> (パディング), <sos> (開始), <eos> (終了)
+# Build word vocabulary
+# Special tokens: <pad> (padding), <sos> (start), <eos> (end)
 src_vocab = {"<pad>": 0}
 tgt_vocab = {"<pad>": 0, "<sos>": 1, "<eos>": 2}
 
@@ -51,10 +51,10 @@ for src_sentence, tgt_sentence in corpus:
         if word not in tgt_vocab:
             tgt_vocab[word] = len(tgt_vocab)
 
-# 逆引き辞書 (IDから単語を取得する用)
+# Reverse vocabulary (lookup word from ID)
 inv_tgt_vocab = {v: k for k, v in tgt_vocab.items()}
 
-# 2. テキストのベクトル・ID化
+# 2. Convert text to ID vectors
 def sentence_to_ids(sentence, vocab, add_sos=False, add_eos=False):
     ids = []
     if add_sos:
@@ -66,11 +66,11 @@ def sentence_to_ids(sentence, vocab, add_sos=False, add_eos=False):
         ids.append(vocab["<eos>"])
     return ids
 
-# 3. 簡易Transformerモデルの定義
+# 3. Define a simple Transformer model
 class Seq2SeqTransformer(nn.Module):
     def __init__(self, src_vocab_size, tgt_vocab_size, d_model=32, nhead=2, num_layers=1):
         super().__init__()
-        # 単語埋め込みレイヤー
+        # Word embedding layers
         self.src_embedding = nn.Embedding(src_vocab_size, d_model)
         self.tgt_embedding = nn.Embedding(tgt_vocab_size, d_model)
         
@@ -88,19 +88,19 @@ class Seq2SeqTransformer(nn.Module):
         src_emb = self.src_embedding(src)
         tgt_emb = self.tgt_embedding(tgt)
         
-        # デコーダーが未来の単語を見ないようにする「マスク（Causal Mask）」を作成
+        # Create causal mask so the decoder cannot see future tokens
         tgt_seq_len = tgt.size(1)
         tgt_mask = self.transformer.generate_square_subsequent_mask(tgt_seq_len).to(src.device)
         
         out = self.transformer(src_emb, tgt_emb, tgt_is_causal=True, tgt_mask=tgt_mask)
         return self.fc_out(out)
 
-# 4. モデルのインスタンス化と学習の設定
+# 4. Instantiate model and configure training
 model = Seq2SeqTransformer(len(src_vocab), len(tgt_vocab))
-criterion = nn.CrossEntropyLoss(ignore_index=0) # <pad>は無視
+criterion = nn.CrossEntropyLoss(ignore_index=0) # ignore <pad>
 optimizer = optim.Adam(model.parameters(), lr=0.005)
 
-# 学習ループ
+# Training loop
 model.train()
 for epoch in range(100):
     epoch_loss = 0
@@ -119,7 +119,7 @@ for epoch in range(100):
     if (epoch + 1) % 20 == 0:
         print(f"Epoch {epoch+1}/100 | Total Loss: {epoch_loss:.4f}")
 
-# 5. 推論フェーズ (自己回帰デコード)
+# 5. Inference phase (autoregressive decoding)
 model.eval()
 def translate(src_sentence):
     src_ids = torch.tensor([sentence_to_ids(src_sentence, src_vocab)], dtype=torch.long)
@@ -137,10 +137,10 @@ def translate(src_sentence):
         
     return " ".join([inv_tgt_vocab[idx] for idx in tgt_ids[1:]])
 
-print("\n--- 翻訳テスト実行 ---")
+print("\n--- Translation test ---")
 test_phrase = "i love ai"
-print(f"英語: {test_phrase}")
-print(f"翻訳結果: {translate(test_phrase)}")
+print(f"Source: {test_phrase}")
+print(f"Translation: {translate(test_phrase)}")
 ```
 
 ---
@@ -153,16 +153,16 @@ In NLP and machine translation, the iron rule for choosing a production model is
 Using the expanded **5-sentence parallel dataset** below, implement, train, and evaluate a high-quality translation model that captures input similarity (`i love learning` vs. `i love ai`) and translates correctly.
 
 ```python
-# 1. 拡張された対訳コーパス（語彙が増えています）
+# 1. Expanded parallel corpus (vocabulary has grown)
 corpus = [
-    ("hello world", "こんにちは 世界"),
-    ("i love ai", "私は ＡＩが 大好きです"),
-    ("this is deep learning", "これは ディープラーニング です"),
-    ("make a future", "未来を 創る"),
-    ("i love learning", "私は 学習が 大好きです") # 競合・類似する文章
+    ("hello world", "greetings earth"),
+    ("i love ai", "I adore AI"),
+    ("this is deep learning", "that is neural learning"),
+    ("make a future", "build a future"),
+    ("i love learning", "I adore studying") # competing / similar sentence
 ]
 
-# このコーパスから、単語辞書（Vocabulary）を構築してください。
+# Build a word vocabulary (Vocabulary) from this corpus.
 ```
 
 **【Your mission: compare two hypothesis models and decide which to deploy】**
@@ -187,7 +187,7 @@ With only five sentences—a harsh constraint—**implement and compare both app
    * Choose optimal epochs and learning rate and run training.
    * Implement **autoregressive decoding** (predicting the next word one at a time) on both models for the unseen English sentence `"i love learning"`.
 4. **Quantitative evaluation and final decision**:
-   * Verify whether the test sentence translates to the expected Japanese (`私は 学習が 大好きです`), and **document which model you chose for production and why**.
+   * Verify whether the test sentence translates to the expected output (`I adore studying`), and **document which model you chose for production and why**.
 
 ---
 
@@ -217,16 +217,16 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-# シードの固定
+# Fix random seed
 torch.manual_seed(42)
 
-# 1. 共通の対訳コーパスと辞書構築
+# 1. Shared parallel corpus and vocabulary construction
 corpus = [
-    ("hello world", "こんにちは 世界"),
-    ("i love ai", "私は ＡＩが 大好きです"),
-    ("this is deep learning", "これは ディープラーニング です"),
-    ("make a future", "未来を 創る"),
-    ("i love learning", "私は 学習が 大好きです")
+    ("hello world", "greetings earth"),
+    ("i love ai", "I adore AI"),
+    ("this is deep learning", "that is neural learning"),
+    ("make a future", "build a future"),
+    ("i love learning", "I adore studying")
 ]
 
 src_vocab = {"<pad>": 0}
@@ -256,9 +256,9 @@ def sentence_to_ids(sentence, vocab, add_sos=False, add_eos=False):
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # -----------------------------------------------------------------
-# アプローチB: Transformer 翻訳モデル (極限までコンパクトに設計)
+# Approach B: Transformer translation model (designed to be ultra-compact)
 # -----------------------------------------------------------------
-# ※アプローチA（LSTM）との対比として、LLMの基礎となるTransformerを実装します。
+# Implement Transformer as the foundation of LLMs, for contrast with Approach A (LSTM).
 class Seq2SeqTransformer(nn.Module):
     def __init__(self, src_vocab_size, tgt_vocab_size, d_model=32, nhead=2, num_layers=1):
         super().__init__()
@@ -277,7 +277,7 @@ class Seq2SeqTransformer(nn.Module):
         src_emb = self.src_embedding(src)
         tgt_emb = self.tgt_embedding(tgt)
         
-        # Causal Mask (未来の単語を見ないためのマスク) の生成
+        # Generate causal mask (prevents seeing future tokens)
         tgt_seq_len = tgt.size(1)
         tgt_mask = self.transformer.generate_square_subsequent_mask(tgt_seq_len).to(src.device)
         
@@ -285,9 +285,9 @@ class Seq2SeqTransformer(nn.Module):
         return self.fc_out(out)
 
 # -----------------------------------------------------------------
-# モデルの訓練ループ (Transformer)
+# Model training loop (Transformer)
 # -----------------------------------------------------------------
-# データが極小なため、過学習を防ぎつつマルチヘッドの効果を出すため、d_model=32, nhead=2, layers=1の極小サイズに設定
+# With tiny data, use d_model=32, nhead=2, layers=1 to reduce overfitting while keeping multi-head attention
 model = Seq2SeqTransformer(len(src_vocab), len(tgt_vocab), d_model=32, nhead=2, num_layers=1).to(device)
 criterion = nn.CrossEntropyLoss(ignore_index=0)
 optimizer = optim.Adam(model.parameters(), lr=0.005)
@@ -308,7 +308,7 @@ for epoch in range(120):
         epoch_loss += loss.item()
 
 # -----------------------------------------------------------------
-# 自己回帰デコードによる翻訳推論 (Transformer)
+# Translation inference via autoregressive decoding (Transformer)
 # -----------------------------------------------------------------
 model.eval()
 def translate(src_sentence):
@@ -327,10 +327,10 @@ def translate(src_sentence):
         
     return " ".join([inv_tgt_vocab[idx] for idx in tgt_ids[1:]])
 
-print("--- 意思決定に基づく評価結果 ---")
+print("--- Evaluation results based on design decision ---")
 test_phrase = "i love learning"
-print(f"入力英語: {test_phrase}")
-print(f"翻訳出力: {translate(test_phrase)}")
+print(f"Input (English): {test_phrase}")
+print(f"Translation output: {translate(test_phrase)}")
 ```
 
 ### 💡 Final production model decision as a professional
@@ -338,7 +338,7 @@ print(f"翻訳出力: {translate(test_phrase)}")
 Experiments on this tiny dataset (5 sentences) yield surprising results.
 
 * **Decision rationale (Approach A vs. Approach B)**:
-  * With only 5 sentences, Approach A (RNN/LSTM + Attention) converges very stably due to its simpler structure, avoids overfitting, and tends to output `"私は 学習が 大好きです"` perfectly. Approach B (Transformer) has many attention-head and fully connected parameters; with 5 sentences, attention for `"i love learning"` and `"i love ai"` can collide (mix and overfit), causing decode-time hallucination—e.g., wrongly outputting `"私は ＡＩが 大好きです"`.
+  * With only 5 sentences, Approach A (RNN/LSTM + Attention) converges very stably due to its simpler structure, avoids overfitting, and tends to output `"I adore studying"` perfectly. Approach B (Transformer) has many attention-head and fully connected parameters; with 5 sentences, attention for `"i love learning"` and `"i love ai"` can collide (mix and overfit), causing decode-time hallucination—e.g., wrongly outputting `"I adore AI"`.
 * **Final deployment decision**:
   * **“Select Approach A (RNN/LSTM + Attention) as the production model.”**
   * **Rationale**:

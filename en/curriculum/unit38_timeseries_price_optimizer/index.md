@@ -12,7 +12,7 @@ The main cause is **time series data leakage**.
 Typical ML randomly splits data into 80% train and 20% test (`train_test_split`). With time series, what happens?
 
 ```
-【Time series data】: [Jan] -> [Feb] -> [Mar] -> [Apr] -> [May]
+[Time series data]: [Jan] -> [Feb] -> [Mar] -> [Apr] -> [May]
 
 × Random split (leakage):
   Train: [Jan, Mar, May]
@@ -108,9 +108,9 @@ for fold, (train_index, test_index) in enumerate(tscv.split(X)):
     preds = model.predict(X_test)
     mae = np.mean(np.abs(preds - y_test))
     fold_scores.append(mae)
-    print(f"  Fold {fold+1} Test MAE: {mae:.2f} 個 (訓練期間: {len(train_index)}日, テスト期間: {len(test_index)}日)")
+    print(f"  Fold {fold+1} Test MAE: {mae:.2f} units (train period: {len(train_index)} days, test period: {len(test_index)} days)")
 
-print(f"平均テスト MAE: {np.mean(fold_scores):.2f} 個")
+print(f"Average test MAE: {np.mean(fold_scores):.2f} units")
 
 # --- 3. Final model training and demand simulation (price optimization) ---
 final_model = xgb.XGBRegressor(max_depth=3, n_estimators=50, random_state=42)
@@ -134,9 +134,9 @@ for p in candidate_prices:
         max_revenue = revenue
         best_price = p
 
-print(f"🎯 週末の最適価格: {best_price:.1f} 円")
-print(f"📈 その時の予測販売個数: {final_model.predict(np.array([[best_price, 1]]))[0]:.1f} 個")
-print(f"💰 見込み最大収益: {max_revenue:.0f} 円")
+print(f"🎯 Optimal weekend price: {best_price:.1f} yen")
+print(f"📈 Predicted sales volume at that price: {final_model.predict(np.array([[best_price, 1]]))[0]:.1f} units")
+print(f"💰 Expected maximum revenue: {max_revenue:.0f} yen")
 ```
 
 ---
@@ -231,9 +231,9 @@ from sklearn.metrics import mean_absolute_error
 import xgboost as xgb
 
 # --- 1. Decision and feature engineering ---
-# 「競合価格が存在する場合、自社価格の絶対値よりも『競合との価格差』が需要に大きく影響する。」
-# 「そのため、特徴量として `price_diff = competitor_price - our_price` を新規設計してモデルに投入する。」
-# 「時系列のリークを防ぐため、TimeSeriesSplitを使用し、外挿の破綻を防ぐため最適価格の探索範囲は過去の価格データ範囲内に厳密に限定する。」
+# "When competitor prices exist, the price gap vs competitors affects demand more than our absolute price."
+# "Therefore we engineer `price_diff = competitor_price - our_price` as a new feature."
+# "Use TimeSeriesSplit to prevent leakage; limit optimal price search strictly to past price data range to avoid extrapolation failure."
 
 df_practice = df_practice.copy()
 df_practice["price_diff"] = df_practice["competitor_price"] - df_practice["our_price"]
@@ -259,8 +259,8 @@ for fold, (train_idx, test_idx) in enumerate(tscv_p.split(X_p)):
     mae = mean_absolute_error(y_test, preds)
     maes.append(mae)
 
-print("--- 時系列モデル評価レポート ---")
-print(f"時系列分割 5-Fold 平均テスト MAE: {np.mean(maes):.2f} 個")
+print("--- Time Series Model Evaluation Report ---")
+print(f"Time series 5-fold average test MAE: {np.mean(maes):.2f} units")
 
 # --- 3. Final model ---
 final_model_p = xgb.XGBRegressor(max_depth=2, learning_rate=0.1, n_estimators=40, random_state=42)
@@ -297,10 +297,10 @@ for p in explore_prices:
         best_price = p
         best_predicted_demand = predicted_d
 
-print("\n--- 💰 ダイナミック・プライシング意思決定ノート ---")
-print(f"🎯 設定すべき最適自社価格: {best_price:.1f} 円 (競合価格: {competitor_price_target}円 に対して差額: {competitor_price_target - best_price:.1f}円)")
-print(f"📈 その時の予測需要量: {best_predicted_demand:.1f} 個")
-print(f"💰 見込み最大収益: {best_revenue:.0f} 円")
+print("\n--- 💰 Dynamic Pricing Decision Note ---")
+print(f"🎯 Optimal price to set: {best_price:.1f} yen (competitor price: {competitor_price_target} yen, gap: {competitor_price_target - best_price:.1f} yen)")
+print(f"📈 Predicted demand at that price: {best_predicted_demand:.1f} units")
+print(f"💰 Expected maximum revenue: {best_revenue:.0f} yen")
 
 # --- 5. Business validation of decision ---
 # Compare with normal (no promo, weekday) performance to verify price is not abnormally high/low.

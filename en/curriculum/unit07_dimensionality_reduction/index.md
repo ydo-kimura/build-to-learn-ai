@@ -41,19 +41,19 @@ It finds directions where **data varies the most (maximum variance)**.
 We use **breast cancer data** with **30 features** — impossible to plot directly. Compress to **2 dimensions** with PCA and visualize.
 
 ```python
-# 必要なツールのインポート
+# Import required libraries
 import matplotlib.pyplot as plt
 from sklearn.datasets import load_breast_cancer
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
-# 1. データの準備
+# 1. Prepare the data
 cancer = load_breast_cancer()
 X = cancer.data
 y = cancer.target
 
-# 2. データの標準化（PCAの超重要ステップ！）
-# PCAは「数字のスケール(単位)」に非常に敏感です。必ず StandardScaler で数値を整えます。
+# 2. Standardize features (critical step before PCA)
+# PCA is sensitive to feature scale — always use StandardScaler first
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 ```
@@ -62,26 +62,26 @@ X_scaled = scaler.fit_transform(X)
 Before PCA, **always scale features**. Height (170 cm) vs. eyesight (1.2) have different scales; unscaled PCA overweight large numbers. `StandardScaler` puts every column on comparable footing (mean 0, variance 1).
 
 ```python
-# 3. PCAモデルの作成と実行
-# n_components=2：30次元のデータを「2次元」に圧縮するように指示します
+# 3. Create and run PCA
+# n_components=2: compress 30-dimensional data down to 2 dimensions
 pca = PCA(n_components=2)
 
-# 圧縮を実行！ (fit でベストアングルを探し、transform で実際にデータを圧縮します)
+# Run compression (fit finds the best angle, transform projects the data)
 X_pca = pca.fit_transform(X_scaled)
 
-print(f"圧縮前のデータサイズ: {X.shape}")      # (569, 30) -> 30次元
-print(f"圧縮後のデータサイズ: {X_pca.shape}")  # (569, 2)  -> 2次元に減った！
+print(f"Data size before compression: {X.shape}")      # (569, 30) -> 30 dimensions
+print(f"Data size after compression: {X_pca.shape}")  # (569, 2)  -> reduced to 2 dimensions
 ```
 
 **Code walkthrough**
 `PCA(n_components=2)` plus `.fit_transform()` collapses 30 features into PC1 and PC2 instantly.
 
 ```python
-# 4. 圧縮したデータをグラフに描画
-# X_pca[:, 0] が第1主成分(PC1)、X_pca[:, 1] が第2主成分(PC2)です
+# 4. Plot the compressed data
+# X_pca[:, 0] is PC1, X_pca[:, 1] is PC2
 plt.figure(figsize=(8, 6))
 
-# y=0(悪性)と y=1(良性)で色を分けてプロットします
+# Color by label: y=0 (malignant) vs y=1 (benign)
 plt.scatter(X_pca[:, 0], X_pca[:, 1], c=y, cmap='bwr', alpha=0.7)
 
 plt.xlabel('First Principal Component (PC1)')
@@ -124,26 +124,26 @@ from sklearn.datasets import load_iris
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
-# 1. データの読み込み
+# 1. Load the data
 iris = load_iris()
 X = iris.data
 
-# 2. データの標準化（PCAの前の必須作業！）
+# 2. Standardize features (required before PCA)
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
-# 3. PCAによる次元削減
-# 4次元から2次元に圧縮します
+# 3. Dimensionality reduction with PCA
+# Compress from 4 dimensions to 2
 pca = PCA(n_components=2)
 X_pca = pca.fit_transform(X_scaled)
 
-# 4. 結果の確認
-print("オリジナルのデータサイズ:", X.shape)     # (150, 4)
-print("PCA圧縮後のデータサイズ:", X_pca.shape) # (150, 2)
+# 4. Check the result
+print("Original data size:", X.shape)     # (150, 4)
+print("Data size after PCA:", X_pca.shape) # (150, 2)
 
-# (おまけ) 圧縮しても、どれくらい元の情報が残っているか（寄与率）を確認できます
-# 2次元に圧縮しても、元データの約95%の情報が保持されていることが分かります！
-print(f"情報保持率（分散説明率）: {sum(pca.explained_variance_ratio_):.2%}")
+# Bonus: how much variance is retained after compression
+# Even in 2D, about 95% of the original information is preserved
+print(f"Variance explained ratio: {sum(pca.explained_variance_ratio_):.2%}")
 ```
 
 **Solution walkthrough**

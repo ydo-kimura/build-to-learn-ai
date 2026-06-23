@@ -68,11 +68,11 @@ Here you will train a simple Word2Vec model with Python's `gensim` library and c
 3. **Find similar words**: Input "king" and find nearest neighbors in space.
 
 ```python
-# gensimというライブラリを使用します（pip install gensim が必要です）
+# Use the gensim library (pip install gensim required)
 from gensim.models import Word2Vec
 
-# 1. 文章データの準備
-# 英語の短い文を単語ごとに区切ったリストを用意します
+# 1. Prepare sentence data
+# Lists of tokenized English sentences
 sentences = [
     ["the", "king", "is", "a", "strong", "man"],
     ["the", "queen", "is", "a", "wise", "woman"],
@@ -82,23 +82,23 @@ sentences = [
     ["banana", "is", "a", "sweet", "fruit"]
 ]
 
-# 2. Word2Vecモデルの学習
-# vector_size: 単語をいくつのパラメータ（次元）で表すか
-# min_count: 何回以上出現した単語を学習対象にするか（今回は1回でも出れば学習）
-# window: 前後の単語をいくつまで見て文脈を判断するか
-print("モデルの学習を開始します...")
+# 2. Train Word2Vec model
+# vector_size: embedding dimension per word
+# min_count: minimum token frequency to include (1 = include all tokens here)
+# window: context window size on each side
+print("Starting model training...")
 model = Word2Vec(sentences, vector_size=10, min_count=1, window=2)
-print("学習が完了しました！\n")
+print("Training complete!\n")
 
-# 3. 類似単語の検索
-# "king" に最も意味が近い単語トップ3を取得します
-print("--- 'king' に似ている単語 ---")
+# 3. Find similar words
+# Top 3 words most similar to "king"
+print("--- Words similar to 'king' ---")
 similar_words = model.wv.most_similar("king", topn=3)
 for word, score in similar_words:
-    print(f"単語: {word}, 類似度スコア: {score:.3f}")
+    print(f"Word: {word}, similarity score: {score:.3f}")
 
-# 4. 単語のベクトル（座標）を見てみる
-print("\n--- 'king' のベクトル表現（10次元の数値） ---")
+# 4. Inspect a word vector
+print("\n--- Vector for 'king' (10 dimensions) ---")
 print(model.wv["king"])
 ```
 
@@ -139,7 +139,7 @@ pet_sentences = [
 ```python
 from gensim.models import Word2Vec
 
-# データの準備
+# Prepare data
 pet_sentences = [
     ["i", "love", "my", "cute", "dog"],
     ["my", "dog", "barks", "loudly", "at", "strangers"],
@@ -149,16 +149,16 @@ pet_sentences = [
     ["the", "cat", "chases", "the", "mouse"]
 ]
 
-# モデルの学習
+# Train model
 model = Word2Vec(pet_sentences, vector_size=5, min_count=1, window=2)
 
-# "dog" と最も似ている単語を取得 (topn=1 で1つだけ取得)
+# Word most similar to "dog" (topn=1)
 most_similar_to_dog = model.wv.most_similar("dog", topn=1)
-print(f"'dog' に一番似ている単語: {most_similar_to_dog[0][0]} (類似度: {most_similar_to_dog[0][1]:.3f})")
+print(f"Word most similar to 'dog': {most_similar_to_dog[0][0]} (similarity: {most_similar_to_dog[0][1]:.3f})")
 
-# "cat" と "dog" の類似度を計算
+# Similarity between "cat" and "dog"
 cat_dog_similarity = model.wv.similarity("cat", "dog")
-print(f"'cat' と 'dog' の類似度: {cat_dog_similarity:.3f}")
+print(f"Similarity between 'cat' and 'dog': {cat_dog_similarity:.3f}")
 ```
 
 **Solution explanation:**

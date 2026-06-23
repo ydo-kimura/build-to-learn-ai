@@ -60,35 +60,34 @@ Steps:
 import torch
 import torch.nn.functional as F
 
-# 1. データの準備（簡単のため、3つの単語がそれぞれ4次元のベクトルを持っているとします）
-# 例: [animal, street, it] という3単語を想定
+# 1. Prepare data (3 words, each with a 4-dimensional vector)
+# Example: [animal, street, it]
 x = torch.tensor([
-    [1.0, 0.0, 1.0, 0.0],  # 単語1 (animal) の特徴
-    [0.0, 1.0, 0.0, 1.0],  # 単語2 (street) の特徴
-    [1.0, 0.0, 0.5, 0.0],  # 単語3 (it) の特徴。animalに似た特徴を持つ
+    [1.0, 0.0, 1.0, 0.0],  # Word 1 (animal) features
+    [0.0, 1.0, 0.0, 1.0],  # Word 2 (street) features
+    [1.0, 0.0, 0.5, 0.0],  # Word 3 (it) features; similar to animal
 ])
 
-# 2. Q, K, V の準備
-# 実際のモデルではここに行列の掛け算（重み）が入りますが、今回は簡単のため x をそのまま使います
+# 2. Prepare Q, K, V
+# In a real model, linear projections would be applied here; use x directly for simplicity
 Q = x
 K = x
 V = x
 
-# 3. Attention Scoreの計算 (Q と Kの転置を掛け算)
-# これにより、各単語同士の類似度が計算されます
+# 3. Compute attention scores (Q @ K^T)
+# Measures similarity between each pair of words
 scores = torch.matmul(Q, K.transpose(0, 1))
-print("--- Attention Scores (関連度スコア) ---")
+print("--- Attention Scores ---")
 print(scores)
 
-# 4. Softmax関数で確率（0〜1の割合）に変換
-# 注目度の合計が100% (1.0) になるように調整します
+# 4. Softmax to probabilities (0-1 weights summing to 1)
 attention_weights = F.softmax(scores, dim=-1)
-print("\n--- Attention Weights (注目度の割合) ---")
+print("\n--- Attention Weights ---")
 print(attention_weights)
 
-# 5. 最終的な出力の計算 (注目度を使って V を混ぜ合わせる)
+# 5. Final output: weighted sum of V by attention weights
 output = torch.matmul(attention_weights, V)
-print("\n--- Self-Attentionの最終出力 ---")
+print("\n--- Self-Attention output ---")
 print(output)
 ```
 
@@ -110,8 +109,8 @@ Use PyTorch's built-in `nn.MultiheadAttention` layer to run Attention.
 import torch
 import torch.nn as nn
 
-# 系列長=5 (5つの単語), バッチサイズ=1, 埋め込み次元数(embed_dim)=8
-# 全てランダムな数値で生成します
+# sequence_length=5, batch_size=1, embed_dim=8
+# All values generated randomly
 sequence_length = 5
 batch_size = 1
 embed_dim = 8
@@ -135,32 +134,32 @@ value = torch.rand(sequence_length, batch_size, embed_dim)
 import torch
 import torch.nn as nn
 
-# 1. データの準備
+# 1. Prepare data
 sequence_length = 5
 batch_size = 1
 embed_dim = 8
 
-# Query, Key, Valueのテンソルを作成
+# Create Query, Key, Value tensors
 query = torch.rand(sequence_length, batch_size, embed_dim)
 key = torch.rand(sequence_length, batch_size, embed_dim)
 value = torch.rand(sequence_length, batch_size, embed_dim)
 
-# 2. MultiheadAttention層の定義
-# embed_dim: 単語のベクトルの次元数
-# num_heads: Attentionをいくつに分割して計算するか（マルチヘッド）
+# 2. Define MultiheadAttention layer
+# embed_dim: vector dimension per token
+# num_heads: number of parallel attention heads
 attention_layer = nn.MultiheadAttention(embed_dim=embed_dim, num_heads=2)
 
-# 3. Attentionの計算を実行
-print("Attention計算を実行します...")
+# 3. Run attention
+print("Running attention...")
 attn_output, attn_weights = attention_layer(query, key, value)
 
-# 4. 結果の確認
-print("\n--- Attentionの出力 (attn_output) ---")
-print(attn_output.shape) # 形が元のqueryと同じ (5, 1, 8) になることを確認
+# 4. Inspect results
+print("\n--- Attention output (attn_output) ---")
+print(attn_output.shape) # Same shape as query: (5, 1, 8)
 print(attn_output)
 
-print("\n--- Attentionの重み (attn_weights) ---")
-print(attn_weights.shape) # どの単語がどの単語に注目したかの割合 (1, 5, 5)
+print("\n--- Attention weights (attn_weights) ---")
+print(attn_weights.shape) # Which token attends to which: (1, 5, 5)
 ```
 
 **Solution explanation:**

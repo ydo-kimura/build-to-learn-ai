@@ -21,22 +21,22 @@ graph TD
     classDef highlight fill:#fff7ed,stroke:#ea580c,stroke-width:2px,color:#7c2d12;
     classDef loop fill:#fdf2f8,stroke:#ec4899,stroke-width:2px,color:#500724;
 
-    A["LLM (Large Language Model)<br>【Super-genius brain】<br>・Text generation & logical reasoning<br>・Answers from internal knowledge only"]:::main
+    A["LLM (Large Language Model)<br>[Super-genius brain]<br>- Text generation & logical reasoning<br>- Answers from internal knowledge only"]:::main
     
-    A -->|Bring in external knowledge| B["RAG (Retrieval-Augmented)<br>【Open-book exam with textbook】<br>・Fetch external data via search engines, etc.<br>・LLM answers from search results<br>※Static, single-path pipeline"]:::sub
+    A -->|Bring in external knowledge| B["RAG (Retrieval-Augmented)<br>[Open-book exam with textbook]<br>- Fetch external data via search engines, etc.<br>- LLM answers from search results<br>* Static, single-path pipeline"]:::sub
     
-    A -->|Tool use & autonomous action loop| C["AI Agent<br>【Autonomous executor】<br>・Plans toward goals on its own<br>・Uses tools autonomously"]:::highlight
+    A -->|Tool use & autonomous action loop| C["AI Agent<br>[Autonomous executor]<br>- Plans toward goals on its own<br>- Uses tools autonomously"]:::highlight
     
-    C -->|Engine of the AI agent| CL["Agent Loop<br>【Autonomous trial-and-error cycle】<br>・ReAct loop: Think ➔ Act ➔ Observe<br>・Continues automatically until goal reached"]:::loop
+    C -->|Engine of the AI agent| CL["Agent Loop<br>[Autonomous trial-and-error cycle]<br>- ReAct loop: Think ➔ Act ➔ Observe<br>- Continues automatically until goal reached"]:::loop
     
-    CL -->|Hands and feet| TC["Tool Calling (Function Calling)<br>【Operating tools】<br>・LLM specifies calculator, DB, Web API, etc."]:::loop
+    CL -->|Hands and feet| TC["Tool Calling (Function Calling)<br>[Operating tools]<br>- LLM specifies calculator, DB, Web API, etc."]:::loop
     
-    TC -->|Standard connector for tools| MCP["MCP (Model Context Protocol)<br>【USB port for the AI era】<br>・Unified standard linking external tools and agents"]:::loop
+    TC -->|Standard connector for tools| MCP["MCP (Model Context Protocol)<br>[USB port for the AI era]<br>- Unified standard linking external tools and agents"]:::loop
 
-    B -->|Add autonomy, branching & retry| D["Agentic RAG<br>【RAG × AI Agent】<br>・Auto-optimize search keywords<br>・Re-search and retry as needed"]:::highlight
+    B -->|Add autonomy, branching & retry| D["Agentic RAG<br>[RAG x AI Agent]<br>- Auto-optimize search keywords<br>- Re-search and retry as needed"]:::highlight
     C -->|Integrate RAG as a tool| D
     
-    C -->|Coordination & role division| MA["Multi-Agent<br>【Agent organization & specialization】<br>・Multiple specialized agents cooperate"]:::highlight
+    C -->|Coordination & role division| MA["Multi-Agent<br>[Agent organization & specialization]<br>- Multiple specialized agents cooperate"]:::highlight
 ```
 
 > [!NOTE]
@@ -105,21 +105,21 @@ Call OpenAI’s API from Python and have the AI greet you.
 import os
 from openai import OpenAI
 
-# 1. API クライアントの初期化
-# APIキーは環境変数から自動的に読み込まれます
+# 1. Initialize API client
+# API key is loaded automatically from environment variables
 client = OpenAI()
 
-# 2. LLMにメッセージを送る
-# gpt-4o-mini という高速で安価なモデルを使用します
+# 2. Send a message to the LLM
+# Uses gpt-4o-mini, a fast and inexpensive model
 response = client.chat.completions.create(
     model="gpt-4o-mini",
     messages=[
-        {"role": "user", "content": "Hello, AI World! と英語で返答してください。"}
+        {"role": "user", "content": "Please reply in English with: Hello, AI World!"}
     ]
 )
 
-# 3. 回答の表示
-print("AIからの返答:")
+# 3. Display the response
+print("Reply from AI:")
 print(response.choices[0].message.content)
 ```
 
@@ -155,30 +155,30 @@ import os
 from openai import OpenAI
 
 def main():
-    # クライアントの初期化
+    # Initialize client
     client = OpenAI()
     
-    # システムプロンプトとユーザー指示の作成
+    # Create system prompt and user instruction
     messages = [
         {
             "role": "system", 
-            "content": "あなたは偉大な歴史学者です。"
+            "content": "You are a great historian."
         },
         {
             "role": "user", 
-            "content": "LLMからAIエージェントへの進化の歴史について、3行の箇条書きで要約してください。"
+            "content": "Summarize the history of evolution from LLM to AI agent in a 3-line bullet list."
         }
     ]
     
-    # APIリクエストの実行
+    # Execute API request
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=messages,
         temperature=0.7
     )
     
-    # 結果の表示
-    print("歴史学者による要約:")
+    # Display result
+    print("Summary by the historian:")
     print(response.choices[0].message.content)
 
 if __name__ == "__main__":

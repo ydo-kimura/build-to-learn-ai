@@ -46,19 +46,19 @@ That's why we use several **metrics**:
 Let's implement logistic regression in Python using the **Breast Cancer dataset** to classify tumors as malignant (0) or benign (1) from features such as size and shape.
 
 ```python
-# 必要なツールのインポート
+# Import required libraries
 import pandas as pd
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
-# 1. データの準備
+# 1. Prepare the data
 cancer_data = load_breast_cancer()
-X = cancer_data.data      # 腫瘍の大きさや形などの数値データ
-y = cancer_data.target    # 悪性か良性かの答え（0 or 1）
+X = cancer_data.data      # numeric features such as tumor size and shape
+y = cancer_data.target    # labels: malignant (0) or benign (1)
 
-# データを学習用（80%）とテスト用（20%）に分割
+# Split into 80% training and 20% test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 ```
 
@@ -66,14 +66,14 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 We load data with `load_breast_cancer()` and split with `train_test_split`, same as Unit 1, to avoid peeking at the test set during training.
 
 ```python
-# 2. モデルの準備と学習
-# ロジスティック回帰モデルを作成（max_iterは計算の試行回数の上限）
+# 2. Prepare and train the model
+# Create logistic regression (max_iter is the solver iteration limit)
 model = LogisticRegression(max_iter=10000)
 
-# 学習データを使って、0と1を分ける最適な境界線を引く（学習）
+# Fit the best decision boundary using training data
 model.fit(X_train, y_train)
 
-# 3. テストデータで予測
+# 3. Predict on the test set
 y_pred = model.predict(X_test)
 ```
 
@@ -81,16 +81,16 @@ y_pred = model.predict(X_test)
 Create `LogisticRegression`, train with `.fit()` (`max_iter=10000` tells the solver to try up to 10,000 iterations on this slightly harder data), then predict with `.predict()`. Same flow as linear regression!
 
 ```python
-# 4. 答え合わせ（分類の評価指標を計算）
+# 4. Evaluate classification metrics
 acc = accuracy_score(y_test, y_pred)
 prec = precision_score(y_test, y_pred)
 rec = recall_score(y_test, y_pred)
 f1 = f1_score(y_test, y_pred)
 
-print(f"正解率 (Accuracy):  {acc:.3f}")
-print(f"適合率 (Precision): {prec:.3f}")
-print(f"再現率 (Recall):    {rec:.3f}")
-print(f"F1スコア (F1-Score): {f1:.3f}")
+print(f"Accuracy:  {acc:.3f}")
+print(f"Precision: {prec:.3f}")
+print(f"Recall:    {rec:.3f}")
+print(f"F1-Score:  {f1:.3f}")
 ```
 
 **Code walkthrough**
@@ -128,23 +128,23 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
-# 1. データの読み込み
+# 1. Load the data
 wine = load_wine()
 X = wine.data
 y = wine.target
 
-# 2. データの分割 (今回はテストデータを30%にする)
+# 2. Split the data (30% held out for testing this time)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-# 3. ロジスティック回帰モデルの作成と学習
+# 3. Create and train a logistic regression model
 model = LogisticRegression(max_iter=10000)
 model.fit(X_train, y_train)
 
-# 4. 予測と評価 (正解率の計算)
+# 4. Predict and evaluate (compute accuracy)
 y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 
-print(f"ワインの分類 正解率: {accuracy:.3f}")
+print(f"Wine classification accuracy: {accuracy:.3f}")
 ```
 
 **Solution walkthrough**
