@@ -6,7 +6,7 @@
 
 ## 1. Transfer Learning with ResNet の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit15_transfer_learning/images/concept.png" width="400" alt="コンセプト図解">
 
 自分でゼロからCNN（虫眼鏡ネットワーク）を作って学習させるのはとても立派ですが、実はこれには**「膨大なデータ」**と**「途方もない時間（計算力）」**が必要です。
 

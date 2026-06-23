@@ -6,7 +6,7 @@
 
 ## 1. 総合ディープラーニングモデル構築の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit16_deep_learning_capstone/images/concept.png" width="400" alt="コンセプト図解">
 
 第2章（Unit 10〜15）において、ディープラーニングの根底にあるニューラルネットワークの仕組みから、PyTorchのテンソル操作、最適化関数、正則化（Dropout・BatchNorm）、および画像認識を劇的に進化させたCNNや「転移学習」までを学習してきました。
 

@@ -2,7 +2,7 @@
 
 ## 1. マルチモーダル不正検知の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit35_multimodal_fraud_detection/images/concept.png" width="400" alt="コンセプト図解">
 
 これまでUnit 1〜8でテーブルデータ（数値・カテゴリ）、Unit 10〜16で画像、Unit 17〜21で自然言語（テキスト）を個別に処理するモデルを個別に学び、構築してきました。
 

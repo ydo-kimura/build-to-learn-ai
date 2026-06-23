@@ -2,7 +2,7 @@
 
 ## 1. ロジスティック回帰と分類評価指標の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit02_logistic_regression/images/concept.png" width="400" alt="コンセプト図解">
 
 ### ロジスティック回帰とは？ 〜「0か1か」の境界線を引く〜
 名前に「回帰（Regression）」と付いていますが、実はこれは**「分類（Classification）」**のためのアルゴリズムです。

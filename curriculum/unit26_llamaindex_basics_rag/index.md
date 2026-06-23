@@ -6,7 +6,7 @@
 
 ## 1. LlamaIndex による RAG 構築の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit26_llamaindex_basics_rag/images/concept.png" width="400" alt="コンセプト図解">
 
 これまでUnit 24において、外部ライブラリを一切使わずに、APIとNumPyの類似度計算だけで「手組みRAG」を構築し、RAGシステムの根底にある数理的仕組みを学びました。さらにUnit 25においては、LangChainを用いたより抽象的で汎用的なRAGの構築手法を習得しました。
 

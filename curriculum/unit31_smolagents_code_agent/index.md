@@ -6,7 +6,7 @@
 
 ## 1. AIエージェントと smolagents の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit31_smolagents_code_agent/images/concept.png" width="400" alt="コンセプト図解">
 
 これまでUnit 27〜28において、Chainingやチャットボットの実装、さらにUnit 29〜30において、AIエージェントの基本原理（スクラッチReAct）や共通標準規格である MCP（Model Context Protocol）を学習してきました。
 

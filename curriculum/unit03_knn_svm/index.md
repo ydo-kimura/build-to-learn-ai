@@ -2,7 +2,7 @@
 
 ## 1. K-NNとSVMの理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit03_knn_svm/images/concept.png" width="400" alt="コンセプト図解">
 
 この章では、全く異なるアプローチでデータを分類する2つの有名なアルゴリズム、「K-NN（K近傍法）」と「SVM（サポートベクターマシン）」について学びます。どちらも直感的で面白い特徴を持っています。
 

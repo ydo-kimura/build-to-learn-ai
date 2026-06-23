@@ -4,7 +4,7 @@
 
 ## 1. NLPの前処理とTF-IDF の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit17_nlp_preprocessing_tfidf/images/concept.png" width="400" alt="コンセプト図解">
 
 人間の言葉をコンピュータに理解させるための第一歩は、**「テキストデータを整理整頓して、数字のリスト（ベクトル）に変換すること」**です。
 

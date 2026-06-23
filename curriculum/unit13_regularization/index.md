@@ -6,7 +6,7 @@
 
 ## 1. Regularization in DL の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit13_regularization/images/concept.png" width="400" alt="コンセプト図解">
 
 ディープラーニングの世界には、「過学習（Overfitting）」という恐ろしい罠が潜んでいます。
 

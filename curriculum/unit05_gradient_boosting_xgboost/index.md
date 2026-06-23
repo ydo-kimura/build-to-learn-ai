@@ -2,7 +2,7 @@
 
 ## 1. 勾配ブースティングとXGBoostの理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit05_gradient_boosting_xgboost/images/concept.png" width="400" alt="コンセプト図解">
 
 前章のランダムフォレストは、「たくさんの木を作って多数決をとる（アンサンブル学習）」という手法でした。今回は、同じアンサンブル学習でも全く別のアプローチをとる**「勾配ブースティング（Gradient Boosting）」**と、その最強の進化系である**「XGBoost」**について学びます。
 

@@ -6,7 +6,7 @@
 
 ## 1. Optimizers & Loss Functions の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit12_optimizers_loss/images/concept.png" width="400" alt="コンセプト図解">
 
 AIの学習において、「損失関数（Loss Function）」と「最適化手法（Optimizer）」は車の「ナビ」と「エンジン」のような関係です。この2つがうまく連携することで、AIはゴール（正解）にたどり着くことができます。
 

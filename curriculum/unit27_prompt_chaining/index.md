@@ -7,7 +7,7 @@
 
 ## 1. Prompt Chaining の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit27_prompt_chaining/images/concept.png" width="400" alt="コンセプト図解">
 
 ### プロンプトチェーン（Prompt Chaining）とは？
 複雑な仕事をAIにお願いする時、1回の大きな質問で全てをやらせようとすると、AIは混乱して失敗しやすくなります。

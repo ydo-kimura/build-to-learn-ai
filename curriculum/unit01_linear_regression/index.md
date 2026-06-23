@@ -3,7 +3,7 @@
 
 ## 1. 線形回帰と正則化の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit01_linear_regression/images/concept.png" width="400" alt="コンセプト図解">
 
 ### 線形回帰とは？ 〜「家賃の予測」で考える〜
 線形回帰を日常に例えるなら、**「過去のデータから、1つの真っ直ぐな定規を使って未来を予測する」**ようなものです。

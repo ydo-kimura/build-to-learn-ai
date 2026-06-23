@@ -7,7 +7,7 @@
 
 ## 1. PyTorch Basics & Simple MLP の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit11_pytorch_basics/images/concept.png" width="400" alt="コンセプト図解">
 
 前回のUnit 10では、ニューラルネットワークの仕組みを理解するためにすべてを「手作り（NumPy）」で実装しました。しかし、毎回あの複雑な数式（誤差逆伝播など）を書くのは大変ですよね。
 

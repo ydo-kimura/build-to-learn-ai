@@ -2,7 +2,7 @@
 
 ## 1. Word Embeddings（単語の分散表現） の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit18_word_embeddings_word2vec/images/concept.png" width="400" alt="コンセプト図解">
 
 Unit 17で学んだTF-IDFは強力ですが、1つ大きな弱点がありました。それは「単語の『意味』を理解していない」ということです。
 たとえば「犬」と「子犬」は似た意味ですが、TF-IDFにとっては全く別の単語として扱われます。

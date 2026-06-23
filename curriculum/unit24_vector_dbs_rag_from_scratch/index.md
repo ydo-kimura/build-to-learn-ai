@@ -7,7 +7,7 @@
 
 ## 1. Vector DBs & RAG From Scratch の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit24_vector_dbs_rag_from_scratch/images/concept.png" width="400" alt="コンセプト図解">
 
 ### Vector DB（ベクトルデータベース）とは？
 AIに言葉を理解させるには、言葉を**「数値の羅列（ベクトル）」**に変換する必要があります（これを**埋め込み / Embedding**と呼びます）。

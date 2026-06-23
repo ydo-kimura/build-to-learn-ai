@@ -7,7 +7,7 @@
 
 ## 1. Context-Aware Chatbot の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit28_context_aware_chatbot/images/concept.png" width="400" alt="コンセプト図解">
 
 ### メモリ（記憶）の必要性とは？
 APIを通して使うLLMは、基本的に**「記憶喪失」**です。

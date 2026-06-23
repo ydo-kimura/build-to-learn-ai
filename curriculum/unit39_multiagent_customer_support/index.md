@@ -2,7 +2,7 @@
 
 ## 1. シングルエージェントの限界とマルチエージェント協調の理解
 
-<img src="./images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit39_multiagent_customer_support/images/concept.png" width="400" alt="コンセプト図解">
 
 これまで、Unit 31 において Python コードを自律実行する強力な AI エージェント（`smolagents` の CodeAgent）を学習しました。シングルエージェントは非常に高い能力を持っていますが、実務の複雑な企業システム（エンタープライズ）に投入すると、たちまち**「キャパシティオーバー（処理限界）」**を起こして破綻します。
 
