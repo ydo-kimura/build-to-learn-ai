@@ -4,16 +4,6 @@ import { withMermaid } from 'vitepress-plugin-mermaid'
 export default withMermaid(
   defineConfig({
   base: "/",
-  head: [
-    ['style', {}, `
-      /* VPHero の親コンテナとテキストの幅制限を緩和して、日本語・英語タイトルの不自然な改行を防止 */
-      .VPHero .content,
-      .VPHero .text,
-      .VPHero .name {
-        max-width: 800px !important;
-      }
-    `]
-  ],
   srcExclude: [
     '**/aidlc-docs/**',
     '**/node_modules/**',
