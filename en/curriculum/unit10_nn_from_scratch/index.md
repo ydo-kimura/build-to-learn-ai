@@ -43,7 +43,7 @@ First, load libraries and prepare data.
 ```python
 import numpy as np
 
-# 入力データ (4つのパターン)
+# Input data (4 patterns)
 X = np.array([
     [0, 0],
     [0, 1],
@@ -51,7 +51,7 @@ X = np.array([
     [1, 1]
 ])
 
-# 正解ラベル (XORパターンの答え)
+# Target labels (XOR pattern answers)
 y = np.array([
     [0],
     [1],
@@ -65,20 +65,20 @@ This sets up four input patterns (e.g., "Is it raining?" and "Do you have an umb
 Next, initialize the network — random weights and biases.
 
 ```python
-# 乱数のシードを固定（毎回同じ結果にするため）
+# Fix random seed for reproducible results
 np.random.seed(42)
 
-# ネットワークの形を決める
-input_size = 2   # 入力層の人数（2人）
-hidden_size = 3  # 隠れ層の人数（3人）
-output_size = 1  # 出力層の人数（社長1人）
+# Define network architecture
+input_size = 2   # input layer size (2 neurons)
+hidden_size = 3  # hidden layer size (3 neurons)
+output_size = 1  # output layer size (1 neuron)
 
-# 重み（W）とバイアス（b）の初期化
-# 係長への重みと基本方針
+# Initialize weights (W) and biases (b)
+# Weights and biases for the hidden layer
 W1 = np.random.randn(input_size, hidden_size) 
 b1 = np.zeros((1, hidden_size))
 
-# 社長への重みと基本方針
+# Weights and biases for the output layer
 W2 = np.random.randn(hidden_size, output_size)
 b2 = np.zeros((1, output_size))
 ```
@@ -88,54 +88,54 @@ Structure: input (2) → hidden (3) → output (1). `np.random.randn` starts wit
 Now the main training loop.
 
 ```python
-# シグモイド関数（活性化関数：0〜1の間に数値を押し込めるフィルター）
+# Sigmoid activation (squashes values into the 0-1 range)
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
-# シグモイド関数の微分（間違いを修正するときに使います）
+# Sigmoid derivative (used when correcting errors during backpropagation)
 def sigmoid_derivative(x):
     return x * (1 - x)
 
-# 学習率（1回の反省でどれくらい思い切り直すか）
+# Learning rate (how much to adjust weights per update)
 learning_rate = 0.5
-epochs = 5000 # 学習を繰り返す回数
+epochs = 5000 # number of training iterations
 
 for epoch in range(epochs):
     # -------------------------
-    # 1. 順伝播 (Forward Propagation) - 稟議を上に回す
+    # 1. Forward propagation — pass signals up the network
     # -------------------------
-    # 隠れ層の計算
-    z1 = np.dot(X, W1) + b1       # 入力 × 重み + バイアス
-    a1 = sigmoid(z1)              # フィルターを通す
+    # Hidden layer
+    z1 = np.dot(X, W1) + b1       # input * weights + bias
+    a1 = sigmoid(z1)              # apply activation
     
-    # 出力層の計算
-    z2 = np.dot(a1, W2) + b2      # 隠れ層の出力 × 重み + バイアス
-    output = sigmoid(z2)          # 社長の最終判断 (0〜1の確率)
+    # Output layer
+    z2 = np.dot(a1, W2) + b2      # hidden output * weights + bias
+    output = sigmoid(z2)          # final prediction (probability 0-1)
     
     # -------------------------
-    # 2. 誤差の計算 - 社長の判断と正解のズレを確認
+    # 2. Compute error — gap between prediction and target
     # -------------------------
     error = y - output
     
     # -------------------------
-    # 3. 誤差逆伝播 (Backpropagation) - 間違いの原因を探って下に伝える
+    # 3. Backpropagation — propagate error backward through layers
     # -------------------------
-    # 出力層の反省点
+    # Output layer gradient
     d_output = error * sigmoid_derivative(output)
     
-    # 隠れ層の反省点
+    # Hidden layer gradient
     error_hidden_layer = d_output.dot(W2.T)
     d_hidden_layer = error_hidden_layer * sigmoid_derivative(a1)
     
     # -------------------------
-    # 4. 重みとバイアスの更新 - 反省を活かしてルールを修正する
+    # 4. Update weights and biases
     # -------------------------
     W2 += a1.T.dot(d_output) * learning_rate
     b2 += np.sum(d_output, axis=0, keepdims=True) * learning_rate
     W1 += X.T.dot(d_hidden_layer) * learning_rate
     b1 += np.sum(d_hidden_layer, axis=0, keepdims=True) * learning_rate
 
-print("学習後のAIの予測結果:")
+print("Predictions after training:")
 print(np.round(output, 3))
 ```
 
@@ -172,7 +172,7 @@ Copy the example code and change the dataset and `hidden_size` — that's enough
 ```python
 import numpy as np
 
-# データの準備 (OR回路)
+# Prepare data (OR gate)
 X = np.array([
     [0, 0],
     [0, 1],
@@ -186,17 +186,17 @@ y = np.array([
     [1]
 ])
 
-# 活性化関数とその微分
+# Activation function and its derivative
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
 def sigmoid_derivative(x):
     return x * (1 - x)
 
-# ネットワークの構築
+# Build the network
 np.random.seed(42)
 input_size = 2
-hidden_size = 2  # 隠れ層を2人に変更
+hidden_size = 2  # hidden layer with 2 neurons
 output_size = 1
 
 W1 = np.random.randn(input_size, hidden_size)
@@ -204,32 +204,32 @@ b1 = np.zeros((1, hidden_size))
 W2 = np.random.randn(hidden_size, output_size)
 b2 = np.zeros((1, output_size))
 
-# 学習ループ
+# Training loop
 learning_rate = 0.5
 epochs = 3000
 
 for epoch in range(epochs):
-    # 1. 順伝播
+    # 1. Forward propagation
     z1 = np.dot(X, W1) + b1
     a1 = sigmoid(z1)
     z2 = np.dot(a1, W2) + b2
     output = sigmoid(z2)
     
-    # 2. 誤差計算
+    # 2. Compute error
     error = y - output
     
-    # 3. 誤差逆伝播
+    # 3. Backpropagation
     d_output = error * sigmoid_derivative(output)
     error_hidden_layer = d_output.dot(W2.T)
     d_hidden_layer = error_hidden_layer * sigmoid_derivative(a1)
     
-    # 4. 更新
+    # 4. Update weights and biases
     W2 += a1.T.dot(d_output) * learning_rate
     b2 += np.sum(d_output, axis=0, keepdims=True) * learning_rate
     W1 += X.T.dot(d_hidden_layer) * learning_rate
     b1 += np.sum(d_hidden_layer, axis=0, keepdims=True) * learning_rate
 
-print("学習後のAIの予測結果 (0, 1, 1, 1 に近ければ成功):")
+print("Predictions after training (success if close to 0, 1, 1, 1):")
 print(np.round(output, 3))
 ```
 

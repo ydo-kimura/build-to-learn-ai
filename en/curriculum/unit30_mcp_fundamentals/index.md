@@ -17,8 +17,8 @@ MCP uses three cooperating roles:
 
 ```mermaid
 graph LR
-    Client[Client / IDE等<br>Claude, Cursor] <--> Host[Host / エージェント本体<br>mcp-host, custom script]
-    Host <--> Server[Server / 各自作リソース・ツール<br>Sqlite, Filesystem, Google]
+    Client[Client / IDE<br>Claude, Cursor] <--> Host[Host / Agent runtime<br>mcp-host, custom script]
+    Host <--> Server[Server / Custom resources & tools<br>Sqlite, Filesystem, Google]
 ```
 
 #### Text alternative for system structure
@@ -61,20 +61,20 @@ Run `pip install mcp` first.
 import sys
 from mcp.server.fastmcp import FastMCP
 
-# 1. FastMCP サーバーの初期化 (名前を登録)
-# FastMCP は Python のデコレータを用いて、非常に直感的にリソースやツールを追加できるSDKです。
+# 1. Initialize FastMCP server (register name)
+# FastMCP uses Python decorators to add resources and tools intuitively.
 mcp = FastMCP("customer-insights-server")
 
-# 模擬的な顧客データベース
+# Mock customer database
 CUSTOMER_DATABASE = {
     "cust_001": {
-        "name": "アリス",
+        "name": "Alice",
         "tier": "VIP",
         "email": "alice@example.com",
         "status": "Active"
     },
     "cust_002": {
-        "name": "ボブ",
+        "name": "Bob",
         "tier": "Regular",
         "email": "bob@example.com",
         "status": "Suspended"
@@ -82,57 +82,56 @@ CUSTOMER_DATABASE = {
 }
 
 # ==========================================
-# 2. Resources (リソース) の定義
+# 2. Define Resources
 # ==========================================
-# `@mcp.resource()` デコレータを使い、エージェントに「静的な参照用データ」を提供します。
-# 顧客全体のIDリストを静的に返すリソースを定義します。
+# @mcp.resource() provides static reference data to the agent.
+# Returns a static list of all customer IDs.
 @mcp.resource("customer://list")
 def get_customer_list() -> str:
-    """登録されているすべての顧客IDのリストを返します。"""
+    """Return a list of all registered customer IDs."""
     return ", ".join(CUSTOMER_DATABASE.keys())
 
-# 動的なパスを持つリソースの定義 (URLパラメータの利用)
+# Resource with dynamic path (URL parameter)
 @mcp.resource("customer://{customer_id}/profile")
 def get_customer_profile(customer_id: str) -> str:
-    """指定された顧客IDのプロフィール詳細を返します。"""
+    """Return profile details for the specified customer ID."""
     cust = CUSTOMER_DATABASE.get(customer_id.lower())
     if cust:
         return (
-            f"--- 顧客プロフィール ({customer_id}) ---\n"
-            f"名前: {cust['name']}\n"
-            f"会員ランク: {cust['tier']}\n"
-            f"ステータス: {cust['status']}"
+            f"--- Customer Profile ({customer_id}) ---\n"
+            f"Name: {cust['name']}\n"
+            f"Membership tier: {cust['tier']}\n"
+            f"Status: {cust['status']}"
         )
-    return f"エラー: 顧客ID '{customer_id}' は存在しません。"
+    return f"Error: Customer ID '{customer_id}' does not exist."
 
 # ==========================================
-# 3. Tools (ツール) の定義
+# 3. Define Tools
 # ==========================================
-# `@mcp.tool()` デコレータを使い、エージェントに「実行可能なアクション」を提供します。
-# 関数の型ヒントと docstring が、そのまま自動で LLM への機能説明（Tool Schema）になります。
+# @mcp.tool() provides executable actions to the agent.
+# Type hints and docstrings automatically become the LLM tool schema description.
 @mcp.tool()
 def update_member_tier(customer_id: str, new_tier: str) -> str:
     """
-    指定された顧客IDの会員ランクを更新します。
+    Update the membership tier for the specified customer ID.
     
-    引数:
-        customer_id: 対象の顧客ID (例: cust_001)
-        new_tier: 新しいランク名 (例: VIP, Regular)
+    Args:
+        customer_id: Target customer ID (e.g., cust_001)
+        new_tier: New tier name (e.g., VIP, Regular)
     """
     cust = CUSTOMER_DATABASE.get(customer_id.lower())
     if not cust:
-        return f"エラー: 顧客ID '{customer_id}' は見つかりません。"
+        return f"Error: Customer ID '{customer_id}' not found."
     
     old_tier = cust["tier"]
     cust["tier"] = new_tier
-    return f"成功: 顧客 {customer_id} のランクを {old_tier} から {new_tier} に更新しました。"
+    return f"Success: Updated customer {customer_id} tier from {old_tier} to {new_tier}."
 
 # ==========================================
-# 4. stdio 接続でのサーバー起動
+# 4. Start server over stdio
 # ==========================================
 if __name__ == "__main__":
-    # コマンドライン引数や環境によって起動方法を決定できます。
-    # ここでは MCP Host から呼び出される標準 stdio プロセスとして起動します。
+    # Launch as a standard stdio process invoked by the MCP Host.
     print("🚀 MCP Customer Insights Server Starting...", file=sys.stderr)
     mcp.run(transport="stdio")
 ```
@@ -185,79 +184,79 @@ Complete support MCP server implementation:
 import sys
 from mcp.server.fastmcp import FastMCP
 
-# 1. MCPサーバーのインスタンス化
+# 1. Instantiate MCP server
 mcp = FastMCP("enterprise-support-server")
 
-# 模擬的な注文履歴データベース
+# Mock order history database
 ORDERS_DATABASE = {
     "order_101": {
-        "items": ["スニーカー", "Tシャツ"],
+        "items": ["Sneakers", "T-Shirt"],
         "total_jpy": 15000
     },
     "order_202": {
-        "items": ["プレミアムジャケット"],
+        "items": ["Premium Jacket"],
         "total_jpy": 25000
     }
 }
 
 # ==========================================
-# 2. 静的リソース (Resources) の定義
+# 2. Define static Resources
 # ==========================================
 @mcp.resource("support://{order_id}/items")
 def get_order_items(order_id: str) -> str:
     """
-    指定された注文IDの注文アイテムと総額を返します。
+    Return order items and total amount for the specified order ID.
     """
     order = ORDERS_DATABASE.get(order_id.lower())
     if order:
         items_str = ", ".join(order["items"])
         return (
-            f"--- 注文履歴 ({order_id}) ---\n"
-            f"購入商品: {items_str}\n"
-            f"合計支払額: {order['total_jpy']} 円"
+            f"--- Order History ({order_id}) ---\n"
+            f"Items purchased: {items_str}\n"
+            f"Total paid: {order['total_jpy']} yen"
         )
-    return f"エラー: 注文ID '{order_id}' の履歴は見つかりません。"
+    return f"Error: No history found for order ID '{order_id}'."
 
 # ==========================================
-# 3. 動的ツール (Tools) の定義
+# 3. Define dynamic Tools
 # ==========================================
 @mcp.tool()
 def calculate_loyalty_points(amount: int, tier: str) -> str:
     """
-    顧客の購入金額と会員ランクから、今回の買い物で付与されるロイヤルティポイント（円換算）を算出します。
+    Calculate loyalty points (yen equivalent) earned from purchase amount and membership tier.
     
-    引数:
-        amount: 今回の購入金額 (日本円)
-        tier: 顧客の会員ランク (VIP または Regular)
+    Args:
+        amount: Purchase amount (JPY)
+        tier: Customer membership tier (VIP or Regular)
     """
-    # 安全設計: 不正入力の防御
+    # Safety: validate inputs
     if amount < 0:
-        return "エラー: 購入金額は0以上の整数でなければなりません。"
+        return "Error: Purchase amount must be a non-negative integer."
     
     clean_tier = tier.strip().upper()
     if clean_tier not in ["VIP", "REGULAR"]:
-        return "エラー: 会員ランクは 'VIP' または 'Regular' のいずれかを指定してください。"
+        return "Error: Membership tier must be 'VIP' or 'Regular'."
     
-    # ビジネスロジックの実行
+    # Execute business logic
     if clean_tier == "VIP":
         points = int(amount * 0.05)
-        rate_str = "5% (VIP特典)"
+        rate_str = "5% (VIP benefit)"
     else:
         points = int(amount * 0.01)
-        rate_str = "1% (一般会員特典)"
+        rate_str = "1% (standard member benefit)"
         
     return (
-        f"--- ポイント計算結果 ---\n"
-        f"購入金額: {amount} 円\n"
-        f"適用レート: {rate_str}\n"
-        f"付与予定ポイント: {points} pt (1pt = 1円)"
+        f"--- Points Calculation Result ---\n"
+        f"Purchase amount: {amount} yen\n"
+        f"Applied rate: {rate_str}\n"
+        f"Points to be awarded: {points} pt (1 pt = 1 yen)"
     )
 
 # ==========================================
-# 4. 起動処理
+# 4. Startup
 # ==========================================
 if __name__ == "__main__":
-    # stdio トランスポートで起動し、外部ホスト・エージェントプロセスと安全に通信
+    # Start with stdio transport for secure communication with external host/agent process
     print("🚀 Support MCP Server Starting...", file=sys.stderr)
     mcp.run(transport="stdio")
 ```

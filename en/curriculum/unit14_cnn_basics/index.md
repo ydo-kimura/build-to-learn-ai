@@ -41,8 +41,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-# ダミーの画像データ (バッチサイズ:10, チャンネル数:1(白黒), 縦:28, 横:28)
-# PyTorchの画像データは必ず [バッチ数, チャンネル数, 縦, 横] の順番になります！
+# Dummy image data (batch size: 10, channels: 1 grayscale, height: 28, width: 28)
+# PyTorch image tensors are always [batch, channels, height, width]!
 dummy_images = torch.randn(10, 1, 28, 28)
 ```
 
@@ -52,36 +52,36 @@ Next, draw the magnifying-glass (CNN) blueprint.
 class SimpleCNN(nn.Module):
     def __init__(self):
         super(SimpleCNN, self).__init__()
-        # 1. 最初の虫眼鏡（畳み込み層）
-        # 入力1チャンネル(白黒) -> 出力16種類の虫眼鏡を使う -> 3x3のサイズの虫眼鏡
+        # 1. First convolution layer
+        # 1 input channel (grayscale) -> 16 filters -> 3x3 kernel
         self.conv1 = nn.Conv2d(in_channels=1, out_channels=16, kernel_size=3, padding=1)
         
-        # 2. 次の虫眼鏡
-        # 入力16種類 -> 出力32種類のさらに複雑な特徴を探す虫眼鏡
+        # 2. Second convolution layer
+        # 16 channels -> 32 filters for richer features
         self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, padding=1)
         
-        # 3. プーリング層（要約ツール）
-        # 2x2の範囲の中で一番強い特徴だけを残す（画像サイズが縦横半分になります）
+        # 3. Pooling layer (downsampling)
+        # Keep strongest feature in each 2x2 region (halves height and width)
         self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
         
-        # 4. 全結合層（推理パート）
-        # 画像が2回半分(28->14->7)になるので、最終的な特徴の数は 32(種類) * 7(縦) * 7(横) = 1568個
-        self.fc1 = nn.Linear(32 * 7 * 7, 128) # 1568個の証拠から128個のまとめを作る
-        self.fc2 = nn.Linear(128, 10)         # 最後に「0〜9の数字」の10クラスに分類する
+        # 4. Fully connected layers (classification head)
+        # Image halved twice (28->14->7), so features = 32 * 7 * 7 = 1568
+        self.fc1 = nn.Linear(32 * 7 * 7, 128) # Summarize 1568 features into 128
+        self.fc2 = nn.Linear(128, 10)         # Classify into 10 digit classes (0-9)
 
     def forward(self, x):
-        # --- 特徴抽出パート (虫眼鏡 & 要約) ---
-        # 1回目の虫眼鏡 -> 活性化(ReLU) -> 要約(半分に) [28x28 -> 14x14]
+        # --- Feature extraction (conv + pool) ---
+        # Conv1 -> ReLU -> pool [28x28 -> 14x14]
         x = self.pool(F.relu(self.conv1(x)))
         
-        # 2回目の虫眼鏡 -> 活性化(ReLU) -> 要約(半分に) [14x14 -> 7x7]
+        # Conv2 -> ReLU -> pool [14x14 -> 7x7]
         x = self.pool(F.relu(self.conv2(x)))
         
-        # --- 推理パート (全結合) ---
-        # 画像(縦横の箱)の状態から、1列の長いリストに引き延ばす！ (Flatten)
+        # --- Classification head (fully connected) ---
+        # Flatten spatial dimensions into a vector
         x = x.view(-1, 32 * 7 * 7)
         
-        # リストをもとに最終推理
+        # Final classification
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
         return x
@@ -92,13 +92,13 @@ model = SimpleCNN()
 Finally, pass dummy images through the model and confirm inference runs without errors.
 
 ```python
-# ダミー画像をモデルに推論させる
+# Run inference on dummy images
 output = model(dummy_images)
 
-# 出力の形を確認
-print("出力のサイズ:", output.shape)
-# 出力結果: torch.Size([10, 10])
-# (10枚の画像それぞれに対して、0〜9の10種類の確率スコアが出力されている)
+# Check output shape
+print("Output shape:", output.shape)
+# Result: torch.Size([10, 10])
+# (10 images, each with 10 class scores for digits 0-9)
 ```
 
 **Explanation:**
@@ -137,50 +137,50 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-# 1. カラー画像のダミーデータ作成
-# (バッチ数:5, チャンネル:3(RGB), 縦:32, 横:32)
+# 1. Create dummy color image data
+# (batch: 5, channels: 3 RGB, height: 32, width: 32)
 color_images = torch.randn(5, 3, 32, 32)
 
-# 2. モデルの定義
+# 2. Define the model
 class ColorCNN(nn.Module):
     def __init__(self):
         super(ColorCNN, self).__init__()
-        # 最初の虫眼鏡 (カラー画像なので入力チャンネルは3)
+        # First conv layer (3 input channels for color)
         self.conv1 = nn.Conv2d(in_channels=3, out_channels=8, kernel_size=3, padding=1)
-        # 次の虫眼鏡
+        # Second conv layer
         self.conv2 = nn.Conv2d(in_channels=8, out_channels=16, kernel_size=3, padding=1)
         
-        # プーリング層
+        # Pooling layer
         self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
         
-        # 全結合層
-        # 画像サイズ: 32 -> (pool) -> 16 -> (pool) -> 8
-        # チャンネル数: 16
-        # 引き延ばした後のサイズ: 16 * 8 * 8 = 1024
+        # Fully connected layers
+        # Image size: 32 -> (pool) -> 16 -> (pool) -> 8
+        # Channels: 16
+        # Flattened size: 16 * 8 * 8 = 1024
         self.fc1 = nn.Linear(16 * 8 * 8, 64)
-        self.fc2 = nn.Linear(64, 5) # 5クラス分類
+        self.fc2 = nn.Linear(64, 5) # 5-class classification
 
     def forward(self, x):
-        # 畳み込み 1回目
+        # First convolution
         x = self.pool(F.relu(self.conv1(x)))
-        # 畳み込み 2回目
+        # Second convolution
         x = self.pool(F.relu(self.conv2(x)))
         
-        # 1列に引き延ばす (Flatten)
+        # Flatten
         x = x.view(-1, 16 * 8 * 8)
         
-        # 推理パート
+        # Classification head
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
         return x
 
 model = ColorCNN()
 
-# 3. テスト実行
+# 3. Test run
 output = model(color_images)
-print("出力のサイズ:", output.shape)
-# 期待される出力: torch.Size([5, 5]) 
-# (5枚の画像それぞれに5クラスのスコアが出力されている)
+print("Output shape:", output.shape)
+# Expected: torch.Size([5, 5]) 
+# (5 images, each with 5 class scores)
 ```
 
 </details>

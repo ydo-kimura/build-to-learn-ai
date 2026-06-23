@@ -43,17 +43,17 @@ Don't guess — use **grid search** to **try combinations and pick the best scor
 Using **breast cancer data** and **random forest**, we'll run **`GridSearchCV`** — grid search **with 5-fold cross-validation** — a standard production pattern.
 
 ```python
-# 必要なツールのインポート
+# Import required libraries
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
 
-# 1. データの準備
+# 1. Prepare the data
 cancer = load_breast_cancer()
 X = cancer.data
 y = cancer.target
 
-# 全データの20%は、グリッドサーチが一切見ない「最終テスト用」として隠しておきます
+# Hold out 20% as a final test set that grid search never sees
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 ```
 
@@ -61,17 +61,17 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 Hold out 20% as a **final exam** (`X_test`) that grid search never sees — used only after tuning finishes.
 
 ```python
-# 2. 試したい設定値（ハイパーパラメータ）のリストを辞書型で作る
+# 2. Define hyperparameter candidates as a dictionary
 param_grid = {
-    'n_estimators': [10, 50, 100],  # 木の数：3パターン
-    'max_depth': [None, 5, 10]      # 木の深さ制限：3パターン
+    'n_estimators': [10, 50, 100],  # number of trees: 3 options
+    'max_depth': [None, 5, 10]      # tree depth limit: 3 options
 }
-# -> 合計 3 × 3 = 9通りの組み合わせを試すことになります
+# -> 3 x 3 = 9 combinations to try
 
-# 3. グリッドサーチの設定
+# 3. Configure grid search
 rf_model = RandomForestClassifier(random_state=42)
 
-# cv=5 は「交差検証を5回（5分割）でやってね」という指示です
+# cv=5 means run 5-fold cross-validation
 grid_search = GridSearchCV(
     estimator=rf_model, 
     param_grid=param_grid, 
@@ -79,7 +79,7 @@ grid_search = GridSearchCV(
     scoring='accuracy'
 )
 
-# 4. 全通りの組み合わせを試す（学習とテストの繰り返し）実行！
+# 4. Try all combinations (repeated train and validate)
 grid_search.fit(X_train, y_train)
 ```
 
@@ -88,14 +88,14 @@ List candidate settings in `param_grid`.
 `GridSearchCV` runs **5-fold CV for each of 9 combos** — **45 model fits** under the hood!
 
 ```python
-# 5. 最強の設定と、その時のスコアを確認する
-print("最も良かった設定（ベストパラメータ）:", grid_search.best_params_)
-print(f"その設定の時の交差検証スコア（平均）: {grid_search.best_score_:.3f}")
+# 5. Inspect the best settings and cross-validation score
+print("Best parameters:", grid_search.best_params_)
+print(f"Mean cross-validation score: {grid_search.best_score_:.3f}")
 
-# 6. 「最強の設定になったモデル」を使って、最後に隠しておいた「本番のテストデータ」に挑戦！
+# 6. Evaluate the best model on the held-out final test set
 best_model = grid_search.best_estimator_
 final_score = best_model.score(X_test, y_test)
-print(f"最終テストデータでの正解率: {final_score:.3f}")
+print(f"Final test accuracy: {final_score:.3f}")
 ```
 
 **Code walkthrough**
@@ -133,31 +133,31 @@ from sklearn.datasets import load_wine
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.neighbors import KNeighborsClassifier
 
-# 1. データの読み込みと分割
+# 1. Load and split the data
 wine = load_wine()
 X = wine.data
 y = wine.target
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# 2. モデルと試したいパラメータの準備
+# 2. Prepare model and parameter grid
 knn = KNeighborsClassifier()
 param_grid = {
     'n_neighbors': [1, 3, 5, 7, 9]
 }
 
-# 3. グリッドサーチの設定と実行
-# cv=5 で5回の交差検証を行います
+# 3. Configure and run grid search
+# cv=5 runs 5-fold cross-validation
 grid_search = GridSearchCV(knn, param_grid, cv=5, scoring='accuracy')
 grid_search.fit(X_train, y_train)
 
-# 4. 結果の確認
-print("最も良かったKの数:", grid_search.best_params_)
-print(f"その時の交差検証スコア: {grid_search.best_score_:.3f}")
+# 4. Inspect results
+print("Best number of neighbors (K):", grid_search.best_params_)
+print(f"Mean cross-validation score: {grid_search.best_score_:.3f}")
 
-# (おまけ) 最終テスト
+# Bonus: final test evaluation
 best_knn = grid_search.best_estimator_
-print(f"テストデータでの正解率: {best_knn.score(X_test, y_test):.3f}")
+print(f"Test accuracy: {best_knn.score(X_test, y_test):.3f}")
 ```
 
 **Solution walkthrough**

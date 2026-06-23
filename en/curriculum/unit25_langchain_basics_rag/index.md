@@ -39,7 +39,7 @@ Hand-building is cutting wood and tightening screws for custom shelves and sinks
 LangChain uses **LCEL** with Python’s pipe operator **`|`** to define left-to-right data flow.
 
 ```python
-# シンプルなLCELチェーンの例
+# Simple LCEL chain example
 chain = prompt | model | output_parser
 ```
 
@@ -68,40 +68,40 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.vectorstores import InMemoryVectorStore
 
-# 1. 簡易的な社内ドキュメント（知識ソース）の用意
+# 1. Prepare simple internal documents (knowledge source)
 documents = [
-    "株式会社テックアカデミーの夏季休暇は、8月13日から8月16日までの4日間です。",
-    "福利厚生として、年間最大5万円の書籍購入補助（テックブックサポート）が利用可能です。",
-    "経費精算は、毎月25日までにシステム「マネーフォワード」経由で申請する必要があります。"
+    "Tech Academy Inc. summer break runs from August 13 through August 16 (4 days).",
+    "As a benefit, employees may receive up to 50,000 yen per year in book purchase support (Tech Book Support).",
+    "Expense reports must be submitted through Money Forward by the 25th of each month."
 ]
 
-# 2. Embedding（ベクトル化モデル）とベクターストアの準備
-# LangChainが提供する軽量なインメモリベクターストアを使用します
+# 2. Prepare embedding model and vector store
+# Uses LangChain's lightweight in-memory vector store
 embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 vectorstore = InMemoryVectorStore.from_texts(documents, embedding=embeddings)
 
-# 3. Retriever（検索機）の作成
-# これにより、ユーザーの質問に関連する文書を自動でトップK件探してくる「窓口」ができます
+# 3. Create retriever
+# Automatically finds top-K documents related to the user's question
 retriever = vectorstore.as_retriever(search_kwargs={"k": 1})
 
-# 4. LLMモデルとプロンプトテンプレートの準備
+# 4. Prepare LLM model and prompt template
 model = ChatOpenAI(model="gpt-4o-mini", temperature=0.0)
 
-# context（検索された文書）と question（ユーザーの質問）を受け取るテンプレート
+# Template receives context (retrieved documents) and question (user query)
 prompt = ChatPromptTemplate.from_template(
-    """以下の参考情報を元に、ユーザーの質問に正確に答えてください。
-情報が見つからない場合は「申し訳ありませんが、その情報は見つかりませんでした」と答えてください。
+    """Answer the user's question accurately based on the reference information below.
+If the information is not found, respond with "Sorry, I could not find that information."
 
-【参考情報】
+[Reference Information]
 {context}
 
-【質問】
+[Question]
 {question}
 """
 )
 
-# 5. LCELによる RAG パイプライン（チェーン）の構築
-# RunnablePassthrough は、入力された質問をそのまま下流のプロンプトに流すための仕組みです
+# 5. Build RAG pipeline (chain) with LCEL
+# RunnablePassthrough passes the input question downstream unchanged
 rag_chain = (
     {"context": retriever, "question": RunnablePassthrough()}
     | prompt
@@ -109,25 +109,25 @@ rag_chain = (
     | StrOutputParser()
 )
 
-# 6. 実行
+# 6. Run
 if __name__ == "__main__":
-    # テスト質問 1
-    query_1 = "お盆休みはいつからいつまでですか？"
+    # Test question 1
+    query_1 = "When does Obon holiday start and end?"
     response_1 = rag_chain.invoke(query_1)
-    print(f"質問: {query_1}")
-    print(f"回答: {response_1}\n")
+    print(f"Question: {query_1}")
+    print(f"Answer: {response_1}\n")
 
-    # テスト質問 2
-    query_2 = "本を買うための補助制度はありますか？"
+    # Test question 2
+    query_2 = "Is there a subsidy program for buying books?"
     response_2 = rag_chain.invoke(query_2)
-    print(f"質問: {query_2}")
-    print(f"回答: {response_2}\n")
+    print(f"Question: {query_2}")
+    print(f"Answer: {response_2}\n")
 
-    # テスト質問 3
-    query_3 = "会社の給料日はいつですか？"
+    # Test question 3
+    query_3 = "When is the company payday?"
     response_3 = rag_chain.invoke(query_3)
-    print(f"質問: {query_3}")
-    print(f"回答: {response_3}\n")
+    print(f"Question: {query_3}")
+    print(f"Answer: {response_3}\n")
 ```
 
 **🔍 Detailed code walkthrough**
@@ -158,15 +158,15 @@ Build an internal **security policy consultation assistant** with LangChain RAG.
 **【Security policy data】**
 ```python
 security_policies = [
-    "社内PCのパスワードは、英大文字・小文字・数字・記号を組み合わせた12文字以上とし、90日ごとに変更しなければならない。",
-    "顧客の個人情報や機密ファイルを外部に送信する際は、必ず会社の指定する共有リンクにパスワードと有効期限（最大7日間）を設定すること。",
-    "業務時間外に社外で仕事をする場合は、必ず前日までに「リモートワーク申請」を上長に提出し、承認を得る必要がある。"
+    "Internal PC passwords must be at least 12 characters combining uppercase, lowercase, digits, and symbols, and must be changed every 90 days.",
+    "When sending customer personal information or confidential files externally, always use company-approved shared links with a password and expiration (maximum 7 days).",
+    "When working outside the office after business hours, you must submit a Remote Work Request to your manager by the previous day and obtain approval."
 ]
 ```
 
 **💡 Hint**
 - Like the example, use `InMemoryVectorStore.from_texts` for the vector database.
-- In the prompt template, instruct strict adherence to security policy; for unlisted rules answer “セキュリティ規約に該当する記載がありません”.
+- In the prompt template, instruct strict adherence to security policy; for unlisted rules answer “No matching entry found in the security policy”.
 
 ---
 
@@ -184,38 +184,38 @@ from langchain_core.runnables import RunnablePassthrough
 from langchain_core.vectorstores import InMemoryVectorStore
 
 def create_security_qa_chain():
-    # 1. セキュリティ規約データの用意
+    # 1. Prepare security policy data
     security_policies = [
-        "社内PCのパスワードは、英大文字・小文字・数字・記号を組み合わせた12文字以上とし、90日ごとに変更しなければならない。",
-        "顧客の個人情報や機密ファイルを外部に送信する際は、必ず会社の指定する共有リンクにパスワードと有効期限（最大7日間）を設定すること。",
-        "業務時間外に社外で仕事をする場合は、必ず前日までに「リモートワーク申請」を上長に提出し、承認を得る必要がある。"
+        "Internal PC passwords must be at least 12 characters combining uppercase, lowercase, digits, and symbols, and must be changed every 90 days.",
+        "When sending customer personal information or confidential files externally, always use company-approved shared links with a password and expiration (maximum 7 days).",
+        "When working outside the office after business hours, you must submit a Remote Work Request to your manager by the previous day and obtain approval."
     ]
     
-    # 2. Embeddingモデルとベクターストアの初期化
+    # 2. Initialize embedding model and vector store
     embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
     vectorstore = InMemoryVectorStore.from_texts(security_policies, embedding=embeddings)
     
-    # 3. Retriever（検索機）の設定
+    # 3. Configure retriever
     retriever = vectorstore.as_retriever(search_kwargs={"k": 1})
     
-    # 4. LLMモデルの設定（実務用途なのでランダム性を排除するため temperature=0.0）
+    # 4. Configure LLM (temperature=0.0 for production use to eliminate randomness)
     model = ChatOpenAI(model="gpt-4o-mini", temperature=0.0)
     
-    # 5. セキュリティ相談専用のプロンプト
+    # 5. Security consultation prompt
     prompt = ChatPromptTemplate.from_template(
-        """あなたは社内の情報セキュリティに関する質問に答える専門アシスタントです。
-以下のセキュリティ規約情報を元に、ユーザーの相談に正確に答えてください。
-規約に明示的に記載されていない事柄については、勝手に推測して答えず、「セキュリティ規約に該当する記載がありません」と厳格に答えてください。
+        """You are a specialist assistant for internal information security questions.
+Answer user inquiries accurately based on the security policy information below.
+For matters not explicitly stated in the policy, do not guess; respond strictly with "No matching entry found in the security policy."
 
-【セキュリティ規約情報】
+[Security Policy Information]
 {context}
 
-【質問】
+[Question]
 {question}
 """
 )
     
-    # 6. LCELによるチェーンの構築
+    # 6. Build chain with LCEL
     rag_chain = (
         {"context": retriever, "question": RunnablePassthrough()}
         | prompt
@@ -225,23 +225,23 @@ def create_security_qa_chain():
     
     return rag_chain
 
-# テスト実行
+# Test run
 if __name__ == "__main__":
     qa_chain = create_security_qa_chain()
     
-    # テスト 1: 規約に記載のある質問
-    q1 = "パスワードは何日ごとに変更すればいいですか？"
-    print(f"質問: {q1}")
-    print(f"回答: {qa_chain.invoke(q1)}\n")
+    # Test 1: question covered by policy
+    q1 = "How often must I change my password?"
+    print(f"Question: {q1}")
+    print(f"Answer: {qa_chain.invoke(q1)}\n")
     
-    # テスト 2: 規約に記載のある質問
-    q2 = "社外に顧客データを送る場合の共有リンクの期限は？"
-    print(f"質問: {q2}")
-    print(f"回答: {qa_chain.invoke(q2)}\n")
+    # Test 2: question covered by policy
+    q2 = "What is the expiration for shared links when sending customer data externally?"
+    print(f"Question: {q2}")
+    print(f"Answer: {qa_chain.invoke(q2)}\n")
     
-    # テスト 3: 規約に記載のない質問
-    q3 = "オフィスの入退館カードを紛失した場合はどうすればいいですか？"
-    print(f"質問: {q3}")
-    print(f"回答: {qa_chain.invoke(q3)}\n")
+    # Test 3: question not covered by policy
+    q3 = "What should I do if I lose my office access card?"
+    print(f"Question: {q3}")
+    print(f"Answer: {qa_chain.invoke(q3)}\n")
 ```
 </details>

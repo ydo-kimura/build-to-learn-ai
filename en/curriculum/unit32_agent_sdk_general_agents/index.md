@@ -103,7 +103,7 @@ class EpisodicMemoryStore:
         if session_id not in self.db:
             # Initial state
             self.db[session_id] = {
-                "user_name": "ゲスト",
+                "user_name": "Guest",
                 "preferences": [],
                 "cart": [],
                 "purchase_history": [],
@@ -113,7 +113,7 @@ class EpisodicMemoryStore:
 
     def save_session(self, session_id: str, data: Dict[str, Any]):
         self.db[session_id] = data
-        print(f"[Memory Store] セッション {session_id} の状態を永続化しました。")
+        print(f"[Memory Store] Session {session_id} state has been persisted.")
 
 # ==========================================
 # 2. External business APIs (mock inventory & payment)
@@ -133,9 +133,9 @@ class MockBusinessAPI:
     def execute_payment(session_id: str, amount: int, item: str) -> Tuple[bool, str]:
         # Stripe/Coinbase Payments API simulation
         if amount <= 0:
-            return False, "決済金額が無効です。"
+            return False, "Invalid payment amount."
         tx_id = f"tx_{uuid.uuid4().hex[:8]}"
-        return True, f"決済成功 (Stripe ID: {tx_id}) - 商品: {item}, 金額: ${amount}"
+        return True, f"Payment successful (Stripe ID: {tx_id}) - Item: {item}, Amount: ${amount}"
 
 # ==========================================
 # 3. Agent definitions & Handoffs architecture
@@ -153,27 +153,27 @@ class ReceptionAgent(Agent):
         super().__init__("Reception")
 
     def process(self, session_id: str, user_input: str, session_data: Dict[str, Any]) -> Tuple[str, Dict[str, Any]]:
-        print(f"\n[{self.name} Agent] ユーザー入力を解析中: '{user_input}'")
+        print(f"\n[{self.name} Agent] Parsing user input: '{user_input}'")
         
         # Save name if user introduces themselves
-        if "私の名前は" in user_input:
-            name = user_input.split("私の名前は")[-1].replace("です", "").strip()
+        if "My name is" in user_input:
+            name = user_input.split("My name is")[-1].replace(".", "").strip()
             session_data["user_name"] = name
-            return f"はじめまして、{name}様。ご用件を伺います（在庫検索、または購入決済）。", session_data
+            return f"Nice to meet you, {name}. How may I help you (inventory lookup or purchase/payment)?", session_data
         
         # Intent: inventory search
-        if "在庫" in user_input or "検索" in user_input or "ある？" in user_input:
-            print(f"[{self.name} Agent] ──> 在庫照会エージェントへ制御を委譲 (Handoff)")
+        if "stock" in user_input.lower() or "search" in user_input.lower() or "available" in user_input.lower():
+            print(f"[{self.name} Agent] ──> Handoff to inventory lookup agent")
             session_data["current_agent"] = "Stock"
-            return "在庫照会エージェントへお繋ぎします。", session_data
+            return "Connecting you to the inventory lookup agent.", session_data
 
         # Intent: payment/purchase
-        if "買う" in user_input or "購入" in user_input or "決済" in user_input:
-            print(f"[{self.name} Agent] ──> 決済エージェントへ制御を委譲 (Handoff)")
+        if "buy" in user_input.lower() or "purchase" in user_input.lower() or "checkout" in user_input.lower() or "payment" in user_input.lower():
+            print(f"[{self.name} Agent] ──> Handoff to payment agent")
             session_data["current_agent"] = "Payment"
-            return "決済エージェントへお繋ぎします。", session_data
+            return "Connecting you to the payment agent.", session_data
 
-        return f"こんにちは、{session_data['user_name']}様。在庫検索、または商品の購入決済についてサポートできます。どちらをご希望ですか？", session_data
+        return f"Hello, {session_data['user_name']}. I can help with inventory search or purchase/payment. Which would you like?", session_data
 
 # Inventory specialist agent
 class StockAgent(Agent):
@@ -181,7 +181,7 @@ class StockAgent(Agent):
         super().__init__("Stock")
 
     def process(self, session_id: str, user_input: str, session_data: Dict[str, Any]) -> Tuple[str, Dict[str, Any]]:
-        print(f"\n[{self.name} Agent] 在庫状況と価格を確認します...")
+        print(f"\n[{self.name} Agent] Checking inventory status and price...")
         
         # Simple keyword extraction for product name
         target_item = None
@@ -191,7 +191,7 @@ class StockAgent(Agent):
                 break
         
         if not target_item:
-            return "どの商品の在庫をお探しですか？ (例: laptop, smartphone, headphones)", session_data
+            return "Which product are you looking for? (e.g., laptop, smartphone, headphones)", session_data
         
         # Call external API
         result = MockBusinessAPI.check_stock(target_item)
@@ -205,13 +205,13 @@ class StockAgent(Agent):
             # Implicit handoff back to reception
             session_data["current_agent"] = "Reception"
             return (
-                f"{session_data['user_name']}様、{target_item}の在庫はあります！価格は ${result['price']} です。\n"
-                f"商品をカートに追加しました。購入に進みますか？", 
+                f"{session_data['user_name']}, {target_item} is in stock! Price is ${result['price']}.\n"
+                f"Item added to cart. Would you like to proceed with purchase?", 
                 session_data
             )
         else:
             session_data["current_agent"] = "Reception"
-            return f"申し訳ありません、{target_item}は現在在庫切れとなっております。", session_data
+            return f"Sorry, {target_item} is currently out of stock.", session_data
 
 # Payment specialist agent
 class PaymentAgent(Agent):
@@ -219,12 +219,12 @@ class PaymentAgent(Agent):
         super().__init__("Payment")
 
     def process(self, session_id: str, user_input: str, session_data: Dict[str, Any]) -> Tuple[str, Dict[str, Any]]:
-        print(f"\n[{self.name} Agent] カートと支払い情報を検証中...")
+        print(f"\n[{self.name} Agent] Validating cart and payment info...")
         
         cart = session_data.get("cart", [])
         if not cart:
             session_data["current_agent"] = "Reception"
-            return "カートが空です。まずは在庫検索をして商品を追加してください。", session_data
+            return "Your cart is empty. Please search inventory and add a product first.", session_data
         
         # Latest cart item
         target_purchase = cart[-1]
@@ -242,9 +242,9 @@ class PaymentAgent(Agent):
             
             # Return to reception
             session_data["current_agent"] = "Reception"
-            return f"決済が成功しました！\n詳細: {message}\nまた何かお手伝いできることはありますか？", session_data
+            return f"Payment successful!\nDetails: {message}\nIs there anything else I can help with?", session_data
         else:
-            return f"決済エラーが発生しました: {message}", session_data
+            return f"Payment error: {message}", session_data
 
 # ==========================================
 # 4. Agent orchestration engine
@@ -290,17 +290,17 @@ if __name__ == "__main__":
     
     # Turn 1: Self-introduction and memory check
     print("\n=== TURN 1 ===")
-    res1 = orchestrator.handle_request(my_session, "私の名前はアリスです。")
+    res1 = orchestrator.handle_request(my_session, "My name is Alice.")
     print(f"Agent -> {res1}")
     
     # Turn 2: Inventory search (internal handoff, stock agent processes, returns to Reception)
     print("\n=== TURN 2 ===")
-    res2 = orchestrator.handle_request(my_session, "laptop の在庫を検索してほしい")
+    res2 = orchestrator.handle_request(my_session, "Please search for laptop stock")
     print(f"Agent -> {res2}")
     
     # Turn 3: Purchase request (transition to Payment agent and settle)
     print("\n=== TURN 3 ===")
-    res3 = orchestrator.handle_request(my_session, "カートの商品を決済してください。")
+    res3 = orchestrator.handle_request(my_session, "Please checkout the items in my cart.")
     print(f"Agent -> {res3}")
 ```
 
@@ -335,12 +335,12 @@ class DiscountAgent(Agent):
         super().__init__("Discount")
 
     def process(self, session_id: str, user_input: str, session_data: Dict[str, Any]) -> Tuple[str, Dict[str, Any]]:
-        print(f"\n[{self.name} Agent] 割引の適用資格を審査中...")
+        print(f"\n[{self.name} Agent] Reviewing discount eligibility...")
         
         cart = session_data.get("cart", [])
         if not cart:
             session_data["current_agent"] = "Reception"
-            return "カートが空のため、割引を適用できません。まずは商品をカートに追加してください。", session_data
+            return "Your cart is empty, so no discount can be applied. Please add a product to your cart first.", session_data
         
         # Latest item eligible for discount
         target_purchase = cart[-1]
@@ -353,11 +353,11 @@ class DiscountAgent(Agent):
         if len(purchase_history) >= 1:
             # Repeat benefit: 10% OFF
             discounted_price = int(original_price * 0.9)
-            discount_type = "リピーター特別10%割引"
+            discount_type = "Repeat customer 10% discount"
         else:
             # First-time benefit: $10 OFF (avoid negative price)
             discounted_price = max(0, original_price - 10)
-            discount_type = "新規登録記念 $10 割引"
+            discount_type = "New registration $10 discount"
         
         # Update cart (rewrite Episodic Memory)
         cart[-1]["price"] = discounted_price
@@ -367,20 +367,20 @@ class DiscountAgent(Agent):
         session_data["current_agent"] = "Reception"
         
         return (
-            f"おめでとうございます！ {discount_type}が適用されました。\n"
-            f"商品: {item_name}\n"
-            f"価格: ${original_price} ──> ${discounted_price}\n"
-            f"このまま購入に進みますか？ (はい/いいえ)", 
+            f"Congratulations! {discount_type} has been applied.\n"
+            f"Product: {item_name}\n"
+            f"Price: ${original_price} ──> ${discounted_price}\n"
+            f"Would you like to proceed with purchase? (yes/no)", 
             session_data
         )
 
 # Extended ReceptionAgent process method (discount request detection)
 # (In production, extend ReceptionAgent conditions as follows)
 """
-if "割引" in user_input or "安く" in user_input:
-    print("[Reception Agent] ──> 割引提案エージェントへ制御を委譲 (Handoff)")
+if "discount" in user_input.lower() or "cheaper" in user_input.lower():
+    print("[Reception Agent] ──> Handoff to discount agent")
     session_data["current_agent"] = "Discount"
-    return "割引の確認処理へお繋ぎします。", session_data
+    return "Connecting you to discount verification.", session_data
 """
 
 # ==========================================
@@ -393,17 +393,17 @@ if __name__ == "__main__":
     
     # Setup: laptop $1200 in cart, past purchase of smartphone (repeat customer)
     session = store.get_session(session_id)
-    session["user_name"] = "ボブ"
+    session["user_name"] = "Bob"
     session["cart"].append({"item": "laptop", "price": 1200})
     session["purchase_history"].append("smartphone")  # Make repeat customer
     store.save_session(session_id, session)
     
     # Apply discount agent
     discount_agent = DiscountAgent()
-    response, updated_session = discount_agent.process(session_id, "安くして！", session)
+    response, updated_session = discount_agent.process(session_id, "Make it cheaper!", session)
     
-    print("\n--- 割引エージェントからの応答 ---")
+    print("\n--- Response from discount agent ---")
     print(response)
-    print("更新後のカート内容:", updated_session["cart"])
+    print("Updated cart contents:", updated_session["cart"])
 ```
 </details>

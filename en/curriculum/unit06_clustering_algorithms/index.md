@@ -46,38 +46,38 @@ K-Means runs these steps:
 We'll create **unlabeled random blob data** and let K-Means discover groups automatically.
 
 ```python
-# 必要なツールのインポート
+# Import required libraries
 import matplotlib.pyplot as plt
 from sklearn.datasets import make_blobs
 from sklearn.cluster import KMeans
 
-# 1. データの準備（正解のないデータを作る）
-# make_blobs は、人工的に「塊（クラスタ）」を作るための便利ツールです
-# 今回は4つの塊（centers=4）を作りますが、K-Meansにはその正解を教えません！
+# 1. Prepare unlabeled data
+# make_blobs creates artificial clusters for experimentation
+# Create 4 blobs (centers=4) but do not tell K-Means the true labels
 X, _ = make_blobs(n_samples=300, centers=4, cluster_std=0.6, random_state=42)
 
-# データをグラフに描いて確認してみましょう
+# Plot the data to inspect it
 plt.scatter(X[:, 0], X[:, 1], c='gray', s=30)
 plt.title("Grouping without answers")
 plt.show()
-# ※グレーの点がバラバラに配置されたグラフが表示されます
+# Gray points scattered across the plot will appear
 ```
 
 **Code walkthrough**
 `make_blobs` gives `X` with only x/y coordinates. We ignore the true group labels (`y`) and proceed without them.
 
 ```python
-# 2. K-Meansモデルの作成と学習
-# n_clusters=4：今回は「4つのグループに分けてね」と指示します
+# 2. Create and train a K-Means model
+# n_clusters=4: split into 4 groups
 kmeans = KMeans(n_clusters=4, random_state=42)
 
-# 学習（教師なしなので、Xだけを渡します。yは不要です！）
+# Train (unsupervised — pass only X, no labels y)
 kmeans.fit(X)
 
-# 3. 予測（各データがどのグループに振り分けられたかを取得）
+# 3. Predict cluster assignments for each point
 labels = kmeans.predict(X)
 
-# 4. グループ分けの結果を色分けしてグラフに描画
+# 4. Plot clusters with color-coded labels
 plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='viridis', s=30)
 plt.title("K-Means Clustering Result")
 plt.show()
@@ -117,27 +117,27 @@ Write your own code first, then open the answer below to check your work.
 from sklearn.datasets import load_iris
 from sklearn.cluster import KMeans
 
-# 1. データの読み込み
+# 1. Load the data
 iris = load_iris()
-# 教師なし学習なので、目的変数(iris.target)は見ないフリをします！
+# Unsupervised learning — ignore the true species labels
 X = iris.data
 
-# 2. K-Meansモデルの作成
-# アヤメは3品種だと知っているので、3グループに設定します
+# 2. Create a K-Means model
+# Iris has 3 species, so set n_clusters=3
 kmeans = KMeans(n_clusters=3, random_state=42)
 
-# 3. 学習（クラスタリングの実行）
+# 3. Train (run clustering)
 kmeans.fit(X)
 
-# 4. 各データのクラスタ番号を取得
+# 4. Get cluster assignments
 labels = kmeans.predict(X)
 
-# 最初の20個の割り当て結果を表示
-print("最初の20個のクラスタ分類結果:")
+# Show the first 20 cluster assignments
+print("First 20 cluster assignments:")
 print(labels[:20])
 
-# (おまけ) AIが自動で見つけた「3つのグループの中心点(重心)」を表示
-print("\n各クラスタの中心点の座標:")
+# Bonus: show centroid coordinates for each discovered cluster
+print("\nCluster center coordinates:")
 print(kmeans.cluster_centers_)
 ```
 

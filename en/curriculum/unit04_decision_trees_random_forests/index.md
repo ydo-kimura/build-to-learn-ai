@@ -54,14 +54,14 @@ Each person may err slightly, but together they form wisdom. Random forest build
 Using **breast cancer diagnosis data**, compare accuracy of a single decision tree vs. a random forest vote.
 
 ```python
-# 必要なツールのインポート
+# Import required libraries
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
-# 1. データの準備と分割
+# 1. Prepare and split the data
 cancer = load_breast_cancer()
 X = cancer.data
 y = cancer.target
@@ -73,26 +73,26 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 Load data and split into train and test as usual.
 
 ```python
-# 2. 決定木（1本の木）の学習と予測
-# max_depth で木の深さ（質問の回数）を制限できます。今回は制限なしで作ります。
+# 2. Train and predict with a single decision tree
+# max_depth limits tree depth (number of questions); no limit here
 tree_model = DecisionTreeClassifier(random_state=42)
 tree_model.fit(X_train, y_train)
 
 tree_pred = tree_model.predict(X_test)
-print(f"決定木の正解率: {accuracy_score(y_test, tree_pred):.3f}")
+print(f"Decision tree accuracy: {accuracy_score(y_test, tree_pred):.3f}")
 ```
 
 **Code walkthrough**
 `DecisionTreeClassifier` builds one tree. Training is very fast.
 
 ```python
-# 3. ランダムフォレスト（多数決）の学習と予測
-# n_estimators=100 は「木を100本作って森を作る」という指示です
+# 3. Train and predict with random forest (majority vote)
+# n_estimators=100 means build 100 trees and vote
 rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
 rf_model.fit(X_train, y_train)
 
 rf_pred = rf_model.predict(X_test)
-print(f"ランダムフォレストの正解率: {accuracy_score(y_test, rf_pred):.3f}")
+print(f"Random forest accuracy: {accuracy_score(y_test, rf_pred):.3f}")
 ```
 
 **Code walkthrough**
@@ -131,24 +131,24 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 
-# 1. データの読み込み
+# 1. Load the data
 diabetes = load_diabetes()
 X = diabetes.data
 y = diabetes.target
 
-# 2. データの分割
+# 2. Split the data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# 3. ランダムフォレスト（回帰）モデルの作成と学習
-# 数値予測なので Regressor を使います
+# 3. Create and train a random forest regression model
+# Use Regressor for numeric prediction
 rf_reg_model = RandomForestRegressor(n_estimators=100, random_state=42)
 rf_reg_model.fit(X_train, y_train)
 
-# 4. 予測と評価
+# 4. Predict and evaluate
 y_pred = rf_reg_model.predict(X_test)
 mse = mean_squared_error(y_test, y_pred)
 
-print(f"ランダムフォレスト回帰のMSE: {mse:.2f}")
+print(f"Random forest regression MSE: {mse:.2f}")
 ```
 
 **Solution walkthrough**

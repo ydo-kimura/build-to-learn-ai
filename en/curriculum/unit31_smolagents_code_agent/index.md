@@ -56,11 +56,11 @@ model = OpenAIServerModel(
 # The function docstring becomes the tool description (instruction manual) for the agent
 class TemperatureConverterTool(Tool):
     name = "convert_fahrenheit_to_celsius"
-    description = "華氏（Fahrenheit）の温度を、摂氏（Celsius）に変換します。"
+    description = "Convert a Fahrenheit temperature to Celsius."
     inputs = {
         "fahrenheit": {
             "type": "number",
-            "description": "変換したい華氏の温度数値"
+            "description": "The Fahrenheit temperature value to convert"
         }
     }
     output_type = "number"
@@ -81,11 +81,11 @@ agent = CodeAgent(
 
 # 5. Instruct and run the agent
 # The agent finds the Celsius conversion tool, writes code to call it, and executes it on the spot
-print("--- smolagents (CodeAgent) 起動 ---")
-task = "現在の華氏100度は、摂氏で何度ですか？小数点以下2桁で教えてください。"
+print("--- smolagents (CodeAgent) Starting ---")
+task = "What is 100 degrees Fahrenheit in Celsius? Please answer to two decimal places."
 result = agent.run(task)
 
-print(f"\n最終回答:\n{result}")
+print(f"\nFinal answer:\n{result}")
 ```
 
 ---
@@ -102,7 +102,7 @@ Compare the two approaches below and build the agent.
 
 ```python
 # Task given by the user:
-# 「商品Aの価格は12,000円です。これに対して『15%割引』のVIPクーポンを適用し、さらに『消費税10%』を加算した、お客様が実際に支払う最終価格を求めてください。」
+# "Product A costs 12,000 yen. Apply a VIP coupon for a 15% discount, then add 10% sales tax. What is the final price the customer actually pays?"
 ```
 
 **Your Mission: Compare Two Agent Approaches and Decide for Production**
@@ -155,9 +155,9 @@ import os
 from smolagents import CodeAgent, OpenAIServerModel
 
 # 1. Decision:
-# 「割引適用と税金計算といった『ロジックの連鎖』と『正確な数値処理』が求められるタスクにおいて、」
-# 「従来のReActではプロンプト崩壊が起きやすいため、コード生成一撃で解決できる smolagents の CodeAgent を採用。」
-# 「生成されたコードの実行は、標準のホワイトリスト制限されたセキュアなLocalPythonInterpreterで行う。」
+# "For tasks requiring chained logic (discount then tax) and precise numeric processing,"
+# "traditional ReAct is prone to prompt collapse, so we adopt smolagents CodeAgent for one-shot code generation."
+# "Generated code runs in the standard whitelist-restricted secure LocalPythonInterpreter."
 
 model = OpenAIServerModel(
     model_id="gpt-4o-mini",
@@ -172,15 +172,16 @@ agent = CodeAgent(
     add_base_tools=True # Add basic arithmetic capability
 )
 
-print("--- 業務価格算出エージェント ---")
+print("--- Business Price Calculation Agent ---")
 task = """
-商品Aの価格は12,000円です。
-これに対して『15%割引』のVIPクーポンを適用し、
-さらに『消費税10%』を加算した、お客様が実際に支払う最終価格を求めてください。
+Product A costs 12,000 yen.
+Apply a VIP coupon for a 15% discount,
+then add 10% sales tax.
+What is the final price the customer actually pays?
 """
 
 result = agent.run(task)
-print(f"\n最終価格: {result}")
+print(f"\nFinal price: {result}")
 ```
 
 ### 💡 Final Production Adoption Decision

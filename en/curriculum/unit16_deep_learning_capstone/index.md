@@ -39,11 +39,11 @@ import torchvision.models as models
 import matplotlib.pyplot as plt
 import numpy as np
 
-# 乱数シードの固定
+# Fix random seed
 torch.manual_seed(42)
 
-# 1. カスタムダミーデータセットの作成 (3チャンネルのカラー画像100x100)
-# クラス0（ダミー画像タイプA）とクラス1（ダミー画像タイプB）を生成します
+# 1. Custom dummy dataset (3-channel color images 100x100)
+# Generate class 0 (dummy image type A) and class 1 (dummy image type B)
 class DummyImageDataset(Dataset):
     def __init__(self, num_samples=100, transform=None):
         self.num_samples = num_samples
@@ -63,14 +63,14 @@ class DummyImageDataset(Dataset):
             
         return img, label
 
-# 2. データの拡張 (Data Augmentation) と正規化の設定
+# 2. Data augmentation and normalization
 train_transform = transforms.Compose([
     transforms.ToPILImage(),
-    transforms.RandomHorizontalFlip(), # ランダム左右反転
-    transforms.RandomRotation(15),     # ランダム回転
-    transforms.Resize((224, 224)),     # ResNetの標準サイズへリサイズ
+    transforms.RandomHorizontalFlip(), # Random horizontal flip
+    transforms.RandomRotation(15),     # Random rotation
+    transforms.Resize((224, 224)),     # Resize to ResNet standard size
     transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]) # ImageNet標準の正規化
+    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]) # ImageNet normalization
 ])
 
 val_transform = transforms.Compose([
@@ -86,24 +86,24 @@ val_dataset = DummyImageDataset(num_samples=20, transform=val_transform)
 train_loader = DataLoader(train_dataset, batch_size=8, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=8, shuffle=False)
 
-# 3. 転移学習モデルの構築 (ResNet18)
+# 3. Build transfer-learning model (ResNet18)
 weights = models.ResNet18_Weights.DEFAULT
 model = models.resnet18(weights=weights)
 
 num_features = model.fc.in_features
 model.fc = nn.Sequential(
-    nn.Dropout(0.5), # 過学習を防ぐDropoutを追加
+    nn.Dropout(0.5), # Dropout to reduce overfitting
     nn.Linear(num_features, 2)
 )
 
-# 4. 損失関数と最適化関数の設定
+# 4. Loss function and optimizer
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = model.to(device)
 
-# 5. 訓練と検証のループ
+# 5. Training and validation loop
 train_losses, val_losses = [], []
 train_accs, val_accs = [], []
 
@@ -156,7 +156,7 @@ for epoch in range(epochs):
     
     print(f"Epoch {epoch+1}/{epochs} | Train Loss: {epoch_train_loss:.4f} Acc: {epoch_train_acc:.4f} | Val Loss: {epoch_val_loss:.4f} Acc: {epoch_val_acc:.4f}")
 
-# 6. 学習曲線の可視化
+# 6. Plot learning curves
 plt.figure(figsize=(12, 4))
 plt.subplot(1, 2, 1)
 plt.plot(train_losses, label='Train Loss')
@@ -189,7 +189,7 @@ class CustomImageDataset(Dataset):
     def __init__(self, num_samples=150, transform=None):
         self.num_samples = num_samples
         self.transform = transform
-        # 150枚のカラー画像をランダム生成 (3, 64, 64)
+        # Randomly generate 150 color images (3, 64, 64)
         self.images = torch.randn(num_samples, 3, 64, 64)
         self.labels = torch.randint(0, 2, (num_samples,))
 
@@ -203,7 +203,7 @@ class CustomImageDataset(Dataset):
             img = self.transform(img)
         return img, label
 
-# 訓練データ120枚、検証データ30枚に分割してご使用ください。
+# Split into 120 training and 30 validation samples.
 ```
 
 **【Your mission: compare two hypothesis models and decide what to deploy】**
@@ -263,11 +263,11 @@ import torchvision.transforms as transforms
 import torchvision.models as models
 import matplotlib.pyplot as plt
 
-# 乱数シードの固定
+# Fix random seed
 torch.manual_seed(42)
 
-# 1. 共通のデータ拡張とDataLoaderの準備
-# ※両モデルのフェアな比較のため、同じスケーリングを適用しますが、ResNetの事前学習パラメータに合わせた正規化を行います。
+# 1. Shared data augmentation and DataLoaders
+# Same scaling for fair comparison; normalization matches ResNet pretrained weights.
 train_transform = transforms.Compose([
     transforms.ToPILImage(),
     transforms.RandomHorizontalFlip(),
@@ -282,7 +282,7 @@ val_transform = transforms.Compose([
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 ])
 
-# 120枚の訓練データ、30枚の検証データ
+# 120 training samples, 30 validation samples
 train_dataset = CustomImageDataset(num_samples=120, transform=train_transform)
 val_dataset = CustomImageDataset(num_samples=30, transform=val_transform)
 
@@ -292,7 +292,7 @@ val_loader = DataLoader(val_dataset, batch_size=16, shuffle=False)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # -----------------------------------------------------------------
-# アプローチA: 自作の超軽量CNN (スクラッチ)
+# Approach A: Custom lightweight CNN (from scratch)
 # -----------------------------------------------------------------
 class LightCNN(nn.Module):
     def __init__(self):
@@ -310,7 +310,7 @@ class LightCNN(nn.Module):
             nn.MaxPool2d(2, 2)
         )
         self.classifier = nn.Sequential(
-            nn.Dropout(0.3), # 軽量モデルだが過学習を防ぐDropout
+            nn.Dropout(0.3), # Dropout to reduce overfitting on lightweight model
             nn.Linear(32 * 16 * 16, 64),
             nn.ReLU(),
             nn.Linear(64, 2)
@@ -322,22 +322,22 @@ class LightCNN(nn.Module):
         return self.classifier(x)
 
 # -----------------------------------------------------------------
-# アプローチB: ResNet18 転移学習モデル (強めの過学習対策付き)
+# Approach B: ResNet18 transfer learning (strong overfitting controls)
 # -----------------------------------------------------------------
 def get_resnet_transfer():
     weights = models.ResNet18_Weights.DEFAULT
     model = models.resnet18(weights=weights)
     
-    # 特徴量抽出器のパラメータは凍結しない（ファインチューニングを行うため学習率は極小にする）
+    # Do not freeze feature extractor (fine-tune with a very small learning rate)
     num_features = model.fc.in_features
     model.fc = nn.Sequential(
-        nn.Dropout(0.5), # 120枚の過学習を防ぐため、アプローチAより強めの0.5を設定
+        nn.Dropout(0.5), # Stronger 0.5 Dropout than Approach A for 120 samples
         nn.Linear(num_features, 2)
     )
     return model
 
 # -----------------------------------------------------------------
-# 共通の訓練・評価関数
+# Shared train/eval function
 # -----------------------------------------------------------------
 def train_and_evaluate(model, optimizer, epochs=4):
     criterion = nn.CrossEntropyLoss()
@@ -365,7 +365,7 @@ def train_and_evaluate(model, optimizer, epochs=4):
         train_losses.append(epoch_loss)
         train_accs.append(epoch_acc.item())
         
-        # 検証
+        # Validation
         model.eval()
         val_running_loss, val_correct, val_total = 0.0, 0, 0
         with torch.no_grad():
@@ -386,20 +386,20 @@ def train_and_evaluate(model, optimizer, epochs=4):
         
     return val_losses[-1], val_accs[-1], train_losses, val_losses, train_accs, val_accs
 
-# 実行
+# Run comparison
 model_a = LightCNN().to(device)
-optimizer_a = optim.Adam(model_a.parameters(), lr=0.001) # 自作CNNは標準的な学習率
+optimizer_a = optim.Adam(model_a.parameters(), lr=0.001) # Standard lr for scratch CNN
 
 model_b = get_resnet_transfer().to(device)
-# 転移学習のため、事前学習済みウェイトを破壊しないよう極小の学習率（0.0001）を設定
+# Very small lr (0.0001) to avoid destroying pretrained weights
 optimizer_b = optim.Adam(model_b.parameters(), lr=0.0001) 
 
 val_loss_a, val_acc_a, *curves_a = train_and_evaluate(model_a, optimizer_a)
 val_loss_b, val_acc_b, *curves_b = train_and_evaluate(model_b, optimizer_b)
 
-print("--- 2つのアプローチの検証結果 ---")
-print(f"アプローチA (自作軽量CNN)   -> 検証精度: {val_acc_a:.4f} | 検証損失: {val_loss_a:.4f}")
-print(f"アプローチB (ResNet18転移) -> 検証精度: {val_acc_b:.4f} | 検証損失: {val_loss_b:.4f}")
+print("--- Validation results for both approaches ---")
+print(f"Approach A (custom lightweight CNN) -> Val accuracy: {val_acc_a:.4f} | Val loss: {val_loss_a:.4f}")
+print(f"Approach B (ResNet18 transfer)      -> Val accuracy: {val_acc_b:.4f} | Val loss: {val_loss_b:.4f}")
 ```
 
 ### 💡 Final production model decision as a professional

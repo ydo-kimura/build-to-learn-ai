@@ -109,45 +109,45 @@ class AntigravityAgentSandbox:
     @staticmethod
     def default_approval_prompt(action_type: str, detail: str) -> bool:
         """Default Human-in-the-loop approval screen"""
-        print(f"\n⚠️  [HUMAN-IN-THE-LOOP] 承認要求:")
-        print(f"   アクション: {action_type}")
-        print(f"   詳細: {detail}")
-        user_choice = input("   このアクションを承認しますか？ (y/n): ").strip().lower()
+        print(f"\n⚠️  [HUMAN-IN-THE-LOOP] Approval required:")
+        print(f"   Action: {action_type}")
+        print(f"   Detail: {detail}")
+        user_choice = input("   Approve this action? (y/n): ").strip().lower()
         return user_choice == 'y'
 
     def write_file(self, file_path: str, content: str) -> Tuple[bool, str]:
         """Write file according to safety policy"""
         # 1. Deny by Default path check
         if not self.policy.is_path_safe(file_path):
-            return False, f"[SECURITY ERROR] 許可されていないパスへの書き込みは拒否されました: {file_path}"
+            return False, f"[SECURITY ERROR] Write to unauthorized path rejected: {file_path}"
         
         # 2. Approval hook (Human-in-the-loop)
         # File writes are high-risk regardless of create vs overwrite
         is_overwrite = file_path in self.virtual_files
-        action_name = "ファイル上書き" if is_overwrite else "新規ファイル作成"
+        action_name = "File overwrite" if is_overwrite else "New file creation"
         
-        if self.pre_execute_hook(action_name, f"パス: {file_path}"):
+        if self.pre_execute_hook(action_name, f"Path: {file_path}"):
             self.virtual_files[file_path] = content
-            return True, f"ファイルの書き込みに成功しました: {file_path}"
+            return True, f"File written successfully: {file_path}"
         else:
-            return False, "[USER REJECTED] ユーザーによって書き込みが拒否されました。"
+            return False, "[USER REJECTED] Write rejected by user."
 
     def execute_command(self, command: str) -> Tuple[bool, str]:
         """Execute shell command according to safety policy"""
         # 1. Deny by Default command check
         if not self.policy.is_command_safe(command):
-            return False, f"[SECURITY ERROR] 実行不可能なコマンドまたは危険なコマンドです: {command}"
+            return False, f"[SECURITY ERROR] Command not allowed or dangerous: {command}"
         
         # 2. Approval hook (Human-in-the-loop)
         # Command execution always requires approval
-        if self.pre_execute_hook("シェルコマンド実行", f"コマンド: {command}"):
+        if self.pre_execute_hook("Shell command execution", f"Command: {command}"):
             # Simulated execution
             print(f"[Sandbox Console] Running: {command} ...")
             if "test" in command:
-                return True, "模擬テスト実行結果: 3/3 テストが正常に通過しました。"
-            return True, "コマンド実行成功。"
+                return True, "Mock test result: 3/3 tests passed."
+            return True, "Command executed successfully."
         else:
-            return False, "[USER REJECTED] ユーザーによってコマンドの実行が拒否されました。"
+            return False, "[USER REJECTED] Command execution rejected by user."
 
 # ==========================================
 # 3. Test simulation
@@ -171,32 +171,32 @@ if __name__ == "__main__":
     # ------------------------------------------
     # Scenario A: Write to allowed path (approve -> success)
     # ------------------------------------------
-    print("\n=== シナリオ A: 安全なパスへの書き込み ===")
+    print("\n=== Scenario A: Write to allowed path ===")
     safe_file_path = os.path.join(my_workspace, "app.py")
     success, msg = sandbox.write_file(safe_file_path, "def add(a, b): return a + b")
-    print(f"結果: {success} | メッセージ: {msg}")
+    print(f"Result: {success} | Message: {msg}")
 
     # ------------------------------------------
     # Scenario B: Write outside path (Deny by Default immediate error)
     # ------------------------------------------
-    print("\n=== シナリオ B: システム領域への書き込み要求 ===")
+    print("\n=== Scenario B: Write request to system area ===")
     dangerous_file_path = "/etc/hosts" # Dangerous external path
     success, msg = sandbox.write_file(dangerous_file_path, "127.0.0.1 dangerous.site")
-    print(f"結果: {success} | メッセージ: {msg}")
+    print(f"Result: {success} | Message: {msg}")
 
     # ------------------------------------------
     # Scenario C: Allowed test command (approve -> success)
     # ------------------------------------------
-    print("\n=== シナリオ C: 許可されたコマンドの実行 ===")
+    print("\n=== Scenario C: Execute allowed command ===")
     success, msg = sandbox.execute_command("pytest test_app.py")
-    print(f"結果: {success} | メッセージ: {msg}")
+    print(f"Result: {success} | Message: {msg}")
 
     # ------------------------------------------
     # Scenario D: Dangerous command (Deny by Default immediate error)
     # ------------------------------------------
-    print("\n=== シナリオ D: 危険なコマンドの実行 ===")
+    print("\n=== Scenario D: Execute dangerous command ===")
     success, msg = sandbox.execute_command("rm -rf /") # Destructive command
-    print(f"結果: {success} | メッセージ: {msg}")
+    print(f"Result: {success} | Message: {msg}")
 ```
 
 ---
@@ -232,36 +232,36 @@ class DebuggerAgent:
         self.sandbox = sandbox
 
     def run_auto_debug(self, workspace_dir: str):
-        print(f"\n[DebuggerAgent] 🔧 自律デバッグタスクを開始します。")
+        print(f"\n[DebuggerAgent] 🔧 Starting autonomous debug task.")
         
         target_file = os.path.join(workspace_dir, "app.py")
         
         # 1. Mock code analysis (buggy code)
-        broken_code = "def divide(a, b):\n    return a / b  # バグ: b=0 の対策がない"
-        print(f"[DebuggerAgent] 対象ファイルを解析中: {target_file}")
+        broken_code = "def divide(a, b):\n    return a / b  # Bug: no guard for b=0"
+        print(f"[DebuggerAgent] Analyzing target file: {target_file}")
         
         # 2. Generate fixed code
         fixed_code = "def divide(a, b):\n    if b == 0:\n        return 0\n    return a / b"
-        print(f"[DebuggerAgent] バグを検知しました。修正案を適用します。")
+        print(f"[DebuggerAgent] Bug detected. Applying fix.")
         
         # Write via sandbox (user approval required)
         success, msg = self.sandbox.write_file(target_file, fixed_code)
         if not success:
-            print(f"[DebuggerAgent] ❌ 修正ファイルの書き込みに失敗: {msg}")
+            print(f"[DebuggerAgent] ❌ Failed to write fixed file: {msg}")
             return
         
         print(f"[DebuggerAgent] ✅ {msg}")
 
         # 3. Verification via test command (user approval required)
         test_command = "pytest test_app.py"
-        print(f"[DebuggerAgent] テストによる検証を実行します: {test_command}")
+        print(f"[DebuggerAgent] Running verification test: {test_command}")
         
         success, test_msg = self.sandbox.execute_command(test_command)
         if not success:
-            print(f"[DebuggerAgent] ❌ テスト実行が拒否または失敗: {test_msg}")
+            print(f"[DebuggerAgent] ❌ Test execution rejected or failed: {test_msg}")
             return
             
-        print(f"[DebuggerAgent] 🎉 デバッグ完了！: {test_msg}")
+        print(f"[DebuggerAgent] 🎉 Debug complete!: {test_msg}")
 
 # ==========================================
 # Safe autonomous agent test

@@ -35,35 +35,35 @@ from llama_index.core import Document, VectorStoreIndex, Settings
 from llama_index.llms.openai import OpenAI
 from llama_index.embeddings.openai import OpenAIEmbedding
 
-# 1. LLM と埋め込みモデルのグローバル設定 (Settingsの適用)
+# 1. Global LLM and embedding model settings (apply Settings)
 Settings.llm = OpenAI(model="gpt-4o-mini", temperature=0.1)
 Settings.embed_model = OpenAIEmbedding(model="text-embedding-3-small")
 
-# 2. サンプルデータの準備（ホテルの案内マニュアル）
+# 2. Prepare sample data (hotel information manual)
 hotel_manual = """
-当ホテル（AIラウンジホテル）のフロントデスクは24時間体制で稼働しております。
-チェックイン時間は午後15:00から、チェックアウト時間は午前10:00となっております。
-ペットの同伴はすべての客室で禁止されております。
-朝食は午前7:00から9:30まで、1階のレストラン「サクラ」にてバイキング形式で提供されます（大人2,000円）。
-全館で無料Wi-Fi（ネットワーク名: AI_Lounge_Guest）がご利用可能です。パスワードはございません。
+The front desk at AI Lounge Hotel operates 24 hours a day.
+Check-in is from 3:00 PM and check-out is by 10:00 AM.
+Pets are not permitted in any guest room.
+Breakfast is served buffet-style from 7:00 AM to 9:30 AM at the restaurant Sakura on the 1st floor (2,000 yen for adults).
+Complimentary Wi-Fi (network name: AI_Lounge_Guest) is available throughout the hotel. No password is required.
 """
 
-# ドキュメントオブジェクトの作成
+# Create document object
 documents = [Document(text=hotel_manual)]
 
-# 3. インデックスの構築
-# ドキュメントの読み込み、チャンク分割、ベクトル化、インデックス保存がこの1行で自動実行されます
+# 3. Build index
+# Loading, chunking, vectorization, and index storage happen automatically in one line
 index = VectorStoreIndex.from_documents(documents)
 
-# 4. クエリエンジンの作成と質問の実行
+# 4. Create query engine and run a question
 query_engine = index.as_query_engine()
 
-print("--- LlamaIndex RAG 実行 ---")
-question = "ペットを連れて行くことはできますか？また朝食の場所はどこですか？"
+print("--- LlamaIndex RAG execution ---")
+question = "Can I bring a pet? And where is breakfast served?"
 response = query_engine.query(question)
 
-print(f"質問: {question}")
-print(f"AIの回答:\n{response}")
+print(f"Question: {question}")
+print(f"AI answer:\n{response}")
 ```
 
 ---
@@ -76,14 +76,14 @@ As a systems architect, develop the ability to decide **whether to use a framewo
 Mentally compare Unit 24 scratch RAG (API + NumPy), Unit 25 LangChain RAG, and this unit’s LlamaIndex RAG, then design a RAG system for:
 
 ```python
-# 1. 検索用ナレッジベース
+# 1. Knowledge base for search
 company_policies = [
-    "当社の夏季休暇は、毎年7月1日から9月30日までの期間内に、合計5日間取得することができます。",
-    "リモートワークは週に最大3日まで認められており、事前の申請が必要です。コアタイムは11:00〜15:00です。",
-    "経費精算は、毎月25日までにシステムから申請を行う必要があります。領収書の添付が必須です。"
+    "Summer leave may be taken for a total of 5 days between July 1 and September 30 each year.",
+    "Remote work is allowed up to 3 days per week with prior approval. Core hours are 11:00 AM to 3:00 PM.",
+    "Expense reports must be submitted through the system by the 25th of each month. Receipt attachments are required."
 ]
 
-# このポリシーテキストをナレッジソースとして扱います。
+# Treat this policy text as the knowledge source.
 ```
 
 **【Your mission: compare three RAG approaches and decide production deployment】**
@@ -101,7 +101,7 @@ Decide which approach to adopt for the company **internal policy FAQ (RAG)** sys
 
 **【Design decision notes to record in code comments】**
 1. **LlamaIndex policy FAQ implementation**:
-   * Convert `company_policies` to `Document`, build `VectorStoreIndex`, and answer `"リモートワークのコアタイムは何時ですか？"` accurately.
+   * Convert `company_policies` to `Document`, build `VectorStoreIndex`, and answer `"What are the core hours for remote work?"` accurately.
 2. **Implementation cost and readability comparison**:
    * Compare pipeline length for index build and retrieval-QA across A, B, and C.
 3. **Future scale and flexibility**:
@@ -138,35 +138,35 @@ from llama_index.core import Document, VectorStoreIndex, Settings
 from llama_index.llms.openai import OpenAI
 from llama_index.embeddings.openai import OpenAIEmbedding
 
-# 1. 意思決定:
-# 「社内規定FAQシステムにおいて、RAGの構築スピードとRAG特化のチューニングを最優先し、LlamaIndexを採用。」
-# 「手組みRAGに比べて圧倒的に保守性が高く、LangChainに比べてもRAG構築に特化しているためコードが最もシンプルで構成が頑健である。」
+# 1. Design decision:
+# "For the internal policy FAQ system, prioritize RAG build speed and RAG-specific tuning; adopt LlamaIndex."
+# "Far more maintainable than scratch RAG, and simpler and more robust than LangChain for RAG-focused construction."
 
-Settings.llm = OpenAI(model="gpt-4o-mini", temperature=0.0) # 規定回答のためブレを排しtemp=0.0
+Settings.llm = OpenAI(model="gpt-4o-mini", temperature=0.0) # temp=0.0 for consistent policy answers
 Settings.embed_model = OpenAIEmbedding(model="text-embedding-3-small")
 
-# 社内ポリシーデータセット
+# Internal policy dataset
 company_policies = [
-    "当社の夏季休暇は、毎年7月1日から9月30日までの期間内に、合計5日間取得することができます。",
-    "リモートワークは週に最大3日まで認められており、事前の申請が必要です。コアタイムは11:00〜15:00です。",
-    "経費精算は、毎月25日までにシステムから申請を行う必要があります。領収書の添付が必須です。"
+    "Summer leave may be taken for a total of 5 days between July 1 and September 30 each year.",
+    "Remote work is allowed up to 3 days per week with prior approval. Core hours are 11:00 AM to 3:00 PM.",
+    "Expense reports must be submitted through the system by the 25th of each month. Receipt attachments are required."
 ]
 
-# 2. Documentオブジェクトへの変換
+# 2. Convert to Document objects
 documents = [Document(text=policy) for policy in company_policies]
 
-# 3. インデックス化
+# 3. Build index
 index = VectorStoreIndex.from_documents(documents)
 
-# 4. クエリエンジンの構築と実行
+# 4. Build query engine and run
 query_engine = index.as_query_engine()
 
-print("--- 社内規定FAQ RAGシステム ---")
-question = "リモートワークのコアタイムは何時ですか？"
+print("--- Internal Policy FAQ RAG System ---")
+question = "What are the core hours for remote work?"
 response = query_engine.query(question)
 
-print(f"質問: {question}")
-print(f"回答:\n{response}")
+print(f"Question: {question}")
+print(f"Answer:\n{response}")
 ```
 
 ### 💡 Final production decision as a professional

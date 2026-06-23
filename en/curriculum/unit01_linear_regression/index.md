@@ -46,25 +46,25 @@ Here we use Python and the `scikit-learn` library to build linear regression and
 First, import the libraries and prepare the data.
 
 ```python
-# 必要なツールのインポート
+# Import required libraries
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.metrics import mean_squared_error
 
-# 1. データの準備 (今回はダミーデータを作成します)
-# np.random.seed(42) で毎回同じランダムな数値が出るように固定します
+# 1. Prepare data (we create dummy data this time)
+# np.random.seed(42) fixes the random numbers so results are reproducible
 np.random.seed(42)
 
-# X: 部屋の広さ（20〜80平米のデータを100件）
+# X: room size (100 samples between 20 and 80 square meters)
 X = np.random.randint(20, 80, size=(100, 1))
 
-# y: 家賃（広さ × 0.2 + 誤差を少し加える）
+# y: rent (size * 0.2 plus a small random error term)
 y = X * 0.2 + np.random.randn(100, 1) * 2
 
-# 2. データを「学習用」と「テスト用」に分割
-# 全データのうち、80%を学習（過去問）に、20%をテスト（本番試験）に使います
+# 2. Split data into training and test sets
+# Use 80% for training (practice) and 20% for testing (final exam)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 ```
 
@@ -74,20 +74,20 @@ We created mock data to predict rent from room size. To prevent cheating, we use
 Next, train the model and make predictions.
 
 ```python
-# 3. モデルの準備と学習
-# 普通の線形回帰モデルを作成
+# 3. Prepare and train the model
+# Create a standard linear regression model
 model_lr = LinearRegression()
 
-# 学習データ（X_train, y_train）を使って、最適な直線を引く（学習）
+# Fit the best line using training data (X_train, y_train)
 model_lr.fit(X_train, y_train)
 
-# 4. テストデータで予測
+# 4. Predict on the test set
 y_pred_lr = model_lr.predict(X_test)
 
-# 5. 答え合わせ（精度評価）
-# MSE (平均二乗誤差): 予測と実際の値がどれくらいズレているかを計算
+# 5. Evaluate accuracy
+# MSE (mean squared error): how far predictions are from actual values
 mse_lr = mean_squared_error(y_test, y_pred_lr)
-print(f"通常の線形回帰のMSE: {mse_lr:.2f}")
+print(f"Linear regression MSE: {mse_lr:.2f}")
 ```
 
 **Code walkthrough**
@@ -96,17 +96,17 @@ Create a model with `LinearRegression()`, then call `.fit()` and the algorithm f
 Let's also build a regularized (Ridge) version.
 
 ```python
-# 6. 正則化モデル (Ridge) の準備と学習
-# alpha はブレーキの強さです。大きいほどブレーキが強くかかります
+# 6. Prepare and train a regularized (Ridge) model
+# alpha controls regularization strength — larger values apply a stronger penalty
 model_ridge = Ridge(alpha=1.0)
 model_ridge.fit(X_train, y_train)
 
-# テストデータで予測
+# Predict on the test set
 y_pred_ridge = model_ridge.predict(X_test)
 
-# 答え合わせ（精度評価）
+# Evaluate accuracy
 mse_ridge = mean_squared_error(y_test, y_pred_ridge)
-print(f"Ridge回帰のMSE: {mse_ridge:.2f}")
+print(f"Ridge regression MSE: {mse_ridge:.2f}")
 ```
 
 On this simple dataset the results are nearly identical, but with hundreds or thousands of features, Ridge's "brake" often improves accuracy.
@@ -145,27 +145,27 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import Lasso
 from sklearn.metrics import mean_squared_error
 
-# 1. データの読み込み
+# 1. Load the data
 diabetes = load_diabetes()
 X = diabetes.data
 y = diabetes.target
 
-# 2. データの分割
+# 2. Split the data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# 3. Lasso回帰モデルの作成と学習
-# alpha=0.1 を指定して、Lasso回帰モデルを作ります
+# 3. Create and train a Lasso regression model
+# alpha=0.1 sets the L1 regularization strength
 model_lasso = Lasso(alpha=0.1)
 model_lasso.fit(X_train, y_train)
 
-# 4. 予測と評価
+# 4. Predict and evaluate
 y_pred = model_lasso.predict(X_test)
 mse = mean_squared_error(y_test, y_pred)
 
-print(f"Lasso回帰のMSE: {mse:.2f}")
+print(f"Lasso regression MSE: {mse:.2f}")
 
-# (おまけ) Lasso回帰の特徴である「使われなかった特徴量」を確認してみましょう
-print(f"ゼロになった係数の数: {np.sum(model_lasso.coef_ == 0)} 個")
+# Bonus: check how many feature coefficients Lasso set to exactly zero
+print(f"Number of zero coefficients: {np.sum(model_lasso.coef_ == 0)}")
 ```
 
 **Solution walkthrough**

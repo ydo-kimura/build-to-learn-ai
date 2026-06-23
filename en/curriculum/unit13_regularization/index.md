@@ -54,8 +54,8 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-# ダミーデータ（今回は構造を見るだけなので適当なデータ）
-X = torch.randn(10, 5) # 10件のデータ、5つの特徴量
+# Dummy data (arbitrary values; we only inspect structure here)
+X = torch.randn(10, 5) # 10 samples, 5 features
 y = torch.randn(10, 1)
 ```
 
@@ -66,7 +66,7 @@ class RegularizedNet(nn.Module):
     def __init__(self):
         super(RegularizedNet, self).__init__()
         self.fc1 = nn.Linear(5, 50)
-        # ここがDropout！ 引数の 0.5 は「毎回50%のニューロンをランダムにお休みさせる」という意味です
+        # Dropout: p=0.5 randomly deactivates 50% of neurons each step
         self.dropout = nn.Dropout(p=0.5) 
         self.fc2 = nn.Linear(50, 1)
 
@@ -74,7 +74,7 @@ class RegularizedNet(nn.Module):
         x = self.fc1(x)
         x = torch.relu(x)
         
-        # 隠れ層の後にDropoutを通します
+        # Apply Dropout after the hidden layer
         x = self.dropout(x) 
         
         x = self.fc2(x)
@@ -90,14 +90,14 @@ Next, Weight Decay settings. This is configured in the optimizer, not inside the
 ```python
 criterion = nn.MSELoss()
 
-# weight_decay=1e-4 (0.0001) を追加するだけで、L2正則化が適用されます！
+# Adding weight_decay=1e-4 (0.0001) applies L2 regularization!
 optimizer = optim.Adam(model.parameters(), lr=0.01, weight_decay=1e-4)
 ```
 
 Finally, the training loop—but with Dropout there is a **critical rule**.
 
 ```python
-# 【超重要】学習モードに切り替える（DropoutがONになる）
+# [CRITICAL] Switch to training mode (Dropout ON)
 model.train() 
 
 for epoch in range(100):
@@ -107,12 +107,12 @@ for epoch in range(100):
     loss.backward()
     optimizer.step()
 
-# 【超重要】評価（本番）モードに切り替える（DropoutがOFFになる）
+# [CRITICAL] Switch to evaluation mode (Dropout OFF)
 model.eval() 
 
-with torch.no_grad(): # 評価時は勾配計算（反省）をストップしてメモリを節約
+with torch.no_grad(): # Skip gradient computation during evaluation to save memory
     test_predictions = model(X)
-    print("本番モードでの予測完了！")
+    print("Prediction complete in evaluation mode!")
 ```
 
 **Explanation:**
@@ -145,12 +145,12 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-# 1. データ準備
+# 1. Prepare data
 torch.manual_seed(42)
 X_train = torch.randn(20, 10)
 y_train = torch.randn(20, 1)
 
-# 2. ネットワーク定義
+# 2. Define network
 class MyRobustNet(nn.Module):
     def __init__(self):
         super(MyRobustNet, self).__init__()
@@ -158,37 +158,37 @@ class MyRobustNet(nn.Module):
         self.fc2 = nn.Linear(64, 32)
         self.fc3 = nn.Linear(32, 1)
         
-        # Dropoutの定義 (p=0.3)
+        # Dropout definition (p=0.3)
         self.dropout = nn.Dropout(p=0.3)
         self.relu = nn.ReLU()
 
     def forward(self, x):
-        # 1層目
+        # Layer 1
         x = self.fc1(x)
         x = self.relu(x)
-        x = self.dropout(x) # スパルタ教育
+        x = self.dropout(x) # Dropout regularization
         
-        # 2層目
+        # Layer 2
         x = self.fc2(x)
         x = self.relu(x)
-        x = self.dropout(x) # スパルタ教育
+        x = self.dropout(x) # Dropout regularization
         
-        # 出力層
+        # Output layer
         x = self.fc3(x)
         return x
 
 model = MyRobustNet()
 
-# 3. 損失関数とOptimizer
+# 3. Loss function and optimizer
 criterion = nn.MSELoss()
-# weight_decayでL2正則化を適用
+# Apply L2 regularization via weight_decay
 optimizer = optim.Adam(model.parameters(), lr=0.005, weight_decay=0.001)
 
-# 4. 学習ループ
+# 4. Training loop
 epochs = 10
 
-print("--- 学習（訓練モード） ---")
-model.train() # 【重要】DropoutをON
+print("--- Training (train mode) ---")
+model.train() # [IMPORTANT] Dropout ON
 
 for epoch in range(epochs):
     optimizer.zero_grad()
@@ -198,14 +198,14 @@ for epoch in range(epochs):
     optimizer.step()
     print(f"Epoch {epoch+1:2d} | Loss: {loss.item():.4f}")
 
-# 5. 評価
-print("\n--- 評価（本番モード） ---")
-model.eval() # 【重要】DropoutをOFF（全員出社）
+# 5. Evaluation
+print("\n--- Evaluation (eval mode) ---")
+model.eval() # [IMPORTANT] Dropout OFF (all neurons active)
 
-# 本番の予測では no_grad を使うのがベストプラクティス
+# Best practice: use no_grad for inference
 with torch.no_grad():
     final_pred = model(X_train)
-    print("テストデータの予測が完了しました（最初の3件の予測値）:")
+    print("Test predictions complete (first 3 values):")
     print(final_pred[:3].flatten().numpy())
 ```
 

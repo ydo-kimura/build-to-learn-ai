@@ -31,8 +31,9 @@ Popular libraries include **MeCab** (fast, rich dictionaries) and **Janome** (pu
 ```python
 from janome.tokenizer import Tokenizer
 t = Tokenizer()
-tokens = [token.surface for token in t.tokenize("私は今日図書館に行きました")]
-print(tokens)  # ['私', 'は', '今日', '図書館', 'に', '行き', 'まし', 'た']
+japanese_text = "\u79c1\u306f\u4eca\u65e5\u56fe\u66f8\u9928\u306b\u884c\u304d\u307e\u3057\u305f"
+tokens = [token.surface for token in t.tokenize(japanese_text)]
+print(tokens)  # Morpheme list from morphological analysis
 ```
 
 Differences between English and Japanese preprocessing flows:
@@ -107,40 +108,40 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
 
-# 1. データの準備（簡単なニュースのタイトル）
+# 1. Prepare data (simple news headlines)
 texts = [
-    "Apple releases new iPhone with advanced camera",    # テクノロジー
-    "Google announces new AI language model",            # テクノロジー
-    "Real Madrid wins the Champions League final",       # スポーツ
-    "NBA finals: Lakers defeat the Warriors",            # スポーツ
+    "Apple releases new iPhone with advanced camera",    # Technology
+    "Google announces new AI language model",            # Technology
+    "Real Madrid wins the Champions League final",       # Sports
+    "NBA finals: Lakers defeat the Warriors",            # Sports
 ]
-# ラベル（0: テクノロジー, 1: スポーツ）
+# Labels (0: Technology, 1: Sports)
 labels = [0, 0, 1, 1]
 
-# 2. TF-IDFを用いたベクトル化とモデル構築のパイプライン
-# stop_words="english" で「the」「with」などの不要な単語を除外します
+# 2. Pipeline: TF-IDF vectorization + classifier
+# stop_words="english" removes words like "the" and "with"
 model = make_pipeline(
     TfidfVectorizer(stop_words="english"),
-    MultinomialNB() # テキスト分類によく使われるナイーブベイズ分類器
+    MultinomialNB() # Naive Bayes classifier common for text
 )
 
-# 3. モデルの学習
+# 3. Train the model
 model.fit(texts, labels)
-print("モデルの学習が完了しました！")
+print("Model training complete!")
 
-# 4. 新しいテキストで予測
+# 4. Predict on new text
 new_texts = [
     "New smartphone features AI capabilities",
     "Who will win the basketball match tonight?"
 ]
 
-# 予測を実行
+# Run predictions
 predictions = model.predict(new_texts)
 
-# 結果の表示
-category_names = ["テクノロジー", "スポーツ"]
+# Display results
+category_names = ["Technology", "Sports"]
 for text, pred in zip(new_texts, predictions):
-    print(f"テキスト: '{text}' -> 予測カテゴリ: {category_names[pred]}")
+    print(f"Text: '{text}' -> Predicted category: {category_names[pred]}")
 ```
 
 ### Key takeaways after running the code
@@ -161,17 +162,17 @@ Build your own spam email classifier.
 
 **【Dataset】**
 ```python
-# 学習用データ
+# Training data
 train_emails = [
-    "Win a free iPhone right now! Click here",         # 1: スパム
-    "Hey, are we still on for lunch tomorrow?",        # 0: 正常
-    "Limited time offer! Buy one get one free",        # 1: スパム
-    "Please find attached the meeting minutes",        # 0: 正常
-    "Congratulations! You won a million dollars",      # 1: スパム
+    "Win a free iPhone right now! Click here",         # 1: Spam
+    "Hey, are we still on for lunch tomorrow?",        # 0: Ham
+    "Limited time offer! Buy one get one free",        # 1: Spam
+    "Please find attached the meeting minutes",        # 0: Ham
+    "Congratulations! You won a million dollars",      # 1: Spam
 ]
 train_labels = [1, 0, 1, 0, 1]
 
-# テスト用データ
+# Test data
 test_emails = [
     "Click here to claim your free vacation",
     "Don't forget to submit your report by Friday"
@@ -192,7 +193,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 
-# 学習用データ
+# Training data
 train_emails = [
     "Win a free iPhone right now! Click here",
     "Hey, are we still on for lunch tomorrow?",
@@ -202,28 +203,28 @@ train_emails = [
 ]
 train_labels = [1, 0, 1, 0, 1]
 
-# テスト用データ
+# Test data
 test_emails = [
     "Click here to claim your free vacation",
     "Don't forget to submit your report by Friday"
 ]
 
-# モデルの作成（今回はロジスティック回帰を使用）
+# Build model (Logistic Regression this time)
 model = make_pipeline(
     TfidfVectorizer(stop_words="english"),
     LogisticRegression()
 )
 
-# 学習
+# Train
 model.fit(train_emails, train_labels)
 
-# 予測
+# Predict
 predictions = model.predict(test_emails)
 
-# 結果の表示
-label_map = {0: "正常 (Ham)", 1: "スパム (Spam)"}
+# Display results
+label_map = {0: "Ham", 1: "Spam"}
 for email, pred in zip(test_emails, predictions):
-    print(f"メール: '{email}'\n-> 判定結果: {label_map[pred]}\n")
+    print(f"Email: '{email}'\n-> Classification: {label_map[pred]}\n")
 ```
 
 **Solution explanation:**

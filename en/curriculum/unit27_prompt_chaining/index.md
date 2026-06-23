@@ -29,7 +29,7 @@ Example: chain 1 (topic → catchphrase) and chain 2 (catchphrase → tweet):
 
 | Step | Data flow image | LCEL expression |
 | :--- | :--- | :--- |
-| **Topic input** | User enters topic | `{"topic": "お題"}` |
+| **Topic input** | User enters topic | `{"topic": "sample topic"}` |
 | **First chain (Chain 1)** | Topic → catchphrase | `chain1 = prompt1 | llm | parser` |
 | **Relay** | Map Chain 1 output to key `ad_copy` for next input | `{"ad_copy": chain1}` |
 | **Second chain (Chain 2)** | Catchphrase → final tweet | `final_chain = {"ad_copy": chain1} | prompt2 | llm | parser` |
@@ -53,43 +53,42 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
-# 1. LLMの準備
+# 1. Prepare LLM
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
-# 結果を単なる文字列（String）として綺麗に取り出すための便利ツール
+# Utility to extract clean string output
 output_parser = StrOutputParser()
 
 # =========================================
-# チェーン1：キャッチコピーを作る
+# Chain 1: Generate a catchphrase
 # =========================================
 prompt1 = ChatPromptTemplate.from_template(
-    "お題「{topic}」の魅力的なキャッチコピーを1文で考えてください。"
+    "Write one compelling catchphrase for the topic '{topic}'."
 )
-# | (パイプ) を使って、プロンプト → LLM → 文字列抽出 と処理をつなぎます
+# Use | (pipe) to connect prompt -> LLM -> string extraction
 chain1 = prompt1 | llm | output_parser
 
 # =========================================
-# チェーン2：ツイートを作る
+# Chain 2: Create a tweet
 # =========================================
 prompt2 = ChatPromptTemplate.from_template(
-    "以下のキャッチコピーを使って、SNS向けの宣伝ツイートを作成してください。ハッシュタグも含めてください。\n\nキャッチコピー：{catchphrase}"
+    "Using the catchphrase below, write a promotional tweet for social media. Include hashtags.\n\nCatchphrase: {catchphrase}"
 )
 chain2 = prompt2 | llm | output_parser
 
 # =========================================
-# 全体を結合する（プロンプトチェーン）
+# Combine into a prompt chain
 # =========================================
-# 辞書型 {"catchphrase": chain1} とすることで、
-# chain1の実行結果が自動的に "catchphrase" という変数に入り、chain2に渡されます
+# {"catchphrase": chain1} passes chain1 output automatically as "catchphrase" to chain2
 overall_chain = {"catchphrase": chain1} | chain2
 
-# 実行
-topic = "空飛ぶスニーカー"
-print(f"お題: {topic}\n")
+# Run
+topic = "flying sneakers"
+print(f"Topic: {topic}\n")
 
-print("チェーン実行中...")
+print("Running chain...")
 result = overall_chain.invoke({"topic": topic})
 
-print("\n【最終結果：宣伝ツイート】")
+print("\n[Final result: promotional tweet]")
 print(result)
 ```
 
@@ -127,42 +126,41 @@ from langchain_core.runnables import RunnablePassthrough
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
 parser = StrOutputParser()
 
-# 1. タイトル生成チェーン
-prompt_title = ChatPromptTemplate.from_template("テーマ「{topic}」のブログ記事の惹きつけられるタイトルを1つ考えてください。")
+# 1. Title generation chain
+prompt_title = ChatPromptTemplate.from_template("Write one compelling blog title for the theme '{topic}'.")
 chain_title = prompt_title | llm | parser
 
-# 2. 目次生成チェーン
-prompt_outline = ChatPromptTemplate.from_template("タイトル「{title}」のブログ記事の目次（3章構成）を作成してください。")
+# 2. Outline generation chain
+prompt_outline = ChatPromptTemplate.from_template("Create a 3-chapter outline (table of contents) for a blog post titled '{title}'.")
 chain_outline = prompt_outline | llm | parser
 
-# 3. 序文生成チェーン
+# 3. Introduction generation chain
 prompt_intro = ChatPromptTemplate.from_template("""
-以下のタイトルと目次を持つブログ記事の、魅力的な「序文（導入部分）」を200文字程度で書いてください。
+Write an engaging introduction (lead paragraph) of about 200 words for a blog post with the title and outline below.
 
-タイトル：{title}
-目次：\n{outline}
+Title: {title}
+Outline:\n{outline}
 """)
 chain_intro = prompt_intro | llm | parser
 
 # =========================================
-# 高度なチェーン結合 (RunnablePassthroughの活用)
+# Advanced chain composition (using RunnablePassthrough)
 # =========================================
-# RunnablePassthrough.assign を使うと、既存の入力（ここではtitle）を保持したまま、
-# 新しい変数（outline）を追加して次のステップに渡すことができます。
+# RunnablePassthrough.assign keeps existing input (title here) while adding a new variable (outline).
 
 overall_chain = (
-    # 最初に入力 {"topic": "..."} を受け取り、title変数を追加する
+    # Receive {"topic": "..."} and add title variable
     {"title": chain_title} 
-    # 今の辞書 {"title": "..."} を引き継ぎつつ、outline変数を追加する
+    # Keep {"title": "..."} and add outline variable
     | RunnablePassthrough.assign(outline=chain_outline)
-    # 辞書 {"title": "...", "outline": "..."} が chain_intro に渡される
+    # Pass {"title": "...", "outline": "..."} to chain_intro
     | chain_intro
 )
 
-# 実行
-result = overall_chain.invoke({"topic": "初心者向けの観葉植物の育て方"})
+# Run
+result = overall_chain.invoke({"topic": "Growing houseplants for beginners"})
 
-print("【最終的に生成された序文】")
+print("[Generated introduction]")
 print(result)
 ```
 </details>
