@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" role="img" aria-label="Training step">
+  <rect width="700" height="320" rx="12" fill="#f8fafc"/>
+  <rect x="24" y="20" width="652" height="52" rx="8" fill="#fff" stroke="#22c55e" stroke-width="2"/>
+  <text x="350" y="52" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#22c55e" font-weight="700">Training step</text>
+  <rect x="24" y="84" width="652" height="212" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(40, 100)"><rect x="30" y="40" width="90" height="40" rx="6" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+<text x="75" y="66" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="12" fill="#15803d" font-weight="700">loss</text>
+<text x="75" y="30" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#64748b">.backward()</text>
+<line x1="120" y1="60" x2="180" y2="60" stroke="#64748b" stroke-width="2"/><polygon points="180,60 174,57 174,63" fill="#64748b"/>
+<rect x="180" y="40" width="110" height="40" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+<text x="235" y="66" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="12" fill="#b45309" font-weight="700">gradients</text>
+<line x1="290" y1="60" x2="350" y2="60" stroke="#64748b" stroke-width="2"/><polygon points="350,60 344,57 344,63" fill="#64748b"/>
+<rect x="350" y="40" width="110" height="40" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+<text x="405" y="66" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="12" fill="#1d4ed8" font-weight="700">optimizer</text></g>
+  <text x="350" y="296" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#64748b">loss.backward() → optimizer.step()</text>
+</svg>

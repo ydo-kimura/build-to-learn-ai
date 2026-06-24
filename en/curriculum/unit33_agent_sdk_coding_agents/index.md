@@ -1,5 +1,9 @@
 # Unit 33: Agent SDK — Coding & Autonomous Development
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit33_agent_sdk_coding_agents/images/hero.png" alt="Hero: Agent SDK: Coding Agents" />
+</p>
+
 In the previous unit (Unit 32), you learned **general-purpose business automation agents** (reception, inventory lookup, payment, etc.) using commercial Agent SDKs. This unit extends that with **Agent SDKs specialized for coding and autonomous development**. Unlike business automation agents, autonomous development agents have powerful permissions over the file system and shell, so stricter safety design is required.
 
 In software development automation, **autonomous development agents (SWE Agents / Coding Agents)** that autonomously generate and modify code and execute commands are evolving rapidly.
@@ -11,6 +15,9 @@ This unit covers architectures specific to autonomous development agents, safety
 ---
 
 ## 1. Explanation Phase
+
+<img src="../../../assets/units/unit33_agent_sdk_coding_agents/images/diagram-concept.svg" alt="Diagram: Coding agent flow" class="unit-diagram" />
+
 
 ### 1.1 What Makes Autonomous Coding / Software Development Agents Different
 While general business automation agents perform limited API integrations such as "send email" or "book calendar," autonomous development agents have powerful, broad tool bindings:
@@ -56,6 +63,8 @@ graph TD
 3. **Human-in-the-loop (approval hooks)**: Even within allowed scope, high-risk operations (file writes, build commands) require human approval before execution.
 
 ---
+
+<img src="../../../assets/units/unit33_agent_sdk_coding_agents/images/diagram-workflow.svg" alt="Diagram: Best practices" class="unit-diagram" />
 
 ## 2. Practice
 

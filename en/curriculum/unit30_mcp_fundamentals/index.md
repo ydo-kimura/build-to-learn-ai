@@ -1,10 +1,17 @@
 # Unit 30: Model Context Protocol (MCP) Fundamentals and Building Your Own Server
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit30_mcp_fundamentals/images/hero.png" alt="Hero: Model Context Protocol" />
+</p>
+
 > [!IMPORTANT]
 > **Preparing your OpenAI API key**
 > Chapter 4 requires an **OpenAI API key**. For how to obtain a key, billing notes, and secure environment-variable setup with Google Colab secrets, read [Appendix (Learning Environment and API Setup)](../appendix/index.md#🔑-3-openai-api-key-acquisition-and-secure-management-chapter-4) first.
 
 ## 1. Understanding Model Context Protocol (MCP)
+
+<img src="../../../assets/units/unit30_mcp_fundamentals/images/diagram-concept.svg" alt="Diagram: MCP architecture" class="unit-diagram" />
+
 
 When giving AI agents tools—file ops, DB search, external APIs—teams traditionally implemented custom interfaces per framework (LangChain, LlamaIndex) or vendor API, **by hand**.
 
@@ -48,6 +55,8 @@ For local runs, **stdio** (stdin/stdout) avoids open network ports—strong loca
 * **Shared dev-tool connection**: MCP-wrap internal APIs once; Cursor IDE and Claude Desktop plug in with zero extra code for all devs.
 
 ---
+
+<img src="../../../assets/units/unit30_mcp_fundamentals/images/diagram-workflow.svg" alt="Diagram: Build a server" class="unit-diagram" />
 
 ## 2. Implementation Example
 

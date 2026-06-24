@@ -1,8 +1,14 @@
 # Unit 8: Cross-Validation and Hyperparameter Tuning
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit08_cross_validation_tuning/images/hero.png" alt="Hero: Cross Validation & Tuning" />
+</p>
+
 ## 1. Understanding Cross-Validation and Hyperparameter Tuning
 
-<img src="../../../assets/units/unit08_cross_validation_tuning/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit08_cross_validation_tuning/images/diagram-concept.svg" alt="Diagram: 5-Fold cross validation" class="unit-diagram" />
+
+
 
 So far we've split data with `train_test_split` and set knobs like `n_neighbors=3`. Practitioners don't trust **one lucky split** or **gut-feel settings**. This unit covers **more reliable evaluation** and **finding settings that maximize performance**.
 
@@ -37,6 +43,8 @@ Don't guess — use **grid search** to **try combinations and pick the best scor
 - **ML pipeline efficiency**: Automate tuning so data scientists spend time on features, not manual knob turning.
 
 ---
+
+<img src="../../../assets/units/unit08_cross_validation_tuning/images/diagram-workflow.svg" alt="Diagram: Hyperparameter grid" class="unit-diagram" />
 
 ## 2. Implementation Example
 

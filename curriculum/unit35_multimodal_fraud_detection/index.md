@@ -1,8 +1,14 @@
 # Unit 35: マルチモーダル不正検知システム
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit35_multimodal_fraud_detection/images/hero.png" alt="ヒーロー画像：Multimodal Fraud Detection" />
+</p>
+
 ## 1. マルチモーダル不正検知の理解
 
-<img src="../../assets/units/unit35_multimodal_fraud_detection/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit35_multimodal_fraud_detection/images/diagram-concept.svg" alt="図解：Late fusion" class="unit-diagram" />
+
+
 
 これまでUnit 1〜8でテーブルデータ（数値・カテゴリ）、Unit 10〜16で画像、Unit 17〜21で自然言語（テキスト）を個別に処理するモデルを個別に学び、構築してきました。
 
@@ -23,6 +29,8 @@
 | **後期融合 (Late Fusion / Decision-level)** | テーブル（XGBoost）、テキスト（NLPモデル）、画像（CNNモデル）を**個別に訓練し、それぞれの予測確率を最終段階で重み付け結合（メタラーニング/スタッキング）**して最終結論を出す。 | **メリット**: 個々のモデルを独立してチューニング・開発でき、非常に安定して頑健。<br>**デメリット**: 特徴量同士のリアルタイムな相互作用（相乗効果）を捉えにくい。 |
 
 ---
+
+<img src="../../assets/units/unit35_multimodal_fraud_detection/images/diagram-workflow.svg" alt="図解：Fraud signals" class="unit-diagram" />
 
 ## 2. 実践 (Practice) - 🧠 自分で設計し決定するマルチモーダル不正検知
 

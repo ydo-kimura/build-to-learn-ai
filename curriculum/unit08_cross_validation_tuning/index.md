@@ -1,8 +1,14 @@
 # Unit 8: 交差検証とハイパーパラメータ調整
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit08_cross_validation_tuning/images/hero.png" alt="ヒーロー画像：Cross Validation & Tuning" />
+</p>
+
 ## 1. 交差検証とハイパーパラメータ・チューニングの理解
 
-<img src="../../assets/units/unit08_cross_validation_tuning/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit08_cross_validation_tuning/images/diagram-concept.svg" alt="図解：5-Fold cross validation" class="unit-diagram" />
+
+
 
 機械学習モデルを作るとき、私たちは今まで「データを学習用とテスト用に分ける（`train_test_split`）」ことや、「モデルを作るときに `n_neighbors=3` のように設定を書き込む」ことを行ってきました。
 しかし、現場のデータサイエンティストは「適当に分けた1回のテスト結果」や「勘で決めた設定値」を信用しません。この章では、AIの実力をより**正確に測る方法**と、AIの性能を**限界まで引き出す設定の探し方**を学びます。
@@ -39,6 +45,8 @@
 - **AI開発プロジェクトの効率化**：パイプライン構築時にハイパーパラメータ・チューニングを自動化することで、データサイエンティストが手動で設定を試行錯誤する時間を削減し、より本質的な特徴量エンジニアリングに時間を割けるようにする。
 
 ---
+
+<img src="../../assets/units/unit08_cross_validation_tuning/images/diagram-workflow.svg" alt="図解：Hyperparameter grid" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

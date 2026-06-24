@@ -1,5 +1,9 @@
 # Unit 10: Neural Networks from Scratch
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit10_nn_from_scratch/images/hero.png" alt="Hero: Neural Networks from Scratch" />
+</p>
+
 > [!TIP]
 > **Using Google Colab**
 > For the deep learning units (Units 10–16), we recommend **enabling a GPU** for faster training. See [Appendix (Learning environment and API keys)](../appendix/index.md#🚀-1-learning-with-google-colaboratory) for setup steps.
@@ -9,7 +13,9 @@
 
 ## 1. Understanding Neural Networks
 
-<img src="../../../assets/units/unit10_nn_from_scratch/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit10_nn_from_scratch/images/diagram-concept.svg" alt="Diagram: Network layers" class="unit-diagram" />
+
+
 
 To understand neural networks, picture **a company's approval workflow**.
 
@@ -33,6 +39,8 @@ In this unit we'll implement **forward propagation** and **backpropagation** usi
 - **Churn prediction**: Predict cancellation probability from usage and contract data to target retention offers.
 - **Anomaly detection**: Flag unusual sensor patterns (temperature, vibration) that may indicate failure.
 - **Loan underwriting**: Auto-assess repayment ability from income, debt, and tenure.
+
+<img src="../../../assets/units/unit10_nn_from_scratch/images/diagram-workflow.svg" alt="Diagram: Training loop" class="unit-diagram" />
 
 ## 2. Implementation Example
 

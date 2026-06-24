@@ -1,8 +1,14 @@
 # Unit 6: Clustering Algorithms
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit06_clustering_algorithms/images/hero.png" alt="Hero: Clustering Algorithms" />
+</p>
+
 ## 1. Understanding Clustering
 
-<img src="../../../assets/units/unit06_clustering_algorithms/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit06_clustering_algorithms/images/diagram-concept.svg" alt="Diagram: K-Means steps" class="unit-diagram" />
+
+
 
 Units so far (linear regression, random forest, etc.) used data with **known labels (targets)** to predict "Is this A or B?" That is **supervised learning**.
 
@@ -40,6 +46,8 @@ K-Means runs these steps:
 - **News article grouping**: Cluster daily articles by topic (politics, sports, entertainment) for personalized feeds.
 
 ---
+
+<img src="../../../assets/units/unit06_clustering_algorithms/images/diagram-workflow.svg" alt="Diagram: When to use which" class="unit-diagram" />
 
 ## 2. Implementation Example
 

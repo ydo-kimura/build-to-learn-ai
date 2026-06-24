@@ -1,8 +1,14 @@
 # Unit 34: LLM自動評価・防御とエージェント総合演習 (Capstone)
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit34_llm_harness_capstone/images/hero.png" alt="ヒーロー画像：LLM Harness Capstone" />
+</p>
+
 ## 1. ハーネスエンジニアリング（LLM自動評価）の理解
 
-<img src="../../assets/units/unit34_llm_harness_capstone/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit34_llm_harness_capstone/images/diagram-concept.svg" alt="図解：Dual harness" class="unit-diagram" />
+
+
 
 第4章（Unit 22〜33）において、LLMのAPI利用、ゼロからのRAG（検索拡張生成）構築、LangChainの基礎、プロンプトの連結（Chaining）、 Web UIチャットボット、および自律動作する AIエージェントの構築までを網羅的に学習してきました。
 
@@ -25,6 +31,8 @@
 このユニットでは、**静的なテスト入出力ペア（質問・参照ドキュメント・AIの回答）を用意し、LLMをジャッジ役にする自動評価ハーネス（LLM-as-a-Judge）** をスクラッチで実装し、プロンプトの改善前後の精度変化を定量的にスコア化します。
 
 ---
+
+<img src="../../assets/units/unit34_llm_harness_capstone/images/diagram-workflow.svg" alt="図解：Defense layers" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

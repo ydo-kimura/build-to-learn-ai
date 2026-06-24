@@ -1,12 +1,18 @@
 # Unit 16: Deep Learning Capstone
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit16_deep_learning_capstone/images/hero.png" alt="Hero: Deep Learning Capstone" />
+</p>
+
 > [!TIP]
 > **For learners using Google Colab**
 > For the deep learning section (Units 10–16), we recommend **enabling a GPU** to speed up computation. See [Appendix (Learning Environment and API Setup)](../appendix/index.md#🚀-1-learning-with-google-colaboratory) for setup steps first.
 
 ## 1. Understanding End-to-End Deep Learning Model Building
 
-<img src="../../../assets/units/unit16_deep_learning_capstone/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit16_deep_learning_capstone/images/diagram-concept.svg" alt="Diagram: Image pipeline" class="unit-diagram" />
+
+
 
 In Chapter 2 (Units 10–15), you learned from neural network fundamentals through PyTorch tensors, optimizers, regularization (Dropout and BatchNorm), CNNs, and transfer learning.
 
@@ -22,6 +28,8 @@ This capstone combines everything into a **professional image recognition pipeli
 * **Learning curves**: Daily taste tests charting soup concentration (loss) and customer smiles (accuracy) to find the best stopping point (early stopping).
 
 ---
+
+<img src="../../../assets/units/unit16_deep_learning_capstone/images/diagram-workflow.svg" alt="Diagram: Evaluation" class="unit-diagram" />
 
 ## 2. Implementation Example
 

@@ -1,8 +1,14 @@
 # Unit 36: Autonomous Knowledge Extraction & Structuring Agent
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit36_knowledge_structuring_agent/images/hero.png" alt="Hero: Knowledge Structuring Agent" />
+</p>
+
 ## 1. Understanding Knowledge Extraction and Structuring from Unstructured Data
 
-<img src="../../../assets/units/unit36_knowledge_structuring_agent/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit36_knowledge_structuring_agent/images/diagram-concept.svg" alt="Diagram: Extraction agent" class="unit-diagram" />
+
+
 
 In Unit 26 you learned the RAG-focused framework `LlamaIndex`. In Unit 31 you learned `smolagents` (CodeAgent), which autonomously writes and executes Python code.
 
@@ -25,6 +31,8 @@ The professional architecture combines **LlamaIndex pinpoint retrieval (Retrieve
    * On validation errors, the agent (`smolagents`) **parses error logs, fixes code or prompts on the spot, and retries until valid JSON (Self-Correction)**.
 
 ---
+
+<img src="../../../assets/units/unit36_knowledge_structuring_agent/images/diagram-workflow.svg" alt="Diagram: Output" class="unit-diagram" />
 
 ## 2. Practice — 🧠 Design and Decide Your Knowledge Extraction Pipeline
 

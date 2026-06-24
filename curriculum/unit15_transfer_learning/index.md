@@ -1,12 +1,18 @@
 # Unit 15: ResNet を用いた転移学習
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit15_transfer_learning/images/hero.png" alt="ヒーロー画像：Transfer Learning" />
+</p>
+
 > [!TIP]
 > **Google Colab で学習を進める方へ**
 > ディープラーニング編（Unit 10〜16）では、計算を高速化するために **GPU の有効化** をおすすめします。設定手順は [Appendix (学習環境とキーの準備)](../appendix/index.md#🚀-1-google-colaboratory-での学習の進め方) を最初にご覧ください。
 
 ## 1. Transfer Learning with ResNet の理解
 
-<img src="../../assets/units/unit15_transfer_learning/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit15_transfer_learning/images/diagram-concept.svg" alt="図解：Transfer learning" class="unit-diagram" />
+
+
 
 自分でゼロからCNN（虫眼鏡ネットワーク）を作って学習させるのはとても立派ですが、実はこれには**「膨大なデータ」**と**「途方もない時間（計算力）」**が必要です。
 
@@ -30,6 +36,8 @@ ResNetは、「もしこの層を通って迷子になるなら、**層をスキ
 - **自社専用の画像検索システム**: ECサイトなどで、自社が扱う数千種類の独自アパレル商品を高精度に見分けられるよう、学習済みモデルをファインチューニングして「画像で検索」機能を実現する。
 - **顔認証システム**: 世の中の膨大な顔画像で学習したモデルをベースに、自社の社員の顔だけを少数のデータで追加学習させ、安全で高速なセキュリティゲートを作る。
 - **ドローンによるインフラ点検**: 一般的な画像認識能力を持つAIに、橋のひび割れや鉄塔のサビといった特殊な画像を転移学習させ、少数のサンプルデータからでも精度の高い点検AIをスピーディに構築する。
+
+<img src="../../assets/units/unit15_transfer_learning/images/diagram-workflow.svg" alt="図解：ResNet18 flow" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

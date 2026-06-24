@@ -1,8 +1,14 @@
 # Unit 35: Multimodal Fraud Detection System
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit35_multimodal_fraud_detection/images/hero.png" alt="Hero: Multimodal Fraud Detection" />
+</p>
+
 ## 1. Understanding Multimodal Fraud Detection
 
-<img src="../../../assets/units/unit35_multimodal_fraud_detection/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit35_multimodal_fraud_detection/images/diagram-concept.svg" alt="Diagram: Late fusion" class="unit-diagram" />
+
+
 
 In Units 1–8 you learned models for tabular data (numeric and categorical). In Units 10–16 you covered images; in Units 17–21, natural language (text).
 
@@ -23,6 +29,8 @@ There are two opposing architectural philosophies for integrating different data
 | **Late Fusion (Decision-level)** | Train tabular (XGBoost), text (NLP), and image (CNN) models **separately**, then **weight and combine prediction probabilities** at the final stage (meta-learning/stacking). | **Pros**: Tune each model independently; very stable and robust.<br>**Cons**: Harder to capture real-time interaction between features. |
 
 ---
+
+<img src="../../../assets/units/unit35_multimodal_fraud_detection/images/diagram-workflow.svg" alt="Diagram: Fraud signals" class="unit-diagram" />
 
 ## 2. Practice — 🧠 Design and Decide Multimodal Fraud Detection
 

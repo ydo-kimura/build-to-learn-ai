@@ -1,12 +1,18 @@
 # Unit 13: Overfitting Prevention in Deep Learning
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit13_regularization/images/hero.png" alt="Hero: Regularization in DL" />
+</p>
+
 > [!TIP]
 > **For learners using Google Colab**
 > For the deep learning section (Units 10–16), we recommend **enabling a GPU** to speed up computation. See [Appendix (Learning Environment and API Setup)](../appendix/index.md#🚀-1-learning-with-google-colaboratory) for setup steps first.
 
 ## 1. Understanding Regularization in DL
 
-<img src="../../../assets/units/unit13_regularization/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit13_regularization/images/diagram-concept.svg" alt="Diagram: Dropout" class="unit-diagram" />
+
+
 
 Deep learning has a dangerous trap called **overfitting**.
 
@@ -42,6 +48,8 @@ In this unit, you will learn how to add **Dropout** and **Weight Decay** to a ne
 - **Medical image diagnosis support**: Prevent overfitting to images from one hospital's equipment and build a general model that detects abnormalities reliably across hospitals.
 - **Credit card fraud detection**: Use Dropout and other regularization so the model does not memorize limited past fraud patterns and can adapt to new scam tactics.
 - **Stock and FX forecasting**: Financial time series are noisy; use Weight Decay and similar methods to build robust models that do not overreact to noise.
+
+<img src="../../../assets/units/unit13_regularization/images/diagram-workflow.svg" alt="Diagram: BatchNorm" class="unit-diagram" />
 
 ## 2. Implementation Example
 

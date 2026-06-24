@@ -1,8 +1,14 @@
 # Unit 18: 単語の分散表現 (Word2Vec)
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit18_word_embeddings_word2vec/images/hero.png" alt="ヒーロー画像：Word Embeddings (Word2Vec)" />
+</p>
+
 ## 1. Word Embeddings（単語の分散表現） の理解
 
-<img src="../../assets/units/unit18_word_embeddings_word2vec/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit18_word_embeddings_word2vec/images/diagram-concept.svg" alt="図解：Word2Vec idea" class="unit-diagram" />
+
+
 
 Unit 17で学んだTF-IDFは強力ですが、1つ大きな弱点がありました。それは「単語の『意味』を理解していない」ということです。
 たとえば「犬」と「子犬」は似た意味ですが、TF-IDFにとっては全く別の単語として扱われます。
@@ -57,6 +63,8 @@ gensimでは、`Word2Vec(sentences, sg=0)` でCBOW、`Word2Vec(sentences, sg=1)`
 - **ECサイトでの関連商品レコメンド**: ユーザーの閲覧・購買履歴を「単語」と見立ててWord2Vecで学習させ、「この商品を閲覧した人は、こういう商品も一緒に買いやすい」という商品の類似性を計算して推薦するシステム。
 - **表記ゆれを吸収する高度な検索エンジン**: 「スマホ」「スマートフォン」「iPhone」など、異なる単語でも空間上で近い位置にあるため、検索システムが意味を理解してユーザーが求める結果を返す機能。
 - **チャットボットでの意図理解（類義語対応）**: ユーザーからの質問が事前に想定したキーワードと完全に一致しなくても、Word Embeddingsによる意味の近さから「ユーザーが何を聞きたいか」を推測し、適切な回答を返すシステム。
+
+<img src="../../assets/units/unit18_word_embeddings_word2vec/images/diagram-workflow.svg" alt="図解：Embedding layer" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

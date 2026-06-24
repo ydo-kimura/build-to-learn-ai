@@ -1,12 +1,18 @@
 # Unit 26: LlamaIndex Basics and Retrieval-Augmented Generation
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit26_llamaindex_basics_rag/images/hero.png" alt="Hero: LlamaIndex Basics & RAG" />
+</p>
+
 > [!IMPORTANT]
 > **Preparing your OpenAI API key**
 > Chapter 4 requires an **OpenAI API key**. For how to obtain a key, billing notes, and secure environment-variable setup with Google Colab secrets, read [Appendix (Learning Environment and API Setup)](../appendix/index.md#🔑-3-openai-api-key-acquisition-and-secure-management-chapter-4) first.
 
 ## 1. Understanding RAG with LlamaIndex
 
-<img src="../../../assets/units/unit26_llamaindex_basics_rag/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit26_llamaindex_basics_rag/images/diagram-concept.svg" alt="Diagram: LlamaIndex flow" class="unit-diagram" />
+
+
 
 In Unit 24 you built **hand-crafted RAG** with APIs and NumPy similarity alone, learning the mathematical foundation. In Unit 25 you learned more abstract, general RAG construction with LangChain.
 
@@ -22,6 +28,8 @@ LangChain is a general “do everything” AI app toolkit; LlamaIndex is **100% 
 | **QueryEngine** | Takes user questions, retrieves relevant Nodes, passes context to LLM, synthesizes answers—the librarian at the desk. |
 
 ---
+
+<img src="../../../assets/units/unit26_llamaindex_basics_rag/images/diagram-workflow.svg" alt="Diagram: vs LangChain" class="unit-diagram" />
 
 ## 2. Implementation Example
 

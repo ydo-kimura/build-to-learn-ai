@@ -1,5 +1,9 @@
 # Unit 28: Context-Aware Chatbot
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit28_context_aware_chatbot/images/hero.png" alt="Hero: Context-Aware Chatbot" />
+</p>
+
 > [!IMPORTANT]
 > **OpenAI API key setup**
 > This unit uses the OpenAI API. See [Appendix (Learning Environment and API Setup)](../appendix/index.md#🔑-3-openai-api-key-acquisition-and-secure-management-chapter-4) for secure key configuration.
@@ -7,7 +11,9 @@
 
 ## 1. Understanding Context-Aware Chatbot
 
-<img src="../../../assets/units/unit28_context_aware_chatbot/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit28_context_aware_chatbot/images/diagram-concept.svg" alt="Diagram: Session memory" class="unit-diagram" />
+
+
 
 ### Why memory matters
 LLMs via API are basically **amnesiac**.
@@ -31,6 +37,8 @@ LangChain can **automatically append conversation history** to prompts.
 - **Personalized AI mentor/coaching**: Remember goals and daily progress—“Last week you struggled with X; how did it go?”
 - **Long-term customer support (CRM chat)**: Reference purchase and inquiry history—“How is the product you bought last time?”
 - **Game/entertainment NPCs**: Remember player actions and dialogue; attitude and lines change on next meeting.
+
+<img src="../../../assets/units/unit28_context_aware_chatbot/images/diagram-workflow.svg" alt="Diagram: Streamlit UI" class="unit-diagram" />
 
 ## 2. Implementation Example
 

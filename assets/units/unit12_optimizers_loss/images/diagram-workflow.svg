@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-label="SGD vs Adam (adaptive LR)">
+  <rect width="720" height="300" rx="12" fill="#f8fafc"/>
+  <text x="130" y="28" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#dc2626" font-weight="700">SGD</text>
+  <text x="540" y="28" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#059669" font-weight="700">Adam (adaptive LR)</text>
+  <rect x="20" y="40" width="320" height="220" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(30, 50)"><line x1="40" y1="100" x2="40" y2="30" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="40" y1="100" x2="360" y2="100" stroke="#94a3b8" stroke-width="1.5"/>
+  <path d="M60,90 L100,70 L140,75 L180,50 L220,55 L260,40 L300,45 L340,30" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6 3"/>
+  <path d="M60,90 C120,75 180,55 240,42 S320,30 340,28" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+<text x="250" y="22" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#22c55e" font-weight="600">Adam (adaptive)</text>
+<text x="250" y="88" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#3b82f6" font-weight="600">SGD (fixed step)</text></g>
+  <rect x="380" y="40" width="320" height="220" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(390, 50)"><line x1="40" y1="100" x2="40" y2="30" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="40" y1="100" x2="360" y2="100" stroke="#94a3b8" stroke-width="1.5"/>
+  <path d="M60,90 L100,70 L140,75 L180,50 L220,55 L260,40 L300,45 L340,30" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6 3"/>
+  <path d="M60,90 C120,75 180,55 240,42 S320,30 340,28" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+<text x="250" y="22" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#22c55e" font-weight="600">Adam (adaptive)</text>
+<text x="250" y="88" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#3b82f6" font-weight="600">SGD (fixed step)</text></g>
+  <text x="350" y="284" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#64748b">Adam adapts step size per parameter</text>
+</svg>

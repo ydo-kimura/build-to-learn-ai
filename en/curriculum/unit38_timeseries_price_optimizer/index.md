@@ -1,8 +1,14 @@
 # Unit 38: Time Series Demand Forecasting & Price Optimization System
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit38_timeseries_price_optimizer/images/hero.png" alt="Hero: Time Series & Pricing" />
+</p>
+
 ## 1. Understanding Leak Avoidance in Time Series and Demand/Price Optimization
 
-<img src="../../../assets/units/unit38_timeseries_price_optimizer/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit38_timeseries_price_optimizer/images/diagram-concept.svg" alt="Diagram: Time series ML" class="unit-diagram" />
+
+
 
 You have learned tabular regression and classification (Units 1–8) and deep learning models. Applying textbook ML directly to **data that changes over time (time series)** causes **catastrophic production failure (prediction accuracy drops to zero)**.
 
@@ -51,6 +57,8 @@ The next step after forecasting is converting predictions into business profit v
 * **Sharing economy surge pricing (Uber, etc.)**: From real-time demand spikes and active drivers, adjust ride prices in seconds to restore supply-demand balance.
 
 ---
+
+<img src="../../../assets/units/unit38_timeseries_price_optimizer/images/diagram-workflow.svg" alt="Diagram: Dynamic pricing" class="unit-diagram" />
 
 ## 2. Implementation Example — Time Series Leak Avoidance and Demand Curve Estimation
 

@@ -1,5 +1,9 @@
 # Unit 23: LLM API Usage and Prompt Engineering
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit23_llm_api/images/hero.png" alt="Hero: LLM API & Prompting" />
+</p>
+
 > [!IMPORTANT]
 > **Preparing your OpenAI API key**
 > Chapter 4 requires an **OpenAI API key**. For how to obtain a key, billing notes, and secure environment-variable setup with Google Colab secrets, read [Appendix (Learning Environment and API Setup)](../appendix/index.md#🔑-3-openai-api-key-acquisition-and-secure-management-chapter-4) first.
@@ -8,7 +12,9 @@
 
 ## 1. Understanding LLM API Usage & Prompting
 
-<img src="../../../assets/units/unit23_llm_api/images/concept.png" width="400" alt="Concept diagram" style="display:none;">
+<img src="../../../assets/units/unit23_llm_api/images/diagram-concept.svg" alt="Diagram: API call flow" class="unit-diagram" />
+
+
 
 ### What is an LLM API?
 You probably open a browser and type when using ChatGPT. But to embed AI in your own apps and systems, a human cannot type every time.
@@ -37,6 +43,8 @@ AI is smart but poor at “reading the room,” so you must specify **role**, **
 - **Internal document summarization and translation**: Automatically summarize and translate overseas reports and long meeting minutes to speed internal sharing.
 
 ---
+
+<img src="../../../assets/units/unit23_llm_api/images/diagram-workflow.svg" alt="Diagram: Prompt patterns" class="unit-diagram" />
 
 ## 2. Three Core Prompt Engineering Techniques
 

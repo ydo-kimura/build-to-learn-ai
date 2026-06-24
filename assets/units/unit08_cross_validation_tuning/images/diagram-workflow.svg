@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" role="img" aria-label="Hyperparameter grid search">
+  <rect width="700" height="320" rx="12" fill="#f8fafc"/>
+  <rect x="24" y="20" width="652" height="52" rx="8" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="350" y="52" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#7c3aed" font-weight="700">Hyperparameter grid search</text>
+  <rect x="24" y="84" width="652" height="212" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(40, 100)"><text x="0" y="12" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#64748b" font-weight="600">max_depth × lr</text>
+<rect x="10" y="24" width="64" height="30" rx="4" fill="rgb(128,158,255)" stroke="#cbd5e1" stroke-width="1"/>
+<text x="42" y="44" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#1e293b" font-weight="600">0.60</text>
+<rect x="80" y="24" width="64" height="30" rx="4" fill="rgb(113,143,255)" stroke="#cbd5e1" stroke-width="1"/>
+<text x="112" y="44" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#1e293b" font-weight="600">0.72</text>
+<rect x="150" y="24" width="64" height="30" rx="4" fill="rgb(102,132,255)" stroke="#cbd5e1" stroke-width="1"/>
+<text x="182" y="44" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#1e293b" font-weight="600">0.81</text>
+<rect x="10" y="60" width="64" height="30" rx="4" fill="rgb(122,152,255)" stroke="#cbd5e1" stroke-width="1"/>
+<text x="42" y="80" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#1e293b" font-weight="600">0.65</text>
+<rect x="80" y="60" width="64" height="30" rx="4" fill="rgb(94,124,255)" stroke="#cbd5e1" stroke-width="1"/>
+<text x="112" y="80" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#1e293b" font-weight="600">0.88</text>
+<rect x="150" y="60" width="64" height="30" rx="4" fill="rgb(105,135,255)" stroke="#cbd5e1" stroke-width="1"/>
+<text x="182" y="80" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#1e293b" font-weight="600">0.79</text>
+<rect x="10" y="96" width="64" height="30" rx="4" fill="rgb(116,146,255)" stroke="#cbd5e1" stroke-width="1"/>
+<text x="42" y="116" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#1e293b" font-weight="600">0.70</text>
+<rect x="80" y="96" width="64" height="30" rx="4" fill="rgb(100,130,255)" stroke="#cbd5e1" stroke-width="1"/>
+<text x="112" y="116" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#1e293b" font-weight="600">0.83</text>
+<rect x="150" y="96" width="64" height="30" rx="4" fill="rgb(90,120,255)" stroke="#cbd5e1" stroke-width="1"/>
+<text x="182" y="116" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#1e293b" font-weight="600">0.91</text>
+<rect x="80" y="140" width="120" height="28" rx="6" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+<text x="140" y="158" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#15803d" font-weight="700">Best: 0.91</text></g>
+  <text x="350" y="296" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#64748b">Pick best combo by CV score</text>
+</svg>

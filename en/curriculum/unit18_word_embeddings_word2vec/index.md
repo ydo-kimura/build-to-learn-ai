@@ -1,8 +1,14 @@
 # Unit 18: Word Embeddings (Word2Vec)
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit18_word_embeddings_word2vec/images/hero.png" alt="Hero: Word Embeddings (Word2Vec)" />
+</p>
+
 ## 1. Understanding Word Embeddings
 
-<img src="../../../assets/units/unit18_word_embeddings_word2vec/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit18_word_embeddings_word2vec/images/diagram-concept.svg" alt="Diagram: Word2Vec idea" class="unit-diagram" />
+
+
 
 TF-IDF from Unit 17 is powerful, but it has a major weakness: **it does not understand word meaning**.
 For example, "dog" and "puppy" are similar in meaning, but TF-IDF treats them as completely different tokens.
@@ -57,6 +63,8 @@ In gensim, `Word2Vec(sentences, sg=0)` is CBOW and `sg=1` is Skip-gram. The impl
 - **E-commerce related-product recommendations**: Treat user views/purchases like "words" and learn product similarity with Word2Vec.
 - **Search that handles spelling variants**: "smartphone," "smart phone," and "iPhone" sit near each other in embedding space for meaning-aware search.
 - **Chatbot intent understanding (synonyms)**: Match user questions to intents even when exact keywords differ, using embedding similarity.
+
+<img src="../../../assets/units/unit18_word_embeddings_word2vec/images/diagram-workflow.svg" alt="Diagram: Embedding layer" class="unit-diagram" />
 
 ## 2. Implementation Example
 

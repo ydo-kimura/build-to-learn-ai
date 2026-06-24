@@ -1,12 +1,18 @@
 # Unit 26: LlamaIndex の基礎と検索拡張生成
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit26_llamaindex_basics_rag/images/hero.png" alt="ヒーロー画像：LlamaIndex Basics & RAG" />
+</p>
+
 > [!IMPORTANT]
 > **OpenAI API キーの準備について**
 > 第4章の学習を進めるには **OpenAI の API キー** が必要です。APIキーの取得方法、料金に関する注意点、および Google Colab のシークレット機能を使った安全な環境変数設定については、[Appendix (学習環境とキーの準備)](../appendix/index.md#🔑-3-openai-apiキーの取得と安全な管理第4章) を最初にご覧ください。
 
 ## 1. LlamaIndex による RAG 構築の理解
 
-<img src="../../assets/units/unit26_llamaindex_basics_rag/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit26_llamaindex_basics_rag/images/diagram-concept.svg" alt="図解：LlamaIndex flow" class="unit-diagram" />
+
+
 
 これまでUnit 24において、外部ライブラリを一切使わずに、APIとNumPyの類似度計算だけで「手組みRAG」を構築し、RAGシステムの根底にある数理的仕組みを学びました。さらにUnit 25においては、LangChainを用いたより抽象的で汎用的なRAGの構築手法を習得しました。
 
@@ -24,6 +30,8 @@ LangChainが「何でもできる汎用的なAIアプリ開発ツール」であ
 | **QueryEngine** | ユーザーの質問を受け取り、インデックスから関連する Node を検索（Retrieve）し、LLMにコンテキストとして渡して最終回答を生成（Synthesize）する一連のパイプライン。案内カウンターの司書さん。 |
 
 ---
+
+<img src="../../assets/units/unit26_llamaindex_basics_rag/images/diagram-workflow.svg" alt="図解：vs LangChain" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

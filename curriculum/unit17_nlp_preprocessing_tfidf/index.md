@@ -1,10 +1,16 @@
 # Unit 17: 自然言語前処理と TF-IDF
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit17_nlp_preprocessing_tfidf/images/hero.png" alt="ヒーロー画像：NLP Preprocessing & TF-IDF" />
+</p>
+
 
 
 ## 1. NLPの前処理とTF-IDF の理解
 
-<img src="../../assets/units/unit17_nlp_preprocessing_tfidf/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit17_nlp_preprocessing_tfidf/images/diagram-concept.svg" alt="図解：Text preprocessing" class="unit-diagram" />
+
+
 
 人間の言葉をコンピュータに理解させるための第一歩は、**「テキストデータを整理整頓して、数字のリスト（ベクトル）に変換すること」**です。
 
@@ -89,6 +95,8 @@ print(tokens)  # ['私', 'は', '今日', '図書館', 'に', '行き', 'まし'
 - **カスタマーサポートの自動振り分け**: 顧客からの問い合わせメールの内容（テキスト）から特徴的なキーワードを抽出し、担当部署（営業、技術サポート、返品対応など）へ自動的にルーティングするシステム。
 - **ニュースアプリの記事推薦**: ユーザーが過去に読んだ記事のTF-IDF特徴量と、新着記事の特徴量を比較し、興味を持ちそうなニュースを自動でレコメンドする機能。
 - **社内文書の検索システム**: 大量の社内マニュアルや契約書の中から、社員が入力した検索キーワードに対して、最も関連性の高いドキュメントをスコアリングして上位表示するシステム。
+
+<img src="../../assets/units/unit17_nlp_preprocessing_tfidf/images/diagram-workflow.svg" alt="図解：TF-IDF" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

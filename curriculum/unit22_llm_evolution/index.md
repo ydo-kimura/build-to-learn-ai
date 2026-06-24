@@ -1,5 +1,9 @@
 # Unit 22: LLMからAIエージェントへの進化
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit22_llm_evolution/images/hero.png" alt="ヒーロー画像：LLM to AI Agent Evolution" />
+</p>
+
 > [!IMPORTANT]
 > **OpenAI API キーの準備について**
 > 第4章の学習を進めるには **OpenAI の API キー** が必要です。APIキーの取得方法、料金に関する注意点、および Google Colab のシークレット機能を使った安全な環境変数設定については、[Appendix (学習環境とキーの準備)](../appendix/index.md#🔑-3-openai-apiキーの取得と安全な管理第4章) を最初にご覧ください。
@@ -7,6 +11,9 @@
 ---
 
 ## 1. LLMからAIエージェントへの進化の理解
+
+<img src="../../assets/units/unit22_llm_evolution/images/diagram-concept.svg" alt="図解：Evolution path" class="unit-diagram" />
+
 
 第4章（LLM応用とAIエージェント）では、みなさんがこれまでに学んできたディープラーニングや自然言語処理の基礎をベースに、**「LLMを部品として使った、高度で自律的なアプリケーション開発」**を学びます。
 
@@ -93,6 +100,8 @@ graph TD
 ワクワクしてきましたね？ それでは、LLMアプリ開発の第一歩を踏み出しましょう！
 
 ---
+
+<img src="../../assets/units/unit22_llm_evolution/images/diagram-workflow.svg" alt="図解：Agent capabilities" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

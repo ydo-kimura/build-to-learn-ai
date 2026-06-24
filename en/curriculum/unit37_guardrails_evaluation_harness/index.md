@@ -1,8 +1,14 @@
 # Unit 37: Enterprise AI Automated Evaluation & Guardrails Harness
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit37_guardrails_evaluation_harness/images/hero.png" alt="Hero: Guardrails & Evaluation" />
+</p>
+
 ## 1. Understanding LLM-as-a-Judge and Safety Guardrails
 
-<img src="../../../assets/units/unit37_guardrails_evaluation_harness/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit37_guardrails_evaluation_harness/images/diagram-concept.svg" alt="Diagram: Evaluation harness" class="unit-diagram" />
+
+
 
 You have learned many LLM application systems and AI agent construction methods. Unit 34 covered LLM-as-a-Judge fundamentals; this unit extends that into an **enterprise Guardrails architecture** that defends both input and output.
 
@@ -44,6 +50,8 @@ Instead, **feed the main LLM's output to a more capable, objective evaluator LLM
 * **B2B SaaS confidential information filter**: When employees use generative AI, dynamically scan and mask passwords, API keys, credit cards, and other PII at edge and proxy.
 
 ---
+
+<img src="../../../assets/units/unit37_guardrails_evaluation_harness/images/diagram-workflow.svg" alt="Diagram: Enterprise safety" class="unit-diagram" />
 
 ## 2. Implementation Example — Basic Dual Harness System
 

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-label="K-Means vs DBSCAN">
+  <rect width="720" height="300" rx="12" fill="#f8fafc"/>
+  <text x="130" y="28" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#dc2626" font-weight="700">K-Means</text>
+  <text x="540" y="28" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#059669" font-weight="700">DBSCAN</text>
+  <rect x="20" y="40" width="320" height="220" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(30, 50)"><circle cx="60" cy="100" r="10" fill="#f97316"/>
+<circle cx="80" cy="90" r="10" fill="#f97316"/>
+<circle cx="100" cy="110" r="10" fill="#f97316"/>
+<circle cx="300" cy="60" r="10" fill="#8b5cf6"/>
+<circle cx="320" cy="70" r="10" fill="#8b5cf6"/>
+<circle cx="310" cy="50" r="10" fill="#8b5cf6"/>
+<circle cx="80" cy="100" r="14" fill="none" stroke="#f97316" stroke-width="2"/>
+<circle cx="310" cy="60" r="14" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+<text x="80" y="130" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#c2410c">Centroid A</text>
+<text x="310" y="90" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#6d28d9">Centroid B</text></g>
+  <rect x="380" y="40" width="320" height="220" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(390, 50)"><circle cx="80" cy="70" r="8" fill="#3b82f6"/>
+<circle cx="95" cy="80" r="8" fill="#3b82f6"/>
+<circle cx="70" cy="85" r="8" fill="#3b82f6"/>
+<circle cx="280" cy="60" r="8" fill="#8b5cf6"/>
+<circle cx="300" cy="75" r="8" fill="#8b5cf6"/>
+<circle cx="290" cy="90" r="8" fill="#8b5cf6"/>
+<circle cx="200" cy="110" r="6" fill="#94a3b8"/>
+<circle cx="220" cy="115" r="6" fill="#94a3b8"/>
+<rect x="50" y="40" width="80" height="60" rx="20" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+<rect x="260" y="40" width="70" height="65" rx="20" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
+<text x="200" y="130" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#64748b">noise</text></g>
+  <text x="350" y="284" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#64748b">DBSCAN finds arbitrary shapes + labels noise</text>
+</svg>

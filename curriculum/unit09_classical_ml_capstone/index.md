@@ -1,8 +1,14 @@
 # Unit 9: 機械学習総合演習 (Capstone)
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit09_classical_ml_capstone/images/hero.png" alt="ヒーロー画像：Classical ML Capstone" />
+</p>
+
 ## 1. エンドツーエンド機械学習パイプラインの理解
 
-<img src="../../assets/units/unit09_classical_ml_capstone/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit09_classical_ml_capstone/images/diagram-concept.svg" alt="図解：End-to-end pipeline" class="unit-diagram" />
+
+
 
 これまでUnit 1からUnit 8にかけて、様々な機械学習のアルゴリズムや評価方法、チューニングの手法を個別に学んできました。しかし、実際のビジネス現場におけるAIエンジニアの仕事は、アルゴリズムを呼び出すだけではありません。
 
@@ -13,6 +19,8 @@
 * **エンドツーエンドのパイプライン（本ユニット）**: 仕込みから盛り付け、お客様への提供、速度向上のための評価プロセス（交差検証）までを一気通貫で行う「ラーメン屋のオペレーション全体」を設計すること。個別の具材がどれだけ美味しくても、全体の調和と評価プロセスがなければ、ビジネスとして成功しません。
 
 ---
+
+<img src="../../assets/units/unit09_classical_ml_capstone/images/diagram-workflow.svg" alt="図解：Deliverables" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

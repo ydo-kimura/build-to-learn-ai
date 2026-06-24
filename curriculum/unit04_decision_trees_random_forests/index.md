@@ -1,8 +1,14 @@
 # Unit 4: 決定木とランダムフォレスト
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit04_decision_trees_random_forests/images/hero.png" alt="ヒーロー画像：Decision Trees & Random Forests" />
+</p>
+
 ## 1. 決定木とランダムフォレストの理解
 
-<img src="../../assets/units/unit04_decision_trees_random_forests/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit04_decision_trees_random_forests/images/diagram-concept.svg" alt="図解：Decision Tree splits" class="unit-diagram" />
+
+
 
 これまで数式や境界線を使ってデータを分けてきましたが、今回はもっと人間の思考回路に近い、非常に分かりやすいアルゴリズム「決定木（Decision Tree）」と、その進化系である「ランダムフォレスト（Random Forest）」について学びます。
 
@@ -51,6 +57,8 @@
 - **銀行の不正検知（フロードディテクション）**：クレジットカードの利用場所、金額、時間帯などの多数の特徴をランダムフォレストで解析し、普段の行動パターンから外れた疑わしい取引を瞬時にブロックする。
 
 ---
+
+<img src="../../assets/units/unit04_decision_trees_random_forests/images/diagram-workflow.svg" alt="図解：Random Forest vote" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

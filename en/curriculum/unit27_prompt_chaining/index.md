@@ -1,5 +1,9 @@
 # Unit 27: Stepwise Reasoning Through Prompt Chaining
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit27_prompt_chaining/images/hero.png" alt="Hero: Prompt Chaining" />
+</p>
+
 > [!IMPORTANT]
 > **OpenAI API key setup**
 > This unit uses the OpenAI API. See [Appendix (Learning Environment and API Setup)](../appendix/index.md#🔑-3-openai-api-key-acquisition-and-secure-management-chapter-4) for secure key configuration.
@@ -7,7 +11,9 @@
 
 ## 1. Understanding Prompt Chaining
 
-<img src="../../../assets/units/unit27_prompt_chaining/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit27_prompt_chaining/images/diagram-concept.svg" alt="Diagram: Chain of prompts" class="unit-diagram" />
+
+
 
 ### What is prompt chaining?
 When asking the AI to do complex work, one big question often confuses it and fails.
@@ -40,6 +46,8 @@ LangChain’s `|` is not just part wiring—it **treats whole chains as input so
 - **Marketing content pipeline**: Target + appeal point → ① catchphrase → ② blog outline → ③ section drafts → ④ SNS promo copy.
 - **Hierarchical long-report summarization**: ① chapter summaries → ② full summary → ③ three-bullet executive summary.
 - **Customer feedback deep analysis**: ① sentiment → ② categorize negatives → ③ improvement plans per category.
+
+<img src="../../../assets/units/unit27_prompt_chaining/images/diagram-workflow.svg" alt="Diagram: Why chain" class="unit-diagram" />
 
 ## 2. Implementation Example
 

@@ -1,8 +1,14 @@
 # Unit 39: Autonomous Multi-Agent Customer Support
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit39_multiagent_customer_support/images/hero.png" alt="Hero: Multi-Agent Customer Support" />
+</p>
+
 ## 1. Single-Agent Limits and Multi-Agent Coordination
 
-<img src="../../../assets/units/unit39_multiagent_customer_support/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit39_multiagent_customer_support/images/diagram-concept.svg" alt="Diagram: Multi-agent flow" class="unit-diagram" />
+
+
 
 In Unit 31 you learned the powerful autonomous AI agent (`smolagents` CodeAgent) that executes Python code on its own. Single agents are very capable, but in complex enterprise systems they quickly hit **capacity overload** and break down.
 
@@ -45,6 +51,8 @@ Like company departments, create multiple **small child agents (Managed Agents)*
 * **Real estate/insurance quote automation**: Identity verification, risk review, and plan proposal agents collaborate in the background to generate quotes in seconds.
 
 ---
+
+<img src="../../../assets/units/unit39_multiagent_customer_support/images/diagram-workflow.svg" alt="Diagram: Coordination" class="unit-diagram" />
 
 ## 2. Implementation Example — Multi-Agent Coordination with smolagents
 

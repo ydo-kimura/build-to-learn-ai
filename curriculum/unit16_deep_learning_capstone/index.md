@@ -1,12 +1,18 @@
 # Unit 16: ディープラーニング総合演習 (Capstone)
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit16_deep_learning_capstone/images/hero.png" alt="ヒーロー画像：Deep Learning Capstone" />
+</p>
+
 > [!TIP]
 > **Google Colab で学習を進める方へ**
 > ディープラーニング編（Unit 10〜16）では、計算を高速化するために **GPU の有効化** をおすすめします。設定手順は [Appendix (学習環境とキーの準備)](../appendix/index.md#🚀-1-google-colaboratory-での学習の進め方) を最初にご覧ください。
 
 ## 1. 総合ディープラーニングモデル構築の理解
 
-<img src="../../assets/units/unit16_deep_learning_capstone/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit16_deep_learning_capstone/images/diagram-concept.svg" alt="図解：Image pipeline" class="unit-diagram" />
+
+
 
 第2章（Unit 10〜15）において、ディープラーニングの根底にあるニューラルネットワークの仕組みから、PyTorchのテンソル操作、最適化関数、正則化（Dropout・BatchNorm）、および画像認識を劇的に進化させたCNNや「転移学習」までを学習してきました。
 
@@ -22,6 +28,8 @@
 * **学習曲線のプロット**: 毎日料理の味見（評価）をして、スープの濃度（Loss）とお客様の笑顔（Accuracy）が綺麗に安定して推移しているかをチャートに記録し、一番美味しいポイント（Early Stopping）で見極めること。
 
 ---
+
+<img src="../../assets/units/unit16_deep_learning_capstone/images/diagram-workflow.svg" alt="図解：Evaluation" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

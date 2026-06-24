@@ -1,12 +1,18 @@
 # Unit 14: Convolutional Neural Network Basics
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit14_cnn_basics/images/hero.png" alt="Hero: CNN Basics" />
+</p>
+
 > [!TIP]
 > **For learners using Google Colab**
 > For the deep learning section (Units 10–16), we recommend **enabling a GPU** to speed up computation. See [Appendix (Learning Environment and API Setup)](../appendix/index.md#🚀-1-learning-with-google-colaboratory) for setup steps first.
 
 ## 1. Understanding CNN Basics
 
-<img src="../../../assets/units/unit14_cnn_basics/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit14_cnn_basics/images/diagram-concept.svg" alt="Diagram: CNN block" class="unit-diagram" />
+
+
 
 The neural networks (MLPs) you have learned so far are poor at handling images. Stretching an image into "one long row of data" destroys important spatial structure—vertical and horizontal relationships such as shape and edges.
 
@@ -29,6 +35,8 @@ A CNN repeats **"convolution (find features) → pooling (summarize)"** several 
 - **Manufacturing defect detection**: Cameras on the production line capture scratches and stains and automatically reject defective products.
 - **Autonomous driving object recognition**: Instantly recognize pedestrians, other vehicles, traffic lights, and road signs from onboard camera feeds for safe control.
 - **Medical cancer cell detection**: Capture subtle tumor shapes (roundness and contours) in CT or MRI scans that human eyes might miss and support physician diagnosis.
+
+<img src="../../../assets/units/unit14_cnn_basics/images/diagram-workflow.svg" alt="Diagram: Why CNN for images" class="unit-diagram" />
 
 ## 2. Implementation Example
 

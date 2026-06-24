@@ -1,8 +1,14 @@
 # Unit 21: 自然言語処理総合演習 (Capstone)
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit21_nlp_capstone/images/hero.png" alt="ヒーロー画像：NLP Capstone" />
+</p>
+
 ## 1. 総合自然言語処理（Transformer 構築）の理解
 
-<img src="../../assets/units/unit21_nlp_capstone/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit21_nlp_capstone/images/diagram-concept.svg" alt="図解：NLP project flow" class="unit-diagram" />
+
+
 
 第3章（Unit 17〜20）において、テキストの分かち書きや TF-IDF に始まる自然言語処理の基礎から、単語の持つ意味を多次元ベクトル化する Word2Vec、系列データに文脈を適用させる RNN / LSTM、そして現在のLLMのすべての基盤となっている **Attention（注意機構）と Transformer アーキテクチャ** を学びました。
 
@@ -14,6 +20,8 @@
 * **デコーダー（翻訳を喋る側）**: メモを読みながら、これまで自分が喋った言葉の履歴と照らし合わせて、「次に最も確率が高い日本語の単語」を順番に1語ずつ（Autoregressive）紡ぎ出していくこと。
 
 ---
+
+<img src="../../assets/units/unit21_nlp_capstone/images/diagram-workflow.svg" alt="図解：Stack options" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

@@ -1,12 +1,18 @@
 # Unit 12: Optimizers & Loss Functions
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit12_optimizers_loss/images/hero.png" alt="Hero: Optimizers & Loss" />
+</p>
+
 > [!TIP]
 > **For learners using Google Colab**
 > For the deep learning section (Units 10–16), we recommend **enabling a GPU** to speed up computation. See [Appendix (Learning Environment and API Setup)](../appendix/index.md#🚀-1-learning-with-google-colaboratory) for setup steps first.
 
 ## 1. Understanding Optimizers & Loss Functions
 
-<img src="../../../assets/units/unit12_optimizers_loss/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit12_optimizers_loss/images/diagram-concept.svg" alt="Diagram: Common losses" class="unit-diagram" />
+
+
 
 In AI training, **loss functions** and **optimizers** work together like a car's **navigation system** and **engine**. When these two cooperate well, the AI can reach its goal (the correct answer).
 
@@ -31,6 +37,8 @@ In this unit, you will use code to see how switching these "vehicles" changes tr
 - **Recommendation engine optimization**: Train quickly with optimizers like Adam to minimize whether users clicked a product (Cross Entropy Loss) or the gap in rating scores (MSE), maximizing revenue.
 - **Ad click-through rate (CTR) prediction**: In models that predict click probability, choose the best optimizer for large daily log volumes and improve prediction accuracy quickly.
 - **Dynamic pricing**: When adjusting airline tickets or hotel rates in real time, compute prices while continuously correcting and optimizing the gap between revenue and demand (loss).
+
+<img src="../../../assets/units/unit12_optimizers_loss/images/diagram-workflow.svg" alt="Diagram: Optimizers" class="unit-diagram" />
 
 ## 2. Implementation Example
 

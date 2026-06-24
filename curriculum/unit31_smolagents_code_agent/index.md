@@ -1,12 +1,18 @@
 # Unit 31: smolagents と自律型 AI エージェント
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit31_smolagents_code_agent/images/hero.png" alt="ヒーロー画像：smolagents Code Agent" />
+</p>
+
 > [!IMPORTANT]
 > **OpenAI API キーの準備について**
 > 第4章の学習を進めるには **OpenAI の API キー** が必要です。APIキーの取得方法、料金に関する注意点、および Google Colab のシークレット機能を使った安全な環境変数設定については、[Appendix (学習環境とキーの準備)](../appendix/index.md#🔑-3-openai-apiキーの取得と安全な管理第4章) を最初にご覧ください。
 
 ## 1. AIエージェントと smolagents の理解
 
-<img src="../../assets/units/unit31_smolagents_code_agent/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit31_smolagents_code_agent/images/diagram-concept.svg" alt="図解：Code agent loop" class="unit-diagram" />
+
+
 
 これまでUnit 27〜28において、Chainingやチャットボットの実装、さらにUnit 29〜30において、AIエージェントの基本原理（スクラッチReAct）や共通標準規格である MCP（Model Context Protocol）を学習してきました。
 
@@ -33,6 +39,8 @@
 | **コードの軽量さ** | 肥大化しがち（LangChain等では設定が複雑）。 | **極めて軽量**（わずか数行で強固なエージェントが動く）。 |
 
 ---
+
+<img src="../../assets/units/unit31_smolagents_code_agent/images/diagram-workflow.svg" alt="図解：smolagents" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

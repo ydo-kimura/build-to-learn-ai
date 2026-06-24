@@ -1,8 +1,14 @@
 # Unit 7: Dimensionality Reduction and PCA
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit07_dimensionality_reduction/images/hero.png" alt="Hero: Dimensionality Reduction" />
+</p>
+
 ## 1. Understanding Dimensionality Reduction and PCA
 
-<img src="../../../assets/units/unit07_dimensionality_reduction/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit07_dimensionality_reduction/images/diagram-concept.svg" alt="Diagram: PCA idea" class="unit-diagram" />
+
+
 
 More features is not always better. Too many dimensions slow computation, add noise, and make visualization impossible — the **curse of dimensionality**.
 
@@ -35,6 +41,8 @@ It finds directions where **data varies the most (maximum variance)**.
 - **Genomics visualization**: Project thousands of gene expression values to 2D/3D to compare healthy vs. diseased patterns.
 
 ---
+
+<img src="../../../assets/units/unit07_dimensionality_reduction/images/diagram-workflow.svg" alt="Diagram: Use cases" class="unit-diagram" />
 
 ## 2. Implementation Example
 
