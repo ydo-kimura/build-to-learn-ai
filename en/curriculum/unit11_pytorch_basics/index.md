@@ -1,5 +1,9 @@
 # Unit 11: PyTorch Basics & Simple MLP
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit11_pytorch_basics/images/hero.png" alt="Hero: PyTorch Basics" />
+</p>
+
 > [!TIP]
 > **For learners using Google Colab**
 > To speed up PyTorch computations, we recommend enabling **GPU (T4 GPU)** in the runtime. For detailed setup steps, see [Appendix (Learning Environment and API Setup)](../appendix/index.md#🚀-1-learning-with-google-colaboratory).
@@ -7,7 +11,9 @@
 
 ## 1. Understanding PyTorch Basics & Simple MLP
 
-<img src="../../../assets/units/unit11_pytorch_basics/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit11_pytorch_basics/images/diagram-concept.svg" alt="Diagram: Tensor shapes" class="unit-diagram" />
+
+
 
 In Unit 10, you implemented everything from scratch with NumPy to understand how neural networks work. But writing those complex formulas (backpropagation, and so on) every time is tedious, right?
 
@@ -30,6 +36,8 @@ With PyTorch, you can leave tedious computation to the framework and focus on **
 - **Demand forecasting systems**: Combine multi-faceted data such as past sales, weather, day of week, and campaign flags to predict next-day product sales.
 - **Automated customer support routing**: Analyze customer inquiry content (text converted to numbers) and automatically route it to the right department (technical, billing, returns, etc.).
 - **Real estate price estimation**: Input conditions such as floor area, building age, and distance from the station to predict rent or sale price with high accuracy.
+
+<img src="../../../assets/units/unit11_pytorch_basics/images/diagram-workflow.svg" alt="Diagram: Training step" class="unit-diagram" />
 
 ## 2. Implementation Example
 

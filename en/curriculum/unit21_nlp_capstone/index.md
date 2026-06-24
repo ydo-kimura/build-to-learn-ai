@@ -1,8 +1,14 @@
 # Unit 21: NLP Capstone (Comprehensive Exercise)
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit21_nlp_capstone/images/hero.png" alt="Hero: NLP Capstone" />
+</p>
+
 ## 1. Understanding Comprehensive NLP (Building a Transformer)
 
-<img src="../../../assets/units/unit21_nlp_capstone/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit21_nlp_capstone/images/diagram-concept.svg" alt="Diagram: NLP project flow" class="unit-diagram" />
+
+
 
 In Chapter 3 (Units 17–20), you learned NLP fundamentals starting with tokenization and TF-IDF, then Word2Vec for multi-dimensional word vectors, RNN/LSTM for applying context to sequential data, and finally **Attention and the Transformer architecture**—the foundation of all modern LLMs.
 
@@ -14,6 +20,8 @@ In this capstone, you bring those concepts together and implement a translation 
 * **Decoder (the translator who speaks)**: Read the note and, comparing it with what it has already said, generate the next most probable Japanese word one at a time (autoregressive).
 
 ---
+
+<img src="../../../assets/units/unit21_nlp_capstone/images/diagram-workflow.svg" alt="Diagram: Stack options" class="unit-diagram" />
 
 ## 2. Implementation Example
 

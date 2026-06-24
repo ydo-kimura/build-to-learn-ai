@@ -1,5 +1,9 @@
 # Unit 23: LLM API の利用とプロンプトエンジニアリング
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit23_llm_api/images/hero.png" alt="ヒーロー画像：LLM API & Prompting" />
+</p>
+
 > [!IMPORTANT]
 > **OpenAI API キーの準備について**
 > 第4章の学習を進めるには **OpenAI の API キー** が必要です。APIキーの取得方法、料金に関する注意点、および Google Colab のシークレット機能を使った安全な環境変数設定については、[Appendix (学習環境とキーの準備)](../appendix/index.md#🔑-3-openai-apiキーの取得と安全な管理第4章) を最初にご覧ください。
@@ -8,7 +12,9 @@
 
 ## 1. LLM API Usage & Prompting の理解
 
-<img src="../../assets/units/unit23_llm_api/images/concept.png" width="400" alt="コンセプト図解" style="display:none;">
+<img src="../../assets/units/unit23_llm_api/images/diagram-concept.svg" alt="図解：API call flow" class="unit-diagram" />
+
+
 
 ### LLM APIとは？
 みなさんは普段、ChatGPTを使う時にブラウザを開いて文字を打ち込んでいると思います。しかし、自作のアプリやシステムにAIを組み込む場合、毎回人間が手で打ち込むわけにはいきません。
@@ -37,6 +43,8 @@ AIは賢いですが、「空気を読む」ことは苦手です。そのため
 - **社内文書の要約と翻訳**：海外拠点のレポートや長大な会議議事録をシステム上で自動的に要約・多言語翻訳し、社内の情報共有スピードを向上させる。
 
 ---
+
+<img src="../../assets/units/unit23_llm_api/images/diagram-workflow.svg" alt="図解：Prompt patterns" class="unit-diagram" />
 
 ## 2. プロンプトエンジニアリングの3大基礎手法 (Core Prompting Techniques)
 

@@ -1,12 +1,18 @@
 # Unit 31: smolagents and Autonomous AI Agents
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit31_smolagents_code_agent/images/hero.png" alt="Hero: smolagents Code Agent" />
+</p>
+
 > [!IMPORTANT]
 > **Preparing Your OpenAI API Key**
 > An **OpenAI API key** is required to continue Chapter 4. For how to obtain a key, billing considerations, and secure environment variable setup using Google Colab secrets, see [Appendix (Learning Environment and Key Setup)](../appendix/index.md#🔑-3-openai-api-key-acquisition-and-secure-management-chapter-4) first.
 
 ## 1. Understanding AI Agents and smolagents
 
-<img src="../../../assets/units/unit31_smolagents_code_agent/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit31_smolagents_code_agent/images/diagram-concept.svg" alt="Diagram: Code agent loop" class="unit-diagram" />
+
+
 
 In Units 27–28, you learned chaining and chatbot implementation. In Units 29–30, you studied the fundamentals of AI agents (scratch ReAct) and MCP (Model Context Protocol), a common open standard.
 
@@ -34,6 +40,8 @@ Instead of traditional text-based tool calling, `smolagents` introduces a design
 | **Code footprint** | Tends to grow (LangChain and others have complex setup). | **Extremely lightweight** (a robust agent runs in just a few lines). |
 
 ---
+
+<img src="../../../assets/units/unit31_smolagents_code_agent/images/diagram-workflow.svg" alt="Diagram: smolagents" class="unit-diagram" />
 
 ## 2. Implementation Example
 

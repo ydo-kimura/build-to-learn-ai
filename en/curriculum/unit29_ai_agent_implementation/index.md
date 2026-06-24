@@ -1,10 +1,17 @@
 # Unit 29: AI Agent Fundamentals and Scratch ReAct Implementation
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit29_ai_agent_implementation/images/hero.png" alt="Hero: AI Agent (ReAct)" />
+</p>
+
 > [!IMPORTANT]
 > **Preparing your OpenAI API key**
 > Chapter 4 requires an **OpenAI API key**. For how to obtain a key, billing notes, and secure environment-variable setup with Google Colab secrets, read [Appendix (Learning Environment and API Setup)](../appendix/index.md#🔑-3-openai-api-key-acquisition-and-secure-management-chapter-4) first.
 
 ## 1. Understanding AI Agents and Hand-Built ReAct Loops
+
+<img src="../../../assets/units/unit29_ai_agent_implementation/images/diagram-concept.svg" alt="Diagram: ReAct loop" class="unit-diagram" />
+
 
 As LLMs evolve, systems that **autonomously think to reach goals, choose and run external tools, observe results, and decide next actions**—**AI Agents**—are spreading fast.
 
@@ -40,6 +47,8 @@ The LLM does not execute code—it outputs **JSON instructions**; the host progr
 * **IT monitoring and recovery**: On server alert, agent uses log tool, then restart or patch tool via approval hooks.
 
 ---
+
+<img src="../../../assets/units/unit29_ai_agent_implementation/images/diagram-workflow.svg" alt="Diagram: Scratch agent" class="unit-diagram" />
 
 ## 2. Implementation Example
 

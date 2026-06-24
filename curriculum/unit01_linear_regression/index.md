@@ -1,15 +1,18 @@
 # Unit 1: 線形回帰と正則化回帰
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit01_linear_regression/images/hero.png" alt="ヒーロー画像：部屋の広さから家賃を予測する線形回帰" />
+</p>
 
 ## 1. 線形回帰と正則化の理解
-
-<img src="../../assets/units/unit01_linear_regression/images/concept.png" width="400" alt="コンセプト図解">
 
 ### 線形回帰とは？ 〜「家賃の予測」で考える〜
 線形回帰を日常に例えるなら、**「過去のデータから、1つの真っ直ぐな定規を使って未来を予測する」**ようなものです。
 
 例えば、「部屋の広さ（平方メートル）」から「家賃（万円）」を予測したいとします。
 データをグラフにプロットしてみると、だいたい広くなればなるほど家賃が高くなる傾向が見えます。このデータの中央を貫くように「ピッタリ合う1本の直線を引く」のが線形回帰です。
+
+<img src="../../assets/units/unit01_linear_regression/images/diagram-linear-regression.svg" alt="散布図と最適な回帰直線：部屋の広さと家賃" class="unit-diagram" />
 
 | 部屋の広さ（原因：特徴量） | 家賃（結果：目的変数） |
 | :--- | :--- |
@@ -27,6 +30,8 @@
 
 例えるなら、**「過去問を丸暗記しすぎて、本番の応用問題が全く解けない受験生」**のような状態です。
 
+<img src="../../assets/units/unit01_linear_regression/images/diagram-regularization.svg" alt="過学習の波打つ曲線 vs 正則化されたシンプルな直線" class="unit-diagram" />
+
 これを防ぐための「ブレーキ」が**正則化**です。正則化には主に2つの種類があります：
 1. **Ridge（リッジ）回帰**：全体的に係数を小さく抑え、「極端な思い込み」を防ぐ。
 2. **Lasso（ラッソ）回帰**：重要でない要因の係数を「完全にゼロ」にして無視する。断捨離が得意。
@@ -42,6 +47,8 @@
 ## 2. 実装例 (Implementation Example)
 
 ここでは、Pythonと機械学習ライブラリ`scikit-learn`を使って、住宅価格を予測する線形回帰と Ridge 回帰を実装してみましょう。
+
+<img src="../../assets/units/unit01_linear_regression/images/diagram-train-test-split.svg" alt="データ分割→学習→予測・評価のワークフロー" class="unit-diagram" />
 
 まずは必要なライブラリを読み込み、データを準備します。
 

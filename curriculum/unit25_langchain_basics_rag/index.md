@@ -1,5 +1,9 @@
 # Unit 25: LangChainの基礎とRAG
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit25_langchain_basics_rag/images/hero.png" alt="ヒーロー画像：LangChain Basics & RAG" />
+</p>
+
 > [!IMPORTANT]
 > **前提知識とライブラリのインストール**
 > このユニットを進めるには、`langchain` および `langchain-openai` ライブラリが必要です。
@@ -11,6 +15,9 @@
 ---
 
 ## 1. LangChainの基礎とRAG の理解
+
+<img src="../../assets/units/unit25_langchain_basics_rag/images/diagram-concept.svg" alt="図解：LangChain RAG" class="unit-diagram" />
+
 
 前回の Unit 24 では、APIを直接叩き、自分でドキュメントの分割、ベクトル化、コサイン類似度の計算などを行って **「RAGをスクラッチで手組み」** しました。手組みすることで、RAGの裏側で何が起きているか（検索と生成の組み合わせ）が深く理解できたはずです。
 
@@ -55,6 +62,8 @@ chain = prompt | model | output_parser
 - **データ分析パイプライン**：CSVデータやSQLの検索結果をプロンプトテンプレートに流し込み、LCELチェーンを使って自動で要因分析とグラフ描画用のJSONデータを生成するシステム。
 
 ---
+
+<img src="../../assets/units/unit25_langchain_basics_rag/images/diagram-workflow.svg" alt="図解：Abstractions" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

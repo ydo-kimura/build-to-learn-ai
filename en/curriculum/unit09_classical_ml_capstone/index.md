@@ -1,8 +1,14 @@
 # Unit 9: Classical ML Capstone
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit09_classical_ml_capstone/images/hero.png" alt="Hero: Classical ML Capstone" />
+</p>
+
 ## 1. Understanding End-to-End ML Pipelines
 
-<img src="../../../assets/units/unit09_classical_ml_capstone/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit09_classical_ml_capstone/images/diagram-concept.svg" alt="Diagram: End-to-end pipeline" class="unit-diagram" />
+
+
 
 Units 1–8 covered individual algorithms, metrics, and tuning. In real projects, an AI engineer's job is not just calling an algorithm — you must build a solid pipeline:
 
@@ -13,6 +19,8 @@ Units 1–8 covered individual algorithms, metrics, and tuning. In real projects
 * **End-to-end pipeline (this unit)**: Design the **whole shop operation** — prep, plating, service, and evaluation (cross-validation) as one system. Great ingredients alone don't make a successful business without harmony and process.
 
 ---
+
+<img src="../../../assets/units/unit09_classical_ml_capstone/images/diagram-workflow.svg" alt="Diagram: Deliverables" class="unit-diagram" />
 
 ## 2. Implementation Example
 

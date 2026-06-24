@@ -1,12 +1,18 @@
 # Unit 13: ディープラーニングにおける過学習防止策
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit13_regularization/images/hero.png" alt="ヒーロー画像：Regularization in DL" />
+</p>
+
 > [!TIP]
 > **Google Colab で学習を進める方へ**
 > ディープラーニング編（Unit 10〜16）では、計算を高速化するために **GPU の有効化** をおすすめします。設定手順は [Appendix (学習環境とキーの準備)](../appendix/index.md#🚀-1-google-colaboratory-での学習の進め方) を最初にご覧ください。
 
 ## 1. Regularization in DL の理解
 
-<img src="../../assets/units/unit13_regularization/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit13_regularization/images/diagram-concept.svg" alt="図解：Dropout" class="unit-diagram" />
+
+
 
 ディープラーニングの世界には、「過学習（Overfitting）」という恐ろしい罠が潜んでいます。
 
@@ -42,6 +48,8 @@ AIも同じで、訓練データに合わせすぎた結果、未知のデータ
 - **医療画像診断サポート**: 「特定の病院の装置だけで撮った画像」に過学習するのを防ぎ、どんな病院のレントゲン写真でも安定して異常を検知できる汎用的なモデルを作る。
 - **クレジットカードの不正利用検知**: 過去の限られた不正パターン（過去問）を丸暗記させず、Dropoutなどで正則化することで、未知の新しい手口の詐欺にも柔軟に対応できるAIを構築する。
 - **株価や為替の予測**: 金融の時系列データはノイズ（一時的な変動）が非常に多いため、Weight Decayなどを用いてノイズに過剰反応しない（過学習しない）堅牢な予測モデルを作成する。
+
+<img src="../../assets/units/unit13_regularization/images/diagram-workflow.svg" alt="図解：BatchNorm" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

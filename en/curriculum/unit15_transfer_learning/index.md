@@ -1,12 +1,18 @@
 # Unit 15: Transfer Learning with ResNet
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit15_transfer_learning/images/hero.png" alt="Hero: Transfer Learning" />
+</p>
+
 > [!TIP]
 > **For learners using Google Colab**
 > For the deep learning section (Units 10–16), we recommend **enabling a GPU** to speed up computation. See [Appendix (Learning Environment and API Setup)](../appendix/index.md#🚀-1-learning-with-google-colaboratory) for setup steps first.
 
 ## 1. Understanding Transfer Learning with ResNet
 
-<img src="../../../assets/units/unit15_transfer_learning/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit15_transfer_learning/images/diagram-concept.svg" alt="Diagram: Transfer learning" class="unit-diagram" />
+
+
 
 Building and training a CNN from scratch is admirable, but it requires **massive data** and **enormous time (compute)**.
 
@@ -30,6 +36,8 @@ ResNet introduced **skip connections**—"if this layer makes you get lost, just
 - **Custom image search**: Fine-tune a pretrained model so an e-commerce site can distinguish thousands of proprietary apparel SKUs for "search by image."
 - **Face authentication**: Start from a model trained on huge face datasets and add a few samples of your employees for a fast, secure gate.
 - **Drone infrastructure inspection**: Transfer general vision ability to cracks in bridges or rust on towers and build accurate inspection AI from few samples.
+
+<img src="../../../assets/units/unit15_transfer_learning/images/diagram-workflow.svg" alt="Diagram: ResNet18 flow" class="unit-diagram" />
 
 ## 2. Implementation Example
 

@@ -1,12 +1,18 @@
 # Unit 12: 最適化手法と損失関数
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit12_optimizers_loss/images/hero.png" alt="ヒーロー画像：Optimizers & Loss" />
+</p>
+
 > [!TIP]
 > **Google Colab で学習を進める方へ**
 > ディープラーニング編（Unit 10〜16）では、計算を高速化するために **GPU の有効化** をおすすめします。設定手順は [Appendix (学習環境とキーの準備)](../appendix/index.md#🚀-1-google-colaboratory-での学習の進め方) を最初にご覧ください。
 
 ## 1. Optimizers & Loss Functions の理解
 
-<img src="../../assets/units/unit12_optimizers_loss/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit12_optimizers_loss/images/diagram-concept.svg" alt="図解：Common losses" class="unit-diagram" />
+
+
 
 AIの学習において、「損失関数（Loss Function）」と「最適化手法（Optimizer）」は車の「ナビ」と「エンジン」のような関係です。この2つがうまく連携することで、AIはゴール（正解）にたどり着くことができます。
 
@@ -31,6 +37,8 @@ Lossを減らすために、ネットワークの重み（W）をどのように
 - **レコメンドエンジンの最適化**: ユーザーが商品をクリックしたか（Cross Entropy Loss）や、商品の評価スコアのズレ（MSE）を最小化するようAdamなどのOptimizerで高速に学習させ、売上を最大化する。
 - **広告のクリック率（CTR）予測**: 表示された広告がクリックされる確率を予測するモデルにおいて、日々大量に発生するログデータに合わせて最適なOptimizerを選択し、予測精度を迅速に改善する。
 - **ダイナミックプライシング**: 航空券やホテルの宿泊費などをリアルタイムで変動させる際、収益と需要のズレ（Loss）をリアルタイムで修正・最適化しながら価格を算出する。
+
+<img src="../../assets/units/unit12_optimizers_loss/images/diagram-workflow.svg" alt="図解：Optimizers" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

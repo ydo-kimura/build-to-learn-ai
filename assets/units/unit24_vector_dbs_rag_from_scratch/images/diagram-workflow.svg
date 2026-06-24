@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" role="img" aria-label="Vector search">
+  <rect width="700" height="320" rx="12" fill="#f8fafc"/>
+  <rect x="24" y="20" width="652" height="52" rx="8" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="350" y="52" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#7c3aed" font-weight="700">Vector search</text>
+  <rect x="24" y="84" width="652" height="212" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(40, 100)"><circle cx="80" cy="70" r="8" fill="#3b82f6"/>
+<circle cx="120" cy="50" r="8" fill="#3b82f6"/>
+<circle cx="160" cy="80" r="8" fill="#3b82f6"/>
+<circle cx="250" cy="60" r="8" fill="#8b5cf6"/>
+<circle cx="290" cy="90" r="8" fill="#8b5cf6"/>
+<circle cx="200" cy="70" r="12" fill="none" stroke="#ef4444" stroke-width="3"/>
+<text x="200" y="74" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#ef4444" font-weight="700">Q</text>
+<line x1="200" y1="70" x2="120" y2="50" stroke="#ef4444" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="200" y1="70" x2="160" y2="80" stroke="#ef4444" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="200" y="110" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#64748b">Cosine similarity → top-k</text></g>
+  <text x="350" y="296" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#64748b">Cosine similarity returns relevant chunks</text>
+</svg>

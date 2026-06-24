@@ -1,8 +1,14 @@
 # Unit 38: 時系列需要予測・価格最適化システム
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit38_timeseries_price_optimizer/images/hero.png" alt="ヒーロー画像：Time Series & Pricing" />
+</p>
+
 ## 1. 時系列予測におけるリーク回避と需要・価格最適化の理解
 
-<img src="../../assets/units/unit38_timeseries_price_optimizer/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit38_timeseries_price_optimizer/images/diagram-concept.svg" alt="図解：Time series ML" class="unit-diagram" />
+
+
 
 これまで、テーブルデータの回帰や分類（Unit 1〜8）、およびディープラーニングモデルを学んできました。これらを**「時間とともに変化するデータ（時系列データ）」**に適用する場合、機械学習の教科書的なアプローチをそのまま使うと、本番環境で**「壊滅的な大失敗（予測精度がゼロになる）」**を引き起こします。
 
@@ -51,6 +57,8 @@
 * **シェアリングエコノミーのピーク料金（Uber 等）**: 雨の日やイベント終了時など、リアルタイムな需要のスパイク（急増）と稼働中のドライバー数から、数秒単位で乗車価格を変動させ、需給のバランスを瞬時に回復させる。
 
 ---
+
+<img src="../../assets/units/unit38_timeseries_price_optimizer/images/diagram-workflow.svg" alt="図解：Dynamic pricing" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example) - 時系列リーク回避と需要曲線の推定
 

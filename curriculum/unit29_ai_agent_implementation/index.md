@@ -1,10 +1,17 @@
 # Unit 29: AIエージェントの基本原理とスクラッチReAct実装
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit29_ai_agent_implementation/images/hero.png" alt="ヒーロー画像：AI Agent (ReAct)" />
+</p>
+
 > [!IMPORTANT]
 > **OpenAI API キーの準備について**
 > 第4章の学習を進めるには **OpenAI の API キー** が必要です。APIキーの取得方法、料金に関する注意点、および Google Colab のシークレット機能を使った安全な環境変数設定については、[Appendix (学習環境とキーの準備)](../appendix/index.md#🔑-3-openai-apiキーの取得と安全な管理第4章) を最初にご覧ください。
 
 ## 1. AIエージェントと手組みReActループの理解
+
+<img src="../../assets/units/unit29_ai_agent_implementation/images/diagram-concept.svg" alt="図解：ReAct loop" class="unit-diagram" />
+
 
 近年、LLM（大規模言語モデル）の進化に伴い、単にユーザーの入力に対してテキストを生成するだけでなく、**「自律的に目標を達成するために思考し、必要な外部ツールを自分で選択して実行し、その結果を観察して次の行動を決定するシステム」**、すなわち **AIエージェント (AI Agent)** が急速に普及しています。
 
@@ -40,6 +47,8 @@ LLM自身がコードを実行するのではなく、**「プログラム側で
 * **ITシステム監視・復旧自動化**: サーバーのアラート検知時に、エージェントが「ログ取得ツール」でエラー原因を自律調査し、判明した原因に基づいて「再起動ツール」や「パッチ適用ツール」を安全な承認フックを介して実行する。
 
 ---
+
+<img src="../../assets/units/unit29_ai_agent_implementation/images/diagram-workflow.svg" alt="図解：Scratch agent" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

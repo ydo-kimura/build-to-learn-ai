@@ -1,8 +1,14 @@
 # Unit 6: クラスタリングアルゴリズム
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit06_clustering_algorithms/images/hero.png" alt="ヒーロー画像：Clustering Algorithms" />
+</p>
+
 ## 1. クラスタリングの理解
 
-<img src="../../assets/units/unit06_clustering_algorithms/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit06_clustering_algorithms/images/diagram-concept.svg" alt="図解：K-Means steps" class="unit-diagram" />
+
+
 
 これまでのUnit（線形回帰やランダムフォレストなど）はすべて、**「正解（目的変数）」が分かっているデータ**を使って、「このデータはAですか？Bですか？」と予測する手法でした。これを「教師あり学習」と呼びます。
 
@@ -41,6 +47,8 @@ K-Meansは以下のステップでこれを自動で行います。
 - **ニュースアプリの記事グルーピング**：毎日配信される大量のニュース記事のテキストデータを解析し、トピック（政治、スポーツ、エンタメなど）ごとに自動でグループ分けしてユーザーの興味に合わせたタブに表示する。
 
 ---
+
+<img src="../../assets/units/unit06_clustering_algorithms/images/diagram-workflow.svg" alt="図解：When to use which" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

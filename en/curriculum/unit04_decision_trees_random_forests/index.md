@@ -1,8 +1,14 @@
 # Unit 4: Decision Trees and Random Forests
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit04_decision_trees_random_forests/images/hero.png" alt="Hero: Decision Trees & Random Forests" />
+</p>
+
 ## 1. Understanding Decision Trees and Random Forests
 
-<img src="../../../assets/units/unit04_decision_trees_random_forests/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit04_decision_trees_random_forests/images/diagram-concept.svg" alt="Diagram: Decision Tree splits" class="unit-diagram" />
+
+
 
 So far we've split data with formulas and boundaries. This unit introduces algorithms closer to human reasoning: **decision trees** and their evolved form, **random forests**.
 
@@ -48,6 +54,8 @@ Each person may err slightly, but together they form wisdom. Random forest build
 - **Fraud detection**: Flag suspicious card transactions from location, amount, and time patterns that deviate from normal behavior.
 
 ---
+
+<img src="../../../assets/units/unit04_decision_trees_random_forests/images/diagram-workflow.svg" alt="Diagram: Random Forest vote" class="unit-diagram" />
 
 ## 2. Implementation Example
 

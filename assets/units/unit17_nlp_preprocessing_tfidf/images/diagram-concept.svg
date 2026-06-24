@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" role="img" aria-label="Text preprocessing pipeline">
+  <rect width="700" height="320" rx="12" fill="#f8fafc"/>
+  <rect x="24" y="20" width="652" height="52" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="350" y="52" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#3b82f6" font-weight="700">Text preprocessing pipeline</text>
+  <rect x="24" y="84" width="652" height="212" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(40, 100)"><text x="10" y="20" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#64748b">the cat sat</text>
+<line x1="100" y1="40" x2="150" y2="40" stroke="#64748b" stroke-width="2"/><polygon points="150,40 144,37 144,43" fill="#64748b"/>
+<rect x="150" y="15" width="200" height="50" rx="4" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+<text x="170" y="30" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="9" fill="#475569">cat</text>
+<rect x="220" y="22" width="30" height="10" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/>
+<text x="170" y="44" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="9" fill="#475569">sat</text>
+<rect x="260" y="36" width="30" height="10" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/>
+<text x="170" y="58" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="9" fill="#475569">mat</text>
+<rect x="300" y="50" width="30" height="10" rx="2" fill="#dbeafe" stroke="#3b82f6" stroke-width="1"/>
+<text x="170" y="75" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#1d4ed8" font-weight="600">Sparse TF-IDF vector</text></g>
+  <text x="350" y="296" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#64748b">Lowercase → remove stopwords → tokenize</text>
+</svg>

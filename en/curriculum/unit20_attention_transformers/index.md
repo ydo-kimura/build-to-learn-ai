@@ -1,8 +1,14 @@
 # Unit 20: Attention and Transformers
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit20_attention_transformers/images/hero.png" alt="Hero: Attention & Transformers" />
+</p>
+
 ## 1. Understanding Attention and Transformers
 
-<img src="../../../assets/units/unit20_attention_transformers/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit20_attention_transformers/images/diagram-concept.svg" alt="Diagram: Attention weights" class="unit-diagram" />
+
+
 
 RNNs and LSTMs pass memory like a relay baton—long texts still forget early content.
 **Attention** and the **Transformer** architecture built on it solved this and became the core of modern AI (ChatGPT and similar models).
@@ -40,6 +46,8 @@ In the meeting analogy, you know every keyword but not **who spoke first vs who 
 - **High-quality machine translation**: Attention captures long-range dependencies for natural, context-aware translation (Google Translate, DeepL, etc.).
 - **Complex enterprise Q&A chatbots**: LLM foundations that attend to the right passages in long internal policy documents.
 - **Contract review automation**: Find payment or confidentiality clauses in long legal text and flag risky wording with context.
+
+<img src="../../../assets/units/unit20_attention_transformers/images/diagram-workflow.svg" alt="Diagram: Transformer block" class="unit-diagram" />
 
 ## 2. Implementation Example
 

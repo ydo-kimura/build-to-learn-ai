@@ -1,8 +1,14 @@
 # Unit 5: Gradient Boosting and XGBoost
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit05_gradient_boosting_xgboost/images/hero.png" alt="Hero: Gradient Boosting & XGBoost" />
+</p>
+
 ## 1. Understanding Gradient Boosting and XGBoost
 
-<img src="../../../assets/units/unit05_gradient_boosting_xgboost/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit05_gradient_boosting_xgboost/images/diagram-concept.svg" alt="Diagram: Sequential boosting" class="unit-diagram" />
+
+
 
 Unit 4's random forest is an ensemble that **votes in parallel**. This unit covers a different ensemble idea: **gradient boosting** and its powerhouse implementation, **XGBoost**.
 
@@ -38,6 +44,8 @@ Because of its speed and accuracy, XGBoost dominated competitions like **Kaggle*
 - **Inventory and demand forecasting**: Forecast weekly demand across thousands of SKUs using weather, trends, and promotion history to cut overstock and stockouts.
 
 ---
+
+<img src="../../../assets/units/unit05_gradient_boosting_xgboost/images/diagram-workflow.svg" alt="Diagram: XGBoost speed" class="unit-diagram" />
 
 ## 2. Implementation Example
 

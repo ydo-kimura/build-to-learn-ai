@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-label="LangChain vs LlamaIndex">
+  <rect width="720" height="300" rx="12" fill="#f8fafc"/>
+  <text x="130" y="28" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#dc2626" font-weight="700">LangChain</text>
+  <text x="540" y="28" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#059669" font-weight="700">LlamaIndex</text>
+  <rect x="20" y="40" width="320" height="220" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(30, 50)"><rect x="0" y="45" width="84" height="44" rx="8" fill="#3b82f622" stroke="#3b82f6" stroke-width="2"/>
+<text x="42.0" y="73" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#3b82f6" font-weight="600">Docs</text>
+<line x1="84" y1="67" x2="112" y2="67" stroke="#64748b" stroke-width="1.5"/><polygon points="112,67 106,64 106,70" fill="#64748b"/>
+<rect x="120" y="45" width="84" height="44" rx="8" fill="#8b5cf622" stroke="#8b5cf6" stroke-width="2"/>
+<text x="162.0" y="73" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#8b5cf6" font-weight="600">Chunk</text>
+<line x1="204" y1="67" x2="232" y2="67" stroke="#64748b" stroke-width="1.5"/><polygon points="232,67 226,64 226,70" fill="#64748b"/>
+<rect x="240" y="45" width="84" height="44" rx="8" fill="#f59e0b22" stroke="#f59e0b" stroke-width="2"/>
+<text x="282.0" y="73" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#f59e0b" font-weight="600">Embed</text>
+<line x1="324" y1="67" x2="352" y2="67" stroke="#64748b" stroke-width="1.5"/><polygon points="352,67 346,64 346,70" fill="#64748b"/>
+<rect x="360" y="45" width="84" height="44" rx="8" fill="#22c55e22" stroke="#22c55e" stroke-width="2"/>
+<text x="402.0" y="73" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#22c55e" font-weight="600">Retrieve</text>
+<line x1="444" y1="67" x2="472" y2="67" stroke="#64748b" stroke-width="1.5"/><polygon points="472,67 466,64 466,70" fill="#64748b"/>
+<rect x="480" y="45" width="84" height="44" rx="8" fill="#ec489922" stroke="#ec4899" stroke-width="2"/>
+<text x="522.0" y="73" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#ec4899" font-weight="600">LLM</text></g>
+  <rect x="380" y="40" width="320" height="220" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(390, 50)"><rect x="0" y="30" width="110" height="44" rx="8" fill="#3b82f622" stroke="#3b82f6" stroke-width="2"/>
+<text x="55.0" y="58" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#3b82f6" font-weight="600">Index</text>
+<line x1="110" y1="52" x2="138" y2="52" stroke="#64748b" stroke-width="1.5"/><polygon points="138,52 132,49 132,55" fill="#64748b"/>
+<rect x="146" y="30" width="110" height="44" rx="8" fill="#22c55e22" stroke="#22c55e" stroke-width="2"/>
+<text x="201.0" y="58" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#22c55e" font-weight="600">Query engine</text></g>
+  <text x="350" y="284" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#64748b">LlamaIndex: simpler query API, data-first</text>
+</svg>

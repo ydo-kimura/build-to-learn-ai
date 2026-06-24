@@ -1,5 +1,9 @@
 # Unit 10: ゼロから作るニューラルネットワーク
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit10_nn_from_scratch/images/hero.png" alt="ヒーロー画像：Neural Networks from Scratch" />
+</p>
+
 > [!TIP]
 > **Google Colab で学習を進める方へ**
 > ディープラーニング編（Unit 10〜16）では、計算を高速化するために **GPU の有効化** をおすすめします。設定手順は [Appendix (学習環境とキーの準備)](../appendix/index.md#🚀-1-google-colaboratory-での学習の進め方) を最初にご覧ください。
@@ -9,7 +13,9 @@
 
 ## 1. ニューラルネットワークの理解
 
-<img src="../../assets/units/unit10_nn_from_scratch/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit10_nn_from_scratch/images/diagram-concept.svg" alt="図解：Network layers" class="unit-diagram" />
+
+
 
 ニューラルネットワークを理解するために、**「会社での稟議（りんぎ）の決裁プロセス」**に例えてみましょう。
 
@@ -33,6 +39,8 @@
 - **顧客の離反予測**: ユーザーの行動履歴や契約状況を入力として、解約する確率を予測し、引き留め施策の対象者を抽出する。
 - **異常検知システム**: センサーから得られる複数の温度や振動データを入力し、正常時とは異なるパターンの「異常（故障の予兆）」を検知する。
 - **融資の審査AI**: 顧客の年収、借入残高、勤続年数などのデータをもとに、ローンの審査基準を満たすかどうか（返済能力があるか）を自動判定する。
+
+<img src="../../assets/units/unit10_nn_from_scratch/images/diagram-workflow.svg" alt="図解：Training loop" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

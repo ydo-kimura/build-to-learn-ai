@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" role="img" aria-label="Decision Tree: animal classification">
+  <rect width="700" height="320" rx="12" fill="#f8fafc"/>
+  <rect x="24" y="20" width="652" height="52" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="350" y="52" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#3b82f6" font-weight="700">Decision Tree: animal classification</text>
+  <rect x="24" y="84" width="652" height="212" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(40, 100)"><rect x="190" y="0" width="100" height="28" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+<text x="240" y="20" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#1d4ed8" font-weight="600">Feathers?</text>
+<line x1="240" y1="28" x2="120" y2="58" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="240" y1="28" x2="360" y2="58" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="70" y="58" width="100" height="28" rx="6" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+<text x="120" y="78" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#15803d" font-weight="600">Bird</text>
+<rect x="310" y="58" width="100" height="28" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+<text x="360" y="78" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#b45309" font-weight="600">Walks?</text>
+<line x1="360" y1="86" x2="320" y2="116" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="360" y1="86" x2="400" y2="116" stroke="#94a3b8" stroke-width="1.5"/>
+<rect x="270" y="116" width="100" height="28" rx="6" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2"/>
+<text x="320" y="136" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#6d28d9" font-weight="600">Dog</text>
+<rect x="350" y="116" width="100" height="28" rx="6" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+<text x="400" y="136" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#be185d" font-weight="600">Cat</text></g>
+  <text x="350" y="296" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#64748b">Each split asks the best Yes/No question</text>
+</svg>

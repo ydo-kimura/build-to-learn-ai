@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" role="img" aria-label="CNN block: Conv → ReLU → Pool → Linear">
+  <rect width="700" height="320" rx="12" fill="#f8fafc"/>
+  <rect x="24" y="20" width="652" height="52" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="350" y="52" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#3b82f6" font-weight="700">CNN block: Conv → ReLU → Pool → Linear</text>
+  <rect x="24" y="84" width="652" height="212" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(40, 100)"><rect x="20" y="40" width="60" height="60" rx="4" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5"/>
+<text x="50" y="75" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#475569">Image</text>
+<line x1="85" y1="70" x2="120" y2="70" stroke="#64748b" stroke-width="2"/><polygon points="120,70 114,67 114,73" fill="#64748b"/>
+<rect x="120" y="35" width="70" height="70" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+<text x="155" y="75" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#1d4ed8" font-weight="700">Conv</text>
+<line x1="195" y1="70" x2="230" y2="70" stroke="#64748b" stroke-width="2"/><polygon points="230,70 224,67 224,73" fill="#64748b"/>
+<rect x="230" y="45" width="60" height="50" rx="4" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+<text x="260" y="75" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#6d28d9" font-weight="700">Pool</text>
+<line x1="295" y1="70" x2="330" y2="70" stroke="#64748b" stroke-width="2"/><polygon points="330,70 324,67 324,73" fill="#64748b"/>
+<rect x="330" y="50" width="70" height="40" rx="4" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+<text x="365" y="75" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#15803d" font-weight="700">Linear</text></g>
+  <text x="350" y="296" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#64748b">Stack blocks to learn hierarchical features</text>
+</svg>

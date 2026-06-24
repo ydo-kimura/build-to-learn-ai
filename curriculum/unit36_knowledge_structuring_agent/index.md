@@ -1,8 +1,14 @@
 # Unit 36: 自律型ナレッジ抽出・構造化エージェント
 
+<p class="unit-hero">
+  <img src="../../assets/units/unit36_knowledge_structuring_agent/images/hero.png" alt="ヒーロー画像：Knowledge Structuring Agent" />
+</p>
+
 ## 1. 非構造化データからナレッジ抽出と構造化の理解
 
-<img src="../../assets/units/unit36_knowledge_structuring_agent/images/concept.png" width="400" alt="コンセプト図解">
+<img src="../../assets/units/unit36_knowledge_structuring_agent/images/diagram-concept.svg" alt="図解：Extraction agent" class="unit-diagram" />
+
+
 
 これまで、Unit 26 において RAG 特化フレームワークである `LlamaIndex` を学び、Unit 31 において Python コードを自ら書きながら自律的に動作する `smolagents` （CodeAgent）を学習しました。
 
@@ -24,6 +30,8 @@
    * バリデーションエラーが起きた場合、エージェント（`smolagents`）が**「エラーログを自ら解析し、コードやプロンプトをその場で修正して、正しいJSONが得られるまで自動で再試行（Self-Correction）」**する。
 
 ---
+
+<img src="../../assets/units/unit36_knowledge_structuring_agent/images/diagram-workflow.svg" alt="図解：Output" class="unit-diagram" />
 
 ## 2. 実践 (Practice) - 🧠 自分で設計し決定するナレッジ抽出パイプライン
 

@@ -1,8 +1,14 @@
 # Unit 19: RNNs and LSTMs
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit19_rnns_lstms/images/hero.png" alt="Hero: RNNs & LSTMs" />
+</p>
+
 ## 1. Understanding RNNs and LSTMs
 
-<img src="../../../assets/units/unit19_rnns_lstms/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit19_rnns_lstms/images/diagram-concept.svg" alt="Diagram: RNN unrolling" class="unit-diagram" />
+
+
 
 Word Embeddings let AI understand word meaning, but something is still missing: **context (the flow of time)**.
 For "I" "yesterday" "an apple" "_____", the next word is likely "ate" or "bought" because of prior context.
@@ -47,6 +53,8 @@ These three gates cooperate each step so LSTM can forget noise, retain important
 - **Industrial failure prediction (anomaly detection)**: LSTM on sensor time series to alert "failure likely in a few hours based on past patterns."
 - **Stock and sales forecasting**: Learn months or years of sales, weather, and calendar features to optimize inventory.
 - **Voice recognition (smart speakers)**: Convert audio streams to text using context across sounds over time.
+
+<img src="../../../assets/units/unit19_rnns_lstms/images/diagram-workflow.svg" alt="Diagram: LSTM gates" class="unit-diagram" />
 
 ## 2. Implementation Example
 

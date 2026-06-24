@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" role="img" aria-label="Sequential boosting: correct residuals">
+  <rect width="700" height="320" rx="12" fill="#f8fafc"/>
+  <rect x="24" y="20" width="652" height="52" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="350" y="52" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#3b82f6" font-weight="700">Sequential boosting: correct residuals</text>
+  <rect x="24" y="84" width="652" height="212" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(40, 100)"><rect x="20" y="30" width="80" height="36" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+<text x="60" y="54" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#b91c1c" font-weight="600">err +5m</text>
+<line x1="100" y1="48" x2="140" y2="48" stroke="#64748b" stroke-width="2"/><polygon points="140,48 134,45 134,51" fill="#64748b"/>
+<rect x="140" y="30" width="80" height="36" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+<text x="180" y="54" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#b45309" font-weight="600">fix -4m</text>
+<line x1="220" y1="48" x2="260" y2="48" stroke="#64748b" stroke-width="2"/><polygon points="260,48 254,45 254,51" fill="#64748b"/>
+<rect x="260" y="30" width="80" height="36" rx="6" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+<text x="300" y="54" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#15803d" font-weight="600">fix -1m</text>
+<rect x="100" y="100" width="220" height="32" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+<text x="210" y="122" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="12" fill="#6d28d9" font-weight="700">Sequential correction</text></g>
+  <text x="350" y="296" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#64748b">Each tree learns the previous model's error</text>
+</svg>

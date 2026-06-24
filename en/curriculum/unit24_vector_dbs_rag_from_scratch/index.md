@@ -1,5 +1,9 @@
 # Unit 24: Vector Databases and RAG From Scratch
 
+<p class="unit-hero">
+  <img src="../../../assets/units/unit24_vector_dbs_rag_from_scratch/images/hero.png" alt="Hero: Vector DBs & Scratch RAG" />
+</p>
+
 > [!IMPORTANT]
 > **OpenAI API key setup**
 > This unit uses the OpenAI API. See [Appendix (Learning Environment and API Setup)](../appendix/index.md#🔑-3-openai-api-key-acquisition-and-secure-management-chapter-4) for secure key configuration.
@@ -7,7 +11,9 @@
 
 ## 1. Understanding Vector DBs & RAG From Scratch
 
-<img src="../../../assets/units/unit24_vector_dbs_rag_from_scratch/images/concept.png" width="400" alt="Concept diagram">
+<img src="../../../assets/units/unit24_vector_dbs_rag_from_scratch/images/diagram-concept.svg" alt="Diagram: RAG pipeline" class="unit-diagram" />
+
+
 
 ### What is a Vector DB?
 To help AI understand language, words must become **numeric sequences (vectors)**—called **embeddings**.
@@ -36,6 +42,8 @@ LLMs like ChatGPT only know training data— they cannot answer about latest new
 - **Internal policy/manual search**: Vectorize huge document sets; employees ask “How do I …?” and get accurate answers from relevant rules—a help desk.
 - **E-commerce semantic search**: User searches “cool clothes for the beach in summer”; recommend items by meaning (vector) even without keywords in product names.
 - **Past troubleshooting search**: Engineer enters error/symptom; Vector DB finds similar incidents and fixes for faster incident response.
+
+<img src="../../../assets/units/unit24_vector_dbs_rag_from_scratch/images/diagram-workflow.svg" alt="Diagram: Vector search" class="unit-diagram" />
 
 ## 2. Implementation Example
 

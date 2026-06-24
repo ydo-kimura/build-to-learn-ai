@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-label="Overfitting vs Dropout">
+  <rect width="720" height="300" rx="12" fill="#f8fafc"/>
+  <text x="130" y="28" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#dc2626" font-weight="700">Overfitting</text>
+  <text x="540" y="28" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#059669" font-weight="700">Dropout</text>
+  <rect x="20" y="40" width="320" height="220" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(30, 50)"><line x1="20" y1="110" x2="20" y2="20" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="20" y1="110" x2="280" y2="110" stroke="#94a3b8" stroke-width="1.5"/>
+  <path d="M30,100 C60,95 90,40 120,60 S180,90 220,50 S260,30 270,35" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+<circle cx="60" cy="85" r="4" fill="#3b82f6"/>
+<circle cx="120" cy="70" r="4" fill="#3b82f6"/>
+<circle cx="180" cy="80" r="4" fill="#3b82f6"/>
+<circle cx="240" cy="55" r="4" fill="#3b82f6"/>
+<text x="40" y="125" text-anchor="start" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#b91c1c">Memorizes noise</text></g>
+  <rect x="380" y="40" width="320" height="220" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(390, 50)"><circle cx="60" cy="40" r="14" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+<circle cx="60" cy="80" r="14" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/>
+<line x1="50" y1="70" x2="70" y2="90" stroke="#94a3b8" stroke-width="2"/>
+<circle cx="60" cy="120" r="14" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+<circle cx="180" cy="60" r="14" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+<circle cx="180" cy="100" r="14" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/>
+<line x1="170" y1="90" x2="190" y2="110" stroke="#94a3b8" stroke-width="2"/>
+<circle cx="300" cy="80" r="14" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+<text x="180" y="140" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#64748b">Randomly zero neurons</text></g>
+  <text x="350" y="284" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#64748b">Randomly zero neurons during training</text>
+</svg>
