@@ -1,16 +1,16 @@
-# Unit 37: Enterprise AI Automated Evaluation & Guardrails Harness
+# Unit 38: Enterprise AI Automated Evaluation & Guardrails Harness
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit37_guardrails_evaluation_harness/images/hero.png" alt="Hero: Guardrails & Evaluation" />
+  <img src="../../../assets/units/unit38_guardrails_evaluation_harness/images/hero.png" alt="Hero: Guardrails & Evaluation" />
 </p>
 
 ## 1. Understanding LLM-as-a-Judge and Safety Guardrails
 
-<img src="../../../assets/units/unit37_guardrails_evaluation_harness/images/diagram-concept.svg" alt="Diagram: Evaluation harness" class="unit-diagram" />
+<img src="../../../assets/units/unit38_guardrails_evaluation_harness/images/diagram-concept.svg" alt="Diagram: Evaluation harness" class="unit-diagram" />
 
 
 
-You have learned many LLM application systems and AI agent construction methods. Unit 34 covered LLM-as-a-Judge fundamentals; this unit extends that into an **enterprise Guardrails architecture** that defends both input and output.
+You have learned many LLM application systems and AI agent construction methods. Unit 35 covered LLM-as-a-Judge fundamentals; this unit extends that into an **enterprise Guardrails architecture** that defends both input and output.
 
 When deploying these systems in **real enterprise production**, the biggest unavoidable wall is guaranteeing **Safety** and **Reliability**.
 
@@ -51,7 +51,7 @@ Instead, **feed the main LLM's output to a more capable, objective evaluator LLM
 
 ---
 
-<img src="../../../assets/units/unit37_guardrails_evaluation_harness/images/diagram-workflow.svg" alt="Diagram: Enterprise safety" class="unit-diagram" />
+<img src="../../../assets/units/unit38_guardrails_evaluation_harness/images/diagram-workflow.svg" alt="Diagram: Enterprise safety" class="unit-diagram" />
 
 ## 2. Implementation Example — Basic Dual Harness System
 

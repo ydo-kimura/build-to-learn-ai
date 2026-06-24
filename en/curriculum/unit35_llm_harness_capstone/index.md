@@ -1,12 +1,12 @@
-# Unit 34: LLM Automated Evaluation, Guardrails & Agent Capstone
+# Unit 35: LLM Automated Evaluation, Guardrails & Agent Capstone
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit34_llm_harness_capstone/images/hero.png" alt="Hero: LLM Harness Capstone" />
+  <img src="../../../assets/units/unit35_llm_harness_capstone/images/hero.png" alt="Hero: LLM Harness Capstone" />
 </p>
 
 ## 1. Understanding Harness Engineering (LLM Automated Evaluation)
 
-<img src="../../../assets/units/unit34_llm_harness_capstone/images/diagram-concept.svg" alt="Diagram: Dual harness" class="unit-diagram" />
+<img src="../../../assets/units/unit35_llm_harness_capstone/images/diagram-concept.svg" alt="Diagram: Dual harness" class="unit-diagram" />
 
 
 
@@ -33,7 +33,7 @@ This unit implements **LLM-as-a-Judge** from scratch: static test input/output p
 
 ---
 
-<img src="../../../assets/units/unit34_llm_harness_capstone/images/diagram-workflow.svg" alt="Diagram: Defense layers" class="unit-diagram" />
+<img src="../../../assets/units/unit35_llm_harness_capstone/images/diagram-workflow.svg" alt="Diagram: Defense layers" class="unit-diagram" />
 
 ## 2. Implementation Example
 

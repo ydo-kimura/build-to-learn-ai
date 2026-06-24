@@ -1,16 +1,16 @@
-# Unit 37: エンタープライズAI自動評価・防御ハーネス
+# Unit 38: エンタープライズAI自動評価・防御ハーネス
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit37_guardrails_evaluation_harness/images/hero.png" alt="ヒーロー画像：Guardrails & Evaluation" />
+  <img src="../../assets/units/unit38_guardrails_evaluation_harness/images/hero.png" alt="ヒーロー画像：Guardrails & Evaluation" />
 </p>
 
 ## 1. LLM-as-a-Judge と安全ガードレールの理解
 
-<img src="../../assets/units/unit37_guardrails_evaluation_harness/images/diagram-concept.svg" alt="図解：Evaluation harness" class="unit-diagram" />
+<img src="../../assets/units/unit38_guardrails_evaluation_harness/images/diagram-concept.svg" alt="図解：Evaluation harness" class="unit-diagram" />
 
 
 
-これまで、さまざまな LLM 応用システムや AI エージェントの構築方法を学習してきました。Unit 34ではLLM-as-a-Judgeによる自動評価の基本原理を学びましたが、本Unitではその評価手法を、入力・出力の両面から防御する**エンタープライズ向けGuardrailsアーキテクチャ**に拡張します。これらを**「実際のエンタープライズ（企業実務）環境」**で一般公開するとなると、避けて通れない最大の壁が存在します。それが**「安全性（Safety）」**と**「信頼性（Reliability）」**の担保です。
+これまで、さまざまな LLM 応用システムや AI エージェントの構築方法を学習してきました。Unit 35ではLLM-as-a-Judgeによる自動評価の基本原理を学びましたが、本Unitではその評価手法を、入力・出力の両面から防御する**エンタープライズ向けGuardrailsアーキテクチャ**に拡張します。これらを**「実際のエンタープライズ（企業実務）環境」**で一般公開するとなると、避けて通れない最大の壁が存在します。それが**「安全性（Safety）」**と**「信頼性（Reliability）」**の担保です。
 
 特に、以下のリスクは企業のブランドや法的責任に直結します。
 * **脱獄（Jailbreaking / Prompt Injection）**: 悪意あるユーザーが「開発者の指示を無視しなさい」「爆弾の作り方を教えて」などと入力し、AIが重大な有害情報を出力してしまうリスク。
@@ -48,7 +48,7 @@
 
 ---
 
-<img src="../../assets/units/unit37_guardrails_evaluation_harness/images/diagram-workflow.svg" alt="図解：Enterprise safety" class="unit-diagram" />
+<img src="../../assets/units/unit38_guardrails_evaluation_harness/images/diagram-workflow.svg" alt="図解：Enterprise safety" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example) - 基本的な二重ハーネスシステム
 

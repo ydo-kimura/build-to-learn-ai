@@ -1,18 +1,18 @@
-# Unit 34: LLM自動評価・防御とエージェント総合演習 (Capstone)
+# Unit 35: LLM自動評価・防御とエージェント総合演習 (Capstone)
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit34_llm_harness_capstone/images/hero.png" alt="ヒーロー画像：LLM Harness Capstone" />
+  <img src="../../assets/units/unit35_llm_harness_capstone/images/hero.png" alt="ヒーロー画像：LLM Harness Capstone" />
 </p>
 
 ## 1. ハーネスエンジニアリング（LLM自動評価）の理解
 
-<img src="../../assets/units/unit34_llm_harness_capstone/images/diagram-concept.svg" alt="図解：Dual harness" class="unit-diagram" />
+<img src="../../assets/units/unit35_llm_harness_capstone/images/diagram-concept.svg" alt="図解：Dual harness" class="unit-diagram" />
 
 
 
 第4章（Unit 22〜33）において、LLMのAPI利用、ゼロからのRAG（検索拡張生成）構築、LangChainの基礎、プロンプトの連結（Chaining）、 Web UIチャットボット、および自律動作する AIエージェントの構築までを網羅的に学習してきました。
 
-この最初の総合演習ユニット（Unit 34）では、これらすべての集大成として、エンタープライズなAIシステム開発で最も重要とされる **「ハーネスエンジニアリング（Harness Engineering / LLM評価ハーネス）」** を学び、構築します。
+この最初の総合演習ユニット（Unit 35）では、これらすべての集大成として、エンタープライズなAIシステム開発で最も重要とされる **「ハーネスエンジニアリング（Harness Engineering / LLM評価ハーネス）」** を学び、構築します。
 
 ### ハーネスエンジニアリングとは？
 従来のソフトウェア開発では、テストデータ（入力）に対する期待値（出力）が1文字でも異なればテスト失敗とする「決定論的なテスト」が主流でした。しかし、出力が毎回わずかに揺れるLLMアプリケーションでは、その手法は通用しません。
@@ -32,7 +32,7 @@
 
 ---
 
-<img src="../../assets/units/unit34_llm_harness_capstone/images/diagram-workflow.svg" alt="図解：Defense layers" class="unit-diagram" />
+<img src="../../assets/units/unit35_llm_harness_capstone/images/diagram-workflow.svg" alt="図解：Defense layers" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example)
 

@@ -1,10 +1,10 @@
-# Unit 33: Agent SDK: コーディング・自律開発
+# Unit 34: Agent SDK: コーディング・自律開発
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit33_agent_sdk_coding_agents/images/hero.png" alt="ヒーロー画像：Agent SDK: Coding Agents" />
+  <img src="../../assets/units/unit34_agent_sdk_coding_agents/images/hero.png" alt="ヒーロー画像：Agent SDK: Coding Agents" />
 </p>
 
-前ユニット（Unit 32）では、商用 Agent SDK を用いた **汎用・業務自動化エージェント**（受付、在庫照会、決済など）の構築を学びました。本ユニットでは、その延長として、**コーディング・自律開発に特化した Agent SDK** の活用を学びます。自律開発エージェントは業務自動化エージェントとは異なり、ファイルシステムやシェルに対する強力な操作権限を持つため、より厳格な安全設計が求められます。
+前ユニット（Unit 33）では、商用 Agent SDK を用いた **汎用・業務自動化エージェント**（受付、在庫照会、決済など）の構築を学びました。本ユニットでは、その延長として、**コーディング・自律開発に特化した Agent SDK** の活用を学びます。自律開発エージェントは業務自動化エージェントとは異なり、ファイルシステムやシェルに対する強力な操作権限を持つため、より厳格な安全設計が求められます。
 
 ソフトウェア開発の自動化において、コードの生成や修正、コマンドの実行を自律的に行う **自律開発エージェント (SWE Agents / Coding Agents)** の技術は急速に進化しています。
 しかし、システム（ファイルや端末）に対して破壊的・不可逆的な操作を行う権限を持つため、一般的な情報処理エージェントとは比較にならないほど **厳格な安全設計とサンドボックス分離** が要求されます。
@@ -14,7 +14,7 @@
 
 ## 1. 説明フェーズ (Explanation)
 
-<img src="../../assets/units/unit33_agent_sdk_coding_agents/images/diagram-concept.svg" alt="図解：Coding agent flow" class="unit-diagram" />
+<img src="../../assets/units/unit34_agent_sdk_coding_agents/images/diagram-concept.svg" alt="図解：Coding agent flow" class="unit-diagram" />
 
 
 ### 1.1 自律コーディング・ソフトウェア開発エージェントの特異性
@@ -60,7 +60,7 @@ graph TD
 
 ---
 
-<img src="../../assets/units/unit33_agent_sdk_coding_agents/images/diagram-workflow.svg" alt="図解：Best practices" class="unit-diagram" />
+<img src="../../assets/units/unit34_agent_sdk_coding_agents/images/diagram-workflow.svg" alt="図解：Best practices" class="unit-diagram" />
 
 ## 2. 実践 (Practice)
 

@@ -1,12 +1,12 @@
-# Unit 39: 自律型カスタマーサポート・マルチエージェント
+# Unit 40: 自律型カスタマーサポート・マルチエージェント
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit39_multiagent_customer_support/images/hero.png" alt="ヒーロー画像：Multi-Agent Customer Support" />
+  <img src="../../assets/units/unit40_multiagent_customer_support/images/hero.png" alt="ヒーロー画像：Multi-Agent Customer Support" />
 </p>
 
 ## 1. シングルエージェントの限界とマルチエージェント協調の理解
 
-<img src="../../assets/units/unit39_multiagent_customer_support/images/diagram-concept.svg" alt="図解：Multi-agent flow" class="unit-diagram" />
+<img src="../../assets/units/unit40_multiagent_customer_support/images/diagram-concept.svg" alt="図解：Multi-agent flow" class="unit-diagram" />
 
 
 
@@ -49,7 +49,7 @@
 
 ---
 
-<img src="../../assets/units/unit39_multiagent_customer_support/images/diagram-workflow.svg" alt="図解：Coordination" class="unit-diagram" />
+<img src="../../assets/units/unit40_multiagent_customer_support/images/diagram-workflow.svg" alt="図解：Coordination" class="unit-diagram" />
 
 ## 2. 実装例 (Implementation Example) - smolagents によるマルチエージェント協調
 

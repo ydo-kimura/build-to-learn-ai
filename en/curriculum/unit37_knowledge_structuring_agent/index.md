@@ -1,12 +1,12 @@
-# Unit 36: Autonomous Knowledge Extraction & Structuring Agent
+# Unit 37: Autonomous Knowledge Extraction & Structuring Agent
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit36_knowledge_structuring_agent/images/hero.png" alt="Hero: Knowledge Structuring Agent" />
+  <img src="../../../assets/units/unit37_knowledge_structuring_agent/images/hero.png" alt="Hero: Knowledge Structuring Agent" />
 </p>
 
 ## 1. Understanding Knowledge Extraction and Structuring from Unstructured Data
 
-<img src="../../../assets/units/unit36_knowledge_structuring_agent/images/diagram-concept.svg" alt="Diagram: Extraction agent" class="unit-diagram" />
+<img src="../../../assets/units/unit37_knowledge_structuring_agent/images/diagram-concept.svg" alt="Diagram: Extraction agent" class="unit-diagram" />
 
 
 
@@ -32,7 +32,7 @@ The professional architecture combines **LlamaIndex pinpoint retrieval (Retrieve
 
 ---
 
-<img src="../../../assets/units/unit36_knowledge_structuring_agent/images/diagram-workflow.svg" alt="Diagram: Output" class="unit-diagram" />
+<img src="../../../assets/units/unit37_knowledge_structuring_agent/images/diagram-workflow.svg" alt="Diagram: Output" class="unit-diagram" />
 
 ## 2. Practice — 🧠 Design and Decide Your Knowledge Extraction Pipeline
 

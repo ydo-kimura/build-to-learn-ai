@@ -1,12 +1,12 @@
-# Unit 35: Multimodal Fraud Detection System
+# Unit 36: Multimodal Fraud Detection System
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit35_multimodal_fraud_detection/images/hero.png" alt="Hero: Multimodal Fraud Detection" />
+  <img src="../../../assets/units/unit36_multimodal_fraud_detection/images/hero.png" alt="Hero: Multimodal Fraud Detection" />
 </p>
 
 ## 1. Understanding Multimodal Fraud Detection
 
-<img src="../../../assets/units/unit35_multimodal_fraud_detection/images/diagram-concept.svg" alt="Diagram: Late fusion" class="unit-diagram" />
+<img src="../../../assets/units/unit36_multimodal_fraud_detection/images/diagram-concept.svg" alt="Diagram: Late fusion" class="unit-diagram" />
 
 
 
@@ -30,7 +30,7 @@ There are two opposing architectural philosophies for integrating different data
 
 ---
 
-<img src="../../../assets/units/unit35_multimodal_fraud_detection/images/diagram-workflow.svg" alt="Diagram: Fraud signals" class="unit-diagram" />
+<img src="../../../assets/units/unit36_multimodal_fraud_detection/images/diagram-workflow.svg" alt="Diagram: Fraud signals" class="unit-diagram" />
 
 ## 2. Practice — 🧠 Design and Decide Multimodal Fraud Detection
 

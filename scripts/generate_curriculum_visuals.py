@@ -31,6 +31,7 @@ from curriculum_svg_lib import (
     mini_grid_search,
     mini_guardrails,
     mini_kmeans,
+    mini_langgraph,
     mini_loss_curves,
     mini_lstm,
     mini_mcp,
@@ -576,7 +577,31 @@ _register(
 )
 
 _register(
-    "unit32_agent_sdk_general_agents",
+    "unit32_langgraph_stateful_agents",
+    "LangGraph: Stateful Agents",
+    lambda: hero_two_panel(
+        "LangGraph: Stateful Agents",
+        "Ticket input", "Shared state (TypedDict)",
+        mini_langgraph(),
+        "Graph routing", "Nodes + conditional edges",
+        flow_horizontal([("Classify", "#3b82f6"), ("Route", "#8b5cf6"), ("Respond", "#22c55e")], y=50),
+        right_color="#7c3aed",
+    ),
+    lambda: diagram_card(
+        "Graph concepts",
+        flow_horizontal([("State", "#3b82f6"), ("Node", "#8b5cf6"), ("Edge", "#22c55e")], y=30),
+        "Nodes transform state; edges define control flow",
+    ),
+    lambda: diagram_card(
+        "Support routing",
+        mini_langgraph(),
+        "Classify → billing / technical / escalate",
+        accent="#7c3aed",
+    ),
+)
+
+_register(
+    "unit33_agent_sdk_general_agents",
     "Agent SDK: General Agents",
     lambda: hero_two_panel(
         "Agent SDK: General Agents",
@@ -595,7 +620,7 @@ _register(
 )
 
 _register(
-    "unit33_agent_sdk_coding_agents",
+    "unit34_agent_sdk_coding_agents",
     "Agent SDK: Coding Agents",
     lambda: hero_two_panel(
         "Agent SDK: Coding Agents",
@@ -615,7 +640,7 @@ _register(
 )
 
 _register(
-    "unit34_llm_harness_capstone",
+    "unit35_llm_harness_capstone",
     "LLM Harness Capstone",
     lambda: hero_two_panel(
         "LLM Harness Capstone",
@@ -635,7 +660,7 @@ _register(
 )
 
 _register(
-    "unit35_multimodal_fraud_detection",
+    "unit36_multimodal_fraud_detection",
     "Multimodal Fraud Detection",
     lambda: hero_two_panel(
         "Multimodal Fraud Detection",
@@ -655,7 +680,7 @@ _register(
 )
 
 _register(
-    "unit36_knowledge_structuring_agent",
+    "unit37_knowledge_structuring_agent",
     "Knowledge Structuring Agent",
     lambda: hero_two_panel(
         "Knowledge Structuring Agent",
@@ -675,7 +700,7 @@ _register(
 )
 
 _register(
-    "unit37_guardrails_evaluation_harness",
+    "unit38_guardrails_evaluation_harness",
     "Guardrails & Evaluation",
     lambda: hero_two_panel(
         "Guardrails & Evaluation",
@@ -691,7 +716,7 @@ _register(
 )
 
 _register(
-    "unit38_timeseries_price_optimizer",
+    "unit39_timeseries_price_optimizer",
     "Time Series & Pricing",
     lambda: hero_two_panel(
         "Time Series & Dynamic Pricing",
@@ -706,7 +731,7 @@ _register(
 )
 
 _register(
-    "unit39_multiagent_customer_support",
+    "unit40_multiagent_customer_support",
     "Multi-Agent Customer Support",
     lambda: hero_two_panel(
         "Multi-Agent Customer Support",

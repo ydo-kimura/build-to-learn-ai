@@ -192,49 +192,60 @@ HERO_PROMPTS: dict[str, str] = {
         "Result returned. "
         "Show code block and execution output."
     ),
-    "unit32_agent_sdk_general_agents": (
+    "unit32_langgraph_stateful_agents": (
+        f'{HERO_STYLE} Title: "LangGraph: Stateful Agents". '
+        "LEFT panel (blue border): support ticket routing graph — "
+        'root node "Classify Ticket" with three branches to '
+        '"Billing", "Technical", "Escalate" boxes connected by arrows. '
+        'Shared state box labeled "State (TypedDict)" at bottom. '
+        "RIGHT panel (purple border): Human-in-the-loop gate — "
+        '"VIP ticket" pauses at "Human Approval" node before routing. '
+        "Show nodes, conditional edges, and state passing between steps. "
+        "Caption: Graph workflow vs linear ReAct loop."
+    ),
+    "unit33_agent_sdk_general_agents": (
         f'{HERO_STYLE} Title: "Agent SDK: General Agents". '
         "Business task card → SDK Agent orchestrator → multiple tools "
         "(report, data, email) → completed deliverable. "
         "Enterprise agent workflow."
     ),
-    "unit33_agent_sdk_coding_agents": (
+    "unit34_agent_sdk_coding_agents": (
         f'{HERO_STYLE} Title: "Agent SDK: Coding Agents". '
         "Repo files + tests → coding agent reads → proposes code edit diff → "
         "runs tests → pass/fail. "
         "Software development agent loop."
     ),
-    "unit34_llm_harness_capstone": (
+    "unit35_llm_harness_capstone": (
         f'{HERO_STYLE} Title: "LLM Harness Capstone". '
         "Dual pipeline: Generation (LLM output) → Evaluation Harness "
         "(policy check + LLM judge score) → pass/reject/fallback. "
         "Quality and safety layers."
     ),
-    "unit35_multimodal_fraud_detection": (
+    "unit36_multimodal_fraud_detection": (
         f'{HERO_STYLE} Title: "Multimodal Fraud Detection". '
         "Text description + product image → separate encoders → late fusion → "
         "fraud score 0.87 (HIGH RISK). "
         "Show suspicious text/image mismatch."
     ),
-    "unit36_knowledge_structuring_agent": (
+    "unit37_knowledge_structuring_agent": (
         f'{HERO_STYLE} Title: "Knowledge Structuring Agent". '
         "PDF contract document → AI extraction agent → structured JSON "
         "with entities and relations. "
         "Unstructured to structured transformation."
     ),
-    "unit37_guardrails_evaluation_harness": (
+    "unit38_guardrails_evaluation_harness": (
         f'{HERO_STYLE} Title: "Guardrails & Evaluation". '
         "LEFT: input guardrail blocking harmful content. "
         "RIGHT: evaluation harness with test cases, LLM judge scores, "
         "regression dashboard."
     ),
-    "unit38_timeseries_price_optimizer": (
+    "unit39_timeseries_price_optimizer": (
         f'{HERO_STYLE} Title: "Time Series & Dynamic Pricing". '
         "LEFT: historical demand line chart over months. "
         "RIGHT: price vs revenue curve with optimal price point marked. "
         "Forecast + pricing optimization."
     ),
-    "unit39_multiagent_customer_support": (
+    "unit40_multiagent_customer_support": (
         f'{HERO_STYLE} Title: "Multi-Agent Customer Support". '
         "Incoming ticket → Triage agent routes to specialist agents "
         "(Billing, Tech, Sales) → resolved response. "

@@ -1,12 +1,12 @@
-# Unit 38: Time Series Demand Forecasting & Price Optimization System
+# Unit 39: Time Series Demand Forecasting & Price Optimization System
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit38_timeseries_price_optimizer/images/hero.png" alt="Hero: Time Series & Pricing" />
+  <img src="../../../assets/units/unit39_timeseries_price_optimizer/images/hero.png" alt="Hero: Time Series & Pricing" />
 </p>
 
 ## 1. Understanding Leak Avoidance in Time Series and Demand/Price Optimization
 
-<img src="../../../assets/units/unit38_timeseries_price_optimizer/images/diagram-concept.svg" alt="Diagram: Time series ML" class="unit-diagram" />
+<img src="../../../assets/units/unit39_timeseries_price_optimizer/images/diagram-concept.svg" alt="Diagram: Time series ML" class="unit-diagram" />
 
 
 
@@ -58,7 +58,7 @@ The next step after forecasting is converting predictions into business profit v
 
 ---
 
-<img src="../../../assets/units/unit38_timeseries_price_optimizer/images/diagram-workflow.svg" alt="Diagram: Dynamic pricing" class="unit-diagram" />
+<img src="../../../assets/units/unit39_timeseries_price_optimizer/images/diagram-workflow.svg" alt="Diagram: Dynamic pricing" class="unit-diagram" />
 
 ## 2. Implementation Example — Time Series Leak Avoidance and Demand Curve Estimation
 

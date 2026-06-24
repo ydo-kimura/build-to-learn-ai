@@ -1,12 +1,12 @@
-# Unit 35: マルチモーダル不正検知システム
+# Unit 36: マルチモーダル不正検知システム
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit35_multimodal_fraud_detection/images/hero.png" alt="ヒーロー画像：Multimodal Fraud Detection" />
+  <img src="../../assets/units/unit36_multimodal_fraud_detection/images/hero.png" alt="ヒーロー画像：Multimodal Fraud Detection" />
 </p>
 
 ## 1. マルチモーダル不正検知の理解
 
-<img src="../../assets/units/unit35_multimodal_fraud_detection/images/diagram-concept.svg" alt="図解：Late fusion" class="unit-diagram" />
+<img src="../../assets/units/unit36_multimodal_fraud_detection/images/diagram-concept.svg" alt="図解：Late fusion" class="unit-diagram" />
 
 
 
@@ -30,7 +30,7 @@
 
 ---
 
-<img src="../../assets/units/unit35_multimodal_fraud_detection/images/diagram-workflow.svg" alt="図解：Fraud signals" class="unit-diagram" />
+<img src="../../assets/units/unit36_multimodal_fraud_detection/images/diagram-workflow.svg" alt="図解：Fraud signals" class="unit-diagram" />
 
 ## 2. 実践 (Practice) - 🧠 自分で設計し決定するマルチモーダル不正検知
 

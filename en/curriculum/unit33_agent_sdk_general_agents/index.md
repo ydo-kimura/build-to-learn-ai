@@ -1,10 +1,10 @@
-# Unit 32: Agent SDK — General Purpose & Business Automation
+# Unit 33: Agent SDK — General Purpose & Business Automation
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit32_agent_sdk_general_agents/images/hero.png" alt="Hero: Agent SDK: General Agents" />
+  <img src="../../../assets/units/unit33_agent_sdk_general_agents/images/hero.png" alt="Hero: Agent SDK: General Agents" />
 </p>
 
-In Units 29–31, you learned autonomous agent fundamentals and tool integration using **open-source approaches** such as scratch ReAct, MCP, and smolagents. These are flexible and excellent for prototyping, but in enterprise environments, designing scalability, security, and state management yourself becomes a burden. This unit covers **enterprise agent construction with commercial Agent SDKs** designed to address those challenges.
+In Units 29–31 you learned autonomous agents with scratch ReAct, MCP, and smolagents. In Unit 32 you learned **graph-based stateful workflows with LangGraph**. This unit (Unit 33) covers **commercial Agent SDKs** that provide managed scalability, security, and state for enterprise deployments.
 
 In production AI systems, alongside OSS frameworks (LangGraph, smolagents, etc.), **commercial Agent SDKs** from major cloud/AI vendors are increasingly important.
 
@@ -14,7 +14,7 @@ This unit covers the architecture of commercial Agent SDKs built for enterprise 
 
 ## 1. Explanation Phase
 
-<img src="../../../assets/units/unit32_agent_sdk_general_agents/images/diagram-concept.svg" alt="Diagram: General agent" class="unit-diagram" />
+<img src="../../../assets/units/unit33_agent_sdk_general_agents/images/diagram-concept.svg" alt="Diagram: General agent" class="unit-diagram" />
 
 
 ### 1.1 Rise of Managed Agent SDKs and Differences from OSS
@@ -62,7 +62,7 @@ This includes architectures that use **Episodic Memory (long-term context memory
 
 ---
 
-<img src="../../../assets/units/unit32_agent_sdk_general_agents/images/diagram-workflow.svg" alt="Diagram: Use cases" class="unit-diagram" />
+<img src="../../../assets/units/unit33_agent_sdk_general_agents/images/diagram-workflow.svg" alt="Diagram: Use cases" class="unit-diagram" />
 
 ## 2. Practice
 
