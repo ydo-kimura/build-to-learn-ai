@@ -39,14 +39,15 @@ SLUGS = [
     "unit29_ai_agent_implementation",
     "unit30_mcp_fundamentals",
     "unit31_smolagents_code_agent",
-    "unit32_agent_sdk_general_agents",
-    "unit33_agent_sdk_coding_agents",
-    "unit34_llm_harness_capstone",
-    "unit35_multimodal_fraud_detection",
-    "unit36_knowledge_structuring_agent",
-    "unit37_guardrails_evaluation_harness",
-    "unit38_timeseries_price_optimizer",
-    "unit39_multiagent_customer_support",
+    "unit32_langgraph_stateful_agents",
+    "unit33_agent_sdk_general_agents",
+    "unit34_agent_sdk_coding_agents",
+    "unit35_llm_harness_capstone",
+    "unit36_multimodal_fraud_detection",
+    "unit37_knowledge_structuring_agent",
+    "unit38_guardrails_evaluation_harness",
+    "unit39_timeseries_price_optimizer",
+    "unit40_multiagent_customer_support",
 ]
 
 

@@ -105,17 +105,18 @@ Use LLMs as components to build advanced reasoning pipelines and autonomous agen
 - **Unit 29**: [AI Agent Fundamentals & Scratch ReAct Implementation](../unit29_ai_agent_implementation/index.md)
 - **Unit 30**: [Model Context Protocol (MCP) Fundamentals & Server Implementation](../unit30_mcp_fundamentals/index.md)
 - **Unit 31**: [smolagents & Autonomous AI Agents](../unit31_smolagents_code_agent/index.md)
-- **Unit 32**: [Agent SDK: General & Business Automation](../unit32_agent_sdk_general_agents/index.md)
-- **Unit 33**: [Agent SDK: Autonomous Coding & Software Engineering](../unit33_agent_sdk_coding_agents/index.md)
+- **Unit 32**: [LangGraph — Graph-Based Stateful Agents](../unit32_langgraph_stateful_agents/index.md)
+- **Unit 33**: [Agent SDK: General & Business Automation](../unit33_agent_sdk_general_agents/index.md)
+- **Unit 34**: [Agent SDK: Autonomous Coding & Software Engineering](../unit34_agent_sdk_coding_agents/index.md)
 
 ### Chapter 5: Real-World AI Application Capstones
 Apply everything you have learned—ML, DL, NLP, and LLMs—to high-difficulty problems common in real business settings. You will design architectures, implement, and evaluate from scratch. Every unit in this chapter is a comprehensive capstone.
-- **Unit 34**: [LLM Evaluation, Guardrails & Agent Capstone](../unit34_llm_harness_capstone/index.md)
-- **Unit 35**: [Multimodal Fraud Detection](../unit35_multimodal_fraud_detection/index.md)
-- **Unit 36**: [Autonomous Knowledge Extraction & Structuring Agent](../unit36_knowledge_structuring_agent/index.md)
-- **Unit 37**: [Enterprise AI Evaluation & Guardrails Harness](../unit37_guardrails_evaluation_harness/index.md)
-- **Unit 38**: [Time-Series Demand Forecasting & Dynamic Pricing](../unit38_timeseries_price_optimizer/index.md)
-- **Unit 39**: [Autonomous Multi-Agent Customer Support](../unit39_multiagent_customer_support/index.md)
+- **Unit 35**: [LLM Evaluation, Guardrails & Agent Capstone](../unit35_llm_harness_capstone/index.md)
+- **Unit 36**: [Multimodal Fraud Detection](../unit36_multimodal_fraud_detection/index.md)
+- **Unit 37**: [Autonomous Knowledge Extraction & Structuring Agent](../unit37_knowledge_structuring_agent/index.md)
+- **Unit 38**: [Enterprise AI Evaluation & Guardrails Harness](../unit38_guardrails_evaluation_harness/index.md)
+- **Unit 39**: [Time-Series Demand Forecasting & Dynamic Pricing](../unit39_timeseries_price_optimizer/index.md)
+- **Unit 40**: [Autonomous Multi-Agent Customer Support](../unit40_multiagent_customer_support/index.md)
 
 ---
 

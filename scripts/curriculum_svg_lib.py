@@ -524,6 +524,25 @@ def mini_vector_search() -> str:
     return "\n".join(parts)
 
 
+def mini_langgraph() -> str:
+    """Ticket routing graph: classify → billing / technical / escalate."""
+    parts = [
+        _rect(170, 0, 140, 28, "#dbeafe", "#3b82f6", 2, 6),
+        _t(240, 20, "Classify", 11, "#1d4ed8", "middle", "600"),
+        _line(240, 28, 80, 58, "#94a3b8", 1.5),
+        _line(240, 28, 240, 58, "#94a3b8", 1.5),
+        _line(240, 28, 400, 58, "#94a3b8", 1.5),
+        _rect(30, 58, 100, 28, "#dcfce7", "#22c55e", 2, 6),
+        _t(80, 78, "Billing", 11, "#15803d", "middle", "600"),
+        _rect(190, 58, 100, 28, "#fef3c7", "#f59e0b", 2, 6),
+        _t(240, 78, "Technical", 11, "#b45309", "middle", "600"),
+        _rect(350, 58, 100, 28, "#fee2e2", "#ef4444", 2, 6),
+        _t(400, 78, "Escalate", 11, "#b91c1c", "middle", "600"),
+        _t(240, 105, "Stateful graph workflow", 11, "#64748b", "middle"),
+    ]
+    return "\n".join(parts)
+
+
 def mini_react_loop() -> str:
     parts = [
         _rect(40, 40, 90, 36, "#dbeafe", "#3b82f6", 2, 6),

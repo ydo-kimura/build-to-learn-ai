@@ -87,19 +87,20 @@ export default withMermaid(
               { text: 'Unit 29: AIエージェントの基本原理とスクラッチReAct実装', link: '/curriculum/unit29_ai_agent_implementation/' },
               { text: 'Unit 30: Model Context Protocol (MCP) の基本原理とサーバー自作', link: '/curriculum/unit30_mcp_fundamentals/' },
               { text: 'Unit 31: smolagents と自律型 AI エージェント', link: '/curriculum/unit31_smolagents_code_agent/' },
-              { text: 'Unit 32: Agent SDK: 汎用・業務自動化', link: '/curriculum/unit32_agent_sdk_general_agents/' },
-              { text: 'Unit 33: Agent SDK: コーディング・自律開発', link: '/curriculum/unit33_agent_sdk_coding_agents/' }
+              { text: 'Unit 32: LangGraph — グラフベースのステートフルエージェント', link: '/curriculum/unit32_langgraph_stateful_agents/' },
+              { text: 'Unit 33: Agent SDK: 汎用・業務自動化', link: '/curriculum/unit33_agent_sdk_general_agents/' },
+              { text: 'Unit 34: Agent SDK: コーディング・自律開発', link: '/curriculum/unit34_agent_sdk_coding_agents/' }
             ]
           },
           {
             text: '第5章: 実務適用と総合応用実践 (Capstones)',
             items: [
-              { text: 'Unit 34: LLM自動評価・防御とエージェント総合演習 (Capstone)', link: '/curriculum/unit34_llm_harness_capstone/' },
-              { text: 'Unit 35: マルチモーダル不正検知システム', link: '/curriculum/unit35_multimodal_fraud_detection/' },
-              { text: 'Unit 36: 自律型ナレッジ抽出・構造化エージェント', link: '/curriculum/unit36_knowledge_structuring_agent/' },
-              { text: 'Unit 37: エンタープライズAI自動評価・防御ハーネス', link: '/curriculum/unit37_guardrails_evaluation_harness/' },
-              { text: 'Unit 38: 時系列需要予測・価格最適化システム', link: '/curriculum/unit38_timeseries_price_optimizer/' },
-              { text: 'Unit 39: 自律型カスタマーサポート・マルチエージェント', link: '/curriculum/unit39_multiagent_customer_support/' }
+              { text: 'Unit 35: LLM自動評価・防御とエージェント総合演習 (Capstone)', link: '/curriculum/unit35_llm_harness_capstone/' },
+              { text: 'Unit 36: マルチモーダル不正検知システム', link: '/curriculum/unit36_multimodal_fraud_detection/' },
+              { text: 'Unit 37: 自律型ナレッジ抽出・構造化エージェント', link: '/curriculum/unit37_knowledge_structuring_agent/' },
+              { text: 'Unit 38: エンタープライズAI自動評価・防御ハーネス', link: '/curriculum/unit38_guardrails_evaluation_harness/' },
+              { text: 'Unit 39: 時系列需要予測・価格最適化システム', link: '/curriculum/unit39_timeseries_price_optimizer/' },
+              { text: 'Unit 40: 自律型カスタマーサポート・マルチエージェント', link: '/curriculum/unit40_multiagent_customer_support/' }
             ]
           }
         ]
@@ -176,19 +177,20 @@ export default withMermaid(
               { text: 'Unit 29: AI Agent Fundamentals & Scratch ReAct Implementation', link: '/en/curriculum/unit29_ai_agent_implementation/' },
               { text: 'Unit 30: Model Context Protocol (MCP) Fundamentals & Server Implementation', link: '/en/curriculum/unit30_mcp_fundamentals/' },
               { text: 'Unit 31: smolagents & AI Agent', link: '/en/curriculum/unit31_smolagents_code_agent/' },
-              { text: 'Unit 32: Agent SDK: General & Business Automation', link: '/en/curriculum/unit32_agent_sdk_general_agents/' },
-              { text: 'Unit 33: Agent SDK: Autonomous Coding & Software Engineering', link: '/en/curriculum/unit33_agent_sdk_coding_agents/' }
+              { text: 'Unit 32: LangGraph — Graph-Based Stateful Agents', link: '/en/curriculum/unit32_langgraph_stateful_agents/' },
+              { text: 'Unit 33: Agent SDK: General & Business Automation', link: '/en/curriculum/unit33_agent_sdk_general_agents/' },
+              { text: 'Unit 34: Agent SDK: Autonomous Coding & Software Engineering', link: '/en/curriculum/unit34_agent_sdk_coding_agents/' }
             ]
           },
           {
             text: 'Chapter 5: Real-World AI Application Capstones',
             items: [
-              { text: 'Unit 34: LLM Harness & Agent Capstone', link: '/en/curriculum/unit34_llm_harness_capstone/' },
-              { text: 'Unit 35: Multimodal Fraud Detection', link: '/en/curriculum/unit35_multimodal_fraud_detection/' },
-              { text: 'Unit 36: Autonomous Knowledge Structuring', link: '/en/curriculum/unit36_knowledge_structuring_agent/' },
-              { text: 'Unit 37: Guardrails & LLM-as-a-Judge', link: '/en/curriculum/unit37_guardrails_evaluation_harness/' },
-              { text: 'Unit 38: TimeSeries & Dynamic Pricing', link: '/en/curriculum/unit38_timeseries_price_optimizer/' },
-              { text: 'Unit 39: Multi-Agent Customer Support', link: '/en/curriculum/unit39_multiagent_customer_support/' }
+              { text: 'Unit 35: LLM Harness & Agent Capstone', link: '/en/curriculum/unit35_llm_harness_capstone/' },
+              { text: 'Unit 36: Multimodal Fraud Detection', link: '/en/curriculum/unit36_multimodal_fraud_detection/' },
+              { text: 'Unit 37: Autonomous Knowledge Structuring', link: '/en/curriculum/unit37_knowledge_structuring_agent/' },
+              { text: 'Unit 38: Guardrails & LLM-as-a-Judge', link: '/en/curriculum/unit38_guardrails_evaluation_harness/' },
+              { text: 'Unit 39: TimeSeries & Dynamic Pricing', link: '/en/curriculum/unit39_timeseries_price_optimizer/' },
+              { text: 'Unit 40: Multi-Agent Customer Support', link: '/en/curriculum/unit40_multiagent_customer_support/' }
             ]
           }
         ]
