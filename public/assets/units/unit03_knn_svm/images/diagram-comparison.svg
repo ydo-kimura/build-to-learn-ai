@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200" role="img" aria-label="K-NN vs SVM comparison">
+  <rect width="640" height="200" rx="12" fill="#f8fafc"/>
+  <rect x="20" y="30" width="280" height="140" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <text x="160" y="58" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#c2410c" font-weight="700">K-NN</text>
+  <text x="40" y="85" font-family="DejaVu Sans, sans-serif" font-size="12" fill="#475569">&#8226; Memorizes all training data</text>
+  <text x="40" y="108" font-family="DejaVu Sans, sans-serif" font-size="12" fill="#475569">&#8226; Lazy learner - predicts at query time</text>
+  <text x="40" y="131" font-family="DejaVu Sans, sans-serif" font-size="12" fill="#475569">&#8226; Good for similarity search</text>
+  <text x="40" y="154" font-family="DejaVu Sans, sans-serif" font-size="12" fill="#475569">&#8226; Sensitive to K and feature scale</text>
+  <rect x="340" y="30" width="280" height="140" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="480" y="58" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#1d4ed8" font-weight="700">SVM</text>
+  <text x="360" y="85" font-family="DejaVu Sans, sans-serif" font-size="12" fill="#475569">&#8226; Finds optimal decision boundary</text>
+  <text x="360" y="108" font-family="DejaVu Sans, sans-serif" font-size="12" fill="#475569">&#8226; Uses only support vectors</text>
+  <text x="360" y="131" font-family="DejaVu Sans, sans-serif" font-size="12" fill="#475569">&#8226; Kernel trick for nonlinear data</text>
+  <text x="360" y="154" font-family="DejaVu Sans, sans-serif" font-size="12" fill="#475569">&#8226; Strong on high-dimensional tasks</text>
+</svg>

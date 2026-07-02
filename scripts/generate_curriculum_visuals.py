@@ -32,6 +32,7 @@ from curriculum_svg_lib import (
     mini_guardrails,
     mini_kmeans,
     mini_langgraph,
+    mini_state_graph,
     mini_loss_curves,
     mini_lstm,
     mini_mcp,
@@ -106,15 +107,14 @@ _register(
     ),
     lambda: diagram_card(
         "Sequential boosting: correct residuals",
-        mini_sequential_boost(),
+        mini_sequential_boost(compact=True),
         "Each tree learns the previous model's error",
     ),
     lambda: diagram_compare(
         "Random Forest (parallel)",
-        mini_parallel_trees(),
+        mini_parallel_trees(compact=True),
         "XGBoost (sequential + fast)",
-        mini_sequential_boost(),
-        "XGBoost: handles missing values, top tabular accuracy",
+        mini_sequential_boost(compact=True),
     ),
 )
 
@@ -130,7 +130,7 @@ _register(
         right_color="#8b5cf6",
     ),
     lambda: diagram_card("K-Means: assign → move centroids → repeat", mini_kmeans(), "Best for round blob-shaped clusters"),
-    lambda: diagram_compare("K-Means", mini_kmeans(), "DBSCAN", mini_dbscan(), "DBSCAN finds arbitrary shapes + labels noise"),
+    lambda: diagram_compare("K-Means", mini_kmeans(compact=True), "DBSCAN", mini_dbscan(compact=True), "DBSCAN finds arbitrary shapes + labels noise"),
 )
 
 _register(
@@ -148,7 +148,6 @@ _register(
     lambda: diagram_card(
         "Use cases",
         flow_horizontal([("Visualize", "#3b82f6"), ("Speed up", "#8b5cf6"), ("Denoise", "#22c55e")], y=30),
-        "Reduce features before training or plotting",
         accent="#7c3aed",
     ),
 )
@@ -182,7 +181,6 @@ _register(
     lambda: diagram_card(
         "Deliverables",
         flow_horizontal([("Metrics report", "#ef4444"), ("Saved model", "#22c55e"), ("Reproducible notebook", "#3b82f6")], y=30),
-        "Document results and export artifacts",
         accent="#7c3aed",
     ),
 )
@@ -228,8 +226,14 @@ _register(
         mini_optimizers(),
         right_color="#22c55e",
     ),
-    lambda: diagram_compare("Common losses", mini_loss_curves(), "MSE vs Cross-entropy", mini_loss_curves(), "MSE for regression, cross-entropy for classification"),
-    lambda: diagram_compare("SGD", mini_optimizers(), "Adam (adaptive LR)", mini_optimizers(), "Adam adapts step size per parameter"),
+    lambda: diagram_card(
+        "MSE vs Cross-Entropy",
+        mini_loss_curves(),
+    ),
+    lambda: diagram_card(
+        "SGD vs Adam",
+        mini_optimizers(),
+    ),
 )
 
 _register(
@@ -244,11 +248,10 @@ _register(
         left_color="#ef4444",
         right_color="#22c55e",
     ),
-    lambda: diagram_compare("Overfitting", mini_overfit(), "Dropout", mini_dropout(), "Randomly zero neurons during training"),
+    lambda: diagram_compare("Overfitting", mini_overfit(compact=True), "Dropout", mini_dropout(compact=True), "Randomly zero neurons during training"),
     lambda: diagram_card(
         "BatchNorm",
         flow_horizontal([("Normalize", "#3b82f6"), ("Scale", "#8b5cf6"), ("Shift", "#22c55e")], y=30),
-        "Stabilize layer outputs for faster training",
         accent="#7c3aed",
     ),
 )
@@ -268,7 +271,6 @@ _register(
     lambda: diagram_card(
         "Translation tolerance",
         flow_horizontal([("Filter slides", "#3b82f6"), ("Same pattern", "#8b5cf6"), ("Anywhere", "#22c55e")], y=30),
-        "Detects features regardless of position in image",
         accent="#7c3aed",
     ),
 )
@@ -288,7 +290,6 @@ _register(
     lambda: diagram_card(
         "ResNet18 flow",
         flow_horizontal([("224×224", "#3b82f6"), ("Features", "#8b5cf6"), ("2-class", "#22c55e")], y=30),
-        "Image → feature extractor → custom classifier",
         accent="#7c3aed",
     ),
 )
@@ -322,8 +323,7 @@ _register(
     lambda: diagram_card("Text preprocessing pipeline", mini_tfidf(), "Lowercase → remove stopwords → tokenize"),
     lambda: diagram_card(
         "TF-IDF intuition",
-        flow_horizontal([("High TF", "#3b82f6"), ("× low IDF", "#f59e0b"), ("= important", "#22c55e")], y=30),
-        "Rare but frequent words get higher weight",
+        flow_horizontal([("High TF", "#3b82f6"), ("× high IDF", "#f59e0b"), ("= important", "#22c55e")], y=30),
         accent="#7c3aed",
     ),
 )
@@ -343,7 +343,6 @@ _register(
     lambda: diagram_card(
         "Embedding layer",
         flow_horizontal([("vocab", "#3b82f6"), ("→ vector", "#8b5cf6"), ("→ NN", "#22c55e")], y=30),
-        "Lookup table used in neural NLP models",
         accent="#7c3aed",
     ),
 )
@@ -388,8 +387,8 @@ _register(
         "Model + eval", "End-to-end NLP project",
         flow_horizontal([("Clean", "#3b82f6"), ("Train", "#22c55e"), ("Metrics", "#ec4899")], y=50),
     ),
-    lambda: diagram_card("NLP project flow", flow_horizontal([("Clean text", "#3b82f6"), ("Features", "#8b5cf6"), ("Classifier", "#22c55e"), ("Report", "#ec4899")], y=30), "Full pipeline from raw text to metrics"),
-    lambda: diagram_compare("TF-IDF + ML", mini_tfidf(), "Embeddings + NN", mini_embedding(), "Choose stack based on data size and task"),
+    lambda: diagram_card("Translation model flow", flow_horizontal([("Text", "#3b82f6"), ("Encoder", "#8b5cf6"), ("Decoder", "#f59e0b"), ("Translation", "#22c55e")], y=30)),
+    lambda: diagram_compare("TF-IDF + ML", mini_tfidf(compact=True), "Embeddings+NN", mini_embedding(compact=True), "Choose stack based on data size and task"),
 )
 
 _register(
@@ -407,7 +406,6 @@ _register(
     lambda: diagram_card(
         "Agent capabilities",
         flow_horizontal([("Plan", "#3b82f6"), ("Call APIs", "#f59e0b"), ("Iterate", "#22c55e")], y=30),
-        "Autonomous multi-step task execution",
         accent="#7c3aed",
     ),
 )
@@ -456,7 +454,6 @@ _register(
     lambda: diagram_card(
         "Abstractions",
         flow_horizontal([("Prompt templates", "#3b82f6"), ("Output parsers", "#8b5cf6"), ("Chains", "#22c55e")], y=30),
-        "Reusable building blocks for LLM apps",
         accent="#7c3aed",
     ),
 )
@@ -473,7 +470,7 @@ _register(
         right_color="#22c55e",
     ),
     lambda: diagram_card("LlamaIndex flow", flow_horizontal([("Load docs", "#3b82f6"), ("Build index", "#8b5cf6"), ("query()", "#22c55e")], y=30), "Data-centric indexing API"),
-    lambda: diagram_compare("LangChain", mini_rag(), "LlamaIndex", flow_horizontal([("Index", "#3b82f6"), ("Query engine", "#22c55e")], y=30), "LlamaIndex: simpler query API, data-first"),
+    lambda: diagram_compare("LangChain", mini_rag(compact=True), "LlamaIndex", flow_horizontal([("Index", "#3b82f6"), ("Query engine", "#22c55e")], y=30), "LlamaIndex: simpler query API, data-first"),
 )
 
 _register(
@@ -491,7 +488,6 @@ _register(
     lambda: diagram_card(
         "Why chain?",
         flow_horizontal([("Break tasks", "#3b82f6"), ("Debug steps", "#8b5cf6"), ("Better quality", "#22c55e")], y=30),
-        "Complex tasks become manageable steps",
         accent="#7c3aed",
     ),
 )
@@ -509,9 +505,8 @@ _register(
     ),
     lambda: diagram_card("Session memory", mini_chat_history(), "Store past messages; send history each API call"),
     lambda: diagram_card(
-        "Streamlit UI",
-        flow_horizontal([("Input box", "#3b82f6"), ("Thread view", "#8b5cf6"), ("API call", "#22c55e")], y=30),
-        "Interactive chat interface",
+        "Chat loop",
+        flow_horizontal([("User input", "#3b82f6"), ("Add to history", "#8b5cf6"), ("API call", "#f59e0b"), ("Reply", "#22c55e")], y=30),
         accent="#7c3aed",
     ),
 )
@@ -531,7 +526,6 @@ _register(
     lambda: diagram_card(
         "Scratch agent",
         flow_horizontal([("Define tools", "#3b82f6"), ("Parse LLM", "#8b5cf6"), ("Execute", "#22c55e")], y=30),
-        "Build agent without heavy frameworks",
         accent="#7c3aed",
     ),
 )
@@ -551,7 +545,6 @@ _register(
     lambda: diagram_card(
         "Build a server",
         flow_horizontal([("Expose functions", "#3b82f6"), ("Stdio/HTTP", "#8b5cf6"), ("Discover", "#22c55e")], y=30),
-        "Standard way to connect LLMs to tools",
         accent="#7c3aed",
     ),
 )
@@ -569,9 +562,8 @@ _register(
     ),
     lambda: diagram_card("Code agent loop", mini_code_agent(), "LLM writes code → sandbox runs → return result"),
     lambda: diagram_card(
-        "smolagents",
-        flow_horizontal([("Lightweight", "#3b82f6"), ("Tool routing", "#8b5cf6"), ("Built-in", "#22c55e")], y=30),
-        "Minimal agent library for code tasks",
+        "Code agent cycle",
+        flow_horizontal([("Task", "#3b82f6"), ("Write code", "#8b5cf6"), ("Sandbox run", "#f59e0b"), ("Result", "#22c55e")], y=30),
         accent="#7c3aed",
     ),
 )
@@ -589,8 +581,7 @@ _register(
     ),
     lambda: diagram_card(
         "Graph concepts",
-        flow_horizontal([("State", "#3b82f6"), ("Node", "#8b5cf6"), ("Edge", "#22c55e")], y=30),
-        "Nodes transform state; edges define control flow",
+        mini_state_graph(),
     ),
     lambda: diagram_card(
         "Support routing",
@@ -614,7 +605,6 @@ _register(
     lambda: diagram_card(
         "Use cases",
         flow_horizontal([("Report gen", "#3b82f6"), ("Data processing", "#8b5cf6"), ("Automation", "#22c55e")], y=30),
-        "Enterprise multi-step tasks",
         accent="#7c3aed",
     ),
 )
@@ -634,7 +624,6 @@ _register(
     lambda: diagram_card(
         "Best practices",
         flow_horizontal([("Small diffs", "#3b82f6"), ("Run tests", "#f59e0b"), ("Human review", "#22c55e")], y=30),
-        "Iterate safely on real codebases",
         accent="#7c3aed",
     ),
 )
@@ -654,7 +643,6 @@ _register(
     lambda: diagram_card(
         "Defense layers",
         flow_horizontal([("Policy", "#3b82f6"), ("LLM judge", "#8b5cf6"), ("Fallback", "#ef4444")], y=30),
-        "Multi-layer output safety",
         accent="#7c3aed",
     ),
 )
@@ -674,7 +662,6 @@ _register(
     lambda: diagram_card(
         "Fraud signals",
         flow_horizontal([("Suspicious text", "#ef4444"), ("Image mismatch", "#f59e0b"), ("High score", "#dc2626")], y=30),
-        "Cross-modal inconsistency detection",
         accent="#7c3aed",
     ),
 )
@@ -694,7 +681,6 @@ _register(
     lambda: diagram_card(
         "Output",
         flow_horizontal([("Knowledge graph", "#3b82f6"), ("Queryable", "#8b5cf6"), ("Records", "#22c55e")], y=30),
-        "Structured data ready for downstream use",
         accent="#7c3aed",
     ),
 )
@@ -745,7 +731,6 @@ _register(
     lambda: diagram_card(
         "Coordination",
         flow_horizontal([("Shared context", "#3b82f6"), ("Handoff", "#f59e0b"), ("Resolve", "#22c55e")], y=30),
-        "Agents share state across handoffs",
         accent="#7c3aed",
     ),
 )

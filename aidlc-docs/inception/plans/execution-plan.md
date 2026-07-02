@@ -3,16 +3,16 @@
 ## 1. 詳細分析サマリー (Detailed Analysis Summary)
 
 ### 変更影響度アセスメント (Change Impact Assessment)
-- **ユーザー直面変更 (User-facing changes)**: あり — ドキュメント内の Mermaid ダイアグラムが、生のコードブロックから美しくインタラクティブなグラフィカル図面へとレンダリングされるようになります。
-- **構造変更 (Structural changes)**: なし — VitePress アプリケーションの基本構成は変わりません。
-- **データモデル変更 (Data model changes)**: なし
-- **API変更 (API changes)**: なし
-- **NFR影響 (NFR impact)**: 軽微 — ブラウザ側での Mermaid レンダリング処理が発生しますが、静的ビルドおよび表示速度に大きな悪影響はありません。
+- **ユーザー直面変更 (User-facing changes)** : あり — ドキュメント内の Mermaid ダイアグラムが、生のコードブロックから美しくインタラクティブなグラフィカル図面へとレンダリングされるようになります。
+- **構造変更 (Structural changes)** : なし — VitePress アプリケーションの基本構成は変わりません。
+- **データモデル変更 (Data model changes)** : なし
+- **API変更 (API changes)** : なし
+- **NFR影響 (NFR impact)** : 軽微 — ブラウザ側での Mermaid レンダリング処理が発生しますが、静的ビルドおよび表示速度に大きな悪影響はありません。
 
 ### リスク評価 (Risk Assessment)
-- **リスクレベル (Risk Level)**: 低 (Low) — パッケージの追加および設定ファイルの変更のみであり、安全にロールバック可能です。
-- **ロールバック難易度 (Rollback Complexity)**: 容易 (Easy) — `git checkout` または設定の削除で即座に元に戻せます。
-- **テスト難易度 (Testing Complexity)**: 容易 (Simple) — `pnpm docs:dev` または `pnpm docs:build` でビルドを確認し、ブラウザでレンダリングを視認するだけで確認できます。
+- **リスクレベル (Risk Level)** : 低 (Low) — パッケージの追加および設定ファイルの変更のみであり、安全にロールバック可能です。
+- **ロールバック難易度 (Rollback Complexity)** : 容易 (Easy) — `git checkout` または設定の削除で即座に元に戻せます。
+- **テスト難易度 (Testing Complexity)** : 容易 (Simple) — `pnpm docs:dev` または `pnpm docs:build` でビルドを確認し、ブラウザでレンダリングを視認するだけで確認できます。
 
 ---
 
@@ -81,29 +81,29 @@ flowchart TD
 - **[x] Requirements Analysis (COMPLETED)**
 - **[x] Workflow Planning (IN PROGRESS)**
 - **[-] Application Design (SKIP)**
-  - **根拠**: 新規コンポーネント構造や複雑なモジュール構成の設計は行わず、単一の設定ファイル変更のみであるため。
+  - **根拠** : 新規コンポーネント構造や複雑なモジュール構成の設計は行わず、単一の設定ファイル変更のみであるため。
 - **[-] Units Generation (SKIP)**
-  - **根拠**: 今回の改修は小規模かつ単一の変更単位であり、作業の分割・依存関係定義を必要としないため。
+  - **根拠** : 今回の改修は小規模かつ単一の変更単位であり、作業の分割・依存関係定義を必要としないため。
 
 ### 🟢 CONSTRUCTION PHASE
 - **[-] Functional Design (SKIP)**
-  - **根拠**: 独自のビジネスロジックは存在せず、ライブラリの標準設定をインポートするだけであるため。
+  - **根拠** : 独自のビジネスロジックは存在せず、ライブラリの標準設定をインポートするだけであるため。
 - **[-] NFR Requirements & Design (SKIP)**
-  - **根拠**: パフォーマンス、セキュリティ、可観測性の個別実装は不要なため。
+  - **根拠** : パフォーマンス、セキュリティ、可観測性の個別実装は不要なため。
 - **[-] Infrastructure Design (SKIP)**
-  - **根拠**: クラウドインフラやデプロイストックの新規作成・変更は行わないため。
+  - **根拠** : クラウドインフラやデプロイストックの新規作成・変更は行わないため。
 - **[EXECUTE] Code Generation (ALWAYS)**
-  - **根拠**: `package.json` に `vitepress-plugin-mermaid` と `mermaid` を追記し、`.vitepress/config.js` に `withMermaid` 設定を組み込むための実装・コード生成が必要です。
+  - **根拠** : `package.json` に `vitepress-plugin-mermaid` と `mermaid` を追記し、`.vitepress/config.js` に `withMermaid` 設定を組み込むための実装・コード生成が必要です。
 - **[EXECUTE] Build and Test (ALWAYS)**
-  - **根拠**: ローカル dev サーバーおよび `pnpm docs:build` での動作検証、および Mermaid のグラフィカルレンダリングを確認する必要があります。
+  - **根拠** : ローカル dev サーバーおよび `pnpm docs:build` での動作検証、および Mermaid のグラフィカルレンダリングを確認する必要があります。
 
 ---
 
 ## 4. 成功基準 (Success Criteria)
-- **主要目的**: VitePress カリキュラム内で記述されているすべての Mermaid ブロック（` ```mermaid `）が、生のテキストコードではなく動的なグラフィカル図面としてレンダリングされること。
-- **成果物**:
+- **主要目的** : VitePress カリキュラム内で記述されているすべての Mermaid ブロック（` ```mermaid `）が、生のテキストコードではなく動的なグラフィカル図面としてレンダリングされること。
+- **成果物** :
   - `package.json` へのパッケージの適切な導入。
   - `.vitepress/config.js` での `withMermaid` による設定ラップ。
-- **品質ゲート**:
+- **品質ゲート** :
   - `pnpm docs:build` が警告・エラーなく完了すること。
   - `pnpm docs:dev` にて画面（例: Unit 22 などの Mermaid 使用箇所）で図面が崩れず表示されること。

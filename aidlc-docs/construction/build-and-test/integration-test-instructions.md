@@ -18,11 +18,11 @@ docker exec -d -w /workspaces/job-change flamboyant_lovelace pnpm docs:dev
 
 ### 2. 対象画面へのアクセス (Access Target Page)
 ブラウザを起動し、以下の Mermaid ダイアグラムが存在するカリキュラムページにアクセスします。
-- **検証先URL**: `http://localhost:5173/curriculum/unit22_llm_evolution/`
+- **検証先URL** : `http://localhost:5173/curriculum/unit22_llm_evolution/`
 
 ### 3. 表示の検証 (Verify Visual Rendering)
 以下の点を目視で確認します。
-- **合格基準**:
+- **合格基準** :
   - `graph TD` などの Mermaid 構文テキスト（生のコードブロック）が消え、カラーリングおよびフォントの適用されたグラフィカルなフローチャート図面が表示されていること。
   - 図面の各ノード（四角形や丸型など）および接続矢印（アロー）が崩れずに正常に描写されていること。
   - VitePress のダークモード/ライトモードを切り替えた際にも、ダイアグラムが追従して見やすく表示されること。

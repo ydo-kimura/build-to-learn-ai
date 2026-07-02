@@ -20,6 +20,36 @@ def _t(x, y, text, size=14, color="#334155", anchor="start", weight="400", famil
     )
 
 
+def _title_size(text: str, max_size: int = 20) -> int:
+    n = len(text)
+    if n <= 32:
+        return max_size
+    if n <= 48:
+        return max(max_size - 2, 16)
+    return max(max_size - 5, 14)
+
+
+def _label_size(text: str, base: int = 11) -> int:
+    n = len(text)
+    if n <= 10:
+        return base
+    if n <= 16:
+        return max(base - 1, 9)
+    return max(base - 2, 8)
+
+
+def _box_w_for_label(text: str, min_w: int = 72, max_w: int = 140) -> int:
+    return int(max(min_w, min(max_w, len(text) * 6.8 + 24)))
+
+
+def _label_box(x, y, w, h, text, fill="#dbeafe", stroke="#3b82f6", text_color="#1d4ed8", sw=2, rx=6):
+    size = _label_size(text)
+    return "\n".join([
+        _rect(x, y, w, h, fill, stroke, sw, rx),
+        _t(x + w / 2, y + h / 2 + size * 0.35, text, size, text_color, "middle", "600"),
+    ])
+
+
 def _rect(x, y, w, h, fill="#fff", stroke="#e2e8f0", sw=1.5, rx=8):
     return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" fill="{fill}" stroke="{stroke}" stroke-width="{sw}"/>'
 
@@ -74,160 +104,201 @@ def hero_two_panel(
     return svg_doc(1200, 320, body, title)
 
 
-def diagram_card(title: str, body: str, subtitle: str = "", accent: str = "#3b82f6", h: int = 320) -> str:
-    sub = f'\n  {_t(350, h - 24, subtitle, 13, "#64748b", "middle")}' if subtitle else ""
-    body_h = h - 108
+def diagram_card(title: str, body: str, subtitle: str = "", accent: str = "#3b82f6", h: int = 380) -> str:
+    title_sz = _title_size(title)
+    sub = f'\n  {_t(350, h - 28, subtitle, 12, "#64748b", "middle")}' if subtitle else ""
+    body_h = h - 128
     inner = f"""  <rect width="700" height="{h}" rx="12" fill="#f8fafc"/>
-  {_rect(24, 20, 652, 52, "#fff", accent, 2, 8)}
-  {_t(350, 52, title, 20, accent, "middle", "700")}
-  {_rect(24, 84, 652, body_h, "#fff", "#e2e8f0", 1.5, 8)}
-  <g transform="translate(40, 100)">{body}</g>{sub}"""
+  {_rect(24, 20, 652, 56, "#fff", accent, 2, 8)}
+  {_t(350, 54, title, title_sz, accent, "middle", "700")}
+  {_rect(24, 88, 652, body_h, "#fff", "#e2e8f0", 1.5, 8)}
+  <g transform="translate(90, 108)">{body}</g>{sub}"""
     return svg_doc(700, h, inner, title)
 
 
 def diagram_compare(title_l: str, body_l: str, title_r: str, body_r: str, caption: str = "") -> str:
-    h = 300
-    sub = f'\n  {_t(350, h - 16, caption, 13, "#64748b", "middle")}' if caption else ""
-    inner = f"""  <rect width="720" height="{h}" rx="12" fill="#f8fafc"/>
-  {_t(130, 28, title_l, 15, "#dc2626", "middle", "700")}
-  {_t(540, 28, title_r, 15, "#059669", "middle", "700")}
-  {_rect(20, 40, 320, 220, "#fff", "#e2e8f0", 1.5, 8)}
-  <g transform="translate(30, 50)">{body_l}</g>
-  {_rect(380, 40, 320, 220, "#fff", "#e2e8f0", 1.5, 8)}
-  <g transform="translate(390, 50)">{body_r}</g>{sub}"""
-    return svg_doc(720, h, inner, f"{title_l} vs {title_r}")
+    w, h = 720, 320 if not caption else 348
+    pw, ph = 332, 248
+    lx, rx = 20, 368
+    title_bar = 44
+    body_y = 20 + title_bar + 12
+    sub = f'\n  {_t(w / 2, h - 18, caption, 11, "#64748b", "middle")}' if caption else ""
+    inner = f"""  <rect width="{w}" height="{h}" rx="12" fill="#f8fafc"/>
+  {_rect(lx, 20, pw, ph, "#fff", "#e2e8f0", 1.5, 10)}
+  {_rect(lx, 20, pw, title_bar, "#fff7ed", "#f97316", 1.5, 10)}
+  {_t(lx + pw / 2, 48, title_l, _title_size(title_l, 15), "#c2410c", "middle", "700")}
+  <g transform="translate({lx + 24}, {body_y})">{body_l}</g>
+  {_rect(rx, 20, pw, ph, "#fff", "#e2e8f0", 1.5, 10)}
+  {_rect(rx, 20, pw, title_bar, "#f0fdf4", "#22c55e", 1.5, 10)}
+  {_t(rx + pw / 2, 48, title_r, _title_size(title_r, 15), "#15803d", "middle", "700")}
+  <g transform="translate({rx + 24}, {body_y})">{body_r}</g>{sub}"""
+    return svg_doc(w, h, inner, f"{title_l} vs {title_r}")
 
 
-def flow_horizontal(steps: list[tuple[str, str]], y: int = 40) -> str:
+def flow_horizontal(steps: list[tuple[str, str]], y: int = 50, max_width: int = 560) -> str:
     """steps: [(label, color), ...]"""
+    if not steps:
+        return ""
+    gap = 28
+    box_ws = [_box_w_for_label(label) for label, _ in steps]
+    total = sum(box_ws) + gap * (len(steps) - 1)
+    if total > max_width:
+        scale = max_width / total
+        box_ws = [max(64, int(w * scale)) for w in box_ws]
+        gap = max(18, int(gap * scale))
     parts: list[str] = []
     x = 0
-    box_w = min(110, max(70, 520 // max(len(steps), 1) - 20))
-    gap = 36
+    box_h = 48
     for i, (label, color) in enumerate(steps):
-        parts.append(_rect(x, y, box_w, 44, color + "22", color, 2, 8))
-        parts.append(_t(x + box_w / 2, y + 28, label, 11, color, "middle", "600"))
+        bw = box_ws[i]
+        parts.append(_rect(x, y, bw, box_h, color + "22", color, 2, 8))
+        parts.append(_t(x + bw / 2, y + box_h / 2 + _label_size(label) * 0.35, label, _label_size(label), color, "middle", "600"))
         if i < len(steps) - 1:
-            parts.append(_arrow(x + box_w, y + 22, x + box_w + gap - 8, y + 22, "#64748b", 1.5))
-        x += box_w + gap
+            parts.append(_arrow(x + bw, y + box_h / 2, x + bw + gap - 8, y + box_h / 2, "#64748b", 1.5))
+        x += bw + gap
     return "\n".join(parts)
 
 
 def mini_tree(root: str, left: str, right: str, ll: str = "", lr: str = "") -> str:
+    bw = 108
+    bh = 32
+    cx = 250
     parts = [
-        _rect(190, 0, 100, 28, "#dbeafe", "#3b82f6", 2, 6),
-        _t(240, 20, root, 11, "#1d4ed8", "middle", "600"),
-        _line(240, 28, 120, 58, "#94a3b8", 1.5),
-        _line(240, 28, 360, 58, "#94a3b8", 1.5),
-        _rect(70, 58, 100, 28, "#dcfce7", "#22c55e", 2, 6),
-        _t(120, 78, left, 11, "#15803d", "middle", "600"),
-        _rect(310, 58, 100, 28, "#fef3c7", "#f59e0b", 2, 6),
-        _t(360, 78, right, 11, "#b45309", "middle", "600"),
+        *_label_box(cx - bw / 2, 0, bw, bh, root, "#dbeafe", "#3b82f6", "#1d4ed8").split("\n"),
+        _line(cx, bh, 110, bh + 34, "#94a3b8", 1.5),
+        _line(cx, bh, 390, bh + 34, "#94a3b8", 1.5),
+        *_label_box(56, bh + 34, bw, bh, left, "#dcfce7", "#22c55e", "#15803d").split("\n"),
+        *_label_box(334, bh + 34, bw, bh, right, "#fef3c7", "#f59e0b", "#b45309").split("\n"),
     ]
     if ll:
         parts += [
-            _line(360, 86, 320, 116, "#94a3b8", 1.5),
-            _line(360, 86, 400, 116, "#94a3b8", 1.5),
-            _rect(270, 116, 100, 28, "#ede9fe", "#8b5cf6", 2, 6),
-            _t(320, 136, ll, 11, "#6d28d9", "middle", "600"),
-            _rect(350, 116, 100, 28, "#fce7f3", "#ec4899", 2, 6),
-            _t(400, 136, lr, 11, "#be185d", "middle", "600"),
+            _line(390, bh + 34 + bh, 330, bh + 34 + bh + 34, "#94a3b8", 1.5),
+            _line(390, bh + 34 + bh, 450, bh + 34 + bh + 34, "#94a3b8", 1.5),
+            *_label_box(276, bh + 68 + bh, bw, bh, ll, "#ede9fe", "#8b5cf6", "#6d28d9").split("\n"),
+            *_label_box(396, bh + 68 + bh, bw, bh, lr, "#fce7f3", "#ec4899", "#be185d").split("\n"),
         ]
     return "\n".join(parts)
 
 
 def mini_animal_tree() -> str:
     """Feathers? → Yes: Bird | No: Walks? → Yes: Dog / No: Cat"""
-    return "\n".join([
-        _rect(190, 0, 100, 28, "#dbeafe", "#3b82f6", 2, 6),
-        _t(240, 20, "Feathers?", 11, "#1d4ed8", "middle", "600"),
-        _line(240, 28, 120, 58, "#94a3b8", 1.5),
-        _line(240, 28, 360, 58, "#94a3b8", 1.5),
-        _rect(70, 58, 100, 28, "#dcfce7", "#22c55e", 2, 6),
-        _t(120, 78, "Bird", 11, "#15803d", "middle", "600"),
-        _rect(310, 58, 100, 28, "#fef3c7", "#f59e0b", 2, 6),
-        _t(360, 78, "Walks?", 11, "#b45309", "middle", "600"),
-        _line(360, 86, 320, 116, "#94a3b8", 1.5),
-        _line(360, 86, 400, 116, "#94a3b8", 1.5),
-        _rect(270, 116, 100, 28, "#ede9fe", "#8b5cf6", 2, 6),
-        _t(320, 136, "Dog", 11, "#6d28d9", "middle", "600"),
-        _rect(350, 116, 100, 28, "#fce7f3", "#ec4899", 2, 6),
-        _t(400, 136, "Cat", 11, "#be185d", "middle", "600"),
-    ])
+    return mini_tree("Feathers?", "Bird", "Walks?", "Dog", "Cat")
 
 
 def mini_rf_vote() -> str:
-    trees = [(40, 10), (200, 10), (360, 10)]
+    trees = [(60, 8), (230, 8), (400, 8)]
     parts = []
     votes = ["A", "A", "B"]
     for i, (tx, ty) in enumerate(trees):
         parts += [
-            _line(tx + 30, ty + 40, tx + 15, ty + 55, "#22c55e", 1.5),
-            _line(tx + 30, ty + 40, tx + 45, ty + 55, "#22c55e", 1.5),
-            _circle(tx + 30, ty + 25, 16, "#dcfce7", "#22c55e", 2),
-            _t(tx + 30, ty + 30, "?", 12, "#15803d", "middle", "700"),
-            _t(tx + 30, ty + 68, f"→ {votes[i]}", 11, "#475569", "middle", "600"),
+            _line(tx + 30, ty + 44, tx + 15, ty + 62, "#22c55e", 1.5),
+            _line(tx + 30, ty + 44, tx + 45, ty + 62, "#22c55e", 1.5),
+            _circle(tx + 30, ty + 26, 18, "#dcfce7", "#22c55e", 2),
+            _t(tx + 30, ty + 31, "T" + str(i + 1), 10, "#15803d", "middle", "700"),
+            _t(tx + 30, ty + 78, f"vote {votes[i]}", 10, "#475569", "middle", "600"),
         ]
     parts += [
-        _rect(130, 88, 180, 32, "#ede9fe", "#7c3aed", 2, 8),
-        _t(220, 110, "Majority → A", 13, "#6d28d9", "middle", "700"),
+        _rect(150, 98, 220, 36, "#ede9fe", "#7c3aed", 2, 8),
+        _t(260, 122, "Majority vote → A", 12, "#6d28d9", "middle", "700"),
     ]
     return "\n".join(parts)
 
 
-def mini_parallel_trees() -> str:
+def mini_parallel_trees(compact: bool = False) -> str:
+    if compact:
+        xs = [40, 100, 160, 220]
+        bar, vote = (70, 100, 180, 28), (160, 120)
+        fs = 9
+    else:
+        xs = [60, 180, 300, 420]
+        bar, vote = (120, 110, 280, 32), (260, 132)
+        fs = 10
     parts = []
-    for i, x in enumerate([60, 180, 300, 420]):
+    for i, x in enumerate(xs):
         parts += [
-            _circle(x, 40, 16, "#dbeafe", "#3b82f6", 2),
-            _line(x, 56, x - 12, 80, "#3b82f6", 1.5),
-            _line(x, 56, x + 12, 80, "#3b82f6", 1.5),
-            _t(x, 95, f"T{i+1}", 10, "#64748b", "middle"),
+            _circle(x, 40, 14 if compact else 16, "#dbeafe", "#3b82f6", 2),
+            _line(x, 54, x - 10, 76, "#3b82f6", 1.5),
+            _line(x, 54, x + 10, 76, "#3b82f6", 1.5),
+            _t(x, 90, f"T{i+1}", fs, "#64748b", "middle"),
         ]
-    parts += [_rect(120, 110, 280, 32, "#dbeafe", "#3b82f6", 2, 8), _t(260, 132, "Parallel vote", 13, "#1d4ed8", "middle", "700")]
-    return "\n".join(parts)
-
-
-def mini_sequential_boost() -> str:
-    parts = [
-        _rect(20, 30, 80, 36, "#fee2e2", "#ef4444", 2, 6),
-        _t(60, 54, "err +5m", 10, "#b91c1c", "middle", "600"),
-        _arrow(100, 48, 140, 48),
-        _rect(140, 30, 80, 36, "#fef3c7", "#f59e0b", 2, 6),
-        _t(180, 54, "fix -4m", 10, "#b45309", "middle", "600"),
-        _arrow(220, 48, 260, 48),
-        _rect(260, 30, 80, 36, "#dcfce7", "#22c55e", 2, 6),
-        _t(300, 54, "fix -1m", 10, "#15803d", "middle", "600"),
-        _rect(100, 100, 220, 32, "#ede9fe", "#7c3aed", 2, 8),
-        _t(210, 122, "Sequential correction", 12, "#6d28d9", "middle", "700"),
+    parts += [
+        _rect(bar[0], bar[1], bar[2], bar[3], "#dbeafe", "#3b82f6", 2, 8),
+        _t(vote[0], vote[1], "Parallel vote", 11 if compact else 13, "#1d4ed8", "middle", "700"),
     ]
     return "\n".join(parts)
 
 
-def mini_kmeans() -> str:
-    pts = [(60, 100), (80, 90), (100, 110), (300, 60), (320, 70), (310, 50)]
+def mini_sequential_boost(compact: bool = False) -> str:
+    if compact:
+        parts = [
+            _rect(8, 28, 64, 30, "#fee2e2", "#ef4444", 2, 6),
+            _t(40, 48, "err +5m", 9, "#b91c1c", "middle", "600"),
+            _arrow(72, 43, 98, 43),
+            _rect(98, 28, 64, 30, "#fef3c7", "#f59e0b", 2, 6),
+            _t(130, 48, "fix -4m", 9, "#b45309", "middle", "600"),
+            _arrow(162, 43, 188, 43),
+            _rect(188, 28, 64, 30, "#dcfce7", "#22c55e", 2, 6),
+            _t(220, 48, "fix -1m", 9, "#15803d", "middle", "600"),
+            _rect(70, 88, 160, 26, "#ede9fe", "#7c3aed", 2, 8),
+            _t(150, 106, "Sequential fix", 10, "#6d28d9", "middle", "700"),
+        ]
+    else:
+        parts = [
+            _rect(20, 30, 80, 36, "#fee2e2", "#ef4444", 2, 6),
+            _t(60, 54, "err +5m", 10, "#b91c1c", "middle", "600"),
+            _arrow(100, 48, 140, 48),
+            _rect(140, 30, 80, 36, "#fef3c7", "#f59e0b", 2, 6),
+            _t(180, 54, "fix -4m", 10, "#b45309", "middle", "600"),
+            _arrow(220, 48, 260, 48),
+            _rect(260, 30, 80, 36, "#dcfce7", "#22c55e", 2, 6),
+            _t(300, 54, "fix -1m", 10, "#15803d", "middle", "600"),
+            _rect(100, 100, 220, 32, "#ede9fe", "#7c3aed", 2, 8),
+            _t(210, 122, "Sequential correction", 12, "#6d28d9", "middle", "700"),
+        ]
+    return "\n".join(parts)
+
+
+def mini_kmeans(compact: bool = False) -> str:
+    if compact:
+        pts = [(52, 78), (68, 68), (84, 86), (188, 62), (204, 74), (196, 52)]
+        ca, cb = (68, 78), (200, 66)
+        label_y = 108
+    else:
+        pts = [(60, 100), (80, 90), (100, 110), (220, 70), (240, 82), (230, 58)]
+        ca, cb = (80, 100), (230, 75)
+        label_y = 130
     parts = []
     for i, (x, y) in enumerate(pts):
         c = "#f97316" if i < 3 else "#8b5cf6"
         parts.append(_circle(x, y, 10, c))
     parts += [
-        _circle(80, 100, 14, "none", "#f97316", 2),
-        _circle(310, 60, 14, "none", "#8b5cf6", 2),
-        _t(80, 130, "Centroid A", 10, "#c2410c", "middle"),
-        _t(310, 90, "Centroid B", 10, "#6d28d9", "middle"),
+        _circle(ca[0], ca[1], 14, "none", "#f97316", 2),
+        _circle(cb[0], cb[1], 14, "none", "#8b5cf6", 2),
+        _t(ca[0], label_y, "Centroid A", 10, "#c2410c", "middle"),
+        _t(cb[0], label_y - 8, "Centroid B", 10, "#6d28d9", "middle"),
     ]
     return "\n".join(parts)
 
 
-def mini_dbscan() -> str:
-    parts = [
-        _circle(80, 70, 8, "#3b82f6"), _circle(95, 80, 8, "#3b82f6"), _circle(70, 85, 8, "#3b82f6"),
-        _circle(280, 60, 8, "#8b5cf6"), _circle(300, 75, 8, "#8b5cf6"), _circle(290, 90, 8, "#8b5cf6"),
-        _circle(200, 110, 6, "#94a3b8"), _circle(220, 115, 6, "#94a3b8"),
-        _rect(50, 40, 80, 60, "none", "#3b82f6", 1.5, 20),
-        _rect(260, 40, 70, 65, "none", "#8b5cf6", 1.5, 20),
-        _t(200, 130, "noise", 10, "#64748b", "middle"),
-    ]
+def mini_dbscan(compact: bool = False) -> str:
+    if compact:
+        parts = [
+            _circle(52, 72, 8, "#3b82f6"), _circle(66, 82, 8, "#3b82f6"), _circle(58, 90, 8, "#3b82f6"),
+            _circle(198, 68, 8, "#8b5cf6"), _circle(214, 80, 8, "#8b5cf6"), _circle(206, 90, 8, "#8b5cf6"),
+            _circle(128, 118, 6, "#94a3b8"), _circle(142, 124, 6, "#94a3b8"),
+            _rect(38, 54, 52, 48, "none", "#3b82f6", 1.5, 16),
+            _rect(182, 52, 52, 52, "none", "#8b5cf6", 1.5, 16),
+            _t(135, 142, "noise", 10, "#64748b", "middle"),
+        ]
+    else:
+        parts = [
+            _circle(80, 70, 8, "#3b82f6"), _circle(95, 80, 8, "#3b82f6"), _circle(70, 85, 8, "#3b82f6"),
+            _circle(220, 60, 8, "#8b5cf6"), _circle(240, 75, 8, "#8b5cf6"), _circle(230, 90, 8, "#8b5cf6"),
+            _circle(155, 115, 6, "#94a3b8"), _circle(172, 120, 6, "#94a3b8"),
+            _rect(50, 40, 80, 60, "none", "#3b82f6", 1.5, 20),
+            _rect(200, 40, 70, 65, "none", "#8b5cf6", 1.5, 20),
+            _t(164, 138, "noise", 10, "#64748b", "middle"),
+        ]
     return "\n".join(parts)
 
 
@@ -281,22 +352,65 @@ def mini_pipeline() -> str:
 
 
 def mini_nn_layers() -> str:
-    layers = [(40, ["x1", "x2", "x3"]), (180, ["h1", "h2"]), (320, ["y"])]
-    parts = []
-    for lx, nodes in layers:
-        for i, n in enumerate(nodes):
-            cy = 40 + i * 36
-            parts += [_circle(lx, cy, 14, "#dbeafe", "#3b82f6", 2), _t(lx, cy + 5, n, 9, "#1d4ed8", "middle", "600")]
-    for i in range(3):
-        for j in range(2):
-            parts.append(_line(54, 40 + i * 36, 166, 40 + j * 36, "#cbd5e1", 1))
-    for j in range(2):
-        parts.append(_line(194, 40 + j * 36, 306, 58, "#cbd5e1", 1))
+    """3-input, 2-hidden, 1-output MLP; output node vertically centered with hidden layer."""
+    lx_in, lx_hid, lx_out = 60, 230, 400
+    input_ys = [55, 100, 145]
+    hidden_ys = [75, 125]
+    output_y = 100
+    r, sw = 18, 1.25
+    parts: list[str] = []
+
+    for i, y in enumerate(input_ys):
+        parts += [_circle(lx_in, y, r, "#dbeafe", "#3b82f6", 2), _t(lx_in, y + 5, f"x{i + 1}", 11, "#1d4ed8", "middle", "600")]
+    for i, y in enumerate(hidden_ys):
+        parts += [_circle(lx_hid, y, r, "#dbeafe", "#3b82f6", 2), _t(lx_hid, y + 5, f"h{i + 1}", 11, "#1d4ed8", "middle", "600")]
+    parts += [_circle(lx_out, output_y, r, "#dbeafe", "#3b82f6", 2), _t(lx_out, output_y + 5, "y", 11, "#1d4ed8", "middle", "600")]
+
+    for iy in input_ys:
+        for hy in hidden_ys:
+            parts.append(_line(lx_in + r, iy, lx_hid - r, hy, "#94a3b8", sw))
+    for hy in hidden_ys:
+        parts.append(_line(lx_hid + r, hy, lx_out - r, output_y, "#94a3b8", sw))
+
+  # Layer labels with subtle column guides
+    parts += [
+        _line(lx_in, 168, lx_in, 12, "#e2e8f0", 1, "4 4"),
+        _line(lx_hid, 168, lx_hid, 12, "#e2e8f0", 1, "4 4"),
+        _line(lx_out, 168, lx_out, 12, "#e2e8f0", 1, "4 4"),
+        _t(lx_in, 182, "Input", 11, "#64748b", "middle", "600"),
+        _t(lx_hid, 182, "Hidden", 11, "#64748b", "middle", "600"),
+        _t(lx_out, 182, "Output", 11, "#64748b", "middle", "600"),
+    ]
     return "\n".join(parts)
 
 
 def mini_training_loop() -> str:
-    return flow_horizontal([("Forward", "#3b82f6"), ("Loss", "#ef4444"), ("Backward", "#f59e0b"), ("Update", "#22c55e")], y=55)
+    steps = [("Forward", "#3b82f6"), ("Loss", "#ef4444"), ("Backward", "#f59e0b"), ("Update", "#22c55e")]
+    x, y, bw, bh, gap = 16, 32, 96, 46, 24
+    parts: list[str] = []
+    tops: list[tuple[float, float]] = []
+
+    for i, (label, color) in enumerate(steps):
+        cx = x + bw / 2
+        parts += [
+            _rect(x, y, bw, bh, color + "22", color, 2, 8),
+            _t(cx, y + bh / 2 + 4, label, _label_size(label), color, "middle", "600"),
+        ]
+        tops.append((cx, y))
+        if i < len(steps) - 1:
+            parts.append(_arrow(x + bw, y + bh / 2, x + bw + gap - 8, y + bh / 2, "#64748b", 1.5))
+        x += bw + gap
+
+    first_cx, last_cx = tops[0][0], tops[-1][0]
+    bottom = y + bh
+    loop_y = bottom + 42
+    parts += [
+        f'<path d="M {last_cx} {bottom} L {last_cx} {loop_y} L {first_cx} {loop_y} L {first_cx} {bottom}" '
+        f'fill="none" stroke="#64748b" stroke-width="1.5"/>',
+        f'<polygon points="{first_cx},{bottom} {first_cx - 5},{bottom + 8} {first_cx + 5},{bottom + 8}" fill="#64748b"/>',
+        _t((first_cx + last_cx) / 2, loop_y + 18, "repeat", 11, "#64748b", "middle", "600"),
+    ]
+    return "\n".join(parts)
 
 
 def mini_tensor() -> str:
@@ -327,56 +441,64 @@ def mini_autograd() -> str:
     return "\n".join(parts)
 
 
-def mini_loss_curves() -> str:
-    parts = [
-        _line(30, 120, 30, 30, "#94a3b8", 1.5),
-        _line(30, 120, 380, 120, "#94a3b8", 1.5),
-        _t(20, 25, "loss", 10, "#64748b", "middle"),
-        '  <path d="M40,110 C80,100 120,70 180,55 S280,40 360,35" fill="none" stroke="#ef4444" stroke-width="2.5"/>',
-        '  <path d="M40,115 C100,108 160,95 220,88 S320,82 360,80" fill="none" stroke="#3b82f6" stroke-width="2.5"/>',
-        _t(280, 50, "MSE", 10, "#ef4444", "start", "600"),
-        _t(280, 65, "Cross-entropy", 10, "#3b82f6", "start", "600"),
-    ]
-    return "\n".join(parts)
-
-
-def mini_optimizers() -> str:
-    parts = [
-        _line(40, 100, 40, 30, "#94a3b8", 1.5),
-        _line(40, 100, 360, 100, "#94a3b8", 1.5),
-        '  <path d="M60,90 L100,70 L140,75 L180,50 L220,55 L260,40 L300,45 L340,30" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6 3"/>',
-        '  <path d="M60,90 C120,75 180,55 240,42 S320,30 340,28" fill="none" stroke="#22c55e" stroke-width="2.5"/>',
-        _t(250, 22, "Adam (adaptive)", 10, "#22c55e", "start", "600"),
-        _t(250, 88, "SGD (fixed step)", 10, "#3b82f6", "start", "600"),
-    ]
-    return "\n".join(parts)
-
-
-def mini_overfit() -> str:
+def mini_loss_curves(compact: bool = False) -> str:
+    w = 260 if compact else 380
     parts = [
         _line(20, 110, 20, 20, "#94a3b8", 1.5),
-        _line(20, 110, 280, 110, "#94a3b8", 1.5),
-        '  <path d="M30,100 C60,95 90,40 120,60 S180,90 220,50 S260,30 270,35" fill="none" stroke="#ef4444" stroke-width="2.5"/>',
-        _circle(60, 85, 4, "#3b82f6", None, 0),
-        _circle(120, 70, 4, "#3b82f6", None, 0),
-        _circle(180, 80, 4, "#3b82f6", None, 0),
-        _circle(240, 55, 4, "#3b82f6", None, 0),
-        _t(40, 125, "Memorizes noise", 10, "#b91c1c", "start"),
+        _line(20, 110, w, 110, "#94a3b8", 1.5),
+        _t(12, 18, "loss", 9, "#64748b", "middle"),
+        '  <path d="M30,100 C60,92 90,65 130,50 S200,35 240,30" fill="none" stroke="#ef4444" stroke-width="2.5"/>',
+        '  <path d="M30,105 C70,98 110,88 150,82 S210,76 240,74" fill="none" stroke="#3b82f6" stroke-width="2.5"/>',
+        _t(170, 42, "MSE", 9, "#ef4444", "start", "600"),
+        _t(170, 56, "CE", 9, "#3b82f6", "start", "600"),
     ]
     return "\n".join(parts)
 
 
-def mini_dropout() -> str:
-    nodes = [(60, 40), (60, 80), (60, 120), (180, 60), (180, 100), (300, 80)]
+def mini_optimizers(compact: bool = False) -> str:
+    w = 260 if compact else 360
+    parts = [
+        _line(20, 90, 20, 20, "#94a3b8", 1.5),
+        _line(20, 90, w, 90, "#94a3b8", 1.5),
+        '  <path d="M35,82 L65,68 L95,72 L125,48 L155,52 L185,38 L215,42 L240,28" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6 3"/>',
+        '  <path d="M35,82 C80,70 125,52 170,38 S220,28 240,26" fill="none" stroke="#22c55e" stroke-width="2.5"/>',
+        _t(150, 16, "Adam", 9, "#22c55e", "start", "600"),
+        _t(150, 78, "SGD", 9, "#3b82f6", "start", "600"),
+    ]
+    return "\n".join(parts)
+
+
+def mini_overfit(compact: bool = False) -> str:
+    w = 220 if compact else 280
+    parts = [
+        _line(12, 100, 12, 16, "#94a3b8", 1.5),
+        _line(12, 100, w, 100, "#94a3b8", 1.5),
+        '  <path d="M22,92 C45,88 68,38 88,52 S130,78 165,42 S195,26 205,30" fill="none" stroke="#ef4444" stroke-width="2.5"/>',
+        _circle(45, 72, 3, "#3b82f6", None, 0),
+        _circle(88, 58, 3, "#3b82f6", None, 0),
+        _circle(130, 68, 3, "#3b82f6", None, 0),
+        _circle(175, 46, 3, "#3b82f6", None, 0),
+        _t(24, 112, "Memorizes noise", 9, "#b91c1c", "start"),
+    ]
+    return "\n".join(parts)
+
+
+def mini_dropout(compact: bool = False) -> str:
+    if compact:
+        nodes = [(36, 32), (36, 64), (36, 96), (120, 48), (120, 80), (200, 64)]
+    else:
+        nodes = [(60, 40), (60, 80), (60, 120), (180, 60), (180, 100), (300, 80)]
     active = [True, False, True, True, False, True]
+    r = 11 if compact else 14
     parts = []
     for (x, y), on in zip(nodes, active):
         if on:
-            parts.append(_circle(x, y, 14, "#dbeafe", "#3b82f6", 2))
+            parts.append(_circle(x, y, r, "#dbeafe", "#3b82f6", 2))
         else:
-            parts.append(_circle(x, y, 14, "#f1f5f9", "#94a3b8", 2))
-            parts.append(_line(x - 10, y - 10, x + 10, y + 10, "#94a3b8", 2))
-    parts.append(_t(180, 140, "Randomly zero neurons", 11, "#64748b", "middle"))
+            parts.append(_circle(x, y, r, "#f1f5f9", "#94a3b8", 2))
+            parts.append(_line(x - 8, y - 8, x + 8, y + 8, "#94a3b8", 2))
+    cx = 120 if compact else 180
+    parts.append(_t(cx, 118 if compact else 140, "Zero neurons", 9 if compact else 11, "#64748b", "middle"))
     return "\n".join(parts)
 
 
@@ -423,34 +545,60 @@ def mini_train_val() -> str:
     return "\n".join(parts)
 
 
-def mini_tfidf() -> str:
-    parts = [
-        _t(10, 20, "the cat sat", 11, "#64748b", "start"),
-        _arrow(100, 40, 150, 40),
-        _rect(150, 15, 200, 50, "#fff", "#e2e8f0", 1.5, 4),
-    ]
-    words = ["cat", "sat", "mat"]
-    for i, w in enumerate(words):
-        parts.append(_t(170, 30 + i * 14, w, 9, "#475569", "start"))
-        parts.append(_rect(220 + i * 40, 22 + i * 14, 30, 10, "#dbeafe", "#3b82f6", 1, 2))
-    parts.append(_t(170, 75, "Sparse TF-IDF vector", 10, "#1d4ed8", "start", "600"))
+def mini_tfidf(compact: bool = False) -> str:
+    if compact:
+        parts = [
+            _t(4, 16, "the cat sat", 9, "#64748b", "start"),
+            _arrow(72, 28, 100, 28),
+            _rect(100, 8, 150, 42, "#fff", "#e2e8f0", 1.5, 4),
+        ]
+        words = ["cat", "sat", "mat"]
+        for i, w in enumerate(words):
+            parts.append(_t(110, 20 + i * 12, w, 8, "#475569", "start"))
+            parts.append(_rect(145 + i * 32, 14 + i * 12, 26, 8, "#dbeafe", "#3b82f6", 1, 2))
+        parts.append(_t(110, 58, "Sparse TF-IDF", 8, "#1d4ed8", "start", "600"))
+    else:
+        parts = [
+            _t(10, 20, "the cat sat", 11, "#64748b", "start"),
+            _arrow(100, 40, 150, 40),
+            _rect(150, 15, 200, 50, "#fff", "#e2e8f0", 1.5, 4),
+        ]
+        words = ["cat", "sat", "mat"]
+        for i, w in enumerate(words):
+            parts.append(_t(170, 30 + i * 14, w, 9, "#475569", "start"))
+            parts.append(_rect(220 + i * 40, 22 + i * 14, 30, 10, "#dbeafe", "#3b82f6", 1, 2))
+        parts.append(_t(170, 75, "Sparse TF-IDF vector", 10, "#1d4ed8", "start", "600"))
     return "\n".join(parts)
 
 
-def mini_embedding() -> str:
-    parts = [
-        _rect(20, 30, 80, 80, "#fee2e2", "#ef4444", 2, 6),
-        _t(60, 75, "one-hot", 10, "#b91c1c", "middle", "600"),
-        _t(60, 55, "sparse", 10, "#64748b", "middle"),
-        _arrow(105, 70, 155, 70),
-        _rect(155, 30, 220, 80, "#ede9fe", "#7c3aed", 2, 6),
-        _circle(190, 60, 6, "#3b82f6", None, 0),
-        _circle(230, 50, 6, "#8b5cf6", None, 0),
-        _circle(270, 70, 6, "#ec4899", None, 0),
-        _circle(310, 55, 6, "#f59e0b", None, 0),
-        _circle(350, 65, 6, "#22c55e", None, 0),
-        _t(265, 100, "Dense embedding space", 10, "#6d28d9", "middle", "600"),
-    ]
+def mini_embedding(compact: bool = False) -> str:
+    if compact:
+        parts = [
+            _rect(8, 22, 56, 56, "#fee2e2", "#ef4444", 2, 6),
+            _t(36, 58, "one-hot", 8, "#b91c1c", "middle", "600"),
+            _arrow(68, 50, 88, 50),
+            _rect(88, 22, 160, 56, "#ede9fe", "#7c3aed", 2, 6),
+            _circle(110, 42, 5, "#3b82f6", None, 0),
+            _circle(140, 36, 5, "#8b5cf6", None, 0),
+            _circle(170, 48, 5, "#ec4899", None, 0),
+            _circle(200, 38, 5, "#f59e0b", None, 0),
+            _circle(230, 44, 5, "#22c55e", None, 0),
+            _t(168, 88, "Dense embedding", 8, "#6d28d9", "middle", "600"),
+        ]
+    else:
+        parts = [
+            _rect(20, 30, 80, 80, "#fee2e2", "#ef4444", 2, 6),
+            _t(60, 75, "one-hot", 10, "#b91c1c", "middle", "600"),
+            _t(60, 55, "sparse", 10, "#64748b", "middle"),
+            _arrow(105, 70, 155, 70),
+            _rect(155, 30, 220, 80, "#ede9fe", "#7c3aed", 2, 6),
+            _circle(190, 60, 6, "#3b82f6", None, 0),
+            _circle(230, 50, 6, "#8b5cf6", None, 0),
+            _circle(270, 70, 6, "#ec4899", None, 0),
+            _circle(310, 55, 6, "#f59e0b", None, 0),
+            _circle(350, 65, 6, "#22c55e", None, 0),
+            _t(265, 100, "Dense embedding space", 10, "#6d28d9", "middle", "600"),
+        ]
     return "\n".join(parts)
 
 
@@ -470,15 +618,13 @@ def mini_rnn() -> str:
 
 def mini_lstm() -> str:
     parts = [
-        _rect(80, 40, 280, 70, "#ede9fe", "#7c3aed", 2, 8),
-        _t(220, 62, "LSTM Cell", 14, "#6d28d9", "middle", "700"),
-        _t(130, 88, "Forget", 10, "#64748b", "middle"),
-        _t(220, 88, "Input", 10, "#64748b", "middle"),
-        _t(310, 88, "Output", 10, "#64748b", "middle"),
-        _rect(60, 55, 40, 20, "#fee2e2", "#ef4444", 1.5, 4),
-        _rect(150, 55, 40, 20, "#dcfce7", "#22c55e", 1.5, 4),
-        _rect(240, 55, 40, 20, "#dbeafe", "#3b82f6", 1.5, 4),
-        _rect(330, 55, 40, 20, "#fef3c7", "#f59e0b", 1.5, 4),
+        _rect(40, 30, 420, 90, "#ede9fe", "#7c3aed", 2, 8),
+        _t(250, 58, "LSTM Cell", 14, "#6d28d9", "middle", "700"),
+        *_label_box(70, 72, 72, 28, "Forget", "#fee2e2", "#ef4444", "#b91c1c", 1.5).split("\n"),
+        *_label_box(174, 72, 72, 28, "Input", "#dcfce7", "#22c55e", "#15803d", 1.5).split("\n"),
+        *_label_box(278, 72, 72, 28, "Output", "#dbeafe", "#3b82f6", "#1d4ed8", 1.5).split("\n"),
+        *_label_box(382, 72, 58, 28, "State", "#fef3c7", "#f59e0b", "#b45309", 1.5).split("\n"),
+        _t(250, 140, "Gates control what to forget, add, and pass on", 10, "#64748b", "middle"),
     ]
     return "\n".join(parts)
 
@@ -504,11 +650,12 @@ def mini_transformer() -> str:
     ], y=55)
 
 
-def mini_rag() -> str:
-    return flow_horizontal([
+def mini_rag(compact: bool = False) -> str:
+    steps = [
         ("Docs", "#3b82f6"), ("Chunk", "#8b5cf6"), ("Embed", "#f59e0b"),
         ("Retrieve", "#22c55e"), ("LLM", "#ec4899"),
-    ], y=45)
+    ]
+    return flow_horizontal(steps, y=45 if compact else 45, max_width=260 if compact else 560)
 
 
 def mini_vector_search() -> str:
@@ -526,48 +673,97 @@ def mini_vector_search() -> str:
 
 def mini_langgraph() -> str:
     """Ticket routing graph: classify → billing / technical / escalate."""
+    bw = 100
+    bh = 32
+    cx = 250
     parts = [
-        _rect(170, 0, 140, 28, "#dbeafe", "#3b82f6", 2, 6),
-        _t(240, 20, "Classify", 11, "#1d4ed8", "middle", "600"),
-        _line(240, 28, 80, 58, "#94a3b8", 1.5),
-        _line(240, 28, 240, 58, "#94a3b8", 1.5),
-        _line(240, 28, 400, 58, "#94a3b8", 1.5),
-        _rect(30, 58, 100, 28, "#dcfce7", "#22c55e", 2, 6),
-        _t(80, 78, "Billing", 11, "#15803d", "middle", "600"),
-        _rect(190, 58, 100, 28, "#fef3c7", "#f59e0b", 2, 6),
-        _t(240, 78, "Technical", 11, "#b45309", "middle", "600"),
-        _rect(350, 58, 100, 28, "#fee2e2", "#ef4444", 2, 6),
-        _t(400, 78, "Escalate", 11, "#b91c1c", "middle", "600"),
-        _t(240, 105, "Stateful graph workflow", 11, "#64748b", "middle"),
+        *_label_box(cx - bw / 2, 0, bw, bh, "Classify", "#dbeafe", "#3b82f6", "#1d4ed8").split("\n"),
+        _line(cx, bh, 80, bh + 36, "#94a3b8", 1.5),
+        _line(cx, bh, cx, bh + 36, "#94a3b8", 1.5),
+        _line(cx, bh, 420, bh + 36, "#94a3b8", 1.5),
+        *_label_box(30, bh + 36, bw, bh, "Billing", "#dcfce7", "#22c55e", "#15803d").split("\n"),
+        *_label_box(cx - bw / 2, bh + 36, bw, bh, "Technical", "#fef3c7", "#f59e0b", "#b45309").split("\n"),
+        *_label_box(370, bh + 36, bw, bh, "Escalate", "#fee2e2", "#ef4444", "#b91c1c").split("\n"),
+        _t(cx, bh + 88, "Stateful graph workflow", 10, "#64748b", "middle"),
+    ]
+    return "\n".join(parts)
+
+
+def mini_state_graph() -> str:
+    """LangGraph core concepts: shared State + nodes joined by edges, with a conditional branch."""
+    parts = [
+        # shared state box spanning the top
+        _rect(90, 0, 320, 34, "#fef3c7", "#f59e0b", 2, 8),
+        _t(250, 22, "State (shared TypedDict)", 12, "#b45309", "middle", "700"),
+        # node A
+        *_label_box(40, 74, 110, 34, "Node A", "#dbeafe", "#3b82f6", "#1d4ed8").split("\n"),
+        # conditional edge split to B / C
+        _line(150, 91, 210, 91, "#64748b", 1.5),
+        _t(180, 82, "edge", 9, "#64748b", "middle"),
+        *_label_box(210, 74, 110, 34, "Condition?", "#ede9fe", "#7c3aed", "#6d28d9").split("\n"),
+        _line(320, 91, 372, 62, "#64748b", 1.5),
+        '<polygon points="372,62 362,63 366,71" fill="#64748b"/>',
+        _line(320, 91, 372, 120, "#64748b", 1.5),
+        '<polygon points="372,120 362,119 366,111" fill="#64748b"/>',
+        _t(345, 62, "yes", 9, "#15803d", "middle"),
+        _t(345, 122, "no", 9, "#b91c1c", "middle"),
+        *_label_box(372, 42, 100, 32, "Node B", "#dcfce7", "#22c55e", "#15803d").split("\n"),
+        *_label_box(372, 106, 100, 32, "Node C", "#fee2e2", "#ef4444", "#b91c1c").split("\n"),
+        # nodes read/write the state (dashed vertical links)
+        _line(95, 74, 120, 34, "#f59e0b", 1, "4 3"),
+        _line(265, 74, 255, 34, "#f59e0b", 1, "4 3"),
+        _line(410, 42, 385, 34, "#f59e0b", 1, "4 3"),
     ]
     return "\n".join(parts)
 
 
 def mini_react_loop() -> str:
-    parts = [
-        _rect(40, 40, 90, 36, "#dbeafe", "#3b82f6", 2, 6),
-        _t(85, 64, "Thought", 12, "#1d4ed8", "middle", "700"),
-        _arrow(130, 58, 170, 58),
-        _rect(170, 40, 90, 36, "#fef3c7", "#f59e0b", 2, 6),
-        _t(215, 64, "Action", 12, "#b45309", "middle", "700"),
-        _arrow(260, 58, 300, 58),
-        _rect(300, 40, 110, 36, "#dcfce7", "#22c55e", 2, 6),
-        _t(355, 64, "Observation", 11, "#15803d", "middle", "700"),
-        _t(220, 100, "↺ repeat until done", 11, "#64748b", "middle"),
+    steps = [("Thought", "#3b82f6"), ("Action", "#f59e0b"), ("Observation", "#22c55e")]
+    x, y, bw, bh, gap = 16, 32, 96, 46, 24
+    parts: list[str] = []
+    tops: list[float] = []
+    for i, (label, color) in enumerate(steps):
+        cx = x + bw / 2
+        parts += [
+            _rect(x, y, bw, bh, color + "22", color, 2, 8),
+            _t(cx, y + bh / 2 + 4, label, _label_size(label), color, "middle", "600"),
+        ]
+        tops.append(cx)
+        if i < len(steps) - 1:
+            parts.append(_arrow(x + bw, y + bh / 2, x + bw + gap - 8, y + bh / 2, "#64748b", 1.5))
+        x += bw + gap
+    first_cx, last_cx = tops[0], tops[-1]
+    bottom = y + bh
+    loop_y = bottom + 42
+    parts += [
+        f'<path d="M {last_cx} {bottom} L {last_cx} {loop_y} L {first_cx} {loop_y} L {first_cx} {bottom}" '
+        f'fill="none" stroke="#64748b" stroke-width="1.5"/>',
+        f'<polygon points="{first_cx},{bottom} {first_cx - 5},{bottom + 8} {first_cx + 5},{bottom + 8}" fill="#64748b"/>',
+        _t((first_cx + last_cx) / 2, loop_y + 18, "repeat until done", 10, "#64748b", "middle", "600"),
     ]
     return "\n".join(parts)
 
 
 def mini_mcp() -> str:
+    """3-layer MCP architecture: Host contains Client, which talks to Server."""
     parts = [
-        _rect(30, 45, 120, 60, "#dbeafe", "#3b82f6", 2, 8),
-        _t(90, 72, "MCP Client", 12, "#1d4ed8", "middle", "700"),
-        _t(90, 90, "(Host app)", 10, "#64748b", "middle"),
-        _line(150, 75, 280, 75, "#64748b", 2),
-        f'<polygon points="280,75 272,71 272,79" fill="#64748b"/>',
-        _rect(280, 45, 120, 60, "#ede9fe", "#7c3aed", 2, 8),
-        _t(340, 72, "MCP Server", 12, "#6d28d9", "middle", "700"),
-        _t(340, 90, "Tools + resources", 10, "#64748b", "middle"),
+        # Host box wrapping the client
+        _rect(14, 22, 210, 110, "#f1f5f9", "#64748b", 2, 10),
+        _t(119, 44, "Host", 12, "#475569", "middle", "700"),
+        _t(119, 60, "(Claude / IDE app)", 9, "#94a3b8", "middle"),
+        # Client inside host
+        _rect(38, 70, 162, 46, "#dbeafe", "#3b82f6", 2, 8),
+        _t(119, 91, "MCP Client", 12, "#1d4ed8", "middle", "700"),
+        _t(119, 107, "JSON-RPC", 9, "#64748b", "middle"),
+        # connection
+        _line(224, 93, 300, 93, "#64748b", 2),
+        '<polygon points="300,93 292,89 292,97" fill="#64748b"/>',
+        _t(262, 84, "stdio/HTTP", 9, "#64748b", "middle"),
+        # Server
+        _rect(300, 52, 150, 80, "#ede9fe", "#7c3aed", 2, 8),
+        _t(375, 80, "MCP Server", 12, "#6d28d9", "middle", "700"),
+        _t(375, 100, "Tools / Resources", 10, "#64748b", "middle"),
+        _t(375, 116, "Prompts", 10, "#64748b", "middle"),
     ]
     return "\n".join(parts)
 
@@ -607,18 +803,17 @@ def mini_chat_history() -> str:
 
 
 def mini_multi_agent() -> str:
+    bw = 96
+    bh = 36
+    cx = 220
     parts = [
-        _rect(160, 10, 120, 36, "#dbeafe", "#3b82f6", 2, 6),
-        _t(220, 34, "Triage", 12, "#1d4ed8", "middle", "700"),
-        _line(190, 46, 100, 80, "#94a3b8", 1.5),
-        _line(250, 46, 220, 80, "#94a3b8", 1.5),
-        _line(220, 46, 340, 80, "#94a3b8", 1.5),
-        _rect(40, 80, 100, 36, "#dcfce7", "#22c55e", 2, 6),
-        _t(90, 104, "Billing", 11, "#15803d", "middle", "700"),
-        _rect(170, 80, 100, 36, "#fef3c7", "#f59e0b", 2, 6),
-        _t(220, 104, "Tech", 11, "#b45309", "middle", "700"),
-        _rect(300, 80, 100, 36, "#ede9fe", "#7c3aed", 2, 6),
-        _t(350, 104, "Sales", 11, "#6d28d9", "middle", "700"),
+        *_label_box(cx - bw / 2, 4, bw + 24, bh, "Triage", "#dbeafe", "#3b82f6", "#1d4ed8").split("\n"),
+        _line(180, 40, 70, 78, "#94a3b8", 1.5),
+        _line(cx, 40, cx, 78, "#94a3b8", 1.5),
+        _line(260, 40, 370, 78, "#94a3b8", 1.5),
+        *_label_box(20, 78, bw, bh, "Billing", "#dcfce7", "#22c55e", "#15803d").split("\n"),
+        *_label_box(cx - bw / 2, 78, bw, bh, "Tech", "#fef3c7", "#f59e0b", "#b45309").split("\n"),
+        *_label_box(344, 78, bw, bh, "Sales", "#ede9fe", "#7c3aed", "#6d28d9").split("\n"),
     ]
     return "\n".join(parts)
 
