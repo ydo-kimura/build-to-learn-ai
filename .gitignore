@@ -157,3 +157,6 @@ Thumbs.db
 
 # pnpm
 .pnpm-store
+
+#
+__pycache__

@@ -17,7 +17,7 @@ docker exec -w /workspaces/job-change flamboyant_lovelace pnpm docs:build
 ```
 
 ### 2. 結果の検証 (Verify Results)
-- **期待される結果**:
+- **期待される結果** :
   - `devDependencies` に追加されたパッケージが正常に解決され、バンドル処理が完了すること。
   - レンダリング時に Vue または VitePress が警告を吐かないこと。
   - ビルド完了メッセージ（例: `build complete in X.XXs`）が出力されること。

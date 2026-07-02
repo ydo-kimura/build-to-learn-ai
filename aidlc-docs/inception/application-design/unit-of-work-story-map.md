@@ -14,5 +14,5 @@
 
 ## リクルーター向け可視化目標 (Visibility Goals)
 
-- **GitHub可視性**: 各Unitは独立したディレクトリとして管理され、それぞれの `README.md` に学習内容とPoCの実行方法が記載されます。
-- **技術ブログ**: 特にUnit 5 (XGBoost), Unit 9 (NN from Scratch), Unit 14 (ResNet), Unit 18 (Transformers), Unit 21 (LangChain RAG), Unit 24 (Agent)の完了時には、学習と実装の過程をアウトプットし、リクルーターへのアピール材料とします。
+- **GitHub可視性** : 各Unitは独立したディレクトリとして管理され、それぞれの `README.md` に学習内容とPoCの実行方法が記載されます。
+- **技術ブログ** : 特にUnit 5 (XGBoost), Unit 9 (NN from Scratch), Unit 14 (ResNet), Unit 18 (Transformers), Unit 21 (LangChain RAG), Unit 24 (Agent)の完了時には、学習と実装の過程をアウトプットし、リクルーターへのアピール材料とします。

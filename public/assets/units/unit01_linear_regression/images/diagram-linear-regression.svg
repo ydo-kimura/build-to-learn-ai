@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Linear regression: room size vs rent">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eff6ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" rx="12" fill="url(#bg1)"/>
+  <line x1="80" y1="300" x2="580" y2="300" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="80" y1="300" x2="80" y2="60" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="580,300 572,296 572,304" fill="#94a3b8"/>
+  <polygon points="80,60 76,68 84,68" fill="#94a3b8"/>
+  <text x="590" y="318" font-family="system-ui,sans-serif" font-size="13" fill="#475569">Room size</text>
+  <text x="24" y="70" font-family="system-ui,sans-serif" font-size="13" fill="#475569" transform="rotate(-90 24 70)">Rent</text>
+  <circle cx="140" cy="250" r="7" fill="#3b82f6" opacity="0.85"/>
+  <circle cx="200" cy="220" r="7" fill="#3b82f6" opacity="0.85"/>
+  <circle cx="260" cy="195" r="7" fill="#3b82f6" opacity="0.85"/>
+  <circle cx="320" cy="170" r="7" fill="#3b82f6" opacity="0.85"/>
+  <circle cx="380" cy="145" r="7" fill="#3b82f6" opacity="0.85"/>
+  <circle cx="440" cy="125" r="7" fill="#3b82f6" opacity="0.85"/>
+  <circle cx="500" cy="100" r="7" fill="#3b82f6" opacity="0.85"/>
+  <circle cx="180" cy="235" r="7" fill="#3b82f6" opacity="0.55"/>
+  <circle cx="350" cy="155" r="7" fill="#3b82f6" opacity="0.55"/>
+  <circle cx="470" cy="115" r="7" fill="#3b82f6" opacity="0.55"/>
+  <line x1="110" y1="265" x2="540" y2="90" stroke="#f97316" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="420" cy="120" r="9" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="4 3"/>
+  <line x1="420" y1="120" x2="470" y2="102" stroke="#f97316" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="478" y="98" font-family="system-ui,sans-serif" font-size="12" fill="#ea580c" font-weight="600">predicted</text>
+  <text x="200" y="42" font-family="system-ui,sans-serif" font-size="16" fill="#1e293b" font-weight="700">Best-fit line: y = ax + b</text>
+  <text x="200" y="64" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Find coefficient (a) and intercept (b) from data</text>
+</svg>

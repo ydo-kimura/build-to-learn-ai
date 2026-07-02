@@ -13,5 +13,13 @@ langchain
 langchain-openai
 langchain-core
 langchain-community
+langgraph
+llama-index-core
+llama-index-readers-file
+llama-index-llms-openai
+llama-index-embeddings-openai
+mcp
+smolagents
+pydantic
 streamlit
 numexpr
