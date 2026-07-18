@@ -8,7 +8,7 @@
 
 第3章（Unit 17〜20）において、テキストの分かち書きや TF-IDF に始まる自然言語処理の基礎から、単語の持つ意味を多次元ベクトル化する Word2Vec、系列データに文脈を適用させる RNN / LSTM、そして現在のLLMのすべての基盤となっている **Attention（注意機構）と Transformer アーキテクチャ** を学びました。
 
-この総合演習では、それらの概念を結集し、 **「対訳テキストデータのトークン化 ➔ 簡易辞書（Vocabulary）の作成 ➔ エンコーダー・デコーダー型の極小 Transformer モデルの構築 ➔ 対訳学習ループの実行 ➔ 実際に英語を入力して日本語へ自動翻訳する推論デコード」** という流れをスクラッチで実装し、現代の生成AIが文字を出力する仕組みを **小規模データで体験** します。
+この総合演習では、それらの概念を結集し、 **「対訳テキストデータのトークン化 ➔ 簡易辞書（Vocabulary）の作成 ➔ 位置情報を含むエンコーダー・デコーダー型の極小 Transformer モデルの構築 ➔ 対訳学習ループの実行 ➔ 英語を入力して日本語へ自動翻訳する推論デコード」** という流れを実装します。これは現代の生成AIの部品を体験するためのToyモデルです。4文だけで学習するため、未知の文章への翻訳性能や実用的な品質を示すものではありません。
 
 **💡 日常の例え：国際同時通訳者の脳内メカニズム**
 * **トークン化と辞書（Vocabulary）** : 英語と日本語の言葉をそれぞれ「単語カード（番号）」に置き換えて、脳内の対訳辞書を整理すること。
@@ -29,11 +29,12 @@
 
 ## 2. 実装例 (Implementation Example)
 
-ここでは、PyTorchの `nn.Transformer` モジュールをベースとし、ごく少数のサンプル英文と日本文のデータセットを使って、Transformer を用いた「英語 ➔ 日本語」の簡易的な翻訳モデルを構築・学習・推論する完全なコードを実装します。
+ここでは、PyTorchの `nn.Transformer` モジュールをベースとし、ごく少数のサンプル英文と日本文のデータセットを使って、Transformerを用いた「英語 ➔ 日本語」の簡易的な翻訳モデルを構築・学習・推論する動作例を実装します。
 
 事前に `pip install torch` を実行してください。
 
 ```python
+import math
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -78,15 +79,29 @@ def sentence_to_ids(sentence, vocab, add_sos=False, add_eos=False):
         ids.append(vocab["<eos>"])
     return ids
 
-# 3. 簡易Transformerモデルの定義
-# 注: 簡略化のため Positional Encoding（位置情報の付与）は省略しています。
-#     実際の Transformer では埋め込みに位置情報を加算します（Unit 20 参照）。
+# 3. 位置エンコーディングの定義
+class PositionalEncoding(nn.Module):
+    def __init__(self, d_model, max_len=64):
+        super().__init__()
+        position = torch.arange(max_len, dtype=torch.float32).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, d_model, 2, dtype=torch.float32)
+                             * (-math.log(10000.0) / d_model))
+        pe = torch.zeros(max_len, d_model)
+        pe[:, 0::2] = torch.sin(position * div_term)
+        pe[:, 1::2] = torch.cos(position * div_term)
+        self.register_buffer("pe", pe.unsqueeze(0))
+
+    def forward(self, x):
+        return x + self.pe[:, :x.size(1)]
+
+# 4. 簡易Transformerモデルの定義
 class Seq2SeqTransformer(nn.Module):
     def __init__(self, src_vocab_size, tgt_vocab_size, d_model=32, nhead=2, num_layers=1):
         super().__init__()
         # 単語埋め込みレイヤー
         self.src_embedding = nn.Embedding(src_vocab_size, d_model)
         self.tgt_embedding = nn.Embedding(tgt_vocab_size, d_model)
+        self.positional_encoding = PositionalEncoding(d_model)
         
         self.transformer = nn.Transformer(
             d_model=d_model, 
@@ -99,8 +114,8 @@ class Seq2SeqTransformer(nn.Module):
         self.fc_out = nn.Linear(d_model, tgt_vocab_size)
 
     def forward(self, src, tgt):
-        src_emb = self.src_embedding(src)
-        tgt_emb = self.tgt_embedding(tgt)
+        src_emb = self.positional_encoding(self.src_embedding(src))
+        tgt_emb = self.positional_encoding(self.tgt_embedding(tgt))
         
         # デコーダーが未来の単語を見ないようにする「マスク（Causal Mask）」を作成
         tgt_seq_len = tgt.size(1)
@@ -109,7 +124,7 @@ class Seq2SeqTransformer(nn.Module):
         out = self.transformer(src_emb, tgt_emb, tgt_is_causal=True, tgt_mask=tgt_mask)
         return self.fc_out(out)
 
-# 4. モデルのインスタンス化と学習の設定
+# 5. モデルのインスタンス化と学習の設定
 model = Seq2SeqTransformer(len(src_vocab), len(tgt_vocab))
 criterion = nn.CrossEntropyLoss(ignore_index=0) # <pad>は無視
 optimizer = optim.Adam(model.parameters(), lr=0.005)
@@ -155,6 +170,12 @@ print("\n--- 翻訳テスト実行 ---")
 test_phrase = "i love ai"
 print(f"英語: {test_phrase}")
 print(f"翻訳結果: {translate(test_phrase)}")
+
+# このデータセットは4文だけなので、まずは学習した文を再現できるかを確認します。
+# 実務では、未使用の検証データ、BLEU/ROUGE等の評価、未知語の扱いを別途設計します。
+for source, expected in corpus:
+    predicted = translate(source)
+    print(f"期待値: {expected} / 予測: {predicted}")
 ```
 
 ---
@@ -185,10 +206,10 @@ corpus = [
 
 1. **アプローチA（RNN / LSTMベースのSeq2Seq ＋ Attentionモデル）**
    * **設計** : PyTorchを用いて、単語を時系列順に処理するLSTMをエンコーダーおよびデコーダーに採用し、簡易的なAttentionメカニズムを組み込んだ **RNN-Attentionモデルを設計** してください。
-   * **特徴** : パラメータ数が少なく、時系列データをそのまま処理するため、極めて小さなデータ（5文）に対しても過学習しにくく、安定して学習しやすい傾向があります。
+   * **特徴** : パラメータ数が比較的少なく、時系列データをそのまま処理します。極めて小さなデータ（5文）では学習しやすい場合がありますが、汎化は別途検証が必要です。
 2. **アプローチB（Transformerモデル）**
    * **設計** : PyTorchの `nn.Transformer` モジュールをベースとし、Causal Mask（未来視不可マスク）を正しく適用した **エンコーダー・デコーダー型Transformerモデルを構築** してください。
-   * **特徴** : 表現力と並列計算能力が最強。ただし、データ数が5文という極小環境下では、パラメータ数が過多になりやすく、ハイパーパラメータ（`d_model`, `nhead`, `num_layers` など）を限界まで小さく制限しなければ、強烈な過学習を引き起こして全く翻訳できなくなります。
+   * **特徴** : 表現力と並列計算能力が高い一方、データ数が5文という極小環境では過学習しやすい可能性があります。ハイパーパラメータ（`d_model`, `nhead`, `num_layers` など）と検証条件を小さく設計します。
 
 ---
 
@@ -218,13 +239,13 @@ corpus = [
 
 | 評価軸 | アプローチA（RNN/LSTM + Attention） | アプローチB（Transformer） | 今回の設計判断のポイント |
 | :--- | :--- | :--- | :--- |
-| **小データ適応力** | **極めて強い** 。系列データを順番に舐めるRNN構造は、シンプルな翻訳パターンを少ないデータで即座に学習できる。 | **弱い（過学習リスク高）** 。パラメータ数が多いため、データが5文しかないとアテンションマップが異常に偏り過学習しやすい。 | 今回はデータが5文しかないため、この評価軸が最終判断の決め手になる。 |
-| **長文の理解** | **弱い** 。文章が長くなると、最初の方の単語の意味を忘れてしまう（勾配消失）。 | **最強** 。アテンション（Self-Attention）により、どれだけ長い文章でもすべての単語の文脈を直接捉えられる。 | 今回の短文では差が出ないが、実務の長文翻訳では Transformer が圧倒的に有利。 |
+| **小データ適応力** | 比較的単純な構造で学習できる場合があるが、過学習しないとは限らない。 | パラメータ数や設定によって過学習しやすい。 | 今回の5文データだけで一般的な優劣を断定せず、学習曲線と評価用データを確認する。 |
+| **長文の理解** | 長距離依存を扱いにくくなる場合がある。 | Self-Attentionにより長距離依存を扱いやすいが、長さ・計算量・学習データの影響を受ける。 | 長文の実データで評価し、Transformerを含む候補を比較する。 |
 | **学習の並列性** | 1単語ずつ順番に処理するため、GPUでの並列計算ができず、巨大データの学習には膨大な時間がかかる。 | 訓練時に全単語を一括処理できるため並列計算が可能で、超高速。 | 5文では速度差はありませんが、LLMの心臓部としての仕組み（Causal Maskなど）を正しく理解し実装することが重要です。 |
 
 ---
 
-### 比較検証パイプラインの完全実装コード
+### 比較検証パイプラインの実装例
 
 ```python
 import torch
@@ -412,13 +433,13 @@ print(f"アプローチB (Transformer) の翻訳出力: {translate(test_phrase)}
 極小データセット（5文）での実験において、驚くべき結果が得られます。
 
 * **意思決定の裏付け（アプローチA vs アプローチB）** :
-  * データ数が5文しかない場合、上で実装したアプローチA（`Seq2SeqLSTM`）は、エンコーダー・デコーダーとも1層のLSTMと内積ベースの簡易Attentionだけで構成されており、モデル構造が単純でパラメータ数も少ないため、極めて安定して収束します。LSTMが持つ「単語を順番に処理する」という構造上の制約（帰納バイアス）が、少ないデータでも `"i love learning"` と `"i love ai"` の語順パターンの違いを素直に学習させてくれるため、過学習を起こさずに `"私は 学習が 大好きです"` を完璧に出力しやすいのです。
-  * 一方で、アプローチB（`Seq2SeqTransformer`）は、`d_model=32, nhead=2, num_layers=1` と限界まで小さくしても、マルチヘッドAttentionや内部の全結合層のパラメータ数がLSTMより多く、5文だけだと `"i love learning"` と `"i love ai"` のアテンションが完全に競合（混ざり合って過学習）し、デコード時に `"私は ＡＩが 大好きです"` と間違えて出力してしまう現象（幻覚/誤学習）が発生しやすくなります。小規模データではTransformerは過学習しやすく、LSTMの方が安定する、という教科書的なトレードオフを実際のコードで確認できます。
+  * データ数が5文しかない場合、アプローチA（`Seq2SeqLSTM`）は構造が比較的単純なため学習しやすい場合があります。ただし、この小さな訓練集合だけで過学習や汎化を判断できないため、別の文で確認します。
+  * アプローチB（`Seq2SeqTransformer`）は、設定を小さくしてもマルチヘッドAttentionや内部の全結合層を含みます。5文だけでは過学習や出力の不安定さが起きる可能性があるため、同じ条件で学習曲線と評価データを比較します。ここで得られる差は、このToy条件での観測です。
 * **最終適用判断（Decision）** :
   * **「本番適用モデルとして、アプローチA（RNN/LSTM + Attention）を選択する。」**
   * **意思決定の根拠** :
-    1. 5文という超コンパクトな企業特有のルールデータ等（例：マニュアルの対訳）を即座に覚えさせ適用するフェーズにおいては、RNNの方が圧倒的に少ない計算コストと極小データで過学習を防ぎつつ翻訳精度を担保できる。
+    1. 5文という超コンパクトなデータを素早く試すフェーズでは、RNNが少ない計算コストで扱いやすい場合があります。ただし、実運用の選択は検証データ、レイテンシ、保守性を含めて判断します。
     2. もし将来的にコーパス（対訳データ）が数万文規模にスケールアップすることが確実な場合は、並列計算と長距離文脈に強い **アプローチB（Transformer）** にシステムアーキテクチャを移行する、という二段構えのロードマップを引くのが最も現実的で優れたアーキテクトの判断です。
 
-「Transformerが最強だから常に使う」のではなく、 **「現時点のデータ規模と運用コストにおいて、あえて古典的なRNN/LSTMを選定し、規模拡大に応じてTransformerへスケールする」** という意思決定こそが、エンタープライズAIエンジニアに求められる最も高付加価値な判断力です。
+「Transformerだから常に使う」のではなく、 **「現時点のデータ規模と運用コストにおいて候補を比較し、必要に応じてRNN/LSTMからTransformerへ拡張する」** という意思決定を、検証結果とともに説明できることが重要です。
 </details>
