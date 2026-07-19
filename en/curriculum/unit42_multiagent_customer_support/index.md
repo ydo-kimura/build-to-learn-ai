@@ -1,12 +1,12 @@
 # Unit 42: Autonomous Multi-Agent Customer Support
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit42_multiagent_customer_support/images/hero.png" alt="Hero: Multi-Agent Customer Support" />
+  <img src="/en/assets/units/unit42_multiagent_customer_support/images/hero.png" alt="Hero: Multi-Agent Customer Support" />
 </p>
 
 ## 1. Single-Agent Limits and Multi-Agent Coordination
 
-<img src="../../assets/units/unit42_multiagent_customer_support/images/diagram-concept.svg" alt="Diagram: Multi-agent flow" class="unit-diagram" />
+<img src="/en/assets/units/unit42_multiagent_customer_support/images/diagram-concept.svg" alt="Diagram: Multi-agent flow" class="unit-diagram" />
 
 
 
@@ -52,7 +52,7 @@ Like company departments, create multiple **small child agents (Managed Agents)*
 
 ---
 
-<img src="../../assets/units/unit42_multiagent_customer_support/images/diagram-workflow.svg" alt="Diagram: Coordination" class="unit-diagram" />
+<img src="/en/assets/units/unit42_multiagent_customer_support/images/diagram-workflow.svg" alt="Diagram: Coordination" class="unit-diagram" />
 
 ## 2. Implementation Example — Multi-Agent Coordination with smolagents
 

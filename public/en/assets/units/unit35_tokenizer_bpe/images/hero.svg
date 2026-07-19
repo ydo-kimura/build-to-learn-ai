@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Tokenizer and BPE</title>
+  <desc id="desc">A sentence is split into smaller tokens and converted into token IDs.</desc>
+  <rect width="1200" height="630" fill="#172554"/>
+  <text x="70" y="120" fill="#bfdbfe" font-family="sans-serif" font-size="42" font-weight="700">TOKENIZER / BPE</text>
+  <text x="70" y="190" fill="#fff" font-family="sans-serif" font-size="34">Text → Subwords → Token IDs</text>
+  <g font-family="monospace" font-size="28">
+    <rect x="80" y="290" width="220" height="90" rx="16" fill="#60a5fa"/><text x="125" y="346" fill="#172554">playing</text>
+    <path d="M325 335h90" stroke="#fbbf24" stroke-width="8"/><path d="m400 315 28 20-28 20" fill="none" stroke="#fbbf24" stroke-width="8"/>
+    <rect x="455" y="260" width="160" height="90" rx="16" fill="#34d399"/><text x="493" y="316" fill="#064e3b">play</text>
+    <rect x="635" y="260" width="160" height="90" rx="16" fill="#34d399"/><text x="680" y="316" fill="#064e3b">ing</text>
+    <path d="M820 335h90" stroke="#fbbf24" stroke-width="8"/><path d="m895 315 28 20-28 20" fill="none" stroke="#fbbf24" stroke-width="8"/>
+    <rect x="950" y="290" width="170" height="90" rx="16" fill="#fbbf24"/><text x="980" y="346" fill="#451a03">[12,48]</text>
+  </g>
+</svg>

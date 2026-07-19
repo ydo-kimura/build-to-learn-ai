@@ -1,7 +1,7 @@
 # Unit 23: LLM API Usage and Prompt Engineering
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit23_llm_api/images/hero.png" alt="Hero: LLM API & Prompting" />
+  <img src="/en/assets/units/unit23_llm_api/images/hero.png" alt="Hero: LLM API & Prompting" />
 </p>
 
 > [!IMPORTANT]
@@ -12,7 +12,7 @@
 
 ## 1. Understanding LLM API Usage & Prompting
 
-<img src="../../assets/units/unit23_llm_api/images/diagram-concept.svg" alt="Diagram: API call flow" class="unit-diagram" />
+<img src="/en/assets/units/unit23_llm_api/images/diagram-concept.svg" alt="Diagram: API call flow" class="unit-diagram" />
 
 
 
@@ -44,7 +44,7 @@ AI is smart but poor at “reading the room,” so you must specify **role**, **
 
 ---
 
-<img src="../../assets/units/unit23_llm_api/images/diagram-workflow.svg" alt="Diagram: Prompt patterns" class="unit-diagram" />
+<img src="/en/assets/units/unit23_llm_api/images/diagram-workflow.svg" alt="Diagram: Prompt patterns" class="unit-diagram" />
 
 ## 2. Three Core Prompt Engineering Techniques
 

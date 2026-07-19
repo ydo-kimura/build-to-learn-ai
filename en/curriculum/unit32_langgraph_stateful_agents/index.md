@@ -1,7 +1,7 @@
 # Unit 32: LangGraph — Graph-Based Stateful Agents
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit32_langgraph_stateful_agents/images/hero.png" alt="Hero: LangGraph ticket routing graph" />
+  <img src="/en/assets/units/unit32_langgraph_stateful_agents/images/hero.png" alt="Hero: LangGraph ticket routing graph" />
 </p>
 
 In Unit 31 you learned **code-generation agents (Code Agent)** with smolagents. This unit introduces a different paradigm: **graph-based workflow control**. LangGraph models agent logic as **nodes** and **edges**, passing **shared state** between steps so you can add conditional routing and **human-in-the-loop** approval gates explicitly.
@@ -10,7 +10,7 @@ In Unit 31 you learned **code-generation agents (Code Agent)** with smolagents. 
 
 ## 1. Understanding LangGraph and Stateful Workflows
 
-<img src="../../assets/units/unit32_langgraph_stateful_agents/images/diagram-concept.svg" alt="Diagram: State / Node / Edge" class="unit-diagram" />
+<img src="/en/assets/units/unit32_langgraph_stateful_agents/images/diagram-concept.svg" alt="Diagram: State / Node / Edge" class="unit-diagram" />
 
 ### 1.1 Why a graph?
 
@@ -56,7 +56,7 @@ graph TD
 
 ---
 
-<img src="../../assets/units/unit32_langgraph_stateful_agents/images/diagram-workflow.svg" alt="Diagram: Ticket routing" class="unit-diagram" />
+<img src="/en/assets/units/unit32_langgraph_stateful_agents/images/diagram-workflow.svg" alt="Diagram: Ticket routing" class="unit-diagram" />
 
 ## 2. Implementation Example
 

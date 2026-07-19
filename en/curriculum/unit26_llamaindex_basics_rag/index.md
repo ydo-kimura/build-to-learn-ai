@@ -1,7 +1,7 @@
 # Unit 26: LlamaIndex Basics and Retrieval-Augmented Generation
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit26_llamaindex_basics_rag/images/hero.png" alt="Hero: LlamaIndex Basics & RAG" />
+  <img src="/en/assets/units/unit26_llamaindex_basics_rag/images/hero.png" alt="Hero: LlamaIndex Basics & RAG" />
 </p>
 
 > [!IMPORTANT]
@@ -10,7 +10,7 @@
 
 ## 1. Understanding RAG with LlamaIndex
 
-<img src="../../assets/units/unit26_llamaindex_basics_rag/images/diagram-concept.svg" alt="Diagram: LlamaIndex flow" class="unit-diagram" />
+<img src="/en/assets/units/unit26_llamaindex_basics_rag/images/diagram-concept.svg" alt="Diagram: LlamaIndex flow" class="unit-diagram" />
 
 
 
@@ -29,7 +29,7 @@ LangChain is a general AI application toolkit; LlamaIndex is strongly focused on
 
 ---
 
-<img src="../../assets/units/unit26_llamaindex_basics_rag/images/diagram-workflow.svg" alt="Diagram: vs LangChain" class="unit-diagram" />
+<img src="/en/assets/units/unit26_llamaindex_basics_rag/images/diagram-workflow.svg" alt="Diagram: vs LangChain" class="unit-diagram" />
 
 ## 2. Implementation Example
 

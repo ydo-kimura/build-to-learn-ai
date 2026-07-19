@@ -1,7 +1,7 @@
 # Unit 29: AI Agent Fundamentals and Scratch ReAct Implementation
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit29_ai_agent_implementation/images/hero.png" alt="Hero: AI Agent (ReAct)" />
+  <img src="/en/assets/units/unit29_ai_agent_implementation/images/hero.png" alt="Hero: AI Agent (ReAct)" />
 </p>
 
 > [!IMPORTANT]
@@ -10,7 +10,7 @@
 
 ## 1. Understanding AI Agents and Hand-Built ReAct Loops
 
-<img src="../../assets/units/unit29_ai_agent_implementation/images/diagram-concept.svg" alt="Diagram: ReAct loop" class="unit-diagram" />
+<img src="/en/assets/units/unit29_ai_agent_implementation/images/diagram-concept.svg" alt="Diagram: ReAct loop" class="unit-diagram" />
 
 
 As LLMs evolve, systems that **autonomously think to reach goals, choose and run external tools, observe results, and decide next actions**—**AI Agents**—are spreading fast.
@@ -48,7 +48,7 @@ The LLM does not execute code—it outputs **JSON instructions**; the host progr
 
 ---
 
-<img src="../../assets/units/unit29_ai_agent_implementation/images/diagram-workflow.svg" alt="Diagram: Scratch agent" class="unit-diagram" />
+<img src="/en/assets/units/unit29_ai_agent_implementation/images/diagram-workflow.svg" alt="Diagram: Scratch agent" class="unit-diagram" />
 
 ## 2. Implementation Example
 

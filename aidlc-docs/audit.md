@@ -1032,4 +1032,44 @@ Continuation behavior:
 
 ---
 
+## Japanese Hero Image Localization
+**Timestamp**: 2026-07-19T00:00:00Z
+**User Input**: "日本語のヒーロー画像をすべて日本語化したい"
+**AI Response**: "日本語版の現行Unit 1〜42に対応する全ヒーロー画像を更新し、PNG画像は上部タイトルを日本語化、Unit 35/36のSVGはタイトル・説明・主要ラベルを日本語化した。CNN、RAG、LoRAなどの技術名称・数式・コード例は学習上の正式表記として維持した。"
+**Context**: CONSTRUCTION - Image asset localization and validation.
+
+---
+
+## Public Asset Resolution Fix
+**Timestamp**: 2026-07-19T00:00:00Z
+**User Input**: "リロードした結果なんだけど。ビルドがいる？
+普通参照されるのは public でしょ？"
+**AI Response**: "確認の結果、`public/assets/` に旧画像が残っており、VitePressの配信対象はそちらだった。日本語画像を `public/assets/`、英語画像を `public/en/assets/` に同期し、英語ページの参照先を `/en/assets/` に明示的に変更する。"
+**Context**: CONSTRUCTION - Static asset resolution correction.
+
+---
+
+## Review Findings Validation
+**Timestamp**: 2026-07-20T00:00:00Z
+**User Input**: "[review.md](review.md) 他のモデルにカリキュラムのチェックをしてもらいました。
+指摘内容が妥当かどうかチェックして下さい。"
+**AI Response**: "review.md の全80件を現行の日本語カリキュラム本文・コード・アセット配信構成と照合し、妥当性、部分的妥当性、現行では不妥当な指摘、過大なSeverityを分類する。"
+**Context**: REVIEW - Cross-checking external curriculum audit findings.
+
+---
+
+## Curriculum Review Request
+**Timestamp**: 2026-07-20T00:00:00Z
+**User Input**: "curriculum/ は、AIエンジニアになりたい初学者向けの自習コンテンツです。ML、DL、LLM を学習、実装例、ハンズオンを通じて、実際に手を動かして学習していくようになっています。以下の観点でレビューをして、review.md に結果を書いて下さい。- 誤字脱字 - 不自然な表現 - 論理の飛躍や矛盾 - 読者に不足している前提 - カリキュラム構成の不備（順序や要素の不足など）- Hero画像のわかりづらさやテーマとの乖離など - コンテンツ中の図と内容の不整合や図としての不備など"
+**AI Response**: "Review-only モードで実行。機械横断検証（リンク・画像参照・Mermaid構文・Python AST・MD5一致）と22枚のHero画像視覚確認、Unit 35コード実行検証を完了し、確定所見8件を review.md に記録。章別本文精読はサブエージェント5件に委譲したが結果未着のため、到着次第追記予定。"
+**Context**: Review and Fix - Pass 1 (Evidence collection). Review only, no edits to curriculum files.
+
+---
+
+## Curriculum Review Remediation Delegation Plan
+**Timestamp**: 2026-07-20T00:00:00Z
+**User Input**: "修正を分担してやってほしい。まず計画して。"
+**AI Response**: "review.md の指摘を現行ファイルに基づいて採用・保留・却下に再整理し、Unit範囲ごとの並行修正ワークストリーム、共有ファイルの競合回避、日英同期、アセット整理、検証・統合順序を計画書にまとめる。今回は計画のみ作成し、修正・コミット・プッシュは行わない。"
+**Context**: CONSTRUCTION - Delegated curriculum remediation planning.
+
 ---

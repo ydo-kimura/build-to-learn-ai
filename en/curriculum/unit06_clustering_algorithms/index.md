@@ -1,12 +1,12 @@
 # Unit 6: Clustering Algorithms
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit06_clustering_algorithms/images/hero.png" alt="Hero: Clustering Algorithms" />
+  <img src="/en/assets/units/unit06_clustering_algorithms/images/hero.png" alt="Hero: Clustering Algorithms" />
 </p>
 
 ## 1. Understanding Clustering
 
-<img src="../../assets/units/unit06_clustering_algorithms/images/diagram-concept.svg" alt="Diagram: K-Means steps" class="unit-diagram" />
+<img src="/en/assets/units/unit06_clustering_algorithms/images/diagram-concept.svg" alt="Diagram: K-Means steps" class="unit-diagram" />
 
 
 
@@ -47,7 +47,7 @@ K-Means runs these steps:
 
 ---
 
-<img src="../../assets/units/unit06_clustering_algorithms/images/diagram-workflow.svg" alt="Diagram: When to use which" class="unit-diagram" />
+<img src="/en/assets/units/unit06_clustering_algorithms/images/diagram-workflow.svg" alt="Diagram: When to use which" class="unit-diagram" />
 
 ## 2. Implementation Example
 

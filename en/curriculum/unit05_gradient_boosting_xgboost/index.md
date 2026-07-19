@@ -1,12 +1,12 @@
 # Unit 5: Gradient Boosting and XGBoost
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit05_gradient_boosting_xgboost/images/hero.png" alt="Hero: Gradient Boosting & XGBoost" />
+  <img src="/en/assets/units/unit05_gradient_boosting_xgboost/images/hero.png" alt="Hero: Gradient Boosting & XGBoost" />
 </p>
 
 ## 1. Understanding Gradient Boosting and XGBoost
 
-<img src="../../assets/units/unit05_gradient_boosting_xgboost/images/diagram-concept.svg" alt="Diagram: Sequential boosting" class="unit-diagram" />
+<img src="/en/assets/units/unit05_gradient_boosting_xgboost/images/diagram-concept.svg" alt="Diagram: Sequential boosting" class="unit-diagram" />
 
 
 
@@ -45,7 +45,7 @@ Because of its speed and accuracy, XGBoost dominated competitions like **Kaggle*
 
 ---
 
-<img src="../../assets/units/unit05_gradient_boosting_xgboost/images/diagram-workflow.svg" alt="Diagram: XGBoost speed" class="unit-diagram" />
+<img src="/en/assets/units/unit05_gradient_boosting_xgboost/images/diagram-workflow.svg" alt="Diagram: XGBoost speed" class="unit-diagram" />
 
 ## 2. Implementation Example
 

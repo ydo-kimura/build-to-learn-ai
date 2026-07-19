@@ -1,7 +1,7 @@
 # Unit 31: smolagents and Autonomous AI Agents
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit31_smolagents_code_agent/images/hero.png" alt="Hero: smolagents Code Agent" />
+  <img src="/en/assets/units/unit31_smolagents_code_agent/images/hero.png" alt="Hero: smolagents Code Agent" />
 </p>
 
 > [!IMPORTANT]
@@ -10,7 +10,7 @@
 
 ## 1. Understanding AI Agents and smolagents
 
-<img src="../../assets/units/unit31_smolagents_code_agent/images/diagram-concept.svg" alt="Diagram: Code agent loop" class="unit-diagram" />
+<img src="/en/assets/units/unit31_smolagents_code_agent/images/diagram-concept.svg" alt="Diagram: Code agent loop" class="unit-diagram" />
 
 
 
@@ -41,7 +41,7 @@ Instead of traditional text-based tool calling, `smolagents` introduces a design
 
 ---
 
-<img src="../../assets/units/unit31_smolagents_code_agent/images/diagram-workflow.svg" alt="Diagram: smolagents" class="unit-diagram" />
+<img src="/en/assets/units/unit31_smolagents_code_agent/images/diagram-workflow.svg" alt="Diagram: smolagents" class="unit-diagram" />
 
 ## 2. Implementation Example
 

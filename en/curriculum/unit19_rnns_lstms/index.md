@@ -1,12 +1,12 @@
 # Unit 19: RNNs and LSTMs
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit19_rnns_lstms/images/hero.png" alt="Hero: RNNs & LSTMs" />
+  <img src="/en/assets/units/unit19_rnns_lstms/images/hero.png" alt="Hero: RNNs & LSTMs" />
 </p>
 
 ## 1. Understanding RNNs and LSTMs
 
-<img src="../../assets/units/unit19_rnns_lstms/images/diagram-concept.svg" alt="Diagram: RNN unrolling" class="unit-diagram" />
+<img src="/en/assets/units/unit19_rnns_lstms/images/diagram-concept.svg" alt="Diagram: RNN unrolling" class="unit-diagram" />
 
 
 
@@ -54,7 +54,7 @@ These three gates cooperate each step so LSTM can forget noise, retain important
 - **Stock and sales forecasting**: Learn months or years of sales, weather, and calendar features to optimize inventory.
 - **Voice recognition (smart speakers)**: Convert audio streams to text using context across sounds over time.
 
-<img src="../../assets/units/unit19_rnns_lstms/images/diagram-workflow.svg" alt="Diagram: LSTM gates" class="unit-diagram" />
+<img src="/en/assets/units/unit19_rnns_lstms/images/diagram-workflow.svg" alt="Diagram: LSTM gates" class="unit-diagram" />
 
 ## 2. Implementation Example
 

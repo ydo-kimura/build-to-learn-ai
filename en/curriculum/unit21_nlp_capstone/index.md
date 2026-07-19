@@ -1,12 +1,12 @@
 # Unit 21: NLP Capstone (Comprehensive Exercise)
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit21_nlp_capstone/images/hero.png" alt="Hero: NLP Capstone" />
+  <img src="/en/assets/units/unit21_nlp_capstone/images/hero.png" alt="Hero: NLP Capstone" />
 </p>
 
 ## 1. Understanding Comprehensive NLP (Building a Transformer)
 
-<img src="../../assets/units/unit21_nlp_capstone/images/diagram-concept.svg" alt="Diagram: NLP project flow" class="unit-diagram" />
+<img src="/en/assets/units/unit21_nlp_capstone/images/diagram-concept.svg" alt="Diagram: NLP project flow" class="unit-diagram" />
 
 
 
@@ -21,7 +21,7 @@ In this capstone, you bring those concepts together and implement a translation 
 
 ---
 
-<img src="../../assets/units/unit21_nlp_capstone/images/diagram-workflow.svg" alt="Diagram: Stack options" class="unit-diagram" />
+<img src="/en/assets/units/unit21_nlp_capstone/images/diagram-workflow.svg" alt="Diagram: Stack options" class="unit-diagram" />
 
 ## 2. Implementation Example
 

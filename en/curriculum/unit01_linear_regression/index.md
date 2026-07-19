@@ -1,7 +1,7 @@
 # Unit 1: Linear & Regularized Regression
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit01_linear_regression/images/hero.png" alt="Hero: predicting rent from room size with linear regression" />
+  <img src="/en/assets/units/unit01_linear_regression/images/hero.png" alt="Hero: predicting rent from room size with linear regression" />
 </p>
 
 ## 1. Understanding Linear Regression and Regularization
@@ -12,7 +12,7 @@ In everyday terms, linear regression is like **using one straight ruler to predi
 Suppose you want to predict **rent (in 10,000 yen)** from **room size (square meters)**.
 When you plot the data, you usually see that larger rooms tend to cost more. Linear regression draws **one line that best fits the middle of the data**.
 
-<img src="../../assets/units/unit01_linear_regression/images/diagram-linear-regression.svg" alt="Scatter plot with best-fit regression line: room size vs rent" class="unit-diagram" />
+<img src="/en/assets/units/unit01_linear_regression/images/diagram-linear-regression.svg" alt="Scatter plot with best-fit regression line: room size vs rent" class="unit-diagram" />
 
 | Room size (feature) | Rent (target) |
 | :--- | :--- |
@@ -30,7 +30,7 @@ When data gets complex, a model may try **too hard to fit the training data perf
 
 Think of it like **a student who memorizes past exam questions but cannot solve new problems on test day**.
 
-<img src="../../assets/units/unit01_linear_regression/images/diagram-regularization.svg" alt="Overfitting wiggly curve vs regularized simpler line" class="unit-diagram" />
+<img src="/en/assets/units/unit01_linear_regression/images/diagram-regularization.svg" alt="Overfitting wiggly curve vs regularized simpler line" class="unit-diagram" />
 
 **Regularization** is the brake that prevents this. There are two main types:
 1. **Ridge regression**: Shrinks coefficients overall to prevent extreme assumptions.
@@ -48,7 +48,7 @@ Think of it like **a student who memorizes past exam questions but cannot solve 
 
 Here we use Python and the `scikit-learn` library to build linear regression and Ridge regression models that predict housing prices.
 
-<img src="../../assets/units/unit01_linear_regression/images/diagram-train-test-split.svg" alt="Workflow: split data, fit model, predict and evaluate with MSE" class="unit-diagram" />
+<img src="/en/assets/units/unit01_linear_regression/images/diagram-train-test-split.svg" alt="Workflow: split data, fit model, predict and evaluate with MSE" class="unit-diagram" />
 
 First, import the libraries and prepare the data.
 

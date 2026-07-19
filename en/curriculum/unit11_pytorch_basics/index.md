@@ -1,7 +1,7 @@
 # Unit 11: PyTorch Basics & Simple MLP
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit11_pytorch_basics/images/hero.png" alt="Hero: PyTorch Basics" />
+  <img src="/en/assets/units/unit11_pytorch_basics/images/hero.png" alt="Hero: PyTorch Basics" />
 </p>
 
 > [!TIP]
@@ -11,7 +11,7 @@
 
 ## 1. Understanding PyTorch Basics & Simple MLP
 
-<img src="../../assets/units/unit11_pytorch_basics/images/diagram-concept.svg" alt="Diagram: Tensor shapes" class="unit-diagram" />
+<img src="/en/assets/units/unit11_pytorch_basics/images/diagram-concept.svg" alt="Diagram: Tensor shapes" class="unit-diagram" />
 
 
 
@@ -37,7 +37,7 @@ With PyTorch, you can leave tedious computation to the framework and focus on **
 - **Automated customer support routing**: Analyze customer inquiry content (text converted to numbers) and automatically route it to the right department (technical, billing, returns, etc.).
 - **Real estate price estimation**: Input conditions such as floor area, building age, and distance from the station to predict rent or sale price with high accuracy.
 
-<img src="../../assets/units/unit11_pytorch_basics/images/diagram-workflow.svg" alt="Diagram: Training step" class="unit-diagram" />
+<img src="/en/assets/units/unit11_pytorch_basics/images/diagram-workflow.svg" alt="Diagram: Training step" class="unit-diagram" />
 
 ## 2. Implementation Example
 

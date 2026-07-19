@@ -1,12 +1,12 @@
 # Unit 9: Classical ML Capstone
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit09_classical_ml_capstone/images/hero.png" alt="Hero: Classical ML Capstone" />
+  <img src="/en/assets/units/unit09_classical_ml_capstone/images/hero.png" alt="Hero: Classical ML Capstone" />
 </p>
 
 ## 1. Understanding End-to-End ML Pipelines
 
-<img src="../../assets/units/unit09_classical_ml_capstone/images/diagram-concept.svg" alt="Diagram: End-to-end pipeline" class="unit-diagram" />
+<img src="/en/assets/units/unit09_classical_ml_capstone/images/diagram-concept.svg" alt="Diagram: End-to-end pipeline" class="unit-diagram" />
 
 
 
@@ -20,7 +20,7 @@ Units 1–8 covered individual algorithms, metrics, and tuning. In real projects
 
 ---
 
-<img src="../../assets/units/unit09_classical_ml_capstone/images/diagram-workflow.svg" alt="Diagram: Deliverables" class="unit-diagram" />
+<img src="/en/assets/units/unit09_classical_ml_capstone/images/diagram-workflow.svg" alt="Diagram: Deliverables" class="unit-diagram" />
 
 ## 2. Implementation Example
 

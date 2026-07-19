@@ -1,7 +1,7 @@
 # Unit 13: Overfitting Prevention in Deep Learning
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit13_regularization/images/hero.png" alt="Hero: Regularization in DL" />
+  <img src="/en/assets/units/unit13_regularization/images/hero.png" alt="Hero: Regularization in DL" />
 </p>
 
 > [!TIP]
@@ -10,7 +10,7 @@
 
 ## 1. Understanding Regularization in DL
 
-<img src="../../assets/units/unit13_regularization/images/diagram-concept.svg" alt="Diagram: Dropout" class="unit-diagram" />
+<img src="/en/assets/units/unit13_regularization/images/diagram-concept.svg" alt="Diagram: Dropout" class="unit-diagram" />
 
 
 
@@ -49,7 +49,7 @@ In this unit, you will learn how to add **Dropout** and **Weight Decay** to a ne
 - **Credit card fraud detection**: Use Dropout and other regularization so the model does not memorize limited past fraud patterns and can adapt to new scam tactics.
 - **Stock and FX forecasting**: Financial time series are noisy; use Weight Decay and similar methods to build robust models that do not overreact to noise.
 
-<img src="../../assets/units/unit13_regularization/images/diagram-workflow.svg" alt="Diagram: BatchNorm" class="unit-diagram" />
+<img src="/en/assets/units/unit13_regularization/images/diagram-workflow.svg" alt="Diagram: BatchNorm" class="unit-diagram" />
 
 ## 2. Implementation Example
 
