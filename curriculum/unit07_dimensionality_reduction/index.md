@@ -1,7 +1,7 @@
 # Unit 7: 次元削減と主成分分析
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit07_dimensionality_reduction/images/hero.png" alt="ヒーロー画像：Dimensionality Reduction" />
+  <img src="../../assets/units/unit07_dimensionality_reduction/images/hero.png" alt="ヒーロー画像：主成分分析で高次元データを低次元に圧縮する仕組み" />
 </p>
 
 ## 1. 次元削減とPCAの理解

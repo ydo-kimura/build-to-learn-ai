@@ -10,6 +10,8 @@ In Unit 31 you learned **code-generation agents (Code Agent)** with smolagents. 
 
 ## 1. Understanding LangGraph and Stateful Workflows
 
+> This chapter uses the Python type hints `TypedDict` and `Literal` to describe state shape and branch targets. Comments in the code explain their roles so beginners can follow the implementation.
+
 <img src="/en/assets/units/unit32_langgraph_stateful_agents/images/diagram-concept.svg" alt="Diagram: State / Node / Edge" class="unit-diagram" />
 
 ### 1.1 Why a graph?

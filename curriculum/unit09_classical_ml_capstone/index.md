@@ -1,7 +1,7 @@
 # Unit 9: 機械学習総合演習 (Capstone)
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit09_classical_ml_capstone/images/hero.png" alt="ヒーロー画像：Classical ML Capstone" />
+  <img src="../../assets/units/unit09_classical_ml_capstone/images/hero.png" alt="ヒーロー画像：前処理から評価までの機械学習パイプライン" />
 </p>
 
 ## 1. エンドツーエンド機械学習パイプラインの理解
@@ -33,6 +33,10 @@
 ## 2. 実装例 (Implementation Example)
 
 ここでは、カリフォルニアの住宅価格データ（California Housing Dataset）にダミーの欠損値を少し混ぜた「リアルに近い汚れたデータ」を用意し、前処理から Optuna による XGBoost のチューニング、5-Fold交差検証までのプロフェッショナルなパイプラインを実装します。
+
+Unit 8 では、候補をあらかじめ列挙して試す `GridSearchCV` を学びました。ここで使う **Optuna** は、試した結果をもとに次の候補を提案して探索を効率化するライブラリです。また、後半の比較演習では、外側の交差検証で性能を評価し、その内側で `LassoCV` のハイパーパラメータを選ぶ **ネストCV（入れ子交差検証）** を扱います。どちらも「モデル選択に使ったデータで最終評価をしない」ための考え方です。
+
+このユニットでは、これまでのユニットで扱ったモデルに加えて、`pandas` の `DataFrame` 操作（`iloc`、`copy`、`fillna`、`Series`、`sort_values`）、`SimpleImputer`、`LassoCV` なども登場します。いずれもコード中のコメントで役割を示しているので、必要に応じて各関数のリンク先を確認しながら読み進めてください。
 
 事前に `pip install xgboost optuna scikit-learn` を実行してください。
 
@@ -281,7 +285,7 @@ print(lasso_coefs[lasso_coefs != 0].sort_values(ascending=False))
 
 ### 💡 プロフェッショナルとしての最終適用モデル決定
 
-この検証を実行すると、 **多くの場合アプローチA（Lasso）の方がアプローチB（XGBoost）と同等か、むしろより低い（優れた）RMSEを示します。**
+この検証を実行すると、今回のデータ分割・欠損値・ハイパーパラメータ設定では、 **アプローチA（Lasso）がアプローチB（XGBoost）と同等か、より低いRMSEを示す場合があります。** データ分割や設定を変えると結果が変わり得るため、実行結果を確認して判断してください。
 
 * **なぜこの結果になるのか？**
   * データ数が442件と少ないため、表現力の高いXGBoostはデータの特徴（ノイズ含む）を過剰に学習してしまい、テストデータに対して精度を落としやすい（過学習）からです。一方で、Lasso回帰は無駄な特徴量の重みを強制的にゼロにし（特徴量選択）、シンプルな直線でモデル化するため、少ないデータに対して非常に強力な汎化性能を持ちます。

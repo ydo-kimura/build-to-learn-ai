@@ -1,7 +1,7 @@
 # Unit 8: 交差検証とハイパーパラメータ調整
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit08_cross_validation_tuning/images/hero.png" alt="ヒーロー画像：Cross Validation & Tuning" />
+  <img src="../../assets/units/unit08_cross_validation_tuning/images/hero.png" alt="ヒーロー画像：交差検証とハイパーパラメータ調整" />
 </p>
 
 ## 1. 交差検証とハイパーパラメータ・チューニングの理解

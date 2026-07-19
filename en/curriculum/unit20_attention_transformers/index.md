@@ -11,7 +11,7 @@
 
 
 RNNs and LSTMs pass memory like a relay baton—long texts still forget early content.
-**Attention** and the **Transformer** architecture built on it solved this and became the core of modern AI (ChatGPT and similar models).
+**Attention** and the **Transformer** architecture built on it solved this and became the core of modern AI (ChatGPT and similar models). Self-Attention has quadratic computation with respect to sequence length, so long contexts require careful handling of compute, context length, positional information, and generation speed.
 
 ### 📌 Everyday analogy: "focus" in a meeting
 You are taking minutes for a 10-person meeting.
@@ -60,7 +60,7 @@ Self-Attention builds three vectors per word:
 3. **Value (V)**: My actual content/meaning
 
 Steps:
-- Dot `Q` and `K` to get **attention scores** (relatedness).
+- Take the dot product of `Q` and `K`, then divide by `√d_k` (the square root of the key dimension) to get **attention scores**. This reduces softmax saturation when the dimension is large.
 - Softmax scores to probabilities summing to 1.
 - Weight `V` by those probabilities for the output.
 
@@ -84,7 +84,7 @@ V = x
 
 # 3. Compute attention scores (Q @ K^T)
 # Measures similarity between each pair of words
-scores = torch.matmul(Q, K.transpose(0, 1))
+scores = torch.matmul(Q, K.transpose(0, 1)) / torch.sqrt(torch.tensor(K.size(-1), dtype=K.dtype))
 print("--- Attention Scores ---")
 print(scores)
 
@@ -108,9 +108,10 @@ print(output)
 Use PyTorch's built-in `nn.MultiheadAttention` layer to run Attention.
 
 **【Requirements】**
-1. Use the random `query`, `key`, `value` tensors below.
-2. Create Attention with `nn.MultiheadAttention` (`embed_dim=8`, `num_heads=2`).
-3. Pass `query`, `key`, `value` through and print `attn_output`.
+1. Use the random input embeddings below. This exercise checks tensor shapes and the API; the random weights do not necessarily encode a meaningful word relationship.
+2. Implement sinusoidal or learned positional encoding.
+3. Create Attention with `nn.MultiheadAttention` (`embed_dim=8`, `num_heads=2`).
+4. Add positional information to the input embeddings, pass them as `query`, `key`, and `value`, and print `attn_output`.
 
 **【Dataset】**
 ```python
@@ -123,14 +124,13 @@ sequence_length = 5
 batch_size = 1
 embed_dim = 8
 
-query = torch.rand(sequence_length, batch_size, embed_dim)
-key = torch.rand(sequence_length, batch_size, embed_dim)
-value = torch.rand(sequence_length, batch_size, embed_dim)
+embedded = torch.rand(sequence_length, batch_size, embed_dim)
 ```
 
 **【Hints】**
 - Create layer: `attention_layer = nn.MultiheadAttention(embed_dim=8, num_heads=2)`
-- Forward: `attn_output, attn_weights = attention_layer(query, key, value)`
+- Add positional information to the input embeddings before Attention. In this simplified example, do not add the same positional encoding separately to `query`, `key`, and `value`.
+- Forward: `attn_output, attn_weights = attention_layer(embedded, embedded, embedded)`
 - Built-in layers handle Q, K, V math in one line!
 
 ## 4. Answer Key
@@ -147,23 +147,29 @@ sequence_length = 5
 batch_size = 1
 embed_dim = 8
 
-# Create Query, Key, Value tensors
-query = torch.rand(sequence_length, batch_size, embed_dim)
-key = torch.rand(sequence_length, batch_size, embed_dim)
-value = torch.rand(sequence_length, batch_size, embed_dim)
+# Create input embeddings before passing them to Attention
+embedded = torch.rand(sequence_length, batch_size, embed_dim)
 
-# 2. Define MultiheadAttention layer
+# 2. Add sinusoidal positional encoding to the input embeddings
+position = torch.arange(sequence_length, dtype=torch.float32).unsqueeze(1)
+div_term = torch.exp(torch.arange(0, embed_dim, 2, dtype=torch.float32) * (-torch.log(torch.tensor(10000.0)) / embed_dim))
+positional_encoding = torch.zeros(sequence_length, 1, embed_dim)
+positional_encoding[:, 0, 0::2] = torch.sin(position * div_term)
+positional_encoding[:, 0, 1::2] = torch.cos(position * div_term)
+embedded = embedded + positional_encoding
+
+# 3. Define MultiheadAttention layer
 # embed_dim: vector dimension per token
 # num_heads: number of parallel attention heads
 attention_layer = nn.MultiheadAttention(embed_dim=embed_dim, num_heads=2)
 
-# 3. Run attention
+# 4. Run attention
 print("Running attention...")
-attn_output, attn_weights = attention_layer(query, key, value)
+attn_output, attn_weights = attention_layer(embedded, embedded, embedded)
 
 # 4. Inspect results
 print("\n--- Attention output (attn_output) ---")
-print(attn_output.shape) # Same shape as query: (5, 1, 8)
+print(attn_output.shape) # Same shape as the input embeddings: (5, 1, 8)
 print(attn_output)
 
 print("\n--- Attention weights (attn_weights) ---")

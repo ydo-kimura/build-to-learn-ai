@@ -10,7 +10,7 @@
 
 実務における「生成AIを最も強力に業務に活かすユースケース」の一つが、 **「企業に眠る大量の未構造化データ（自由形式のPDF、スキャン画像、契約書、メール文など）から、必要なビジネス情報（契約日、金額、違約金条項、顧客の苦情カテゴリなど）を自動で抽出し、データベースへ保存可能な綺麗なJSON形式（構造化データ）に変換する」** というナレッジ抽出・構造化（Structured Extraction）パイプラインです。
 
-### なぜ単なる LLM 呼び出しでは失敗するのか？
+### なぜ単なる LLM 呼び出しでは本番運用に不十分なのか？
 「この契約書から金額をJSONで抜いて」とLLMにプロンプトを投げるだけでは、本番環境の業務では使い物になりません。以下の理由があるからです。
 1. **スキーマ違反** : LLMが出力したJSONのキー名が違っていたり、日付の形式（`YYYY-MM-DD`）が崩れていると、DB挿入時にシステムがエラーで即座に落ちる。
 2. **ハルシネーション（情報の捏造）** : 契約書に書かれていない適当な金額を「これだと思います」とLLMが捏造して出力する危険がある。
@@ -155,6 +155,7 @@ class ContractSchema(BaseModel):
 ```python
 import os
 import json
+import re
 from datetime import date
 from pydantic import BaseModel, Field, ValidationError, field_validator
 from smolagents import CodeAgent, OpenAIServerModel
@@ -222,7 +223,10 @@ for attempt in range(1, MAX_RETRIES + 1):
     raw_output = agent.run(current_task)
     try:
         # マークダウン装飾がある場合はクリーンアップ
-        cleaned_json = str(raw_output).strip().replace("JSON_MARKDOWN", "")
+        cleaned_json = str(raw_output).strip()
+        # LLMが返す ```json ... ``` のコードフェンスだけを除去する。
+        cleaned_json = re.sub(r"^```(?:json)?\s*", "", cleaned_json, flags=re.IGNORECASE)
+        cleaned_json = re.sub(r"\s*```$", "", cleaned_json)
         data_dict = json.loads(cleaned_json)
         
         # Pydanticによる型・範囲検証（原文との意味的一致は別途確認が必要）

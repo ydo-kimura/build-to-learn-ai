@@ -24,7 +24,7 @@ While general business automation agents perform limited API integrations such a
 
 - **File system operations**: Read, create, overwrite, and delete project source code.
 - **Shell/terminal execution**: Run build commands, unit tests, compilation, and external module installation.
-- **Linter/LSP (Language Server Protocol) integration**: Real-time syntax checking and auto-fix.
+- **Linter/LSP (Language Server Protocol) integration**: A linter checks code style and suspicious patterns; LSP is a communication protocol that provides editor features such as completion, go-to-definition, and diagnostics. Together they support real-time checks and fixes.
 
 These operations can cause severe damage from a single mistake—infinite loops exhausting resources, accidental deletion of critical source, or unintended malicious commands—so commercial development Agent SDKs include strong built-in protections.
 

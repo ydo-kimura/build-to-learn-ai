@@ -1,7 +1,7 @@
 # Unit 5: Gradient Boosting and XGBoost
 
 <p class="unit-hero">
-  <img src="/en/assets/units/unit05_gradient_boosting_xgboost/images/hero.png" alt="Hero: Gradient Boosting & XGBoost" />
+  <img src="/en/assets/units/unit05_gradient_boosting_xgboost/images/hero.png" alt="Hero: gradient boosting and XGBoost correcting errors sequentially" />
 </p>
 
 ## 1. Understanding Gradient Boosting and XGBoost
@@ -35,7 +35,7 @@ Boosting is accurate but **slow** because trees are built one after another.
 
 **XGBoost (eXtreme Gradient Boosting)** speeds this up with algorithmic tricks that enable **parallel computation** where possible. It also handles **missing values** automatically.
 
-Because of its speed and accuracy, XGBoost dominated competitions like **Kaggle** for years — many winners used it on tabular data.
+Because of its speed and accuracy, XGBoost dominated competitions like **Kaggle** for years — many winners used it on tabular data. Like most ML algorithms, it expects numeric inputs, so categorical variables such as “Tokyo/Osaka” must be encoded first. One-hot encoding is explained conceptually in Unit 9, although that unit's implementation uses numeric columns only.
 
 ### 💡 Real-World Business Use Cases
 

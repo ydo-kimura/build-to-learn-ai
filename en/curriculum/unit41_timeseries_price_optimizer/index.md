@@ -10,7 +10,7 @@
 
 
 
-You have learned tabular regression and classification (Units 1–8) and deep learning models. Applying textbook ML directly to **data that changes over time (time series)** causes **catastrophic production failure (prediction accuracy drops to zero)**.
+You have learned tabular regression and classification (Units 1–8) and deep learning models such as the image classifiers in Units 10–16. Applying textbook ML directly to **data that changes over time (time series)** causes **catastrophic production failure (prediction accuracy drops to zero)**.
 
 The main cause is **time series data leakage**.
 

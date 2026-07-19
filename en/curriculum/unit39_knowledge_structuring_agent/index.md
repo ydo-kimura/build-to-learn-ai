@@ -105,6 +105,7 @@ In production structured extraction, the professional technique is **sandwiching
 ```python
 import os
 import json
+import re
 from datetime import date
 from pydantic import BaseModel, Field, ValidationError
 from smolagents import CodeAgent, OpenAIServerModel
@@ -154,7 +155,10 @@ raw_output = agent.run(task_instruction)
 # --- Step 5: Strict program-side validation and self-correction simulation ---
 try:
     # Clean markdown decoration if present
-    cleaned_json = raw_output.strip().replace("JSON_MARKDOWN", "")
+    cleaned_json = str(raw_output).strip()
+    # Remove only Markdown JSON code fences returned by the LLM.
+    cleaned_json = re.sub(r"^```(?:json)?\s*", "", cleaned_json, flags=re.IGNORECASE)
+    cleaned_json = re.sub(r"\s*```$", "", cleaned_json)
     data_dict = json.loads(cleaned_json)
     
     # Run Pydantic type validation!

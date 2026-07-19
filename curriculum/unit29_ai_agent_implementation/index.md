@@ -282,6 +282,7 @@ def execute_refund(order_id: str, amount: int) -> str:
 import os
 import json
 from datetime import datetime
+from typing import Tuple
 from openai import OpenAI
 
 client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
@@ -353,7 +354,7 @@ available_functions = {
 # ==========================================
 # 3. 自律返品・払い戻しエージェントの実行
 # ==========================================
-def run_refund_agent(user_prompt: str, max_iterations: int = 5):
+def run_refund_agent(user_prompt: str, max_iterations: int = 5) -> Tuple[bool, str]:
     print(f"\n🔍 [Refund Agent] タスク開始: '{user_prompt}'")
     
     # システムプロンプトでビジネスルールと本日のシステム日付を厳密に指示
@@ -394,7 +395,7 @@ def run_refund_agent(user_prompt: str, max_iterations: int = 5):
         tool_calls = response_message.tool_calls
         if not tool_calls:
             print("🎉 [Refund Agent] 意思決定プロセス完了。最終判断を提示します。")
-            return response_message.content
+            return True, response_message.content or ""
         
         for tool_call in tool_calls:
             function_name = tool_call.function.name
@@ -416,7 +417,7 @@ def run_refund_agent(user_prompt: str, max_iterations: int = 5):
             else:
                 print(f"❌ エラー: 指定されたツールが見つかりません。")
 
-    return "処理がタイムアウトしました。"
+    return False, "処理がタイムアウトしました。"
 
 # ==========================================
 # 4. 承認と却下の両シナリオテスト
@@ -424,13 +425,13 @@ def run_refund_agent(user_prompt: str, max_iterations: int = 5):
 if __name__ == "__main__":
     # シナリオ 1: 承認ケース (order_101: 14日前)
     print("\n--- シナリオ 1: 自動承認ケース (order_101) ---")
-    ans1 = run_refund_agent("注文 order_101 のスニーカー（15,000円分）を返品したいので払い戻しをお願いします。")
-    print(f"\n最終判定結果:\n{ans1}")
+    success1, ans1 = run_refund_agent("注文 order_101 のスニーカー（15,000円分）を返品したいので払い戻しをお願いします。")
+    print(f"\n最終判定結果（成功={success1}）:\n{ans1}")
     
     # シナリオ 2: 却下ケース (order_202: 49日前)
     print("\n--- シナリオ 2: 自動却下ケース (order_202) ---")
-    ans2 = run_refund_agent("注文 order_202 のジャケット（25,000円分）の返品・払い戻しをお願いします。")
-    print(f"\n最終判定結果:\n{ans2}")
+    success2, ans2 = run_refund_agent("注文 order_202 のジャケット（25,000円分）の返品・払い戻しをお願いします。")
+    print(f"\n最終判定結果（成功={success2}）:\n{ans2}")
 ```
 
 ### 解説
@@ -438,5 +439,5 @@ if __name__ == "__main__":
 この解答の設計には、実務エージェント開発の重要な考え方が2つ詰まっています。
 
 1. **システムプロンプトに「今日の日付」と「ビジネスルール」を厳密に書く理由** : LLM は「今日が何日か」を知りません。日付を明示しなければ購入日からの経過日数を計算できず、返品可否の判断が毎回ブレてしまいます。同様に「30日以内」「10,000円以下は自動承認」のようなルールも、プロンプトに明文化して初めて一貫した判断基準として機能します。エージェントの信頼性は、ツールの出来よりも **この指示書の厳密さ** で決まることが多いのです。
-2. **却下ケースでツール実行がスキップされる仕組みとそのリスク** : シナリオ2では、LLM が `get_order_info` の結果（49日前の購入）とルールを照らし合わせ、「払い戻しツール（`process_refund`）を呼ばない」という判断を自分で下します。つまり **「実行しない」という判断も LLM 任せ** です。これは柔軟な反面、プロンプトインジェクションや判断ミスで不正な払い戻しが実行されるリスクを残します。実務では、Unit 34〜38 で学ぶように「高額の払い戻しは人間の承認を必須にする」等のガードレールをプログラム側に敷くのが鉄則です。
+2. **却下ケースでツール実行がスキップされる仕組みとそのリスク** : シナリオ2では、LLM が `check_purchase_date` の結果（49日前の購入）とルールを照らし合わせ、「払い戻しツール（`execute_refund`）を呼ばない」という判断を自分で下します。つまり **「実行しない」という判断も LLM 任せ** です。これは柔軟な反面、プロンプトインジェクションや判断ミスで不正な払い戻しが実行されるリスクを残します。実務では、Unit 40 で学ぶガードレールや、Unit 32 で扱う Human-in-the-loop の考え方を使い、「高額の払い戻しは人間の承認を必須にする」等の制御をプログラム側に敷くのが鉄則です。
 </details>

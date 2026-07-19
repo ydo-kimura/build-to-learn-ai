@@ -45,12 +45,14 @@ LangChain can **automatically append conversation history** to prompts.
 Use LangChain’s `RunnableWithMessageHistory` for a chatbot that remembers past conversation.
 
 > ※ Newer LangChain recommends this over legacy `ConversationBufferMemory`.
+>
+> Install `langchain-openai langchain-core` first and set `OPENAI_API_KEY`. Current LangChain uses `InMemoryChatMessageHistory` from `langchain_core.chat_history` for in-memory history.
 
 ```python
 import os
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_community.chat_message_histories import ChatMessageHistory
+from langchain_core.chat_history import InMemoryChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 
 # 1. Prepare LLM
@@ -74,7 +76,7 @@ store = {}
 # Return conversation history for the given session ID (user ID)
 def get_session_history(session_id: str):
     if session_id not in store:
-        store[session_id] = ChatMessageHistory() # create a new notebook for new users
+        store[session_id] = InMemoryChatMessageHistory() # create a new notebook for new users
     return store[session_id]
 
 # 4. Attach memory to the chain
@@ -134,7 +136,7 @@ Create an **infinite-loop chatbot** you control from the terminal.
 import os
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_community.chat_message_histories import ChatMessageHistory
+from langchain_core.chat_history import InMemoryChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
@@ -150,7 +152,7 @@ store = {}
 
 def get_session_history(session_id: str):
     if session_id not in store:
-        store[session_id] = ChatMessageHistory()
+        store[session_id] = InMemoryChatMessageHistory()
     return store[session_id]
 
 chatbot = RunnableWithMessageHistory(

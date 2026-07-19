@@ -10,6 +10,18 @@ export default withMermaid(
     '**/.agent/**',
     'README.md'
   ],
+  // OpenWiki documents intentionally reference repository-internal files that
+  // are not part of the published VitePress site. Keep curriculum dead-link
+  // checking enabled while excluding only those known internal references.
+  ignoreDeadLinks: [
+    /^\.\/\.\.\/\.\.\/aidlc-docs\/(aidlc-state|audit)$/,
+    /^\.\/\.\.\/\.\.\/\.aidlc-rule-details\/index$/,
+    /^\.\/\.\.\/\.\.\/\.devcontainer\/Dockerfile$/,
+    /^\.\/\.\.\/\.\.\/\.agent\/rules\/git-commit-rules$/,
+    /^\.\/\.\.\/\.\.\/\.github\/PULL_REQUEST_TEMPLATE$/,
+    /^\.\/\.\.\/\.agent\/rules\/(senior-engineer-conduct|git-commit-rules|indexing-codebase|language-strategies)$/,
+    /^\.\/\.\.\/\.\.\/scripts\/index$/
+  ],
   vite: {
     optimizeDeps: {
       include: ['mermaid', 'dayjs']

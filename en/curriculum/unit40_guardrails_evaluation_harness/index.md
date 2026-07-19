@@ -195,7 +195,7 @@ Build a harness that blocks all attacks accurately and only passes outputs that 
 1. **Input attack detection strategy**:
    - Describe detection prompt design (Few-shot, role assignment, input length limits, etc.) to maximize safety beyond simple SAFE/BLOCKED.
 2. **LLM-as-a-Judge accuracy (minimize variance)**:
-   - Describe rubrics and thinking process (Chain of Thought / CoT) assigned to the judge to eliminate subjective scoring drift.
+   - Describe rubrics and any reasoning-promoting instructions assigned to the judge, then measure their effect on validation cases. These techniques may reduce scoring drift but do not guarantee zero misclassification.
 3. **False positive consideration**:
    - Describe threshold design and branching so safe questions ("What is AI-Shield Core?") are not over-blocked.
 4. **Final adoption decision**:

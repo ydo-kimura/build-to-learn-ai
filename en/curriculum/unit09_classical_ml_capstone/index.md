@@ -1,7 +1,7 @@
 # Unit 9: Classical ML Capstone
 
 <p class="unit-hero">
-  <img src="/en/assets/units/unit09_classical_ml_capstone/images/hero.png" alt="Hero: Classical ML Capstone" />
+  <img src="/en/assets/units/unit09_classical_ml_capstone/images/hero.png" alt="Hero: a machine-learning pipeline from preprocessing to evaluation" />
 </p>
 
 ## 1. Understanding End-to-End ML Pipelines
@@ -25,6 +25,10 @@ Units 1–8 covered individual algorithms, metrics, and tuning. In real projects
 ## 2. Implementation Example
 
 We use **California housing data** with injected missing values — realistic "dirty" data — and implement a professional pipeline: preprocessing, XGBoost tuning with Optuna, and 5-fold cross-validation.
+
+Unit 8 introduced `GridSearchCV`, which tries a predefined list of candidates. **Optuna** proposes the next candidates based on previous results, making the search more efficient. In the comparison later, **nested cross-validation** evaluates performance in an outer loop while `LassoCV` selects its hyperparameter in an inner loop. Both ideas prevent evaluating a model on data used to select it.
+
+This unit also introduces `pandas` `DataFrame` operations (`iloc`, `copy`, `fillna`, `Series`, and `sort_values`), `SimpleImputer`, and `LassoCV`. Comments in the code explain their roles; follow the documentation links when needed.
 
 Run `pip install xgboost optuna scikit-learn` first.
 
@@ -267,7 +271,7 @@ print(lasso_coefs[lasso_coefs != 0].sort_values(ascending=False))
 
 ### 💡 Final production model decision
 
-In most runs, **Approach A (Lasso) matches or beats Approach B (XGBoost) on RMSE.**
+With this data split, missing-value pattern, and hyperparameter configuration, **Approach A (Lasso) may match or beat Approach B (XGBoost) on RMSE.** Results can change with different splits or settings, so inspect the actual run before deciding.
 
 * **Why?**
   * With only 442 rows, XGBoost overfits noise. Lasso zeros irrelevant weights and fits a simple line — strong generalization on small data.

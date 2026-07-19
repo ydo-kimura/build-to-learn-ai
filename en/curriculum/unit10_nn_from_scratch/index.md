@@ -123,7 +123,7 @@ for epoch in range(epochs):
     # -------------------------
     # 2. Compute error — gap between prediction and target
     # -------------------------
-    error = y - output
+    error = output - y
     
     # -------------------------
     # 3. Backpropagation — propagate error backward through layers
@@ -138,10 +138,10 @@ for epoch in range(epochs):
     # -------------------------
     # 4. Update weights and biases
     # -------------------------
-    W2 += a1.T.dot(d_output) * learning_rate
-    b2 += np.sum(d_output, axis=0, keepdims=True) * learning_rate
-    W1 += X.T.dot(d_hidden_layer) * learning_rate
-    b1 += np.sum(d_hidden_layer, axis=0, keepdims=True) * learning_rate
+    W2 -= a1.T.dot(d_output) * learning_rate
+    b2 -= np.sum(d_output, axis=0, keepdims=True) * learning_rate
+    W1 -= X.T.dot(d_hidden_layer) * learning_rate
+    b1 -= np.sum(d_hidden_layer, axis=0, keepdims=True) * learning_rate
 
 print("Predictions after training:")
 print(np.round(output, 3))
@@ -224,7 +224,7 @@ for epoch in range(epochs):
     output = sigmoid(z2)
     
     # 2. Compute error
-    error = y - output
+    error = output - y
     
     # 3. Backpropagation
     d_output = error * sigmoid_derivative(output)
@@ -232,10 +232,10 @@ for epoch in range(epochs):
     d_hidden_layer = error_hidden_layer * sigmoid_derivative(a1)
     
     # 4. Update weights and biases
-    W2 += a1.T.dot(d_output) * learning_rate
-    b2 += np.sum(d_output, axis=0, keepdims=True) * learning_rate
-    W1 += X.T.dot(d_hidden_layer) * learning_rate
-    b1 += np.sum(d_hidden_layer, axis=0, keepdims=True) * learning_rate
+    W2 -= a1.T.dot(d_output) * learning_rate
+    b2 -= np.sum(d_output, axis=0, keepdims=True) * learning_rate
+    W1 -= X.T.dot(d_hidden_layer) * learning_rate
+    b1 -= np.sum(d_hidden_layer, axis=0, keepdims=True) * learning_rate
 
 print("Predictions after training (success if close to 0, 1, 1, 1):")
 print(np.round(output, 3))

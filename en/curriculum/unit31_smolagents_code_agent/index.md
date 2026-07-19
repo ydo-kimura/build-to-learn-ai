@@ -14,7 +14,7 @@
 
 
 
-In Units 27–28, you learned chaining and chatbot implementation. In Units 29–30, you studied the fundamentals of AI agents (scratch ReAct) and MCP (Model Context Protocol), a common open standard.
+In Units 27–28, you learned the basics of LLM applications with prompt chaining and conversation history. In Units 29–30, you studied scratch ReAct agents and MCP (Model Context Protocol), the common standard for connecting external tools. Here you compare different agent implementation paradigms.
 
 However, when an AI system does more than "output text as instructed" and instead **autonomously decides when and how to use external tools (search, databases, calculators, external APIs, etc.) to achieve complex user goals**, we call that system an **AI Agent**.
 

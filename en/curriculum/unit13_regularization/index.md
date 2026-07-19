@@ -60,6 +60,7 @@ First, PyTorch setup.
 ```python
 import torch
 import torch.nn as nn
+import copy
 import torch.optim as optim
 
 # Dummy data (arbitrary values; we only inspect structure here)
@@ -157,6 +158,8 @@ import torch.optim as optim
 torch.manual_seed(42)
 X_train = torch.randn(20, 10)
 y_train = torch.randn(20, 1)
+X_val = torch.randn(10, 10)
+y_val = torch.randn(10, 1)
 
 # 2. Define network
 class MyRobustNet(nn.Module):
@@ -212,8 +215,8 @@ model.eval() # [IMPORTANT] Dropout OFF (all neurons active)
 
 # Best practice: use no_grad for inference
 with torch.no_grad():
-    final_pred = model(X_train)
-    print("Test predictions complete (first 3 values):")
+    final_pred = model(X_val)
+    print("Validation predictions complete (first 3 values):")
     print(final_pred[:3].flatten().numpy())
 ```
 

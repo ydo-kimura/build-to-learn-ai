@@ -16,7 +16,7 @@ In Unit 31 you learned the powerful autonomous AI agent (`smolagents` CodeAgent)
 
 1. **Tool swamping**: Give an agent many tools—shipping lookup, payment inquiry, refunds, email, inventory—and the LLM gets lost, exponentially increasing wrong tool calls with bad arguments.
 2. **Context bloat and cost**: Stuffing all history and tool definitions into one LLM explodes tokens per conversation, spiking API cost and slowing response.
-3. **Security and permission collapse**: A customer support agent might run tools with direct access to "all customer payment DB," making security boundary separation hard.
+3. **Security and permission collapse**: A customer support agent might run tools with direct access to "all customer payment DB," making security boundary separation hard. Splitting agents alone does not create a security boundary; authentication, authorization, argument validation, database permissions, and audit logs are still required.
 
 ---
 
@@ -29,17 +29,17 @@ Like company departments, create multiple **small child agents (Managed Agents)*
 ```
                     [Main Support Agent (ManagerAgent)]
                                       │
-              ┌───────────────────────┴───────────────────────┐
-              ▼                                               ▼
-[Shipping Tracking Agent (Managed CodeAgent)]     [Payment Policy Agent (Managed CodeAgent)]
-    - Tools: shipping DB lookup only                        - Tools: refund policy text search only
-    - Permission: shipping info only                        - Permission: policy verification only
+              ┌───────────────┼───────────────┐
+              ▼               ▼               ▼
+        [Shipping]      [Cancellation Fee]  [Points Refund]
+        Managed Agent    Managed Agent       Managed Agent
+        - Shipping DB    - Fee policy        - Points policy
 ```
 
 #### Overwhelming Benefits of Division of Labor:
 
 * **High reliability**: Each child agent has only 3–4 limited tools, drastically reducing tool call mistakes and hallucinations.
-* **Strong security boundaries**: Shipping agent gets shipping DB read only; payment agent gets payment execution only—full **Least Privilege**.
+* **Narrower tool scope**: Each specialist receives only the data and policy tools required for its role. This supports least privilege, but authentication, authorization, validation, and audit logging are still required.
 * **Easy debugging**: When trouble occurs, audit exactly "which agent's which reasoning step failed."
 
 ---
@@ -47,7 +47,7 @@ Like company departments, create multiple **small child agents (Managed Agents)*
 ### 💡 Concrete Business Use Cases
 
 * **Enterprise help desk**: Password reset, PC requests, paid leave—ManagerAgent parses intent and dynamically delegates to specialized internal bots.
-* **Autonomous software development (Devin-style clones)**: Coder, Tester, and Writer agents coordinate under ManagerAgent for autonomous development.
+* **Autonomous software development (autonomous coding agents)**: Coder, Tester, and Writer agents coordinate under ManagerAgent for autonomous development.
 * **Real estate/insurance quote automation**: Identity verification, risk review, and plan proposal agents collaborate in the background to generate quotes in seconds.
 
 ---
@@ -56,7 +56,7 @@ Like company departments, create multiple **small child agents (Managed Agents)*
 
 ## 2. Implementation Example — Multi-Agent Coordination with smolagents
 
-The code below uses Hugging Face's `smolagents` to build a **shipping tracking agent (Managed)** and **policy agent (Managed)**, orchestrated by a **main support agent (Manager)** that autonomously responds to an angry customer email.
+The code below uses Hugging Face's `smolagents` to build three specialist agents for **shipping tracking**, **cancellation fees**, and **refund policy**, orchestrated by a **main support agent (Manager)** that autonomously responds to an angry customer email.
 
 ```python
 import os
@@ -84,7 +84,15 @@ def track_shipping_status(order_id: str) -> str:
     }
     return shipping_db.get(order_id, f"Order ID: {order_id} not found in database.")
 
-# --- 2. Refund policy search tool (for policy agent) ---
+# --- 2. Cancellation fee policy search tool (for fee agent) ---
+@tool
+def search_cancel_fee_policy() -> str:
+    """
+    Search the cancellation-fee policy for the relevant delivery-delay case.
+    """
+    return "Policy: Cancellations caused by carrier delivery delays are free of charge, regardless of membership tier."
+
+# --- 3. Refund policy search tool (for refund agent) ---
 @tool
 def search_refund_policy(item_condition: str) -> str:
     """
@@ -99,7 +107,7 @@ def search_refund_policy(item_condition: str) -> str:
         return "Policy: If item is [OPENED], refunds for customer convenience are not permitted. Exception: full refund for initial defect or damage due to carrier negligence."
     return "No matching policy found. Escalate to support desk individually."
 
-# --- 3. Specialist child agents (Managed Agents) ---
+# --- 4. Specialist child agents (Managed Agents) ---
 
 # Shipping specialist (shipping tool only)
 shipping_agent = CodeAgent(
@@ -109,34 +117,42 @@ shipping_agent = CodeAgent(
     description="Specialist agent that accurately investigates shipping status and delay reasons from order numbers."
 )
 
-# Refund policy specialist (policy tool only)
-policy_agent = CodeAgent(
+# Cancellation-fee specialist (fee policy tool only)
+fee_agent = CodeAgent(
+    tools=[search_cancel_fee_policy],
+    model=model,
+    name="fee_specialist",
+    description="Specialist agent that determines whether a cancellation fee applies under the relevant policy."
+)
+
+# Refund policy specialist (refund policy tool only)
+refund_agent = CodeAgent(
     tools=[search_refund_policy],
     model=model,
-    name="policy_specialist",
+    name="refund_specialist",
     description="Specialist agent that strictly determines refund eligibility from item condition (unopened/opened) per company policy."
 )
 
-# --- 4. Main manager agent (ManagerAgent) ---
+# --- 5. Main manager agent (ManagerAgent) ---
 # Register child agents as "tools" on ManagerAgent
 manager_agent = CodeAgent(
     tools=[],
     model=model,
-    managed_agents=[shipping_agent, policy_agent],
+    managed_agents=[shipping_agent, fee_agent, refund_agent],
     add_base_tools=True
 )
 
-# --- 5. Test run (angry customer complaint) ---
+# --- 6. Test run (angry customer complaint) ---
 unhappy_customer_email = """
 [Inquiry]:
 My order ORD-9999 has not arrived! I was really looking forward to it and I am very upset.
 If it will not arrive, I want a full refund. The item has not been delivered so it is obviously "unopened".
-Please check the current shipping status and whether a refund is possible, and reply with a polite apology and resolution email.
+Please check the current shipping status, whether a cancellation fee applies, and whether a refund is possible, then reply with a polite apology and resolution email.
 """
 
 print("--- 🤝 Autonomous Multi-Agent Customer Support Starting ---")
 response = manager_agent.run(
-    f"For the [Inquiry] below, use specialist agents appropriately to investigate and draft the final customer reply email.\n\n[Inquiry]:\n{unhappy_customer_email}"
+    f"For the [Inquiry] below, use the shipping, fee, and refund specialists appropriately to investigate and draft the final customer reply email. Escalate to a human when the evidence is insufficient.\n\n[Inquiry]:\n{unhappy_customer_email}"
 )
 
 print("\n--- 📩 Generated Final Customer Reply Email ---")

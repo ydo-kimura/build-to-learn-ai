@@ -12,7 +12,7 @@
 
 In Chapter 3 (Units 17–20), you learned NLP fundamentals starting with tokenization and TF-IDF, then Word2Vec for multi-dimensional word vectors, RNN/LSTM for applying context to sequential data, and finally **Attention and the Transformer architecture**—the foundation of all modern LLMs.
 
-In this capstone, you bring those concepts together and implement a translation engine from scratch that fully reproduces how modern generative AI outputs text: **tokenize parallel text data ➔ build a simple vocabulary ➔ construct a tiny encoder–decoder Transformer ➔ run a parallel-corpus training loop ➔ perform inference decoding that translates English input into Japanese automatically**.
+In this capstone, you bring those concepts together and implement a translation engine from scratch: **tokenize parallel text data ➔ build a simple vocabulary ➔ construct a tiny encoder–decoder Transformer ➔ run a parallel-corpus training loop ➔ perform inference decoding that translates English input into Japanese automatically**. First inspect the Transformer components on a four-sentence minimal implementation, then extend to five sentences to compare and select it against an LSTM. This is a toy model and does not demonstrate useful translation quality on unseen text.
 
 **💡 Everyday analogy: the simultaneous interpreter’s inner mechanism**
 * **Tokenization and vocabulary**: Replace English and Japanese words with “word cards (IDs)” and organize an in-brain parallel dictionary.
@@ -348,7 +348,7 @@ Experiments on this tiny dataset (5 sentences) yield surprising results.
 * **Decision rationale (Approach A vs. Approach B)**:
   * With only 5 sentences, Approach A (RNN/LSTM + Attention) converges very stably due to its simpler structure, avoids overfitting, and tends to output `"I adore studying"` perfectly. Approach B (Transformer) has many attention-head and fully connected parameters; with 5 sentences, attention for `"i love learning"` and `"i love ai"` can collide (mix and overfit), causing decode-time hallucination—e.g., wrongly outputting `"I adore AI"`.
 * **Final deployment decision**:
-  * **“Select Approach A (RNN/LSTM + Attention) as the production model.”**
+  * **“For this tiny-data experiment, select Approach A (RNN/LSTM + Attention) as the candidate.”**
   * **Rationale**:
     1. For ultra-compact domain rule data (e.g., manual parallel text) that must be memorized and applied immediately, RNN delivers far lower compute cost and prevents overfitting while preserving translation quality on tiny data.
     2. If parallel corpus scale to tens of thousands of sentences is certain later, a two-stage roadmap—migrating architecture to **Approach B (Transformer)** for parallelism and long-range context—is the most realistic, architect-level judgment.

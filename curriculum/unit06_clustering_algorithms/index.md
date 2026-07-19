@@ -1,7 +1,7 @@
 # Unit 6: クラスタリングアルゴリズム
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit06_clustering_algorithms/images/hero.png" alt="ヒーロー画像：Clustering Algorithms" />
+  <img src="../../assets/units/unit06_clustering_algorithms/images/hero.png" alt="ヒーロー画像：K-MeansとDBSCANによるクラスタリング" />
 </p>
 
 ## 1. クラスタリングの理解
@@ -32,7 +32,7 @@ K-Meansは以下のステップでこれを自動で行います。
 
 下図は、収束後の K-Means の結果イメージです。オレンジと紫の2つの **重心（centroid）** を中心に、各データ点が最も近いクラスタに割り当てられています。ステップ3の「テーブルを真ん中に移動」は、この重心の更新に相当します。
 
-<img src="../../assets/units/unit06_clustering_algorithms/images/diagram-concept.svg" alt="図解：K-Means の2クラスタと重心（Centroid A・B）" class="unit-diagram" />
+<img src="../../assets/units/unit06_clustering_algorithms/images/diagram-concept.svg" alt="図解：オレンジと紫の2クラスタ、および各クラスタの重心（Centroid A・B）" class="unit-diagram" />
 
 | K-Meansの特徴 | 解説 |
 | :--- | :--- |

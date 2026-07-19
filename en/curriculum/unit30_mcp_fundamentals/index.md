@@ -17,7 +17,7 @@ When giving AI agents tools—file ops, DB search, external APIs—teams traditi
 
 That tied you to specific frameworks and forced rewriting the same tool wiring for every new agent—a serious scalability problem.
 
-**Model Context Protocol (MCP)**, proposed by Anthropic, is an open standard that normalizes how LLMs (AI clients) connect to external data and tools—**“USB for the AI world”**—so one tool works in any MCP-compatible client.
+**Model Context Protocol (MCP)**, published by Anthropic on **November 25, 2024**, is an open standard that normalizes how LLMs (AI clients) connect to external data and tools—**“USB for the AI world”**—so one tool can be reused across MCP-compatible clients.
 
 ### 1.1 MCP three-layer architecture
 MCP uses three cooperating roles:

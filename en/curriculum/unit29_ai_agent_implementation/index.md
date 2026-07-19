@@ -229,6 +229,7 @@ Using the two mock tools below, **auto-approve and refund** requests within **30
 ```python
 import json
 from datetime import datetime
+from typing import Tuple
 
 def check_purchase_date(order_id: str) -> str:
     """Tool to fetch the purchase date (YYYY-MM-DD) for the given order ID from the database."""
@@ -346,7 +347,7 @@ available_functions = {
 # ==========================================
 # 3. Autonomous returns and refund review agent
 # ==========================================
-def run_refund_agent(user_prompt: str, max_iterations: int = 5):
+def run_refund_agent(user_prompt: str, max_iterations: int = 5) -> Tuple[bool, str]:
     print(f"\n🔍 [Refund Agent] Task started: '{user_prompt}'")
     
     # System prompt with strict business rules and today's system date
@@ -387,7 +388,7 @@ def run_refund_agent(user_prompt: str, max_iterations: int = 5):
         tool_calls = response_message.tool_calls
         if not tool_calls:
             print("🎉 [Refund Agent] Decision process complete. Presenting final judgment.")
-            return response_message.content
+            return True, response_message.content or ""
         
         for tool_call in tool_calls:
             function_name = tool_call.function.name
@@ -409,7 +410,7 @@ def run_refund_agent(user_prompt: str, max_iterations: int = 5):
             else:
                 print(f"❌ Error: Specified tool not found.")
 
-    return "Processing timed out."
+    return False, "Processing timed out."
 
 # ==========================================
 # 4. Test both approval and rejection scenarios
@@ -417,12 +418,12 @@ def run_refund_agent(user_prompt: str, max_iterations: int = 5):
 if __name__ == "__main__":
     # Scenario 1: approval case (order_101: 14 days ago)
     print("\n--- Scenario 1: Auto-approval case (order_101) ---")
-    ans1 = run_refund_agent("I want to return the sneakers from order_101 (15,000 yen) and request a refund.")
-    print(f"\nFinal decision:\n{ans1}")
+    success1, ans1 = run_refund_agent("I want to return the sneakers from order_101 (15,000 yen) and request a refund.")
+    print(f"\nFinal decision (success={success1}):\n{ans1}")
     
     # Scenario 2: rejection case (order_202: 49 days ago)
     print("\n--- Scenario 2: Auto-rejection case (order_202) ---")
-    ans2 = run_refund_agent("Please process a return and refund for the jacket from order_202 (25,000 yen).")
-    print(f"\nFinal decision:\n{ans2}")
+    success2, ans2 = run_refund_agent("Please process a return and refund for the jacket from order_202 (25,000 yen).")
+    print(f"\nFinal decision (success={success2}):\n{ans2}")
 ```
 </details>

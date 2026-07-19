@@ -1,12 +1,12 @@
 # Unit 6: Clustering Algorithms
 
 <p class="unit-hero">
-  <img src="/en/assets/units/unit06_clustering_algorithms/images/hero.png" alt="Hero: Clustering Algorithms" />
+  <img src="/en/assets/units/unit06_clustering_algorithms/images/hero.png" alt="Hero: clustering with K-Means and DBSCAN" />
 </p>
 
 ## 1. Understanding Clustering
 
-<img src="/en/assets/units/unit06_clustering_algorithms/images/diagram-concept.svg" alt="Diagram: K-Means steps" class="unit-diagram" />
+<img src="/en/assets/units/unit06_clustering_algorithms/images/diagram-concept.svg" alt="Diagram: orange and purple K-Means clusters with their centroids" class="unit-diagram" />
 
 
 

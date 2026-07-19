@@ -1,7 +1,7 @@
 # Unit 7: Dimensionality Reduction and PCA
 
 <p class="unit-hero">
-  <img src="/en/assets/units/unit07_dimensionality_reduction/images/hero.png" alt="Hero: Dimensionality Reduction" />
+  <img src="/en/assets/units/unit07_dimensionality_reduction/images/hero.png" alt="Hero: compressing high-dimensional data with PCA" />
 </p>
 
 ## 1. Understanding Dimensionality Reduction and PCA

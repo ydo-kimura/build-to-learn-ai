@@ -1073,3 +1073,29 @@ Continuation behavior:
 **Context**: CONSTRUCTION - Delegated curriculum remediation planning.
 
 ---
+
+##担当C: NLP / Transformer 修正
+**Timestamp**: 2026-07-20T00:00:00Z
+**User Input**: "担当Cとして /Volumes/External/Documents/build-to-learn-ai の curriculum/unit17_*〜unit21_* を修正。review.md CH3-01〜CH3-18を再確認し、TF-IDF、Unit20のsqrt(d_k)、Q/K/Vと位置エンコーディングの不整合を優先。共有ファイル・英語版・アセットは編集せず、既存変更をリセットしない。変更ファイルと検証を報告。"
+**AI Response**: "Unit 17〜21 の日本語版Markdownだけを編集し、CH3-01〜18を現行内容と照合した上で、TF-IDFのIDF対比例、Unit 20のscaled dot-productと位置エンコーディング、NLP用語・前提・例示の不整合を修正する。英語版、共有ファイル、アセットは編集せず、既存変更を保持する。"
+**Context**: CONSTRUCTION - Delegated remediation, Workstream C (NLP / Transformer).
+
+---
+
+## Curriculum Review Remediation Execution
+**Timestamp**: 2026-07-20T00:00:00Z
+**User Input**: "OK。修正して"
+**AI Response**: "計画に沿って5担当（基礎ML、DL、NLP/Transformer、LLM/Agent、Capstone）へ修正を分担し、日本語版の妥当な指摘を修正した。英語版へ対応内容を反映し、タイトルだけの日本語ヒーローPNGは英語タイトル版へ戻した。Pythonブロック、図、画像参照、差分の静的検証を実施した。"
+**Context**: CONSTRUCTION - Delegated curriculum remediation execution and integration.
+**Verification**: Japanese Python blocks 150、English Python blocks 130、diagram verification 82 images、asset/public parity、`git diff --check` は成功。VitePress build は今回未変更の `openwiki/` にある既存デッドリンク11件で失敗。
+
+---
+
+## OpenWiki Dead-Link Exclusion
+**Timestamp**: 2026-07-20T00:00:00Z
+**User Input**: "openwiki/ はデッドリンクのチェック対象外にしたい。\n\n＞ VitePressビルドは、今回未変更の openwiki/ にある既存デッドリンク11件で失敗しています。"
+**AI Response**: "`.vitepress/config.js` に、OpenWikiが参照する既知のリポジトリ内部ファイルへのリンクだけを `ignoreDeadLinks` として追加した。カリキュラム側のデッドリンク検査は維持した。"
+**Context**: CONSTRUCTION - VitePress build configuration.
+**Verification**: `npm run docs:build` 成功（チャンクサイズ警告のみ）。
+
+---

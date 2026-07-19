@@ -9,6 +9,8 @@
 
 ## 1. Understanding Tokenizers and BPE
 
+> Unit 23 used a model-provided tokenizer (`tiktoken`) to measure token counts. This unit does not fully reproduce that tokenizer; instead, it uses a small implementation to focus on BPE's central idea: merging frequent pairs.
+
 LLMs do not read raw text directly. They split text into small units called **tokens**, then convert those tokens into integer **token IDs**. Subword tokens help represent unknown words, Japanese, and source code without requiring every complete word to be in the vocabulary.
 
 ### The basic idea of BPE

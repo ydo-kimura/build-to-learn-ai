@@ -30,7 +30,7 @@ An API is like **“a gateway between programs.”**
 | :--- | :--- | :--- |
 | **User** | Human | Program (Python, etc.) |
 | **Purpose** | Personal Q&A and tasks | Automation, embedding in custom apps |
-| **Customization** | Limited | Fine control (temperature/randomness, etc.) |
+| **Customization** | Limited | Fine control such as `temperature`, a parameter for adjusting output randomness |
 | **Billing** | Often monthly subscription | Often pay-as-you-go |
 
 ### What is prompting?
@@ -107,7 +107,7 @@ Choose techniques by task difficulty in production systems.
 
 Use OpenAI’s API—the most widely used worldwide—to ask the AI a question from Python.
 
-> ※ Run `pip install openai` first and obtain an OpenAI API key.
+> ※ Run `pip install openai tiktoken` first and obtain an OpenAI API key. `tiktoken` is used later to measure token counts.
 
 ```python
 import os

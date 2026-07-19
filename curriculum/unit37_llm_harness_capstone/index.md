@@ -1,4 +1,4 @@
-# Unit 37: LLM自動評価・防御とエージェント総合演習 (Capstone)
+# Unit 37: LLM自動評価ハーネス総合演習 (Capstone)
 
 <p class="unit-hero">
   <img src="../../assets/units/unit37_llm_harness_capstone/images/hero.png" alt="ヒーロー画像：LLM Harness Capstone" />
@@ -17,7 +17,7 @@
 
 **💡 日常の例え：特製ブレンドコーヒーの自動成分品質検査器**
 * **通常のRAG/Agent** : 「今日の豆でコーヒーを淹れてみた（動いた！）」と喜ぶ段階。
-* **ハーネスエンジニアリング** : 淹れたコーヒーの糖度、酸度、苦味を「センサー（評価ハーネス）」で定量的に測り、先週のレシピとの変化を記録して、味のブレやデグレーションを検出しやすくする自動測定ラボを構築すること。測定だけで品質を完全に保証するわけではありません。
+* **ハーネスエンジニアリング** : 淹れたコーヒーの糖度、酸度、苦味を「センサー（評価ハーネス）」で定量的に測り、先週のレシピとの変化を記録して、味のブレやデグレーションを検出しやすくする自動測定ラボを構築すること。評価ハーネスは品質改善の指標を提供しますが、品質を保証するものではありません。本番運用では人手レビューと継続的な監視も必要です。
 
 | 評価の次元 | 意味 | 測定方法 (LLM-as-a-Judge) |
 | :--- | :--- | :--- |
@@ -104,7 +104,7 @@ def run_evaluation_harness(case):
             {"role": "system", "content": EVAL_SYSTEM_PROMPT},
             {"role": "user", "content": prompt_user}
         ],
-        temperature=0.0, # 評価の揺らぎを抑える候補値。ブレや誤判定をゼロにはできない
+        temperature=0.0, # 再現性を高める設定（完全な決定論的動作や誤判定ゼロは保証されない）
         response_format={"type": "json_object"}
     )
     return json.loads(response.choices[0].message.content)
@@ -224,7 +224,7 @@ def run_tone_evaluation_harness(case):
             {"role": "system", "content": EVAL_TONE_PROMPT},
             {"role": "user", "content": f"【AIの回答】\n{case['answer']}"}
         ],
-        temperature=0.0, # 揺らぎを抑える候補値。判定の正しさは別途検証する
+        temperature=0.0, # 再現性を高める設定（判定の正しさは別途検証する）
         response_format={"type": "json_object"}
     )
     return json.loads(response.choices[0].message.content)
@@ -285,7 +285,7 @@ def run_2d_evaluation_harness(case):
             {"role": "system", "content": EVAL_2D_PROMPT},
             {"role": "user", "content": prompt_user}
         ],
-        temperature=0.0, # 揺らぎを抑える候補値。判定の正しさは別途検証する
+        temperature=0.0, # 再現性を高める設定（判定の正しさは別途検証する）
         response_format={"type": "json_object"}
     )
     return json.loads(response.choices[0].message.content)

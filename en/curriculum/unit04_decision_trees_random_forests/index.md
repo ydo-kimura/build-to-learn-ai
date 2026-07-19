@@ -1,7 +1,7 @@
 # Unit 4: Decision Trees and Random Forests
 
 <p class="unit-hero">
-  <img src="/en/assets/units/unit04_decision_trees_random_forests/images/hero.png" alt="Hero: Decision Trees & Random Forests" />
+  <img src="/en/assets/units/unit04_decision_trees_random_forests/images/hero.png" alt="Hero: decision-tree branching and random-forest voting" />
 </p>
 
 ## 1. Understanding Decision Trees and Random Forests

@@ -176,7 +176,7 @@ model = ClassificationNet()
 # CrossEntropyLoss for classification
 criterion = nn.CrossEntropyLoss()
 # Adam optimizer
-optimizer = optim.Adam(model.parameters(), lr=0.05)
+optimizer = optim.Adam(model.parameters(), lr=0.01)
 
 # 4. Training loop
 epochs = 100

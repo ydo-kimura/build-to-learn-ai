@@ -1,7 +1,7 @@
 # Unit 8: Cross-Validation and Hyperparameter Tuning
 
 <p class="unit-hero">
-  <img src="/en/assets/units/unit08_cross_validation_tuning/images/hero.png" alt="Hero: Cross Validation & Tuning" />
+  <img src="/en/assets/units/unit08_cross_validation_tuning/images/hero.png" alt="Hero: cross-validation and hyperparameter tuning" />
 </p>
 
 ## 1. Understanding Cross-Validation and Hyperparameter Tuning

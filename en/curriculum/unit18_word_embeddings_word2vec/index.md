@@ -111,7 +111,7 @@ print(model.wv["king"])
 ```
 
 ### Key takeaways after running the code
-- `model.wv.most_similar("king")` returns contextually similar words (e.g., queen, man) with high scores.
+- `model.wv.most_similar("king")` returns contextually similar words with similarity scores. On this tiny corpus, do not assume a fixed word will always appear at the top.
 - `model.wv["king"]` shows the word as an array of 10 numbers—the "personality test result."
 
 ## 3. Practice

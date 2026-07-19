@@ -38,7 +38,7 @@ That is how important clues from 100 pages ago can still matter.
 
 ### 📌 LSTM's three gate mechanisms
 
-LSTM's selective memory comes from **three gates** inside the cell.
+LSTM's selective memory comes from **three gates** inside the cell. Strictly speaking, the cell also creates a new memory candidate (the `candidate cell state`); these four components update the cell state together.
 In the mystery-reader analogy:
 
 | Gate | Role | Mystery novel example |
@@ -58,7 +58,7 @@ These three gates cooperate each step so LSTM can forget noise, retain important
 
 ## 2. Implementation Example
 
-Here you will use PyTorch to build a simple RNN/LSTM that **predicts the next character from one input character**, training on "hello."
+Here you will use PyTorch to build a simple RNN/LSTM that **predicts the next character from one input character**, training on "hello." If PyTorch is not installed, run `pip install torch` first.
 
 ### Code walkthrough
 1. **Prepare data**: Map characters to numbers (h=0, e=1, l=2, o=3)—AI cannot read raw characters.
@@ -220,6 +220,6 @@ with torch.no_grad():
 ```
 
 **Solution explanation:**
-The sequence has "p" followed by "p" and also "p" followed by "l." With context memory, LSTM can tell which "p" is which and predict the next character correctly.
+The same character "p" appears at different positions in the sequence, so the model must track order. The LSTM hidden state retains time-series information and helps predict the next character. This tiny example does not evaluate long-term memory in general.
 
 </details>

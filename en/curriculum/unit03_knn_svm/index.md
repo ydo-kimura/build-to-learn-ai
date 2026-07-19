@@ -125,6 +125,8 @@ Use the **Digits dataset** — coarse 8×8 pixel images of handwritten digits 0�
 3. Create and train an `SVC` model.
 4. Predict on the test set and print accuracy.
 
+**About scaling:** Because all features here are pixel values with the same unit and range, `StandardScaler` is not essential. If you have time, compare results with and without scaling and consider how the answer would change when features use different units.
+
 **Hints**
 - Load with `digits = load_digits()`. Images are already flattened to numeric vectors — use `X = digits.data` as usual.
 

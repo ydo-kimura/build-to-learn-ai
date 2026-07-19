@@ -154,5 +154,5 @@ print(f"Wine classification accuracy: {accuracy:.3f}")
 ```
 
 **Solution walkthrough**
-Logistic regression is classic for binary problems, but scikit-learn's implementation automatically handles **multiclass** (three or more labels). Under the hood it runs one-vs-rest style comparisons — very handy!
+Logistic regression is classic for binary problems, but scikit-learn's implementation automatically handles **multiclass** (three or more labels). The **softmax function** extends the sigmoid idea from two classes to multiple classes, calculating all class probabilities at once and returning the class with the highest probability.
 </details>

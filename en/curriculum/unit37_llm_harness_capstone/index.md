@@ -1,4 +1,4 @@
-# Unit 37: LLM Automated Evaluation, Guardrails & Agent Capstone
+# Unit 37: LLM Evaluation Harness Capstone
 
 <p class="unit-hero">
   <img src="/en/assets/units/unit37_llm_harness_capstone/images/hero.png" alt="Hero: LLM Harness Capstone" />
@@ -22,7 +22,7 @@ An **automated evaluation system (evaluation harness)** automatically and quanti
 **💡 Everyday analogy: automatic quality inspection for a custom coffee blend**
 
 * **Typical RAG/Agent**: "We brewed coffee with today's beans—it works!"
-* **Harness engineering**: Build an automatic lab that measures sweetness, acidity, and bitterness with sensors, visualizes "bitterness down 10% vs last week's recipe, acidity improved in balance," and fully controls flavor drift (regression).
+* **Harness engineering**: Build an automatic lab that measures sweetness, acidity, and bitterness with sensors and visualizes changes from last week's recipe. An evaluation harness provides quality-improvement signals but does not guarantee quality; production systems also need human review and continuous monitoring.
 
 | Evaluation Dimension | Meaning | Measurement (LLM-as-a-Judge) |
 | :--- | :--- | :--- |
@@ -99,7 +99,7 @@ def run_evaluation_harness(case):
             {"role": "system", "content": EVAL_SYSTEM_PROMPT},
             {"role": "user", "content": prompt_user}
         ],
-        temperature=0.0, # Must be 0 to reduce variance
+        temperature=0.0, # Improves reproducibility; does not guarantee deterministic output or zero misclassification
         response_format={"type": "json_object"}
     )
     return json.loads(response.choices[0].message.content)
@@ -234,7 +234,7 @@ def run_2d_evaluation_harness(case):
             {"role": "system", "content": EVAL_2D_PROMPT},
             {"role": "user", "content": prompt_user}
         ],
-        temperature=0.0, # Must be 0 to prevent judge variance
+        temperature=0.0, # Improves reproducibility; validate judge correctness separately
         response_format={"type": "json_object"}
     )
     return json.loads(response.choices[0].message.content)

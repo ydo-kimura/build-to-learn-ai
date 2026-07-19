@@ -26,7 +26,7 @@ There are two opposing architectural philosophies for integrating different data
 | Fusion Approach | Characteristics & Mechanism | Pros & Cons |
 | :--- | :--- | :--- |
 | **Early Fusion (Feature-level)** | Concatenate intermediate feature vectors from image models, text embeddings, and tabular data **before prediction** and train one large neural network jointly. | **Pros**: Model learns deep cross-feature synergy (e.g., specific image pattern plus suspicious wording).<br>**Cons**: Different dimensionalities require delicate learning-rate tuning; prone to overfitting. |
-| **Late Fusion (Decision-level)** | Train tabular (XGBoost), text (NLP), and image (CNN) models **separately**, then **weight and combine prediction probabilities** at the final stage (meta-learning/stacking). | **Pros**: Tune each model independently; very stable and robust.<br>**Cons**: Harder to capture real-time interaction between features. |
+| **Late Fusion (Decision-level)** | Train tabular (XGBoost), text (NLP), and image (CNN or RandomForest) models **separately**, then **combine prediction probabilities** at the final stage with a meta-learner. | **Pros**: Tune each model independently; very stable and robust.<br>**Cons**: Harder to capture real-time interaction between features. |
 
 ---
 
@@ -171,6 +171,6 @@ print(classification_report(y_val, final_preds))
   * **Deploy late fusion (Late Fusion / meta-stacking) as the production model.**
   * **Rationale**:
     1. **Overfitting elimination and robustness**: Early fusion (NN vector concatenation) suffers dimension curse plus small data; validation accuracy approaches random. Late fusion maintains strong generalization (superior F1).
-    2. **Easier per-domain debugging**: When fraud is flagged, you can separate whether CNN similarity, XGBoost account behavior, etc. triggered it—enabling account restoration and rule tuning in minutes.
+    2. **Easier per-domain debugging**: When fraud is flagged, you can separate whether the image model (RandomForest in this unit) or XGBoost account behavior produced a high fraud probability. This makes recovery and rule tuning easier, while CNN-based image encoders remain a practical alternative.
     3. **Recall protection via threshold tuning**: Output probabilities from the meta-learner allow flexible thresholds (e.g., `0.35`) aligned with business risk (acceptable fraud loss), controlling missed fraud listings.
 </details>
