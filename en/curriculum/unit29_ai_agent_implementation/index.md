@@ -25,9 +25,9 @@ ReAct alternates **reasoning** and **acting** so the LLM solves complex tasks st
 ```mermaid
 graph TD
     Start([User instruction]) --> Loop{Execution loop}
-    Loop --> Thought[Thought: Reasoning<br>"Plan what to do next"]
-    Thought --> Action[Action: Act<br>"Call the appropriate tool"]
-    Action --> Observation[Observation: Observe<br>"Incorporate tool results"]
+    Loop --> Thought["Thought: Reasoning<br/>Plan what to do next"]
+    Thought --> Action["Action: Act<br/>Call the appropriate tool"]
+    Action --> Observation["Observation: Observe<br/>Incorporate tool results"]
     Observation --> Loop
     Loop -->|Task complete| End([Present final answer to user])
 ```
