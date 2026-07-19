@@ -1,7 +1,7 @@
 # Unit 28: Context-Aware Chatbot
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit28_context_aware_chatbot/images/hero.png" alt="Hero: Context-Aware Chatbot" />
+  <img src="../../assets/units/unit28_context_aware_chatbot/images/hero.png" alt="Hero: Context-Aware Chatbot" />
 </p>
 
 > [!IMPORTANT]
@@ -11,7 +11,7 @@
 
 ## 1. Understanding Context-Aware Chatbot
 
-<img src="../../../assets/units/unit28_context_aware_chatbot/images/diagram-concept.svg" alt="Diagram: Session memory" class="unit-diagram" />
+<img src="../../assets/units/unit28_context_aware_chatbot/images/diagram-concept.svg" alt="Diagram: Session memory" class="unit-diagram" />
 
 
 
@@ -38,7 +38,7 @@ LangChain can **automatically append conversation history** to prompts.
 - **Long-term customer support (CRM chat)**: Reference purchase and inquiry history—“How is the product you bought last time?”
 - **Game/entertainment NPCs**: Remember player actions and dialogue; attitude and lines change on next meeting.
 
-<img src="../../../assets/units/unit28_context_aware_chatbot/images/diagram-workflow.svg" alt="Diagram: Streamlit UI" class="unit-diagram" />
+<img src="../../assets/units/unit28_context_aware_chatbot/images/diagram-workflow.svg" alt="Diagram: Streamlit UI" class="unit-diagram" />
 
 ## 2. Implementation Example
 

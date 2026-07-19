@@ -20,6 +20,7 @@ This plan is the single source of truth for the current curriculum review remedi
 - [x] 8. Add Unit 0 scope guidance, Unit 22 tokenizer foundations, and Unit 23 token-count/streaming practice.
 - [x] 9. Add Unit 35/36 foundational chapters, shift Capstones to Unit 37〜42, and update navigation and references.
 - [x] 10. Synchronize the English curriculum with Unit 0〜42 structure, Unit 22/23 additions, and Unit 35/36 content.
+- [x] 11. Separate English hero images and diagrams into language-specific asset directories.
 
 ## Completion Evidence
 

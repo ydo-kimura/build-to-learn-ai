@@ -1,12 +1,12 @@
 # Unit 8: Cross-Validation and Hyperparameter Tuning
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit08_cross_validation_tuning/images/hero.png" alt="Hero: Cross Validation & Tuning" />
+  <img src="../../assets/units/unit08_cross_validation_tuning/images/hero.png" alt="Hero: Cross Validation & Tuning" />
 </p>
 
 ## 1. Understanding Cross-Validation and Hyperparameter Tuning
 
-<img src="../../../assets/units/unit08_cross_validation_tuning/images/diagram-concept.svg" alt="Diagram: 5-Fold cross validation" class="unit-diagram" />
+<img src="../../assets/units/unit08_cross_validation_tuning/images/diagram-concept.svg" alt="Diagram: 5-Fold cross validation" class="unit-diagram" />
 
 
 
@@ -44,7 +44,7 @@ Don't guess — use **grid search** to **try combinations and pick the best scor
 
 ---
 
-<img src="../../../assets/units/unit08_cross_validation_tuning/images/diagram-workflow.svg" alt="Diagram: Hyperparameter grid" class="unit-diagram" />
+<img src="../../assets/units/unit08_cross_validation_tuning/images/diagram-workflow.svg" alt="Diagram: Hyperparameter grid" class="unit-diagram" />
 
 ## 2. Implementation Example
 

@@ -1,7 +1,7 @@
 # Unit 3: K-NN and Support Vector Machines
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit03_knn_svm/images/hero.png" alt="Hero: K-NN neighbor voting and SVM margin boundary" />
+  <img src="../../assets/units/unit03_knn_svm/images/hero.png" alt="Hero: K-NN neighbor voting and SVM margin boundary" />
 </p>
 
 ## 1. Understanding K-NN and SVM
@@ -20,7 +20,7 @@ K-NN works like this:
 1. Find the **K students** (e.g., 3) most similar in hobbies and personality (features).
 2. If those three are "sports, sports, culture," predict **sports** by majority vote.
 
-<img src="../../../assets/units/unit03_knn_svm/images/diagram-knn.svg" alt="K=3 nearest neighbors vote for new data point classification" class="unit-diagram" />
+<img src="../../assets/units/unit03_knn_svm/images/diagram-knn.svg" alt="K=3 nearest neighbors vote for new data point classification" class="unit-diagram" />
 
 | Choice of K (how many neighbors?) | Pros | Cons |
 | :--- | :--- | :--- |
@@ -36,7 +36,7 @@ When splitting data into two groups (red team vs. blue team), any line is not en
 Draw a border between red country and blue country.
 If the border hugs a red house too closely, small shifts cause misclassification. SVM finds the closest red and blue houses (**support vectors**) and draws the border to maximize the **margin** — the buffer zone between them.
 
-<img src="../../../assets/units/unit03_knn_svm/images/diagram-svm.svg" alt="SVM decision boundary with maximum margin and support vectors" class="unit-diagram" />
+<img src="../../assets/units/unit03_knn_svm/images/diagram-svm.svg" alt="SVM decision boundary with maximum margin and support vectors" class="unit-diagram" />
 
 SVM also has the **kernel trick**.
 When data cannot be separated by a straight line, the kernel "lifts" points into higher dimensions so a plane can slice them apart — enabling complex classification.
@@ -53,7 +53,7 @@ When data cannot be separated by a straight line, the kernel "lifts" points into
 
 We use the famous **Iris dataset** to classify three iris species from sepal and petal measurements. We'll implement both K-NN and SVM and compare them.
 
-<img src="../../../assets/units/unit03_knn_svm/images/diagram-comparison.svg" alt="K-NN vs SVM: lazy memorizer vs optimal boundary finder" class="unit-diagram" />
+<img src="../../assets/units/unit03_knn_svm/images/diagram-comparison.svg" alt="K-NN vs SVM: lazy memorizer vs optimal boundary finder" class="unit-diagram" />
 
 ```python
 # Import required libraries

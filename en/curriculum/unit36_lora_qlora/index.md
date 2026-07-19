@@ -1,7 +1,7 @@
 # Unit 36: LLM Adaptation with LoRA / QLoRA
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit36_lora_qlora/images/hero.svg" alt="Hero: adapting a frozen LLM with a small LoRA adapter" />
+  <img src="../../assets/units/unit36_lora_qlora/images/hero.svg" alt="Hero: adapting a frozen LLM with a small LoRA adapter" />
 </p>
 
 > [!WARNING]

@@ -1,7 +1,7 @@
 # Unit 22: Evolution from LLM to AI Agent
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit22_llm_evolution/images/hero.png" alt="Hero: LLM to AI Agent Evolution" />
+  <img src="../../assets/units/unit22_llm_evolution/images/hero.png" alt="Hero: LLM to AI Agent Evolution" />
 </p>
 
 > [!IMPORTANT]
@@ -12,7 +12,7 @@
 
 ## 1. Understanding the Evolution from LLM to AI Agent
 
-<img src="../../../assets/units/unit22_llm_evolution/images/diagram-concept.svg" alt="Diagram: Evolution path" class="unit-diagram" />
+<img src="../../assets/units/unit22_llm_evolution/images/diagram-concept.svg" alt="Diagram: Evolution path" class="unit-diagram" />
 
 
 Chapter 4 (LLM Applications and AI Agents) builds on deep learning and NLP fundamentals you have learned so far to teach **“building sophisticated, autonomous applications that use LLMs as components.”**
@@ -107,7 +107,7 @@ Exciting! Let’s take the first step in LLM app development.
 
 ---
 
-<img src="../../../assets/units/unit22_llm_evolution/images/diagram-workflow.svg" alt="Diagram: Agent capabilities" class="unit-diagram" />
+<img src="../../assets/units/unit22_llm_evolution/images/diagram-workflow.svg" alt="Diagram: Agent capabilities" class="unit-diagram" />
 
 ## 2. Implementation Example
 

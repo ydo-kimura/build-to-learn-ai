@@ -1,7 +1,7 @@
 # Unit 35: Tokenizer and BPE Fundamentals
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit35_tokenizer_bpe/images/hero.svg" alt="Hero: splitting text into tokens" />
+  <img src="../../assets/units/unit35_tokenizer_bpe/images/hero.svg" alt="Hero: splitting text into tokens" />
 </p>
 
 > [!NOTE]

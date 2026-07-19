@@ -1,7 +1,7 @@
 # Unit 24: Vector Databases and RAG From Scratch
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit24_vector_dbs_rag_from_scratch/images/hero.png" alt="Hero: Vector DBs & Scratch RAG" />
+  <img src="../../assets/units/unit24_vector_dbs_rag_from_scratch/images/hero.png" alt="Hero: Vector DBs & Scratch RAG" />
 </p>
 
 > [!IMPORTANT]
@@ -11,7 +11,7 @@
 
 ## 1. Understanding Vector DBs & RAG From Scratch
 
-<img src="../../../assets/units/unit24_vector_dbs_rag_from_scratch/images/diagram-concept.svg" alt="Diagram: RAG pipeline" class="unit-diagram" />
+<img src="../../assets/units/unit24_vector_dbs_rag_from_scratch/images/diagram-concept.svg" alt="Diagram: RAG pipeline" class="unit-diagram" />
 
 
 
@@ -43,7 +43,7 @@ LLMs like ChatGPT only know training data— they cannot answer about latest new
 - **E-commerce semantic search**: User searches “cool clothes for the beach in summer”; recommend items by meaning (vector) even without keywords in product names.
 - **Past troubleshooting search**: Engineer enters error/symptom; Vector DB finds similar incidents and fixes for faster incident response.
 
-<img src="../../../assets/units/unit24_vector_dbs_rag_from_scratch/images/diagram-workflow.svg" alt="Diagram: Vector search" class="unit-diagram" />
+<img src="../../assets/units/unit24_vector_dbs_rag_from_scratch/images/diagram-workflow.svg" alt="Diagram: Vector search" class="unit-diagram" />
 
 ## 2. Implementation Example
 

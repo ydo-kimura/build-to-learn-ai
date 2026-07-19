@@ -1,7 +1,7 @@
 # Unit 34: Agent SDK — Coding & Autonomous Development
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit34_agent_sdk_coding_agents/images/hero.png" alt="Hero: Agent SDK: Coding Agents" />
+  <img src="../../assets/units/unit34_agent_sdk_coding_agents/images/hero.png" alt="Hero: Agent SDK: Coding Agents" />
 </p>
 
 In the previous unit (Unit 33), you learned **general-purpose business automation agents** (reception, inventory lookup, payment, etc.) using commercial Agent SDKs. This unit extends that with **Agent SDKs specialized for coding and autonomous development**. Unlike business automation agents, autonomous development agents have powerful permissions over the file system and shell, so stricter safety design is required.
@@ -16,7 +16,7 @@ This unit covers architectures specific to autonomous development agents, safety
 
 ## 1. Explanation Phase
 
-<img src="../../../assets/units/unit34_agent_sdk_coding_agents/images/diagram-concept.svg" alt="Diagram: Coding agent flow" class="unit-diagram" />
+<img src="../../assets/units/unit34_agent_sdk_coding_agents/images/diagram-concept.svg" alt="Diagram: Coding agent flow" class="unit-diagram" />
 
 
 ### 1.1 What Makes Autonomous Coding / Software Development Agents Different
@@ -64,7 +64,7 @@ graph TD
 
 ---
 
-<img src="../../../assets/units/unit34_agent_sdk_coding_agents/images/diagram-workflow.svg" alt="Diagram: Best practices" class="unit-diagram" />
+<img src="../../assets/units/unit34_agent_sdk_coding_agents/images/diagram-workflow.svg" alt="Diagram: Best practices" class="unit-diagram" />
 
 ## 2. Practice
 

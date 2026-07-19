@@ -1,7 +1,7 @@
 # Unit 2: Logistic Regression & Classification Metrics
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit02_logistic_regression/images/hero.png" alt="Hero: sigmoid maps scores to 0–1 probability for binary classification" />
+  <img src="../../assets/units/unit02_logistic_regression/images/hero.png" alt="Hero: sigmoid maps scores to 0–1 probability for binary classification" />
 </p>
 
 ## 1. Understanding Logistic Regression and Classification Metrics
@@ -19,7 +19,7 @@ If you force a straight line from linear regression onto this problem, you might
 That's where the **sigmoid curve** comes in — a magic S-shaped curve that squeezes values into **0 to 1**.
 A prediction of 0.8 means "80% chance of passing, so probably pass (1)." A prediction of 0.2 means "20% chance, so probably fail (0)." You decide **0 or 1 based on probability**.
 
-<img src="../../../assets/units/unit02_logistic_regression/images/diagram-sigmoid.svg" alt="Linear regression outputs invalid values vs sigmoid maps to 0–1 probability" class="unit-diagram" />
+<img src="../../assets/units/unit02_logistic_regression/images/diagram-sigmoid.svg" alt="Linear regression outputs invalid values vs sigmoid maps to 0–1 probability" class="unit-diagram" />
 
 ### Classification Metrics — Why Accuracy Alone Is Not Enough
 After building a model, you need to measure how good it is.
@@ -31,7 +31,7 @@ If the AI always says "You are healthy!" to everyone, accuracy is 99% because 99
 
 That's why we use several **metrics**:
 
-<img src="../../../assets/units/unit02_logistic_regression/images/diagram-confusion-matrix.svg" alt="Confusion matrix with TP, FP, TN, FN and precision/recall formulas" class="unit-diagram" />
+<img src="../../assets/units/unit02_logistic_regression/images/diagram-confusion-matrix.svg" alt="Confusion matrix with TP, FP, TN, FN and precision/recall formulas" class="unit-diagram" />
 
 | Metric | English name | What it measures | When to prioritize it |
 | :--- | :--- | :--- | :--- |

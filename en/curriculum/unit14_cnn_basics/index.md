@@ -1,7 +1,7 @@
 # Unit 14: Convolutional Neural Network Basics
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit14_cnn_basics/images/hero.png" alt="Hero: CNN Basics" />
+  <img src="../../assets/units/unit14_cnn_basics/images/hero.png" alt="Hero: CNN Basics" />
 </p>
 
 > [!TIP]
@@ -10,7 +10,7 @@
 
 ## 1. Understanding CNN Basics
 
-<img src="../../../assets/units/unit14_cnn_basics/images/diagram-concept.svg" alt="Diagram: CNN block" class="unit-diagram" />
+<img src="../../assets/units/unit14_cnn_basics/images/diagram-concept.svg" alt="Diagram: CNN block" class="unit-diagram" />
 
 
 
@@ -36,7 +36,7 @@ A CNN repeats **"convolution (find features) → pooling (summarize)"** several 
 - **Autonomous driving object recognition**: Instantly recognize pedestrians, other vehicles, traffic lights, and road signs from onboard camera feeds for safe control.
 - **Medical cancer cell detection**: Capture subtle tumor shapes (roundness and contours) in CT or MRI scans that human eyes might miss and support physician diagnosis.
 
-<img src="../../../assets/units/unit14_cnn_basics/images/diagram-workflow.svg" alt="Diagram: Why CNN for images" class="unit-diagram" />
+<img src="../../assets/units/unit14_cnn_basics/images/diagram-workflow.svg" alt="Diagram: Why CNN for images" class="unit-diagram" />
 
 ## 2. Implementation Example
 

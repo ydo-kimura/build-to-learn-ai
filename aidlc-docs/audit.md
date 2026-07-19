@@ -1023,3 +1023,13 @@ Continuation behavior:
 **Verification**: VitePress build passed (existing chunk-size warning only); Python fenced blocks passed (280/280 across both locales); Unit 0〜42 numbering and titles passed for both locales; local references passed; diagram verification passed (82 images); `git diff --check` passed.
 
 ---
+
+## Language-Specific Curriculum Images
+**Timestamp**: 2026-07-19T00:00:00Z
+**User Input**: "全てのヒーローイメージ及び図をそれぞれの言語ごとに持ちたい。"
+**AI Response**: "英語版専用の `en/assets/units/` を追加し、英語版Unit 1〜42のヒーローイメージ・説明図・関連画像をコピーして、英語教材の参照先を `en/assets/units/` に切り替えた。日本語版は従来の `assets/units/` を引き続き使用する。"
+**Context**: CONSTRUCTION - Code Generation (Part 2) and Build and Test preparation.
+
+---
+
+---

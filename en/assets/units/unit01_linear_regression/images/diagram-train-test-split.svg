@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 200" role="img" aria-label="Train test split workflow">
+  <rect width="700" height="200" rx="12" fill="#f8fafc"/>
+  <rect x="30" y="70" width="120" height="60" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="90" y="105" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#1d4ed8" font-weight="600">All data</text>
+  <polygon points="170,100 200,100" fill="none" stroke="#64748b" stroke-width="2"/>
+  <polygon points="200,100 192,96 192,104" fill="#64748b"/>
+  <rect x="210" y="55" width="130" height="50" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="275" y="85" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#15803d" font-weight="600">Train 80%</text>
+  <rect x="210" y="115" width="130" height="50" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="275" y="145" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#b45309" font-weight="600">Test 20%</text>
+  <polygon points="350,85 380,85" fill="none" stroke="#64748b" stroke-width="2"/>
+  <polygon points="380,85 372,81 372,89" fill="#64748b"/>
+  <rect x="390" y="55" width="120" height="50" rx="8" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="450" y="85" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#6d28d9" font-weight="600">.fit()</text>
+  <polygon points="520,85 550,85" fill="none" stroke="#64748b" stroke-width="2"/>
+  <polygon points="550,85 542,81 542,89" fill="#64748b"/>
+  <rect x="560" y="55" width="110" height="50" rx="8" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+  <text x="615" y="85" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#be185d" font-weight="600">Model</text>
+  <polygon points="615,115 615,145" fill="none" stroke="#64748b" stroke-width="2"/>
+  <polygon points="615,145 611,137 619,137" fill="#64748b"/>
+  <rect x="555" y="150" width="120" height="40" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="615" y="175" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#b45309" font-weight="600">.predict() + MSE</text>
+  <line x1="340" y1="140" x2="555" y2="170" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4"/>
+</svg>

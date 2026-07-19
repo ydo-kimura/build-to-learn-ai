@@ -1,7 +1,7 @@
 # Unit 15: Transfer Learning with ResNet
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit15_transfer_learning/images/hero.png" alt="Hero: Transfer Learning" />
+  <img src="../../assets/units/unit15_transfer_learning/images/hero.png" alt="Hero: Transfer Learning" />
 </p>
 
 > [!TIP]
@@ -10,7 +10,7 @@
 
 ## 1. Understanding Transfer Learning with ResNet
 
-<img src="../../../assets/units/unit15_transfer_learning/images/diagram-concept.svg" alt="Diagram: Transfer learning" class="unit-diagram" />
+<img src="../../assets/units/unit15_transfer_learning/images/diagram-concept.svg" alt="Diagram: Transfer learning" class="unit-diagram" />
 
 
 
@@ -37,7 +37,7 @@ ResNet introduced **skip connections**—"if this layer makes you get lost, just
 - **Face authentication**: Start from a model trained on huge face datasets and add a few samples of your employees for a fast, secure gate.
 - **Drone infrastructure inspection**: Transfer general vision ability to cracks in bridges or rust on towers and build accurate inspection AI from few samples.
 
-<img src="../../../assets/units/unit15_transfer_learning/images/diagram-workflow.svg" alt="Diagram: ResNet18 flow" class="unit-diagram" />
+<img src="../../assets/units/unit15_transfer_learning/images/diagram-workflow.svg" alt="Diagram: ResNet18 flow" class="unit-diagram" />
 
 ## 2. Implementation Example
 

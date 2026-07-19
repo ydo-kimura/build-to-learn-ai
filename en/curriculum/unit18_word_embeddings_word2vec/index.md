@@ -1,12 +1,12 @@
 # Unit 18: Word Embeddings (Word2Vec)
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit18_word_embeddings_word2vec/images/hero.png" alt="Hero: Word Embeddings (Word2Vec)" />
+  <img src="../../assets/units/unit18_word_embeddings_word2vec/images/hero.png" alt="Hero: Word Embeddings (Word2Vec)" />
 </p>
 
 ## 1. Understanding Word Embeddings
 
-<img src="../../../assets/units/unit18_word_embeddings_word2vec/images/diagram-concept.svg" alt="Diagram: Word2Vec idea" class="unit-diagram" />
+<img src="../../assets/units/unit18_word_embeddings_word2vec/images/diagram-concept.svg" alt="Diagram: Word2Vec idea" class="unit-diagram" />
 
 
 
@@ -64,7 +64,7 @@ In gensim, `Word2Vec(sentences, sg=0)` is CBOW and `sg=1` is Skip-gram. The impl
 - **Search that handles spelling variants**: "smartphone," "smart phone," and "iPhone" sit near each other in embedding space for meaning-aware search.
 - **Chatbot intent understanding (synonyms)**: Match user questions to intents even when exact keywords differ, using embedding similarity.
 
-<img src="../../../assets/units/unit18_word_embeddings_word2vec/images/diagram-workflow.svg" alt="Diagram: Embedding layer" class="unit-diagram" />
+<img src="../../assets/units/unit18_word_embeddings_word2vec/images/diagram-workflow.svg" alt="Diagram: Embedding layer" class="unit-diagram" />
 
 ## 2. Implementation Example
 

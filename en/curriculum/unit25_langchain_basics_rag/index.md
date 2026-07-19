@@ -1,7 +1,7 @@
 # Unit 25: LangChain Basics and RAG
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit25_langchain_basics_rag/images/hero.png" alt="Hero: LangChain Basics & RAG" />
+  <img src="../../assets/units/unit25_langchain_basics_rag/images/hero.png" alt="Hero: LangChain Basics & RAG" />
 </p>
 
 > [!IMPORTANT]
@@ -16,7 +16,7 @@
 
 ## 1. Understanding LangChain Basics and RAG
 
-<img src="../../../assets/units/unit25_langchain_basics_rag/images/diagram-concept.svg" alt="Diagram: LangChain RAG" class="unit-diagram" />
+<img src="../../assets/units/unit25_langchain_basics_rag/images/diagram-concept.svg" alt="Diagram: LangChain RAG" class="unit-diagram" />
 
 
 In Unit 24 you **hand-built RAG from scratch**—calling APIs directly, splitting documents, vectorizing, computing cosine similarity—deeply understanding retrieval + generation.
@@ -60,7 +60,7 @@ Data flows through `prompt` (variables filled), `model` (LLM), `output_parser` (
 
 ---
 
-<img src="../../../assets/units/unit25_langchain_basics_rag/images/diagram-workflow.svg" alt="Diagram: Abstractions" class="unit-diagram" />
+<img src="../../assets/units/unit25_langchain_basics_rag/images/diagram-workflow.svg" alt="Diagram: Abstractions" class="unit-diagram" />
 
 ## 2. Implementation Example
 

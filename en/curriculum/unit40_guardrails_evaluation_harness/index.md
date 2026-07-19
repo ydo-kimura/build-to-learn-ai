@@ -1,12 +1,12 @@
 # Unit 40: Enterprise AI Automated Evaluation & Guardrails Harness
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit40_guardrails_evaluation_harness/images/hero.png" alt="Hero: Guardrails & Evaluation" />
+  <img src="../../assets/units/unit40_guardrails_evaluation_harness/images/hero.png" alt="Hero: Guardrails & Evaluation" />
 </p>
 
 ## 1. Understanding LLM-as-a-Judge and Safety Guardrails
 
-<img src="../../../assets/units/unit40_guardrails_evaluation_harness/images/diagram-concept.svg" alt="Diagram: Evaluation harness" class="unit-diagram" />
+<img src="../../assets/units/unit40_guardrails_evaluation_harness/images/diagram-concept.svg" alt="Diagram: Evaluation harness" class="unit-diagram" />
 
 
 
@@ -51,7 +51,7 @@ Instead, **feed the main LLM's output to a more capable, objective evaluator LLM
 
 ---
 
-<img src="../../../assets/units/unit40_guardrails_evaluation_harness/images/diagram-workflow.svg" alt="Diagram: Enterprise safety" class="unit-diagram" />
+<img src="../../assets/units/unit40_guardrails_evaluation_harness/images/diagram-workflow.svg" alt="Diagram: Enterprise safety" class="unit-diagram" />
 
 ## 2. Implementation Example — Basic Dual Harness System
 

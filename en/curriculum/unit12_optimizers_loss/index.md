@@ -1,7 +1,7 @@
 # Unit 12: Optimizers & Loss Functions
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit12_optimizers_loss/images/hero.png" alt="Hero: Optimizers & Loss" />
+  <img src="../../assets/units/unit12_optimizers_loss/images/hero.png" alt="Hero: Optimizers & Loss" />
 </p>
 
 > [!TIP]
@@ -10,7 +10,7 @@
 
 ## 1. Understanding Optimizers & Loss Functions
 
-<img src="../../../assets/units/unit12_optimizers_loss/images/diagram-concept.svg" alt="Diagram: Common losses" class="unit-diagram" />
+<img src="../../assets/units/unit12_optimizers_loss/images/diagram-concept.svg" alt="Diagram: Common losses" class="unit-diagram" />
 
 
 
@@ -38,7 +38,7 @@ In this unit, you will use code to see how switching these "vehicles" changes tr
 - **Ad click-through rate (CTR) prediction**: In models that predict click probability, choose the best optimizer for large daily log volumes and improve prediction accuracy quickly.
 - **Dynamic pricing**: When adjusting airline tickets or hotel rates in real time, compute prices while continuously correcting and optimizing the gap between revenue and demand (loss).
 
-<img src="../../../assets/units/unit12_optimizers_loss/images/diagram-workflow.svg" alt="Diagram: Optimizers" class="unit-diagram" />
+<img src="../../assets/units/unit12_optimizers_loss/images/diagram-workflow.svg" alt="Diagram: Optimizers" class="unit-diagram" />
 
 ## 2. Implementation Example
 

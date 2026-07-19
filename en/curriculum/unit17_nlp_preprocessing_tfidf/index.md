@@ -1,14 +1,14 @@
 # Unit 17: NLP Preprocessing and TF-IDF
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit17_nlp_preprocessing_tfidf/images/hero.png" alt="Hero: NLP Preprocessing & TF-IDF" />
+  <img src="../../assets/units/unit17_nlp_preprocessing_tfidf/images/hero.png" alt="Hero: NLP Preprocessing & TF-IDF" />
 </p>
 
 
 
 ## 1. Understanding NLP Preprocessing and TF-IDF
 
-<img src="../../../assets/units/unit17_nlp_preprocessing_tfidf/images/diagram-concept.svg" alt="Diagram: Text preprocessing" class="unit-diagram" />
+<img src="../../assets/units/unit17_nlp_preprocessing_tfidf/images/diagram-concept.svg" alt="Diagram: Text preprocessing" class="unit-diagram" />
 
 
 
@@ -97,7 +97,7 @@ Score for "**data**" in Book A:
 - **News article recommendations**: Compare TF-IDF features of articles the user read with new articles to recommend relevant news.
 - **Enterprise document search**: Score internal manuals and contracts against search keywords and rank the most relevant documents.
 
-<img src="../../../assets/units/unit17_nlp_preprocessing_tfidf/images/diagram-workflow.svg" alt="Diagram: TF-IDF" class="unit-diagram" />
+<img src="../../assets/units/unit17_nlp_preprocessing_tfidf/images/diagram-workflow.svg" alt="Diagram: TF-IDF" class="unit-diagram" />
 
 ## 2. Implementation Example
 

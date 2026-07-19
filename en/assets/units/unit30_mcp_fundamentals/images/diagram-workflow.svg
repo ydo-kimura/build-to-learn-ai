@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" role="img" aria-label="Build a server">
+  <rect width="700" height="380" rx="12" fill="#f8fafc"/>
+  <rect x="24" y="20" width="652" height="56" rx="8" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="350" y="54" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="20" fill="#7c3aed" font-weight="700">Build a server</text>
+  <rect x="24" y="88" width="652" height="252" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(90, 108)"><rect x="0" y="30" width="132" height="48" rx="8" fill="#3b82f622" stroke="#3b82f6" stroke-width="2"/>
+<text x="66.0" y="57.5" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#3b82f6" font-weight="600">Expose functions</text>
+<line x1="132" y1="54.0" x2="152" y2="54.0" stroke="#64748b" stroke-width="1.5"/><polygon points="152,54.0 146,51.0 146,57.0" fill="#64748b"/>
+<rect x="160" y="30" width="92" height="48" rx="8" fill="#8b5cf622" stroke="#8b5cf6" stroke-width="2"/>
+<text x="206.0" y="57.85" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#8b5cf6" font-weight="600">Stdio/HTTP</text>
+<line x1="252" y1="54.0" x2="272" y2="54.0" stroke="#64748b" stroke-width="1.5"/><polygon points="272,54.0 266,51.0 266,57.0" fill="#64748b"/>
+<rect x="280" y="30" width="78" height="48" rx="8" fill="#22c55e22" stroke="#22c55e" stroke-width="2"/>
+<text x="319.0" y="57.85" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="11" fill="#22c55e" font-weight="600">Discover</text></g>
+</svg>

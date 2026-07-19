@@ -1,12 +1,12 @@
 # Unit 4: Decision Trees and Random Forests
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit04_decision_trees_random_forests/images/hero.png" alt="Hero: Decision Trees & Random Forests" />
+  <img src="../../assets/units/unit04_decision_trees_random_forests/images/hero.png" alt="Hero: Decision Trees & Random Forests" />
 </p>
 
 ## 1. Understanding Decision Trees and Random Forests
 
-<img src="../../../assets/units/unit04_decision_trees_random_forests/images/diagram-concept.svg" alt="Diagram: Decision Tree splits" class="unit-diagram" />
+<img src="../../assets/units/unit04_decision_trees_random_forests/images/diagram-concept.svg" alt="Diagram: Decision Tree splits" class="unit-diagram" />
 
 
 
@@ -55,7 +55,7 @@ Each person may err slightly, but together they form wisdom. Random forest build
 
 ---
 
-<img src="../../../assets/units/unit04_decision_trees_random_forests/images/diagram-workflow.svg" alt="Diagram: Random Forest vote" class="unit-diagram" />
+<img src="../../assets/units/unit04_decision_trees_random_forests/images/diagram-workflow.svg" alt="Diagram: Random Forest vote" class="unit-diagram" />
 
 ## 2. Implementation Example
 

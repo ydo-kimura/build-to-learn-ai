@@ -1,7 +1,7 @@
 # Unit 16: Deep Learning Capstone
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit16_deep_learning_capstone/images/hero.png" alt="Hero: Deep Learning Capstone" />
+  <img src="../../assets/units/unit16_deep_learning_capstone/images/hero.png" alt="Hero: Deep Learning Capstone" />
 </p>
 
 > [!TIP]
@@ -10,7 +10,7 @@
 
 ## 1. Understanding End-to-End Deep Learning Model Building
 
-<img src="../../../assets/units/unit16_deep_learning_capstone/images/diagram-concept.svg" alt="Diagram: Image pipeline" class="unit-diagram" />
+<img src="../../assets/units/unit16_deep_learning_capstone/images/diagram-concept.svg" alt="Diagram: Image pipeline" class="unit-diagram" />
 
 
 
@@ -29,7 +29,7 @@ This capstone combines everything into a **professional image recognition pipeli
 
 ---
 
-<img src="../../../assets/units/unit16_deep_learning_capstone/images/diagram-workflow.svg" alt="Diagram: Evaluation" class="unit-diagram" />
+<img src="../../assets/units/unit16_deep_learning_capstone/images/diagram-workflow.svg" alt="Diagram: Evaluation" class="unit-diagram" />
 
 ## 2. Implementation Example
 
