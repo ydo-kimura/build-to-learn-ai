@@ -39,7 +39,7 @@
 以下のライブラリは、いずれも上記の `requirements.txt` の一括インストールに含まれています。特定のユニットだけを個別環境（Colab の新しいノートブックなど）で進める場合は、以下のコマンドで該当分のみをインストールすることもできます。
 
 ```bash
-!pip install llama-index-core llama-index-readers-file llama-index-llms-openai llama-index-embeddings-openai mcp smolagents pydantic langgraph
+!pip install llama-index-core llama-index-readers-file llama-index-llms-openai llama-index-embeddings-openai mcp smolagents pydantic langgraph tiktoken
 ```
 
 | ライブラリ | 使用ユニット | 用途 |
@@ -47,7 +47,8 @@
 | `llama-index-core` ほか llama-index 系 | Unit 26 | LlamaIndex による RAG 構築 |
 | `mcp` | Unit 30 | MCP サーバーの実装（FastMCP） |
 | `smolagents` | Unit 31, 37, 40 | Code Agent・マルチエージェント構築 |
-| `pydantic` | Unit 37 | 構造化データのスキーマ定義とバリデーション |
+| `pydantic` | Unit 39 | 構造化データのスキーマ定義とバリデーション |
+| `tiktoken` | Unit 22〜23 | Tokenizerの確認とToken数の測定 |
 | `langgraph` | Unit 32 | グラフベースのステートフルエージェント |
 
 ---

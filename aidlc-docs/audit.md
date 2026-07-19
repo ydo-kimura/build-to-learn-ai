@@ -988,3 +988,29 @@ Continuation behavior:
 **Verification**: `vitepress build` passed (chunk-size warning only); `verify_curriculum_diagrams.py` passed (82 images); Python fenced blocks passed (146/146); local `src`/`href` references passed; section-shape check passed; `git diff --check` passed.
 
 ---
+
+## Unit 0 / Tokenizer / Streaming Follow-up
+**Timestamp**: 2026-07-19T00:00:00Z
+**User Input**: "OK。Unit 0 含め修正して"
+**AI Response**: "Unit 0の表現を『本編で深掘りしないトピック』へ変更し、TokenizerはUnit 22で概念、Unit 23でToken数測定の最小実習、StreamingはUnit 23の発展課題と解答例として追加した。Unit 23の実習を動かせるよう `tiktoken` をrequirements.txtとAppendixの個別インストール例へ追加した。"
+**Context**: CONSTRUCTION - Code Generation follow-up and Build and Test.
+**Verification**: VitePress build passed (chunk-size warning only); Python fenced blocks passed (148/148); local references passed; diagram verification passed (82 images); `git diff --check` passed.
+
+---
+
+## Chapter Structure and Unit Renumbering Follow-up
+**Timestamp**: 2026-07-19T00:00:00Z
+**User Input**: "Unit0  含めて修正して"
+**AI Response**: "第4章にUnit 35（TokenizerとBPEの基礎）とUnit 36（LoRA / QLoRAによるLLM適応の基礎）を追加し、第5章の既存CapstoneをUnit 37〜42へ移動した。Unit 0、VitePressの日本語サイドバー、教材一覧、画像アセット参照、本文中のユニット番号を更新した。"
+**Context**: CONSTRUCTION - Curriculum structure revision and Build and Test.
+**Verification**: Unit numbering 0〜42 has no gaps or title mismatches; local references passed; diagram verification passed (82 existing diagram images); Python fenced blocks passed (150/150); VitePress build passed (chunk-size warning only); `git diff --check` passed.
+
+---
+
+## Unit 0 Duplicate Sentence Removal
+**Timestamp**: 2026-07-19T00:00:00Z
+**User Input**: "消して"
+**AI Response**: "Unit 0の『本編で基礎を扱い、実運用の詳細だけを発展課題に回します』に続いて、Unit 22〜23およびUnit 35〜36で扱う内容を繰り返していた一文を削除した。"
+**Context**: CONSTRUCTION - Documentation cleanup.
+
+---

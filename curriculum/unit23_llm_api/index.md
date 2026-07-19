@@ -145,6 +145,29 @@ print("AIの回答:")
 print(response.choices[0].message.content)
 ```
 
+### 発展実装：入力文のToken数を確認する
+
+LLMへ送る前にToken数を確認すると、コンテキスト長と概算コストを見積もれます。Tokenizerの内部実装ではなく、利用するモデルに対応したTokenizerを呼び出す最小例です。
+
+```python
+import tiktoken
+
+text = "LLMは文章をトークンに分割して処理します。"
+
+try:
+    encoding = tiktoken.encoding_for_model("gpt-4o-mini")
+except KeyError:
+    # 未対応のモデルでは、近い公開エンコーディングを明示的に選ぶ
+    encoding = tiktoken.get_encoding("cl100k_base")
+
+token_ids = encoding.encode(text)
+print("入力文字数:", len(text))
+print("Token数:", len(token_ids))
+print("Token IDの先頭:", token_ids[:10])
+```
+
+日本語・英語・コードなど複数の入力を比較し、文字数とToken数が常に比例するわけではないことを確認してください。Tokenizerの実装やモデルごとの正確な料金計算は、使用するモデルの最新ドキュメントで確認します。
+
 **🔍 コードの詳しい解説**
 1. **APIクライアントの準備** ：`OpenAI`クラスを使って、あなたのAPIキーをセットします。これは「私はお金を払って注文する権利を持っていますよ」という身分証明書のようなものです。
 2. **プロンプトの作成** ：`messages`というリストの中に辞書型で会話の履歴を入れます。`system`で「あなたは優しい先生です」とキャラ設定をし、`user`で具体的な質問を投げかけています。
@@ -164,6 +187,18 @@ APIの使い方がわかったところで、今度は **「感情分析 (Sentim
 
 **💡 ヒント**
 - `system` メッセージで「あなたは感情分析システムです。入力された文章に対し、『ポジティブ』『ネガティブ』『ニュートラル』のいずれか1つの単語のみを出力してください。余計な説明は一切しないでください。」と強く指示（プロンプト）を出しましょう。
+
+### 発展課題：ストリーミング応答
+
+感情分析の基本課題を終えたら、同じAPI呼び出しをストリーミング形式に変更してください。
+
+**【要件】**
+- `stream=True` を指定し、応答チャンクを受信するたびに画面へ表示する。
+- 全チャンクを連結した最終結果も保存する。
+- 通常応答と比べて、表示開始までの時間と実装上の違いを記録する。
+- 途中切断やAPIエラーが起きた場合に、未完了の結果を成功扱いしない。
+
+ストリーミングは表示を早く始める仕組みであり、回答の正しさや安全性を保証するものではありません。
 
 ---
 
@@ -216,3 +251,30 @@ if __name__ == "__main__":
 この解答のポイントは、`temperature=0.0` を出力の揺らぎを抑える候補として使っていることです。ただし、同じ入力に同じ結果が返ることや、分類が正しいことを完全に保証するものではありません。実務では、許容ラベルの検証、再試行、評価用データセット、モデルとSDKのバージョン記録を組み合わせます。systemメッセージで形式を指定しても余計な説明が返る可能性があるため、返り値をそのまま業務処理へ渡さず、許容値チェックを行います。
 
 </details>
+
+### 発展課題の解答例：ストリーミング応答
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+stream = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "AIを一文で説明してください。"}],
+    stream=True,
+)
+
+chunks = []
+try:
+    for chunk in stream:
+        content = chunk.choices[0].delta.content or ""
+        print(content, end="", flush=True)
+        chunks.append(content)
+    final_text = "".join(chunks)
+    print("\n\n最終結果:", final_text)
+except Exception as exc:
+    print(f"\nストリーミングが完了しませんでした: {exc}")
+```
+
+途中で例外が発生した場合は、`final_text`を業務上の確定回答として保存しない設計が必要です。

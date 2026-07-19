@@ -8,6 +8,7 @@ torchvision
 nltk
 gensim
 openai
+tiktoken
 chromadb
 langchain
 langchain-openai
