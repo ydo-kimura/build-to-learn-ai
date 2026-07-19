@@ -25,7 +25,7 @@
 ### smolagents と「Code Agent」の革命
 この限界を突破するために Hugging Face がリリースした超軽量・最先端のフレームワークが **`smolagents`** です。
 
-`smolagents` は、従来のテキストベースの Tool Calling の代わりに、 **「LLMがタスクを解決するための Python コードそのものを書き、それをセキュアなサンドボックスで即座に実行して結果を得る（Code Agent）」** という設計を導入しました。
+`smolagents` は、従来のテキストベースのTool Callingの代わりに、 **「LLMがタスクを解決するためのPythonコードを書き、それを実行して結果を得る（Code Agent）」** という設計を提供します。コード実行は強力な権限になり得るため、ライブラリの設定だけで安全が保証されると考えず、ネットワーク・ファイルシステム・秘密情報を隔離した外部サンドボックスを設計します。
 
 | 特徴 | 従来のエージェント (ReAct) | smolagents (CodeAgent) |
 | :--- | :--- | :--- |
@@ -48,7 +48,7 @@
 
 ## 2. 実装例 (Implementation Example)
 
-ここでは、`smolagents` の `CodeAgent` を使い、LLMが「自ら Python コードを書いて、与えられた複数のツールを自律的かつ完璧に組み合わせて実行する」軽量エージェントを構築します。
+ここでは、`smolagents` の `CodeAgent` を使い、LLMがPythonコードを書いて、与えられたツールを組み合わせて実行する最小エージェントを構築します。これは動作確認用のPoCであり、完璧な成功率や安全な隔離環境を示すものではありません。
 
 事前に `pip install smolagents openai` を実行し、環境変数に `OPENAI_API_KEY` を設定してください。
 

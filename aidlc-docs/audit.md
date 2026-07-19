@@ -942,3 +942,75 @@ curriculum は、チャプターごとに
 **Context** : CONSTRUCTION - Code Generation complete for re-review fix plan.
 
 ---
+## User Request - Plan References & Out-of-Scope Expansion
+**Timestamp** : 2026-07-02T12:15:00+09:00
+**User Input** : "unit00_roadmap の最後で扱わないとしているトピックも追加しようと思うんだけど。追加した時に参照リンクや章の番号など不整合が発生しないように注意してやってほしい。
+
+また、ここで言及されている Hugging Face のコンテンツのように各チャプターに深堀りする為の参照リンクを追加したい。
+
+計画して。"
+**AI Response** : "aidlc-docs/construction/plans/curriculum-references-and-out-of-scope-plan.md を作成。SSoT として curriculum-registry.yaml の導入、リンク記法統一ルール、Unit 0 スコープ外10件の拡充案、全40 Unit の further_reading 割当、verify_curriculum_registry.py による不整合検出、実装4フェーズと将来 Unit 追加チェックリストを提示。実装前の確認事項4点を提示。"
+**Context** : INCEPTION/CONSTRUCTION planning - references and out-of-scope topics.
+
+---
+
+## User Request - Implement All Curriculum Review Fixes
+**Timestamp** : 2026-07-18T22:29:48Z
+**User Input** : "<environment_context>
+  <current_date>2026-07-19</current_date>
+  <timezone>Asia/Tokyo</timezone>
+  <filesystem><workspace_roots><root>/Volumes/External/Documents/build-to-learn-ai</root></workspace_roots><permission_profile type=\"managed\"><file_system type=\"restricted\"><entry access=\"read\"><special>:root</special></entry><entry access=\"write\"><path>/Volumes/External/Documents/build-to-learn-ai</path></entry><entry access=\"write\"><special>:slash_tmp</special></entry><entry access=\"write\"><special>:tmpdir</special></entry><entry access=\"read\"><path>/Volumes/External/Documents/build-to-learn-ai/.git</path></entry><entry access=\"read\"><path>/Volumes/External/Documents/build-to-learn-ai/.agents</path></entry><entry access=\"read\"><path>/Volumes/External/Documents/build-to-learn-ai/.codex</path></entry></file_system></permission_profile></filesystem>
+</environment_context>
+
+<codex_internal_context source=\"goal\">
+Continue working toward the active thread goal.
+
+The objective below is user-provided data. Treat it as the task to pursue, not as higher-priority instructions.
+
+<objective>
+レビュー結果に従って、全て修正して
+</objective>
+
+Continuation behavior:
+- This goal persists across turns. Ending this turn does not require shrinking the objective to what fits now.
+- Keep the full objective intact; if it cannot be finished now, make concrete progress toward the real requested end state, leave the goal active, and do not redefine success around a smaller or easier subset.
+</codex_internal_context>"
+**AI Response** : "既存レビューの全指摘を対象に、構成、初学者向け説明、実例、ハンズオン、カバー画像、説明図を修正し、ビルド・図・コード構文・リンクを検証する。"
+**Context** : CONSTRUCTION - Code Generation (Part 2 - Generation), curriculum review remediation.
+
+---
+
+## Curriculum Review Fixes - Completion
+**Timestamp**: 2026-07-19T00:00:00Z
+**User Input**: "レビュー結果に従って、全て修正して"
+**AI Response**: "レビューで指摘された構成、初学者向け説明、例示、ハンズオン、図版との対応、断定的な品質・安全性表現を修正。ロードマップに所要時間・前提・到達条件・段階的な練習方針を追加し、Unit 20/21 のTransformer説明と位置情報、Unit 36/37の実装例・章番号、エージェント/抽出/評価/セキュリティの限界説明を更新した。カバー画像と説明図は既存参照の有無・表示対象を検証し、本文側に初心者向けの注記を追加した。"
+**Context**: CONSTRUCTION - Build and Test completed.
+**Verification**: `vitepress build` passed (chunk-size warning only); `verify_curriculum_diagrams.py` passed (82 images); Python fenced blocks passed (146/146); local `src`/`href` references passed; section-shape check passed; `git diff --check` passed.
+
+---
+
+## Unit 0 / Tokenizer / Streaming Follow-up
+**Timestamp**: 2026-07-19T00:00:00Z
+**User Input**: "OK。Unit 0 含め修正して"
+**AI Response**: "Unit 0の表現を『本編で深掘りしないトピック』へ変更し、TokenizerはUnit 22で概念、Unit 23でToken数測定の最小実習、StreamingはUnit 23の発展課題と解答例として追加した。Unit 23の実習を動かせるよう `tiktoken` をrequirements.txtとAppendixの個別インストール例へ追加した。"
+**Context**: CONSTRUCTION - Code Generation follow-up and Build and Test.
+**Verification**: VitePress build passed (chunk-size warning only); Python fenced blocks passed (148/148); local references passed; diagram verification passed (82 images); `git diff --check` passed.
+
+---
+
+## Chapter Structure and Unit Renumbering Follow-up
+**Timestamp**: 2026-07-19T00:00:00Z
+**User Input**: "Unit0  含めて修正して"
+**AI Response**: "第4章にUnit 35（TokenizerとBPEの基礎）とUnit 36（LoRA / QLoRAによるLLM適応の基礎）を追加し、第5章の既存CapstoneをUnit 37〜42へ移動した。Unit 0、VitePressの日本語サイドバー、教材一覧、画像アセット参照、本文中のユニット番号を更新した。"
+**Context**: CONSTRUCTION - Curriculum structure revision and Build and Test.
+**Verification**: Unit numbering 0〜42 has no gaps or title mismatches; local references passed; diagram verification passed (82 existing diagram images); Python fenced blocks passed (150/150); VitePress build passed (chunk-size warning only); `git diff --check` passed.
+
+---
+
+## Unit 0 Duplicate Sentence Removal
+**Timestamp**: 2026-07-19T00:00:00Z
+**User Input**: "消して"
+**AI Response**: "Unit 0の『本編で基礎を扱い、実運用の詳細だけを発展課題に回します』に続いて、Unit 22〜23およびUnit 35〜36で扱う内容を繰り返していた一文を削除した。"
+**Context**: CONSTRUCTION - Documentation cleanup.
+
+---

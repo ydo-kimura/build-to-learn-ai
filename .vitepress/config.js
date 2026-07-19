@@ -89,18 +89,20 @@ export default withMermaid(
               { text: 'Unit 31: smolagents と自律型 AI エージェント', link: '/curriculum/unit31_smolagents_code_agent/' },
               { text: 'Unit 32: LangGraph — グラフベースのステートフルエージェント', link: '/curriculum/unit32_langgraph_stateful_agents/' },
               { text: 'Unit 33: Agent SDK: 汎用・業務自動化', link: '/curriculum/unit33_agent_sdk_general_agents/' },
-              { text: 'Unit 34: Agent SDK: コーディング・自律開発', link: '/curriculum/unit34_agent_sdk_coding_agents/' }
+              { text: 'Unit 34: Agent SDK: コーディング・自律開発', link: '/curriculum/unit34_agent_sdk_coding_agents/' },
+              { text: 'Unit 35: TokenizerとBPEの基礎', link: '/curriculum/unit35_tokenizer_bpe/' },
+              { text: 'Unit 36: LoRA / QLoRAによるLLM適応の基礎', link: '/curriculum/unit36_lora_qlora/' }
             ]
           },
           {
             text: '第5章: 実務適用と総合応用実践 (Capstones)',
             items: [
-              { text: 'Unit 35: LLM自動評価・防御とエージェント総合演習 (Capstone)', link: '/curriculum/unit35_llm_harness_capstone/' },
-              { text: 'Unit 36: マルチモーダル不正検知システム', link: '/curriculum/unit36_multimodal_fraud_detection/' },
-              { text: 'Unit 37: 自律型ナレッジ抽出・構造化エージェント', link: '/curriculum/unit37_knowledge_structuring_agent/' },
-              { text: 'Unit 38: エンタープライズAI自動評価・防御ハーネス', link: '/curriculum/unit38_guardrails_evaluation_harness/' },
-              { text: 'Unit 39: 時系列需要予測・価格最適化システム', link: '/curriculum/unit39_timeseries_price_optimizer/' },
-              { text: 'Unit 40: 自律型カスタマーサポート・マルチエージェント', link: '/curriculum/unit40_multiagent_customer_support/' }
+              { text: 'Unit 37: LLM自動評価・防御とエージェント総合演習 (Capstone)', link: '/curriculum/unit37_llm_harness_capstone/' },
+              { text: 'Unit 38: マルチモーダル不正検知システム', link: '/curriculum/unit38_multimodal_fraud_detection/' },
+              { text: 'Unit 39: 自律型ナレッジ抽出・構造化エージェント', link: '/curriculum/unit39_knowledge_structuring_agent/' },
+              { text: 'Unit 40: エンタープライズAI自動評価・防御ハーネス', link: '/curriculum/unit40_guardrails_evaluation_harness/' },
+              { text: 'Unit 41: 時系列需要予測・価格最適化システム', link: '/curriculum/unit41_timeseries_price_optimizer/' },
+              { text: 'Unit 42: 自律型カスタマーサポート・マルチエージェント', link: '/curriculum/unit42_multiagent_customer_support/' }
             ]
           }
         ]
