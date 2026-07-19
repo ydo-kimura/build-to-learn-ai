@@ -1,12 +1,12 @@
-# Unit 36: Multimodal Fraud Detection System
+# Unit 38: Multimodal Fraud Detection System
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit36_multimodal_fraud_detection/images/hero.png" alt="Hero: Multimodal Fraud Detection" />
+  <img src="../../../assets/units/unit38_multimodal_fraud_detection/images/hero.png" alt="Hero: Multimodal Fraud Detection" />
 </p>
 
 ## 1. Understanding Multimodal Fraud Detection
 
-<img src="../../../assets/units/unit36_multimodal_fraud_detection/images/diagram-concept.svg" alt="Diagram: Late fusion" class="unit-diagram" />
+<img src="../../../assets/units/unit38_multimodal_fraud_detection/images/diagram-concept.svg" alt="Diagram: Late fusion" class="unit-diagram" />
 
 
 
@@ -30,7 +30,7 @@ There are two opposing architectural philosophies for integrating different data
 
 ---
 
-<img src="../../../assets/units/unit36_multimodal_fraud_detection/images/diagram-workflow.svg" alt="Diagram: Fraud signals" class="unit-diagram" />
+<img src="../../../assets/units/unit38_multimodal_fraud_detection/images/diagram-workflow.svg" alt="Diagram: Fraud signals" class="unit-diagram" />
 
 ## 2. Practice — 🧠 Design and Decide Multimodal Fraud Detection
 
@@ -95,7 +95,7 @@ In practice, especially in early phases with thousands to tens of thousands of s
 
 | Evaluation Axis | Approach A (Early Fusion / NN) | Approach B (Late Fusion / Stacking) | Design Decision Point |
 | :--- | :--- | :--- | :--- |
-| **Small-data fit** | **Very weak**. 51-dimensional input in one NN on 200 samples learns noise and collapses. | **Very strong**. Text/image use pre-extracted vectors; final prediction via robust XGBoost or Lasso. | **Late fusion (stacking) is the production best practice**. |
+| **Small-data fit** | A 51-dimensional input in one NN on 200 samples needs strong overfitting controls. | Pre-extracted text/image features with a simple predictor can be easier to evaluate, but results depend on the data. | Compare early fusion, late fusion, and single-modality baselines with cross-validation. |
 | **Explainability** | **Low**. Features mix in hidden layers; hard to explain "why this listing was flagged." | **High**. Track each factor: "image score normal but text score and violation count abnormal." | Explainability is decisive for seller appeals and audit logs to patrol teams. |
 
 ---

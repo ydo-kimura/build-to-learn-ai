@@ -138,6 +138,28 @@ print("AI answer:")
 print(response.choices[0].message.content)
 ```
 
+### Extension: inspect input token count
+
+Measuring tokens before sending a request helps estimate context usage and approximate cost. This calls a model tokenizer; it does not implement the tokenizer internals.
+
+```python
+import tiktoken
+
+text = "LLMs split text into tokens before processing it."
+
+try:
+    encoding = tiktoken.encoding_for_model("gpt-4o-mini")
+except KeyError:
+    encoding = tiktoken.get_encoding("cl100k_base")
+
+token_ids = encoding.encode(text)
+print("Characters:", len(text))
+print("Tokens:", len(token_ids))
+print("First token IDs:", token_ids[:10])
+```
+
+Compare English, Japanese, and code inputs. Character count and token count are not always proportional. For exact billing and model support, check the current model documentation.
+
 **🔍 Detailed code walkthrough**
 1. **API client setup**: `OpenAI` class sets your API key—like an ID proving you can pay for orders.
 2. **Prompt creation**: Put conversation history in the `messages` list as dicts. `system` sets persona (“friendly teacher”); `user` asks the question.
@@ -157,6 +179,18 @@ Now that you know the API, build a function for **sentiment analysis**.
 
 **💡 Hint**
 - In `system`, strongly instruct: “You are a sentiment analysis system. Output exactly one of Positive, Negative, or Neutral. No extra explanation.”
+
+### Extension: streaming responses
+
+After completing the sentiment-analysis exercise, change the API call to streaming mode.
+
+**Requirements**
+- Set `stream=True` and print each received chunk as it arrives.
+- Join all chunks into a final result.
+- Compare time-to-first-output and implementation differences with a normal response.
+- Do not treat an interrupted response as a completed business result.
+
+Streaming can make output appear sooner, but it does not guarantee correctness or safety.
 
 ---
 
@@ -204,3 +238,30 @@ if __name__ == "__main__":
     print(f'"{test_review_2}" -> {analyze_sentiment(test_review_2)}')
 ```
 </details>
+
+### Extension answer: streaming response
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+stream = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Explain AI in one sentence."}],
+    stream=True,
+)
+
+chunks = []
+try:
+    for chunk in stream:
+        content = chunk.choices[0].delta.content or ""
+        print(content, end="", flush=True)
+        chunks.append(content)
+    final_text = "".join(chunks)
+    print("\n\nFinal result:", final_text)
+except Exception as exc:
+    print(f"\nStreaming did not complete: {exc}")
+```
+
+If an exception occurs, do not save `final_text` as a confirmed business response.

@@ -21,9 +21,9 @@ When embedding AI into production systems, architects weigh the following trade-
 | Evaluation Axis | Machine Learning (ML) | Deep Learning (DL) | Large Language Model (LLM) |
 | :--- | :--- | :--- | :--- |
 | **Best-fit data** | **Structured data** (numeric values, categories, sales history in customer databases, etc.) | **Unstructured data** (images, audio, waveforms, video, etc.) | **Natural language (text)**, program code, complex dialogue |
-| **Inference speed** | **Extremely fast** (milliseconds to tens of milliseconds) | **Fast** (tens to hundreds of milliseconds; GPU required) | **Slow** (seconds to tens of seconds; API latency) |
-| **Compute cost (infra)** | **Very low** (runs on CPU; pennies to dollars scale) | **Moderate** (edge devices or affordable GPUs) | **Very high** (pay-per-use API or multi-million-dollar dedicated GPUs) |
-| **Explainability** | **Strongest** (decision process can be traced mathematically) | **Low** (multi-layer nets become black boxes) | **Very low** (hallucinations; logical grounding not guaranteed) |
+| **Inference speed** | Often fast (milliseconds to tens of milliseconds in some setups) | Depends on model and hardware (tens to hundreds of milliseconds in some setups) | Often slower because of model size and API latency |
+| **Compute cost (infra)** | Often comparatively low on CPU | Depends on model size and hardware | Varies widely with API usage or dedicated infrastructure |
+| **Explainability** | Often easier to trace, but not automatically sufficient for every use case | Usually harder to trace through many layers | Outputs require grounding and evaluation; explanations do not guarantee correctness |
 | **Adoption difficulty** | **Moderate** (careful preprocessing and feature engineering by humans) | **High** (powerful automatic feature learning, but needs large datasets and expertise) | **Very low with APIs** (pretrained models run immediately with prompts) |
 
 ---
@@ -108,15 +108,17 @@ Use LLMs as components to build advanced reasoning pipelines and autonomous agen
 - **Unit 32**: [LangGraph — Graph-Based Stateful Agents](../unit32_langgraph_stateful_agents/index.md)
 - **Unit 33**: [Agent SDK: General & Business Automation](../unit33_agent_sdk_general_agents/index.md)
 - **Unit 34**: [Agent SDK: Autonomous Coding & Software Engineering](../unit34_agent_sdk_coding_agents/index.md)
+- **Unit 35**: [Tokenizer and BPE Fundamentals](../unit35_tokenizer_bpe/index.md)
+- **Unit 36**: [LLM Adaptation with LoRA / QLoRA](../unit36_lora_qlora/index.md)
 
 ### Chapter 5: Real-World AI Application Capstones
 Apply everything you have learned—ML, DL, NLP, and LLMs—to high-difficulty problems common in real business settings. You will design architectures, implement, and evaluate from scratch. Every unit in this chapter is a comprehensive capstone.
-- **Unit 35**: [LLM Evaluation, Guardrails & Agent Capstone](../unit35_llm_harness_capstone/index.md)
-- **Unit 36**: [Multimodal Fraud Detection](../unit36_multimodal_fraud_detection/index.md)
-- **Unit 37**: [Autonomous Knowledge Extraction & Structuring Agent](../unit37_knowledge_structuring_agent/index.md)
-- **Unit 38**: [Enterprise AI Evaluation & Guardrails Harness](../unit38_guardrails_evaluation_harness/index.md)
-- **Unit 39**: [Time-Series Demand Forecasting & Dynamic Pricing](../unit39_timeseries_price_optimizer/index.md)
-- **Unit 40**: [Autonomous Multi-Agent Customer Support](../unit40_multiagent_customer_support/index.md)
+- **Unit 37**: [LLM Evaluation, Guardrails & Agent Capstone](../unit37_llm_harness_capstone/index.md)
+- **Unit 38**: [Multimodal Fraud Detection](../unit38_multimodal_fraud_detection/index.md)
+- **Unit 39**: [Autonomous Knowledge Extraction & Structuring Agent](../unit39_knowledge_structuring_agent/index.md)
+- **Unit 40**: [Enterprise AI Evaluation & Guardrails Harness](../unit40_guardrails_evaluation_harness/index.md)
+- **Unit 41**: [Time-Series Demand Forecasting & Dynamic Pricing](../unit41_timeseries_price_optimizer/index.md)
+- **Unit 42**: [Autonomous Multi-Agent Customer Support](../unit42_multiagent_customer_support/index.md)
 
 ---
 
@@ -135,6 +137,16 @@ Using what you learned in step 2, implement a pipeline on a **different dataset*
 
 ### 4. Answer Key
 Solutions and explanations for the practice assignment. They are hidden inside `<details>` tags—try not to open them until you finish your own implementation. Compare your code with the reference and look for improvements.
+
+---
+
+## 📦 Topics Not Covered in Depth (Advanced Follow-ups)
+
+This curriculum focuses on understanding mechanisms through hands-on work. The topics below are covered at a foundational level in the main curriculum; production-scale details are left as follow-up work.
+
+- **LLM fine-tuning (LoRA / QLoRA, etc.)**: Unit 36 covers the mechanism and a minimal implementation. Large-scale training, GPU optimization, evaluation, licensing, and production operations are follow-up topics.
+- **Production streaming responses**: Unit 23 introduces streaming as an extension exercise. Chat UI integration, cancellation, reconnects, and partial-response handling require further SDK-specific study.
+- **Detailed subword tokenizer work (BPE, etc.)**: Units 22–23 introduce tokens and token counts, and Unit 35 implements a minimal BPE-like tokenizer. Large vocabularies, special tokens, and performance optimization are follow-up topics.
 
 ---
 

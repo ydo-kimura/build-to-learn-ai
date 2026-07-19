@@ -19,7 +19,7 @@ In Unit 24 you built **hand-crafted RAG** with APIs and NumPy similarity alone, 
 Production RAG at scale faces parsing diverse formats (PDF, Word, Markdown), meaningful chunking, efficient index storage and updates, and advanced metadata search. **`LlamaIndex`** is the RAG-specialized framework that solves these professionally and fast.
 
 ### What is LlamaIndex? —The RAG-focused de facto standard
-LangChain is a general “do everything” AI app toolkit; LlamaIndex is **100% focused on connecting private data with LLMs**. Data structures, semantic search, and index design are simpler and more intuitive than LangChain for RAG.
+LangChain is a general AI application toolkit; LlamaIndex is strongly focused on connecting data with LLMs. Its data structures, semantic search, and index design can be convenient for RAG, but the right choice depends on requirements, versions, and maintenance cost.
 
 | LlamaIndex core concept | Role analogy |
 | :--- | :--- |

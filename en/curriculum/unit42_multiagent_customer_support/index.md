@@ -1,12 +1,12 @@
-# Unit 40: Autonomous Multi-Agent Customer Support
+# Unit 42: Autonomous Multi-Agent Customer Support
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit40_multiagent_customer_support/images/hero.png" alt="Hero: Multi-Agent Customer Support" />
+  <img src="../../../assets/units/unit42_multiagent_customer_support/images/hero.png" alt="Hero: Multi-Agent Customer Support" />
 </p>
 
 ## 1. Single-Agent Limits and Multi-Agent Coordination
 
-<img src="../../../assets/units/unit40_multiagent_customer_support/images/diagram-concept.svg" alt="Diagram: Multi-agent flow" class="unit-diagram" />
+<img src="../../../assets/units/unit42_multiagent_customer_support/images/diagram-concept.svg" alt="Diagram: Multi-agent flow" class="unit-diagram" />
 
 
 
@@ -52,7 +52,7 @@ Like company departments, create multiple **small child agents (Managed Agents)*
 
 ---
 
-<img src="../../../assets/units/unit40_multiagent_customer_support/images/diagram-workflow.svg" alt="Diagram: Coordination" class="unit-diagram" />
+<img src="../../../assets/units/unit42_multiagent_customer_support/images/diagram-workflow.svg" alt="Diagram: Coordination" class="unit-diagram" />
 
 ## 2. Implementation Example — Multi-Agent Coordination with smolagents
 
@@ -147,7 +147,7 @@ print(response)
 
 ## 3. Practice — 🧠 Design and Decide Multi-Agent Support
 
-As lead AI systems developer, design and implement a **multi-agent coordination system that perfectly resolves a high-difficulty customer claim mixing cancellation fees, shipping DB, and point refund rules—without hallucination**.
+As lead AI systems developer, design and implement a **multi-agent coordination system that handles a high-difficulty customer claim mixing cancellation fees, shipping DB, and point refund rules, with evidence checks and escalation for uncertainty**.
 
 **Assignment Requirements**
 

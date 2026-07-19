@@ -30,7 +30,7 @@ This approach is powerful, but it has a serious practical problem: **as loop cou
 ### smolagents and the Code Agent Revolution
 To break through this limit, Hugging Face released the ultra-lightweight, state-of-the-art framework **`smolagents`**.
 
-Instead of traditional text-based tool calling, `smolagents` introduces a design where **the LLM writes Python code to solve the task and executes it immediately in a secure sandbox to obtain results (Code Agent)**.
+Instead of traditional text-based tool calling, `smolagents` introduces a design where **the LLM writes Python code to solve the task and executes it to obtain results (Code Agent)**. Code execution may have powerful permissions; use an external sandbox with network, filesystem, and secret isolation rather than treating the demo as a security boundary.
 
 | Feature | Traditional Agent (ReAct) | smolagents (CodeAgent) |
 | :--- | :--- | :--- |

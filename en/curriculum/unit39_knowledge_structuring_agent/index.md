@@ -1,12 +1,12 @@
-# Unit 37: Autonomous Knowledge Extraction & Structuring Agent
+# Unit 39: Autonomous Knowledge Extraction & Structuring Agent
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit37_knowledge_structuring_agent/images/hero.png" alt="Hero: Knowledge Structuring Agent" />
+  <img src="../../../assets/units/unit39_knowledge_structuring_agent/images/hero.png" alt="Hero: Knowledge Structuring Agent" />
 </p>
 
 ## 1. Understanding Knowledge Extraction and Structuring from Unstructured Data
 
-<img src="../../../assets/units/unit37_knowledge_structuring_agent/images/diagram-concept.svg" alt="Diagram: Extraction agent" class="unit-diagram" />
+<img src="../../../assets/units/unit39_knowledge_structuring_agent/images/diagram-concept.svg" alt="Diagram: Extraction agent" class="unit-diagram" />
 
 
 
@@ -32,15 +32,15 @@ The professional architecture combines **LlamaIndex pinpoint retrieval (Retrieve
 
 ---
 
-<img src="../../../assets/units/unit37_knowledge_structuring_agent/images/diagram-workflow.svg" alt="Diagram: Output" class="unit-diagram" />
+<img src="../../../assets/units/unit39_knowledge_structuring_agent/images/diagram-workflow.svg" alt="Diagram: Output" class="unit-diagram" />
 
 ## 2. Practice — 🧠 Design and Decide Your Knowledge Extraction Pipeline
 
-As a lead AI engineer, design and implement an architecture that **combines LlamaIndex advanced parsing with smolagents self-correction loops to guarantee error-free JSON**.
+As a lead AI engineer, design and implement an architecture that **combines LlamaIndex retrieval with smolagents self-correction loops to reduce structured-output errors**.
 
 **Assignment Requirements**
 
-Use the following "raw data (messy contract report text)" as initialization code and build a system that automatically extracts contract information and generates data that **100% conforms to the specified JSON schema**.
+Use the following "raw data (messy contract report text)" as initialization code and build a system that validates extracted contract information against the specified JSON schema. Do not guess values that cannot be grounded in the source.
 
 ```python
 # 1. Audit target "messy raw data"
@@ -145,7 +145,7 @@ Extract contract information from the [Raw Data] below and output ONLY JSON text
 - "total_budget_yen": Total budget in yen. Convert written amounts like "twelve million yen" to integer 12000000.
 - "duration_months": Contract duration in months. Two full years must become integer 24.
 
-Output a pure JSON object only. No extra explanation or markdown decoration (no ```json fences).
+Output a pure JSON object only. No extra explanation or JSON markdown decoration.
 """
 
 print("--- Autonomous Knowledge Extraction Agent Starting ---")
@@ -154,7 +154,7 @@ raw_output = agent.run(task_instruction)
 # --- Step 5: Strict program-side validation and self-correction simulation ---
 try:
     # Clean markdown decoration if present
-    cleaned_json = raw_output.strip().replace("```json", "").replace("```", "")
+    cleaned_json = raw_output.strip().replace("JSON_MARKDOWN", "")
     data_dict = json.loads(cleaned_json)
     
     # Run Pydantic type validation!

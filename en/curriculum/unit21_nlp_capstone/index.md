@@ -179,10 +179,10 @@ With only five sentences—a harsh constraint—**implement and compare both app
 
 1. **Approach A (RNN/LSTM-based Seq2Seq + Attention)**
    * **Design**: Using PyTorch, adopt LSTM encoders and decoders that process words in time order, and **design an RNN-Attention model** with a simple attention mechanism.
-   * **Characteristics**: Fewer parameters; processes sequential data directly, so it tends to be stable and less prone to overfitting on extremely small data (5 sentences).
+   * **Characteristics**: Fewer parameters and direct sequential processing can make it easier to train on tiny data, but generalization still requires held-out evaluation.
 2. **Approach B (Transformer model)**
    * **Design**: Build an **encoder–decoder Transformer** based on PyTorch’s `nn.Transformer`, applying the Causal Mask (no peeking at future tokens) correctly.
-   * **Characteristics**: Maximum expressiveness and parallel compute—but with only 5 sentences, parameter count easily becomes excessive; unless hyperparameters (`d_model`, `nhead`, `num_layers`, etc.) are pushed to the minimum, severe overfitting can make translation fail entirely.
+   * **Characteristics**: High expressive power and parallel training, but only 5 sentences can make overfitting likely. Keep hyperparameters (`d_model`, `nhead`, `num_layers`, etc.) small and evaluate on held-out examples.
 
 ---
 
@@ -212,13 +212,13 @@ Review representative trade-offs when designing and deploying NLP models in prac
 
 | Evaluation axis | Approach A (RNN/LSTM + Attention) | Approach B (Transformer) | Design decision point |
 | :--- | :--- | :--- | :--- |
-| **Small-data fit** | **Extremely strong**. RNN structure that walks sequences step by step learns simple translation patterns quickly with little data. | **Weak (high overfitting risk)**. Many parameters; with only 5 sentences, attention maps skew abnormally and overfit easily. |
-| **Long-text understanding** | **Weak**. As sentences grow, early words are forgotten (vanishing gradients). | **Strongest**. Self-Attention captures context for all tokens regardless of length. |
+| **Small-data fit** | A relatively simple structure can be easier to train, but it can still overfit. | Parameter count and settings can make overfitting more likely. Compare learning curves and held-out data. |
+| **Long-text understanding** | Long-range dependencies can become difficult to retain. | Self-Attention can handle long-range dependencies more directly, but length, compute, and training data still matter. |
 | **Training parallelism** | Processes one word at a time; no GPU parallelism; huge datasets take enormous time. | Batch-processes all tokens during training; highly parallel and fast. | Speed difference is negligible at 5 sentences, but correctly understanding and implementing LLM core mechanisms (Causal Mask, etc.) matters. |
 
 ---
 
-### Complete comparison pipeline implementation
+### Comparison pipeline implementation example
 
 ```python
 import torch

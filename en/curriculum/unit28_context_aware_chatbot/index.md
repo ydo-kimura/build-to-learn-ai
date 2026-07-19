@@ -30,7 +30,7 @@ LangChain can **automatically append conversation history** to prompts.
 
 | Memory mechanism | Pros | Cons |
 | :--- | :--- | :--- |
-| **Remember all (Buffer Memory)** | Perfect context from the start | Long chats → huge payloads → higher API cost |
+| **Remember all (Buffer Memory)** | Keeps the full history available from the start | Long chats → huge payloads → higher API cost; availability does not guarantee correct understanding |
 | **Recent window (Window Memory)** | Only last N turns; saves tokens | Forgets older topics |
 
 ### 💡 Concrete business use cases

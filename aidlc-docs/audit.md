@@ -1014,3 +1014,12 @@ Continuation behavior:
 **Context**: CONSTRUCTION - Documentation cleanup.
 
 ---
+
+## English Curriculum Parity
+**Timestamp**: 2026-07-19T00:00:00Z
+**User Input**: "作業ブランチを切って、英語版を日本語版に沿って最新化して"
+**AI Response**: "`codex/english-curriculum-parity` ブランチを作成し、英語版のUnit 0〜42構成を日本語版に同期した。Unit 35/36の英語教材を追加し、Unit 37〜42へCapstoneを移動、Unit 22〜23のTokenizer/Streaming内容、英語サイドバー、旧Unitの番号・画像参照を更新した。"
+**Context**: CONSTRUCTION - English curriculum parity and Build and Test.
+**Verification**: VitePress build passed (existing chunk-size warning only); Python fenced blocks passed (280/280 across both locales); Unit 0〜42 numbering and titles passed for both locales; local references passed; diagram verification passed (82 images); `git diff --check` passed.
+
+---
