@@ -1,7 +1,7 @@
 # Unit 11: PyTorch Basics & Simple MLP
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit11_pytorch_basics/images/hero.png" alt="Hero: PyTorch Basics" />
+  <img src="/en/assets/units/unit11_pytorch_basics/images/hero.png" alt="Hero: PyTorch Basics" />
 </p>
 
 > [!TIP]
@@ -11,7 +11,7 @@
 
 ## 1. Understanding PyTorch Basics & Simple MLP
 
-<img src="../../../assets/units/unit11_pytorch_basics/images/diagram-concept.svg" alt="Diagram: Tensor shapes" class="unit-diagram" />
+<img src="/en/assets/units/unit11_pytorch_basics/images/diagram-concept.svg" alt="Diagram: Tensor shapes" class="unit-diagram" />
 
 
 
@@ -37,7 +37,7 @@ With PyTorch, you can leave tedious computation to the framework and focus on **
 - **Automated customer support routing**: Analyze customer inquiry content (text converted to numbers) and automatically route it to the right department (technical, billing, returns, etc.).
 - **Real estate price estimation**: Input conditions such as floor area, building age, and distance from the station to predict rent or sale price with high accuracy.
 
-<img src="../../../assets/units/unit11_pytorch_basics/images/diagram-workflow.svg" alt="Diagram: Training step" class="unit-diagram" />
+<img src="/en/assets/units/unit11_pytorch_basics/images/diagram-workflow.svg" alt="Diagram: Training step" class="unit-diagram" />
 
 ## 2. Implementation Example
 
@@ -70,15 +70,13 @@ class SimpleMLP(nn.Module):
         # Prepare layers
         self.hidden = nn.Linear(in_features=2, out_features=4) # Hidden layer (2 inputs -> 4 outputs)
         self.output = nn.Linear(in_features=4, out_features=1) # Output layer (4 inputs -> 1 output)
-        self.sigmoid = nn.Sigmoid()                            # Activation (squash to 0-1)
+        self.sigmoid = nn.Sigmoid()                            # Hidden-layer activation
 
     def forward(self, x):
         # Assembly (how data flows)
         x = self.hidden(x)
         x = self.sigmoid(x)
-        x = self.output(x)
-        x = self.sigmoid(x)
-        return x
+        return self.output(x)  # Return logits; do not apply sigmoid here
 
 # Instantiate the model
 model = SimpleMLP()
@@ -92,7 +90,7 @@ Once preparation is done, define the rules for evaluating mistakes and correctin
 
 ```python
 # 3. Define loss function and optimizer
-criterion = nn.BCELoss() # Loss: scoring criterion for binary classification
+criterion = nn.BCEWithLogitsLoss() # Numerically stable binary-classification loss for logits
 optimizer = optim.SGD(model.parameters(), lr=0.1) # Optimizer: how to update parameters from the loss (SGD)
 ```
 
@@ -146,8 +144,8 @@ To get comfortable with PyTorch syntax, try writing a network with a slightly di
   - Input layer: 2
   - **Hidden layer 1**: 8 (activation: ReLU `nn.ReLU()`)
   - **Hidden layer 2**: 4 (activation: ReLU `nn.ReLU()`)
-  - Output layer: 1 (activation: Sigmoid `nn.Sigmoid()`)
-- Use `nn.MSELoss()` (mean squared error) as the loss function. (Common for regression and simple prediction tasks.)
+  - Output layer: 1 (return logits without converting them to probabilities)
+- Use `nn.BCEWithLogitsLoss()` (binary classification loss that accepts logits).
 - Copy the training loop as-is and train for 500 epochs.
 
 **Hints:**
@@ -177,7 +175,6 @@ class PracticeMLP(nn.Module):
         self.hidden2 = nn.Linear(in_features=8, out_features=4)
         self.relu2 = nn.ReLU()
         self.output = nn.Linear(in_features=4, out_features=1)
-        self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
         x = self.hidden1(x)
@@ -190,8 +187,8 @@ class PracticeMLP(nn.Module):
 
 model = PracticeMLP()
 
-# 3. Define loss function and optimizer (MSELoss)
-criterion = nn.MSELoss()
+# 3. Define loss function and optimizer
+criterion = nn.BCEWithLogitsLoss()
 optimizer = optim.SGD(model.parameters(), lr=0.1)
 
 # 4. Training loop

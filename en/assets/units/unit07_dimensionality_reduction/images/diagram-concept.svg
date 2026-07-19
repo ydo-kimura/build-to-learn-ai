@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" role="img" aria-label="PCA: project 3D cloud onto 2D plane">
+  <rect width="700" height="380" rx="12" fill="#f8fafc"/>
+  <rect x="24" y="20" width="652" height="56" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="350" y="54" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#3b82f6" font-weight="700">PCA: project 3D cloud onto 2D plane</text>
+  <rect x="24" y="88" width="652" height="252" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <g transform="translate(90, 108)"><circle cx="80" cy="60" r="6" fill="#3b82f6"/>
+<circle cx="100" cy="80" r="6" fill="#3b82f6"/>
+<circle cx="90" cy="100" r="6" fill="#3b82f6"/>
+<circle cx="120" cy="70" r="6" fill="#3b82f6"/>
+<circle cx="110" cy="90" r="6" fill="#3b82f6"/>
+<circle cx="70" cy="90" r="6" fill="#3b82f6"/>
+<line x1="60" y1="110" x2="140" y2="50" stroke="#f97316" stroke-width="2.5"/>
+<line x1="160" y1="80" x2="220" y2="80" stroke="#64748b" stroke-width="2"/><polygon points="220,80 214,77 214,83" fill="#64748b"/>
+<rect x="230" y="50" width="200" height="80" rx="6" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/>
+<circle cx="260" cy="90" r="5" fill="#3b82f6"/>
+<circle cx="290" cy="75" r="5" fill="#3b82f6"/>
+<circle cx="320" cy="85" r="5" fill="#3b82f6"/>
+<circle cx="350" cy="70" r="5" fill="#3b82f6"/>
+<line x1="250" y1="100" x2="400" y2="100" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="325" y="115" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="10" fill="#64748b">2D projection</text></g>
+  <text x="350" y="352" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="12" fill="#64748b">Lose the least important variance</text>
+</svg>

@@ -10,6 +10,18 @@ export default withMermaid(
     '**/.agent/**',
     'README.md'
   ],
+  // OpenWiki documents intentionally reference repository-internal files that
+  // are not part of the published VitePress site. Keep curriculum dead-link
+  // checking enabled while excluding only those known internal references.
+  ignoreDeadLinks: [
+    /^\.\/\.\.\/\.\.\/aidlc-docs\/(aidlc-state|audit)$/,
+    /^\.\/\.\.\/\.\.\/\.aidlc-rule-details\/index$/,
+    /^\.\/\.\.\/\.\.\/\.devcontainer\/Dockerfile$/,
+    /^\.\/\.\.\/\.\.\/\.agent\/rules\/git-commit-rules$/,
+    /^\.\/\.\.\/\.\.\/\.github\/PULL_REQUEST_TEMPLATE$/,
+    /^\.\/\.\.\/\.agent\/rules\/(senior-engineer-conduct|git-commit-rules|indexing-codebase|language-strategies)$/,
+    /^\.\/\.\.\/\.\.\/scripts\/index$/
+  ],
   vite: {
     optimizeDeps: {
       include: ['mermaid', 'dayjs']
@@ -181,18 +193,20 @@ export default withMermaid(
               { text: 'Unit 31: smolagents & AI Agent', link: '/en/curriculum/unit31_smolagents_code_agent/' },
               { text: 'Unit 32: LangGraph — Graph-Based Stateful Agents', link: '/en/curriculum/unit32_langgraph_stateful_agents/' },
               { text: 'Unit 33: Agent SDK: General & Business Automation', link: '/en/curriculum/unit33_agent_sdk_general_agents/' },
-              { text: 'Unit 34: Agent SDK: Autonomous Coding & Software Engineering', link: '/en/curriculum/unit34_agent_sdk_coding_agents/' }
+              { text: 'Unit 34: Agent SDK: Autonomous Coding & Software Engineering', link: '/en/curriculum/unit34_agent_sdk_coding_agents/' },
+              { text: 'Unit 35: Tokenizer and BPE Fundamentals', link: '/en/curriculum/unit35_tokenizer_bpe/' },
+              { text: 'Unit 36: LLM Adaptation with LoRA / QLoRA', link: '/en/curriculum/unit36_lora_qlora/' }
             ]
           },
           {
             text: 'Chapter 5: Real-World AI Application Capstones',
             items: [
-              { text: 'Unit 35: LLM Harness & Agent Capstone', link: '/en/curriculum/unit35_llm_harness_capstone/' },
-              { text: 'Unit 36: Multimodal Fraud Detection', link: '/en/curriculum/unit36_multimodal_fraud_detection/' },
-              { text: 'Unit 37: Autonomous Knowledge Structuring', link: '/en/curriculum/unit37_knowledge_structuring_agent/' },
-              { text: 'Unit 38: Guardrails & LLM-as-a-Judge', link: '/en/curriculum/unit38_guardrails_evaluation_harness/' },
-              { text: 'Unit 39: TimeSeries & Dynamic Pricing', link: '/en/curriculum/unit39_timeseries_price_optimizer/' },
-              { text: 'Unit 40: Multi-Agent Customer Support', link: '/en/curriculum/unit40_multiagent_customer_support/' }
+              { text: 'Unit 37: LLM Harness & Agent Capstone', link: '/en/curriculum/unit37_llm_harness_capstone/' },
+              { text: 'Unit 38: Multimodal Fraud Detection', link: '/en/curriculum/unit38_multimodal_fraud_detection/' },
+              { text: 'Unit 39: Autonomous Knowledge Structuring', link: '/en/curriculum/unit39_knowledge_structuring_agent/' },
+              { text: 'Unit 40: Guardrails & LLM-as-a-Judge', link: '/en/curriculum/unit40_guardrails_evaluation_harness/' },
+              { text: 'Unit 41: TimeSeries & Dynamic Pricing', link: '/en/curriculum/unit41_timeseries_price_optimizer/' },
+              { text: 'Unit 42: Multi-Agent Customer Support', link: '/en/curriculum/unit42_multiagent_customer_support/' }
             ]
           }
         ]

@@ -190,8 +190,8 @@ model = ClassificationNet()
 # 3. 損失関数とOptimizerの設定
 # 分類問題なのでCrossEntropyLossを使用
 criterion = nn.CrossEntropyLoss()
-# OptimizerはAdamを使用
-optimizer = optim.Adam(model.parameters(), lr=0.05)
+# OptimizerはAdamを使用（分類例で扱いやすい標準的な学習率）
+optimizer = optim.Adam(model.parameters(), lr=0.01)
 
 # 4. 学習ループ
 epochs = 100

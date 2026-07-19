@@ -1,7 +1,7 @@
 # Unit 27: Stepwise Reasoning Through Prompt Chaining
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit27_prompt_chaining/images/hero.png" alt="Hero: Prompt Chaining" />
+  <img src="/en/assets/units/unit27_prompt_chaining/images/hero.png" alt="Hero: Prompt Chaining" />
 </p>
 
 > [!IMPORTANT]
@@ -11,7 +11,7 @@
 
 ## 1. Understanding Prompt Chaining
 
-<img src="../../../assets/units/unit27_prompt_chaining/images/diagram-concept.svg" alt="Diagram: Chain of prompts" class="unit-diagram" />
+<img src="/en/assets/units/unit27_prompt_chaining/images/diagram-concept.svg" alt="Diagram: Chain of prompts" class="unit-diagram" />
 
 
 
@@ -47,7 +47,7 @@ LangChain’s `|` is not just part wiring—it **treats whole chains as input so
 - **Hierarchical long-report summarization**: ① chapter summaries → ② full summary → ③ three-bullet executive summary.
 - **Customer feedback deep analysis**: ① sentiment → ② categorize negatives → ③ improvement plans per category.
 
-<img src="../../../assets/units/unit27_prompt_chaining/images/diagram-workflow.svg" alt="Diagram: Why chain" class="unit-diagram" />
+<img src="/en/assets/units/unit27_prompt_chaining/images/diagram-workflow.svg" alt="Diagram: Why chain" class="unit-diagram" />
 
 ## 2. Implementation Example
 

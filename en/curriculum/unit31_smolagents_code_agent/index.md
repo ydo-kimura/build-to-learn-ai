@@ -1,7 +1,7 @@
 # Unit 31: smolagents and Autonomous AI Agents
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit31_smolagents_code_agent/images/hero.png" alt="Hero: smolagents Code Agent" />
+  <img src="/en/assets/units/unit31_smolagents_code_agent/images/hero.png" alt="Hero: smolagents Code Agent" />
 </p>
 
 > [!IMPORTANT]
@@ -10,11 +10,11 @@
 
 ## 1. Understanding AI Agents and smolagents
 
-<img src="../../../assets/units/unit31_smolagents_code_agent/images/diagram-concept.svg" alt="Diagram: Code agent loop" class="unit-diagram" />
+<img src="/en/assets/units/unit31_smolagents_code_agent/images/diagram-concept.svg" alt="Diagram: Code agent loop" class="unit-diagram" />
 
 
 
-In Units 27–28, you learned chaining and chatbot implementation. In Units 29–30, you studied the fundamentals of AI agents (scratch ReAct) and MCP (Model Context Protocol), a common open standard.
+In Units 27–28, you learned the basics of LLM applications with prompt chaining and conversation history. In Units 29–30, you studied scratch ReAct agents and MCP (Model Context Protocol), the common standard for connecting external tools. Here you compare different agent implementation paradigms.
 
 However, when an AI system does more than "output text as instructed" and instead **autonomously decides when and how to use external tools (search, databases, calculators, external APIs, etc.) to achieve complex user goals**, we call that system an **AI Agent**.
 
@@ -30,7 +30,7 @@ This approach is powerful, but it has a serious practical problem: **as loop cou
 ### smolagents and the Code Agent Revolution
 To break through this limit, Hugging Face released the ultra-lightweight, state-of-the-art framework **`smolagents`**.
 
-Instead of traditional text-based tool calling, `smolagents` introduces a design where **the LLM writes Python code to solve the task and executes it immediately in a secure sandbox to obtain results (Code Agent)**.
+Instead of traditional text-based tool calling, `smolagents` introduces a design where **the LLM writes Python code to solve the task and executes it to obtain results (Code Agent)**. Code execution may have powerful permissions; use an external sandbox with network, filesystem, and secret isolation rather than treating the demo as a security boundary.
 
 | Feature | Traditional Agent (ReAct) | smolagents (CodeAgent) |
 | :--- | :--- | :--- |
@@ -41,7 +41,7 @@ Instead of traditional text-based tool calling, `smolagents` introduces a design
 
 ---
 
-<img src="../../../assets/units/unit31_smolagents_code_agent/images/diagram-workflow.svg" alt="Diagram: smolagents" class="unit-diagram" />
+<img src="/en/assets/units/unit31_smolagents_code_agent/images/diagram-workflow.svg" alt="Diagram: smolagents" class="unit-diagram" />
 
 ## 2. Implementation Example
 

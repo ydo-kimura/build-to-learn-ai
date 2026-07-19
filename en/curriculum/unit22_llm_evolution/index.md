@@ -1,7 +1,7 @@
 # Unit 22: Evolution from LLM to AI Agent
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit22_llm_evolution/images/hero.png" alt="Hero: LLM to AI Agent Evolution" />
+  <img src="/en/assets/units/unit22_llm_evolution/images/hero.png" alt="Hero: LLM to AI Agent Evolution" />
 </p>
 
 > [!IMPORTANT]
@@ -12,10 +12,16 @@
 
 ## 1. Understanding the Evolution from LLM to AI Agent
 
-<img src="../../../assets/units/unit22_llm_evolution/images/diagram-concept.svg" alt="Diagram: Evolution path" class="unit-diagram" />
+<img src="/en/assets/units/unit22_llm_evolution/images/diagram-concept.svg" alt="Diagram: Evolution path" class="unit-diagram" />
 
 
 Chapter 4 (LLM Applications and AI Agents) builds on deep learning and NLP fundamentals you have learned so far to teach **“building sophisticated, autonomous applications that use LLMs as components.”**
+
+### The role of a tokenizer
+
+LLMs do not read raw text directly. They first split text into **tokens**, then convert those tokens into integer **token IDs**. A complete word is not always one token; the split can differ across English, Japanese, and source code. Token count affects context length, API cost, and the amount of computation, so it matters when designing LLM applications.
+
+This unit does not implement BPE. Unit 23 measures token counts with a model tokenizer, and Unit 35 implements a minimal BPE-like tokenizer. Large vocabularies, special tokens, and production optimization remain follow-up topics.
 
 The technology scope is broad and evolving rapidly. First, let’s organize the big picture—including core concepts in this chapter (**LLM**, **RAG**, **AI Agent**, **Agentic RAG**) plus the agent essentials **Agent Loop** and **Tool Calling**, and newer extensions such as **MCP** and **Multi-Agent**.
 
@@ -101,7 +107,7 @@ Exciting! Let’s take the first step in LLM app development.
 
 ---
 
-<img src="../../../assets/units/unit22_llm_evolution/images/diagram-workflow.svg" alt="Diagram: Agent capabilities" class="unit-diagram" />
+<img src="/en/assets/units/unit22_llm_evolution/images/diagram-workflow.svg" alt="Diagram: Agent capabilities" class="unit-diagram" />
 
 ## 2. Implementation Example
 

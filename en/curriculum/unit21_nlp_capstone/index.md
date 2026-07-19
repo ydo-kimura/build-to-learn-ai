@@ -1,18 +1,18 @@
 # Unit 21: NLP Capstone (Comprehensive Exercise)
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit21_nlp_capstone/images/hero.png" alt="Hero: NLP Capstone" />
+  <img src="/en/assets/units/unit21_nlp_capstone/images/hero.png" alt="Hero: NLP Capstone" />
 </p>
 
 ## 1. Understanding Comprehensive NLP (Building a Transformer)
 
-<img src="../../../assets/units/unit21_nlp_capstone/images/diagram-concept.svg" alt="Diagram: NLP project flow" class="unit-diagram" />
+<img src="/en/assets/units/unit21_nlp_capstone/images/diagram-concept.svg" alt="Diagram: NLP project flow" class="unit-diagram" />
 
 
 
 In Chapter 3 (Units 17–20), you learned NLP fundamentals starting with tokenization and TF-IDF, then Word2Vec for multi-dimensional word vectors, RNN/LSTM for applying context to sequential data, and finally **Attention and the Transformer architecture**—the foundation of all modern LLMs.
 
-In this capstone, you bring those concepts together and implement a translation engine from scratch that fully reproduces how modern generative AI outputs text: **tokenize parallel text data ➔ build a simple vocabulary ➔ construct a tiny encoder–decoder Transformer ➔ run a parallel-corpus training loop ➔ perform inference decoding that translates English input into Japanese automatically**.
+In this capstone, you bring those concepts together and implement a translation engine from scratch: **tokenize parallel text data ➔ build a simple vocabulary ➔ construct a tiny encoder–decoder Transformer ➔ run a parallel-corpus training loop ➔ perform inference decoding that translates English input into Japanese automatically**. First inspect the Transformer components on a four-sentence minimal implementation, then extend to five sentences to compare and select it against an LSTM. This is a toy model and does not demonstrate useful translation quality on unseen text.
 
 **💡 Everyday analogy: the simultaneous interpreter’s inner mechanism**
 * **Tokenization and vocabulary**: Replace English and Japanese words with “word cards (IDs)” and organize an in-brain parallel dictionary.
@@ -21,7 +21,7 @@ In this capstone, you bring those concepts together and implement a translation 
 
 ---
 
-<img src="../../../assets/units/unit21_nlp_capstone/images/diagram-workflow.svg" alt="Diagram: Stack options" class="unit-diagram" />
+<img src="/en/assets/units/unit21_nlp_capstone/images/diagram-workflow.svg" alt="Diagram: Stack options" class="unit-diagram" />
 
 ## 2. Implementation Example
 
@@ -179,10 +179,10 @@ With only five sentences—a harsh constraint—**implement and compare both app
 
 1. **Approach A (RNN/LSTM-based Seq2Seq + Attention)**
    * **Design**: Using PyTorch, adopt LSTM encoders and decoders that process words in time order, and **design an RNN-Attention model** with a simple attention mechanism.
-   * **Characteristics**: Fewer parameters; processes sequential data directly, so it tends to be stable and less prone to overfitting on extremely small data (5 sentences).
+   * **Characteristics**: Fewer parameters and direct sequential processing can make it easier to train on tiny data, but generalization still requires held-out evaluation.
 2. **Approach B (Transformer model)**
    * **Design**: Build an **encoder–decoder Transformer** based on PyTorch’s `nn.Transformer`, applying the Causal Mask (no peeking at future tokens) correctly.
-   * **Characteristics**: Maximum expressiveness and parallel compute—but with only 5 sentences, parameter count easily becomes excessive; unless hyperparameters (`d_model`, `nhead`, `num_layers`, etc.) are pushed to the minimum, severe overfitting can make translation fail entirely.
+   * **Characteristics**: High expressive power and parallel training, but only 5 sentences can make overfitting likely. Keep hyperparameters (`d_model`, `nhead`, `num_layers`, etc.) small and evaluate on held-out examples.
 
 ---
 
@@ -212,13 +212,13 @@ Review representative trade-offs when designing and deploying NLP models in prac
 
 | Evaluation axis | Approach A (RNN/LSTM + Attention) | Approach B (Transformer) | Design decision point |
 | :--- | :--- | :--- | :--- |
-| **Small-data fit** | **Extremely strong**. RNN structure that walks sequences step by step learns simple translation patterns quickly with little data. | **Weak (high overfitting risk)**. Many parameters; with only 5 sentences, attention maps skew abnormally and overfit easily. |
-| **Long-text understanding** | **Weak**. As sentences grow, early words are forgotten (vanishing gradients). | **Strongest**. Self-Attention captures context for all tokens regardless of length. |
+| **Small-data fit** | A relatively simple structure can be easier to train, but it can still overfit. | Parameter count and settings can make overfitting more likely. Compare learning curves and held-out data. |
+| **Long-text understanding** | Long-range dependencies can become difficult to retain. | Self-Attention can handle long-range dependencies more directly, but length, compute, and training data still matter. |
 | **Training parallelism** | Processes one word at a time; no GPU parallelism; huge datasets take enormous time. | Batch-processes all tokens during training; highly parallel and fast. | Speed difference is negligible at 5 sentences, but correctly understanding and implementing LLM core mechanisms (Causal Mask, etc.) matters. |
 
 ---
 
-### Complete comparison pipeline implementation
+### Comparison pipeline implementation example
 
 ```python
 import torch
@@ -348,7 +348,7 @@ Experiments on this tiny dataset (5 sentences) yield surprising results.
 * **Decision rationale (Approach A vs. Approach B)**:
   * With only 5 sentences, Approach A (RNN/LSTM + Attention) converges very stably due to its simpler structure, avoids overfitting, and tends to output `"I adore studying"` perfectly. Approach B (Transformer) has many attention-head and fully connected parameters; with 5 sentences, attention for `"i love learning"` and `"i love ai"` can collide (mix and overfit), causing decode-time hallucination—e.g., wrongly outputting `"I adore AI"`.
 * **Final deployment decision**:
-  * **“Select Approach A (RNN/LSTM + Attention) as the production model.”**
+  * **“For this tiny-data experiment, select Approach A (RNN/LSTM + Attention) as the candidate.”**
   * **Rationale**:
     1. For ultra-compact domain rule data (e.g., manual parallel text) that must be memorized and applied immediately, RNN delivers far lower compute cost and prevents overfitting while preserving translation quality on tiny data.
     2. If parallel corpus scale to tens of thousands of sentences is certain later, a two-stage roadmap—migrating architecture to **Approach B (Transformer)** for parallelism and long-range context—is the most realistic, architect-level judgment.

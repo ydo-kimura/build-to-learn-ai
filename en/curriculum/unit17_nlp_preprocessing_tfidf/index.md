@@ -1,14 +1,14 @@
 # Unit 17: NLP Preprocessing and TF-IDF
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit17_nlp_preprocessing_tfidf/images/hero.png" alt="Hero: NLP Preprocessing & TF-IDF" />
+  <img src="/en/assets/units/unit17_nlp_preprocessing_tfidf/images/hero.png" alt="Hero: NLP Preprocessing & TF-IDF" />
 </p>
 
 
 
 ## 1. Understanding NLP Preprocessing and TF-IDF
 
-<img src="../../../assets/units/unit17_nlp_preprocessing_tfidf/images/diagram-concept.svg" alt="Diagram: Text preprocessing" class="unit-diagram" />
+<img src="/en/assets/units/unit17_nlp_preprocessing_tfidf/images/diagram-concept.svg" alt="Diagram: Text preprocessing" class="unit-diagram" />
 
 
 
@@ -23,6 +23,8 @@ But every book also contains "this," "that," "is," "are" (**stop words**) that d
 Also, "run," "ran," "running" refer to the same action (**stemming/lemmatization** extracts the root).
 
 **NLP preprocessing** is the librarian's work of **removing noise and normalizing words** to capture what makes each text distinctive.
+
+> 📚 **Chapter terminology:** **Tokenization / word segmentation** splits text into units. **Morphological analysis** splits Japanese text into morphemes and also identifies parts of speech and base forms. **Word embeddings** represent words as dense vectors. In this chapter, “word embeddings” refers to context-independent word vectors.
 
 ### 📝 Column: Japanese NLP preprocessing
 
@@ -39,7 +41,9 @@ from janome.tokenizer import Tokenizer
 t = Tokenizer()
 japanese_text = "\u79c1\u306f\u4eca\u65e5\u56fe\u66f8\u9928\u306b\u884c\u304d\u307e\u3057\u305f"
 tokens = [token.surface for token in t.tokenize(japanese_text)]
-print(tokens)  # Morpheme list from morphological analysis
+lemmas = [token.base_form for token in t.tokenize(japanese_text)]
+print(tokens)  # Surface forms
+print(lemmas)  # Base forms
 ```
 
 Differences between English and Japanese preprocessing flows:
@@ -80,6 +84,8 @@ Example with three books:
 | Book B | sports, game, data (3 words) |
 | Book C | AI, program, function (3 words) |
 
+Suppose the common word "of" appears in all three books. Then IDF(of) = log(3 / 3) = 0, so its TF-IDF score is 0 no matter how often it appears in a book. High local frequency alone does not make a word important; it must also be distinctive across the corpus.
+
 Score for "**AI**" in Book A:
 - TF(AI, Book A) = 2 ÷ 4 = **0.50**
 - IDF(AI) = log(3 ÷ 2) ≈ **0.18**
@@ -90,14 +96,14 @@ Score for "**data**" in Book A:
 - IDF(data) = log(3 ÷ 2) ≈ **0.18**
 - **TF-IDF = 0.25 × 0.18 ≈ 0.05**
 
-> 💡 In Book A, "AI" scores higher than "data" because local frequency matters—frequent words characterize the document.
+> 💡 In Book A, "AI" scores higher than "data." However, a word like "of" that appears in every document has IDF 0 and is not treated as important, no matter how frequent it is. TF-IDF combines local frequency with global rarity.
 
 ### 💡 Concrete Business Use Cases
 - **Automated customer support routing**: Extract distinctive keywords from inquiry emails and route to the right team (sales, technical support, returns).
 - **News article recommendations**: Compare TF-IDF features of articles the user read with new articles to recommend relevant news.
 - **Enterprise document search**: Score internal manuals and contracts against search keywords and rank the most relevant documents.
 
-<img src="../../../assets/units/unit17_nlp_preprocessing_tfidf/images/diagram-workflow.svg" alt="Diagram: TF-IDF" class="unit-diagram" />
+<img src="/en/assets/units/unit17_nlp_preprocessing_tfidf/images/diagram-workflow.svg" alt="Diagram: TF-IDF" class="unit-diagram" />
 
 ## 2. Implementation Example
 

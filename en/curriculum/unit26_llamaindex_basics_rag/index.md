@@ -1,7 +1,7 @@
 # Unit 26: LlamaIndex Basics and Retrieval-Augmented Generation
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit26_llamaindex_basics_rag/images/hero.png" alt="Hero: LlamaIndex Basics & RAG" />
+  <img src="/en/assets/units/unit26_llamaindex_basics_rag/images/hero.png" alt="Hero: LlamaIndex Basics & RAG" />
 </p>
 
 > [!IMPORTANT]
@@ -10,7 +10,7 @@
 
 ## 1. Understanding RAG with LlamaIndex
 
-<img src="../../../assets/units/unit26_llamaindex_basics_rag/images/diagram-concept.svg" alt="Diagram: LlamaIndex flow" class="unit-diagram" />
+<img src="/en/assets/units/unit26_llamaindex_basics_rag/images/diagram-concept.svg" alt="Diagram: LlamaIndex flow" class="unit-diagram" />
 
 
 
@@ -19,7 +19,7 @@ In Unit 24 you built **hand-crafted RAG** with APIs and NumPy similarity alone, 
 Production RAG at scale faces parsing diverse formats (PDF, Word, Markdown), meaningful chunking, efficient index storage and updates, and advanced metadata search. **`LlamaIndex`** is the RAG-specialized framework that solves these professionally and fast.
 
 ### What is LlamaIndex? —The RAG-focused de facto standard
-LangChain is a general “do everything” AI app toolkit; LlamaIndex is **100% focused on connecting private data with LLMs**. Data structures, semantic search, and index design are simpler and more intuitive than LangChain for RAG.
+LangChain is a general AI application toolkit; LlamaIndex is strongly focused on connecting data with LLMs. Its data structures, semantic search, and index design can be convenient for RAG, but the right choice depends on requirements, versions, and maintenance cost.
 
 | LlamaIndex core concept | Role analogy |
 | :--- | :--- |
@@ -29,7 +29,7 @@ LangChain is a general “do everything” AI app toolkit; LlamaIndex is **100% 
 
 ---
 
-<img src="../../../assets/units/unit26_llamaindex_basics_rag/images/diagram-workflow.svg" alt="Diagram: vs LangChain" class="unit-diagram" />
+<img src="/en/assets/units/unit26_llamaindex_basics_rag/images/diagram-workflow.svg" alt="Diagram: vs LangChain" class="unit-diagram" />
 
 ## 2. Implementation Example
 

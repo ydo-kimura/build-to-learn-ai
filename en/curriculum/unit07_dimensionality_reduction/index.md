@@ -1,12 +1,12 @@
 # Unit 7: Dimensionality Reduction and PCA
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit07_dimensionality_reduction/images/hero.png" alt="Hero: Dimensionality Reduction" />
+  <img src="/en/assets/units/unit07_dimensionality_reduction/images/hero.png" alt="Hero: compressing high-dimensional data with PCA" />
 </p>
 
 ## 1. Understanding Dimensionality Reduction and PCA
 
-<img src="../../../assets/units/unit07_dimensionality_reduction/images/diagram-concept.svg" alt="Diagram: PCA idea" class="unit-diagram" />
+<img src="/en/assets/units/unit07_dimensionality_reduction/images/diagram-concept.svg" alt="Diagram: PCA idea" class="unit-diagram" />
 
 
 
@@ -42,7 +42,7 @@ It finds directions where **data varies the most (maximum variance)**.
 
 ---
 
-<img src="../../../assets/units/unit07_dimensionality_reduction/images/diagram-workflow.svg" alt="Diagram: Use cases" class="unit-diagram" />
+<img src="/en/assets/units/unit07_dimensionality_reduction/images/diagram-workflow.svg" alt="Diagram: Use cases" class="unit-diagram" />
 
 ## 2. Implementation Example
 

@@ -1,7 +1,7 @@
 # Unit 28: Context-Aware Chatbot
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit28_context_aware_chatbot/images/hero.png" alt="Hero: Context-Aware Chatbot" />
+  <img src="/en/assets/units/unit28_context_aware_chatbot/images/hero.png" alt="Hero: Context-Aware Chatbot" />
 </p>
 
 > [!IMPORTANT]
@@ -11,7 +11,7 @@
 
 ## 1. Understanding Context-Aware Chatbot
 
-<img src="../../../assets/units/unit28_context_aware_chatbot/images/diagram-concept.svg" alt="Diagram: Session memory" class="unit-diagram" />
+<img src="/en/assets/units/unit28_context_aware_chatbot/images/diagram-concept.svg" alt="Diagram: Session memory" class="unit-diagram" />
 
 
 
@@ -30,7 +30,7 @@ LangChain can **automatically append conversation history** to prompts.
 
 | Memory mechanism | Pros | Cons |
 | :--- | :--- | :--- |
-| **Remember all (Buffer Memory)** | Perfect context from the start | Long chats → huge payloads → higher API cost |
+| **Remember all (Buffer Memory)** | Keeps the full history available from the start | Long chats → huge payloads → higher API cost; availability does not guarantee correct understanding |
 | **Recent window (Window Memory)** | Only last N turns; saves tokens | Forgets older topics |
 
 ### 💡 Concrete business use cases
@@ -38,19 +38,21 @@ LangChain can **automatically append conversation history** to prompts.
 - **Long-term customer support (CRM chat)**: Reference purchase and inquiry history—“How is the product you bought last time?”
 - **Game/entertainment NPCs**: Remember player actions and dialogue; attitude and lines change on next meeting.
 
-<img src="../../../assets/units/unit28_context_aware_chatbot/images/diagram-workflow.svg" alt="Diagram: Streamlit UI" class="unit-diagram" />
+<img src="/en/assets/units/unit28_context_aware_chatbot/images/diagram-workflow.svg" alt="Diagram: Streamlit UI" class="unit-diagram" />
 
 ## 2. Implementation Example
 
 Use LangChain’s `RunnableWithMessageHistory` for a chatbot that remembers past conversation.
 
 > ※ Newer LangChain recommends this over legacy `ConversationBufferMemory`.
+>
+> Install `langchain-openai langchain-core` first and set `OPENAI_API_KEY`. Current LangChain uses `InMemoryChatMessageHistory` from `langchain_core.chat_history` for in-memory history.
 
 ```python
 import os
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_community.chat_message_histories import ChatMessageHistory
+from langchain_core.chat_history import InMemoryChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 
 # 1. Prepare LLM
@@ -74,7 +76,7 @@ store = {}
 # Return conversation history for the given session ID (user ID)
 def get_session_history(session_id: str):
     if session_id not in store:
-        store[session_id] = ChatMessageHistory() # create a new notebook for new users
+        store[session_id] = InMemoryChatMessageHistory() # create a new notebook for new users
     return store[session_id]
 
 # 4. Attach memory to the chain
@@ -134,7 +136,7 @@ Create an **infinite-loop chatbot** you control from the terminal.
 import os
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_community.chat_message_histories import ChatMessageHistory
+from langchain_core.chat_history import InMemoryChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
@@ -150,7 +152,7 @@ store = {}
 
 def get_session_history(session_id: str):
     if session_id not in store:
-        store[session_id] = ChatMessageHistory()
+        store[session_id] = InMemoryChatMessageHistory()
     return store[session_id]
 
 chatbot = RunnableWithMessageHistory(

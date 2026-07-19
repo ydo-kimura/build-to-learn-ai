@@ -1,7 +1,7 @@
 # Unit 30: Model Context Protocol (MCP) Fundamentals and Building Your Own Server
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit30_mcp_fundamentals/images/hero.png" alt="Hero: Model Context Protocol" />
+  <img src="/en/assets/units/unit30_mcp_fundamentals/images/hero.png" alt="Hero: Model Context Protocol" />
 </p>
 
 > [!IMPORTANT]
@@ -10,14 +10,14 @@
 
 ## 1. Understanding Model Context Protocol (MCP)
 
-<img src="../../../assets/units/unit30_mcp_fundamentals/images/diagram-concept.svg" alt="Diagram: MCP architecture" class="unit-diagram" />
+<img src="/en/assets/units/unit30_mcp_fundamentals/images/diagram-concept.svg" alt="Diagram: MCP architecture" class="unit-diagram" />
 
 
 When giving AI agents tools—file ops, DB search, external APIs—teams traditionally implemented custom interfaces per framework (LangChain, LlamaIndex) or vendor API, **by hand**.
 
 That tied you to specific frameworks and forced rewriting the same tool wiring for every new agent—a serious scalability problem.
 
-**Model Context Protocol (MCP)**, proposed by Anthropic, is an open standard that normalizes how LLMs (AI clients) connect to external data and tools—**“USB for the AI world”**—so one tool works in any MCP-compatible client.
+**Model Context Protocol (MCP)**, published by Anthropic on **November 25, 2024**, is an open standard that normalizes how LLMs (AI clients) connect to external data and tools—**“USB for the AI world”**—so one tool can be reused across MCP-compatible clients.
 
 ### 1.1 MCP three-layer architecture
 MCP uses three cooperating roles:
@@ -56,7 +56,7 @@ For local runs, **stdio** (stdin/stdout) avoids open network ports—strong loca
 
 ---
 
-<img src="../../../assets/units/unit30_mcp_fundamentals/images/diagram-workflow.svg" alt="Diagram: Build a server" class="unit-diagram" />
+<img src="/en/assets/units/unit30_mcp_fundamentals/images/diagram-workflow.svg" alt="Diagram: Build a server" class="unit-diagram" />
 
 ## 2. Implementation Example
 

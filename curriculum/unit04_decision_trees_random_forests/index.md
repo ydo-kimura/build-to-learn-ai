@@ -1,7 +1,7 @@
 # Unit 4: 決定木とランダムフォレスト
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit04_decision_trees_random_forests/images/hero.png" alt="ヒーロー画像：Decision Trees & Random Forests" />
+  <img src="../../assets/units/unit04_decision_trees_random_forests/images/hero.png" alt="ヒーロー画像：決定木の分岐とランダムフォレストの多数決" />
 </p>
 
 ## 1. 決定木とランダムフォレストの理解
@@ -25,7 +25,7 @@
    - Yes → 犬！🐶
    - No → 猫！🐱
 
-下図は、上の2段階の質問を **決定木** の形にしたものです。ルート（根）の「Feathers?」から始まり、左の枝（Yes）で鳥に到達し、右の枝（No）ではさらに「Walks?」で犬と猫に分岐しています。各ノードは Yes/No の分岐点、葉（末端）が最終的な分類結果です。
+下図は、上の2段階の質問を **決定木** の形にしたものです。図中の質問ラベルは英語ですが、ルート（根）の「Feathers?（羽が生えている？）」から始まり、左の枝（Yes）で鳥に到達し、右の枝（No）ではさらに「Walks?（散歩が好き？）」で犬と猫に分岐しています。各ノードは Yes/No の分岐点、葉（末端）が最終的な分類結果です。
 
 <img src="../../assets/units/unit04_decision_trees_random_forests/images/diagram-concept.svg" alt="図解：動物分類の決定木（Feathers? → Bird / Walks? → Dog・Cat）" class="unit-diagram" />
 

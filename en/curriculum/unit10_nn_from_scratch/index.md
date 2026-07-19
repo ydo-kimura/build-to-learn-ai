@@ -1,7 +1,7 @@
 # Unit 10: Neural Networks from Scratch
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit10_nn_from_scratch/images/hero.png" alt="Hero: Neural Networks from Scratch" />
+  <img src="/en/assets/units/unit10_nn_from_scratch/images/hero.png" alt="Hero: Neural Networks from Scratch" />
 </p>
 
 > [!TIP]
@@ -13,7 +13,7 @@
 
 ## 1. Understanding Neural Networks
 
-<img src="../../../assets/units/unit10_nn_from_scratch/images/diagram-concept.svg" alt="Diagram: Network layers" class="unit-diagram" />
+<img src="/en/assets/units/unit10_nn_from_scratch/images/diagram-concept.svg" alt="Diagram: Network layers" class="unit-diagram" />
 
 
 
@@ -40,7 +40,7 @@ In this unit we'll implement **forward propagation** and **backpropagation** usi
 - **Anomaly detection**: Flag unusual sensor patterns (temperature, vibration) that may indicate failure.
 - **Loan underwriting**: Auto-assess repayment ability from income, debt, and tenure.
 
-<img src="../../../assets/units/unit10_nn_from_scratch/images/diagram-workflow.svg" alt="Diagram: Training loop" class="unit-diagram" />
+<img src="/en/assets/units/unit10_nn_from_scratch/images/diagram-workflow.svg" alt="Diagram: Training loop" class="unit-diagram" />
 
 ## 2. Implementation Example
 
@@ -123,7 +123,7 @@ for epoch in range(epochs):
     # -------------------------
     # 2. Compute error — gap between prediction and target
     # -------------------------
-    error = y - output
+    error = output - y
     
     # -------------------------
     # 3. Backpropagation — propagate error backward through layers
@@ -138,10 +138,10 @@ for epoch in range(epochs):
     # -------------------------
     # 4. Update weights and biases
     # -------------------------
-    W2 += a1.T.dot(d_output) * learning_rate
-    b2 += np.sum(d_output, axis=0, keepdims=True) * learning_rate
-    W1 += X.T.dot(d_hidden_layer) * learning_rate
-    b1 += np.sum(d_hidden_layer, axis=0, keepdims=True) * learning_rate
+    W2 -= a1.T.dot(d_output) * learning_rate
+    b2 -= np.sum(d_output, axis=0, keepdims=True) * learning_rate
+    W1 -= X.T.dot(d_hidden_layer) * learning_rate
+    b1 -= np.sum(d_hidden_layer, axis=0, keepdims=True) * learning_rate
 
 print("Predictions after training:")
 print(np.round(output, 3))
@@ -224,7 +224,7 @@ for epoch in range(epochs):
     output = sigmoid(z2)
     
     # 2. Compute error
-    error = y - output
+    error = output - y
     
     # 3. Backpropagation
     d_output = error * sigmoid_derivative(output)
@@ -232,10 +232,10 @@ for epoch in range(epochs):
     d_hidden_layer = error_hidden_layer * sigmoid_derivative(a1)
     
     # 4. Update weights and biases
-    W2 += a1.T.dot(d_output) * learning_rate
-    b2 += np.sum(d_output, axis=0, keepdims=True) * learning_rate
-    W1 += X.T.dot(d_hidden_layer) * learning_rate
-    b1 += np.sum(d_hidden_layer, axis=0, keepdims=True) * learning_rate
+    W2 -= a1.T.dot(d_output) * learning_rate
+    b2 -= np.sum(d_output, axis=0, keepdims=True) * learning_rate
+    W1 -= X.T.dot(d_hidden_layer) * learning_rate
+    b1 -= np.sum(d_hidden_layer, axis=0, keepdims=True) * learning_rate
 
 print("Predictions after training (success if close to 0, 1, 1, 1):")
 print(np.round(output, 3))

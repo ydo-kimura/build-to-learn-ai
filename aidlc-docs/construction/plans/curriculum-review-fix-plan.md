@@ -19,6 +19,11 @@ This plan is the single source of truth for the current curriculum review remedi
 - [x] 7. Run build, diagram, Markdown/code, link, and asset checks; update audit and state.
 - [x] 8. Add Unit 0 scope guidance, Unit 22 tokenizer foundations, and Unit 23 token-count/streaming practice.
 - [x] 9. Add Unit 35/36 foundational chapters, shift Capstones to Unit 37〜42, and update navigation and references.
+- [x] 10. Synchronize the English curriculum with Unit 0〜42 structure, Unit 22/23 additions, and Unit 35/36 content.
+- [x] 11. Separate English hero images and diagrams into language-specific asset directories.
+- [x] 12. Localize all Japanese curriculum hero-image titles and the Unit 35/36 SVG hero labels.
+- [x] 13. Make `public/assets/` and `public/en/assets/` the deployed language-specific asset sources.
+- [x] 14. Pass 1 review: collect CH1–CH5 subagent findings, integrate into review.md (80 findings: 3 Critical / 16 High / 40 Medium / 21 Low; 2 rejected as false positives), and mechanically recount severity totals.
 
 ## Completion Evidence
 
@@ -27,3 +32,4 @@ This plan is the single source of truth for the current curriculum review remedi
 - Python fenced-block syntax validation
 - Local Markdown link and image-reference validation
 - Review of all changed files against this checklist
+- `review.md` (Pass 1 findings integrated; Pass 2 fixes pending user approval)

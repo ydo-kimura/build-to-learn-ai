@@ -1,7 +1,7 @@
 # Unit 13: Overfitting Prevention in Deep Learning
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit13_regularization/images/hero.png" alt="Hero: Regularization in DL" />
+  <img src="/en/assets/units/unit13_regularization/images/hero.png" alt="Hero: Regularization in DL" />
 </p>
 
 > [!TIP]
@@ -10,7 +10,7 @@
 
 ## 1. Understanding Regularization in DL
 
-<img src="../../../assets/units/unit13_regularization/images/diagram-concept.svg" alt="Diagram: Dropout" class="unit-diagram" />
+<img src="/en/assets/units/unit13_regularization/images/diagram-concept.svg" alt="Diagram: Dropout" class="unit-diagram" />
 
 
 
@@ -49,7 +49,7 @@ In this unit, you will learn how to add **Dropout** and **Weight Decay** to a ne
 - **Credit card fraud detection**: Use Dropout and other regularization so the model does not memorize limited past fraud patterns and can adapt to new scam tactics.
 - **Stock and FX forecasting**: Financial time series are noisy; use Weight Decay and similar methods to build robust models that do not overreact to noise.
 
-<img src="../../../assets/units/unit13_regularization/images/diagram-workflow.svg" alt="Diagram: BatchNorm" class="unit-diagram" />
+<img src="/en/assets/units/unit13_regularization/images/diagram-workflow.svg" alt="Diagram: BatchNorm" class="unit-diagram" />
 
 ## 2. Implementation Example
 
@@ -60,6 +60,7 @@ First, PyTorch setup.
 ```python
 import torch
 import torch.nn as nn
+import copy
 import torch.optim as optim
 
 # Dummy data (arbitrary values; we only inspect structure here)
@@ -157,6 +158,8 @@ import torch.optim as optim
 torch.manual_seed(42)
 X_train = torch.randn(20, 10)
 y_train = torch.randn(20, 1)
+X_val = torch.randn(10, 10)
+y_val = torch.randn(10, 1)
 
 # 2. Define network
 class MyRobustNet(nn.Module):
@@ -212,8 +215,8 @@ model.eval() # [IMPORTANT] Dropout OFF (all neurons active)
 
 # Best practice: use no_grad for inference
 with torch.no_grad():
-    final_pred = model(X_train)
-    print("Test predictions complete (first 3 values):")
+    final_pred = model(X_val)
+    print("Validation predictions complete (first 3 values):")
     print(final_pred[:3].flatten().numpy())
 ```
 

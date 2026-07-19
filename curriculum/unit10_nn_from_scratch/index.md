@@ -130,7 +130,7 @@ for epoch in range(epochs):
     # -------------------------
     # 2. 誤差の計算 - 社長の判断と正解のズレを確認
     # -------------------------
-    error = y - output
+    error = output - y
     
     # -------------------------
     # 3. 誤差逆伝播 (Backpropagation) - 間違いの原因を探って下に伝える
@@ -145,10 +145,10 @@ for epoch in range(epochs):
     # -------------------------
     # 4. 重みとバイアスの更新 - 反省を活かしてルールを修正する
     # -------------------------
-    W2 += a1.T.dot(d_output) * learning_rate
-    b2 += np.sum(d_output, axis=0, keepdims=True) * learning_rate
-    W1 += X.T.dot(d_hidden_layer) * learning_rate
-    b1 += np.sum(d_hidden_layer, axis=0, keepdims=True) * learning_rate
+    W2 -= a1.T.dot(d_output) * learning_rate
+    b2 -= np.sum(d_output, axis=0, keepdims=True) * learning_rate
+    W1 -= X.T.dot(d_hidden_layer) * learning_rate
+    b1 -= np.sum(d_hidden_layer, axis=0, keepdims=True) * learning_rate
 
 print("学習後のAIの予測結果:")
 print(np.round(output, 3))
@@ -161,7 +161,7 @@ print(np.round(output, 3))
 3. **誤差逆伝播（バックプロパゲーション）** : 出口（出力層）から入り口（隠れ層）に向かって、「誰のせいで間違えたのか（誰の重みを直せばいいか）」を計算して遡ります。
 4. **更新** : 計算した「直すべき量」をもとに、重み（W）とバイアス（b）を微調整します。
 
-なお、このネットワークが最小化しようとしている「ズレの指標（損失関数）」は、 **誤差の二乗和** （データ数で平均すれば **平均二乗誤差：MSE** 。学習の方向はどちらでも同じです）です。コード上では `error = y - output` の後にその微分に相当する量を使って重みを更新しており、これは「予測と正解の差を二乗した合計」が小さくなる方向へ学習していることを意味します。次の Unit 11 以降では、この損失関数を PyTorch の `nn.MSELoss` などとして明示的に指定するようになります。
+なお、このネットワークが最小化しようとしている「ズレの指標（損失関数）」は、 **誤差の二乗和** （データ数で平均すれば **平均二乗誤差：MSE**）です。コードでは `error = output - y` を損失の微分方向として使い、重みを `-=` で更新しています。つまり、予測と正解の差を二乗した合計が小さくなる方向へ、勾配降下法でパラメータを動かしています。次の Unit 11 以降では、この損失関数を PyTorch の `nn.MSELoss` などとして明示的に指定するようになります。
 
 これを5000回（エポック）繰り返すことで、AIは徐々に正解を導き出せる賢いネットワークへと成長します。
 
@@ -232,7 +232,7 @@ for epoch in range(epochs):
     output = sigmoid(z2)
     
     # 2. 誤差計算
-    error = y - output
+    error = output - y
     
     # 3. 誤差逆伝播
     d_output = error * sigmoid_derivative(output)
@@ -240,10 +240,10 @@ for epoch in range(epochs):
     d_hidden_layer = error_hidden_layer * sigmoid_derivative(a1)
     
     # 4. 更新
-    W2 += a1.T.dot(d_output) * learning_rate
-    b2 += np.sum(d_output, axis=0, keepdims=True) * learning_rate
-    W1 += X.T.dot(d_hidden_layer) * learning_rate
-    b1 += np.sum(d_hidden_layer, axis=0, keepdims=True) * learning_rate
+    W2 -= a1.T.dot(d_output) * learning_rate
+    b2 -= np.sum(d_output, axis=0, keepdims=True) * learning_rate
+    W1 -= X.T.dot(d_hidden_layer) * learning_rate
+    b1 -= np.sum(d_hidden_layer, axis=0, keepdims=True) * learning_rate
 
 print("学習後のAIの予測結果 (0, 1, 1, 1 に近ければ成功):")
 print(np.round(output, 3))

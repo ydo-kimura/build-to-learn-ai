@@ -1,7 +1,7 @@
 # Unit 5: 勾配ブースティングと XGBoost
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit05_gradient_boosting_xgboost/images/hero.png" alt="ヒーロー画像：Gradient Boosting & XGBoost" />
+  <img src="../../assets/units/unit05_gradient_boosting_xgboost/images/hero.png" alt="ヒーロー画像：勾配ブースティングとXGBoostが誤差を逐次修正する仕組み" />
 </p>
 
 ## 1. 勾配ブースティングとXGBoostの理解
@@ -35,7 +35,7 @@
 そこで登場したのが **XGBoost (eXtreme Gradient Boosting)** です！
 XGBoostでは、ブースティングの木を順番に作っていく流れ自体は直列のままです。その代わり、 **1本の木を作る内部の計算（どの特徴量のどの値で分割するかの探索）を並列化** することで、 **爆速化** を実現しました。さらに「データの欠損（空欄）を自動で処理する」などの便利な機能も詰め込まれています。
 
-なお、勾配ブースティングそのものは scikit-learn の `GradientBoostingClassifier` でも手軽に使うことができます。ただし、XGBoostは速度・精度・欠損値処理の面で優れているため、実務ではこちらが主流となっています。なお、XGBoost をはじめとする多くの ML アルゴリズムは数値しか扱えないため、「東京/大阪」のような **カテゴリ変数** はあらかじめ数値に変換（エンコーディング）してから渡します。その代表的な方法（One-Hot エンコーディング）は Unit 9 で実際に使います。
+なお、勾配ブースティングそのものは scikit-learn の `GradientBoostingClassifier` でも手軽に使うことができます。ただし、XGBoostは速度・精度・欠損値処理の面で優れているため、実務ではこちらが主流となっています。また、XGBoost をはじめとする多くの ML アルゴリズムは数値しか扱えないため、「東京/大阪」のような **カテゴリ変数** はあらかじめ数値に変換（エンコーディング）してから渡します。その代表的な方法（One-Hot エンコーディング）は Unit 9 で概念を解説しますが、Unit 9 の実装例では数値列だけを使うため実際には登場しません。
 
 その圧倒的な精度とスピードから、世界中のデータサイエンティストが競い合う大会（Kaggleなど）で **「優勝者のほとんどがXGBoostを使っている」** という一時代を築いた、伝説のアルゴリズムです。
 

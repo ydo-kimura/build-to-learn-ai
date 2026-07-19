@@ -1,7 +1,7 @@
 # Unit 34: Agent SDK — Coding & Autonomous Development
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit34_agent_sdk_coding_agents/images/hero.png" alt="Hero: Agent SDK: Coding Agents" />
+  <img src="/en/assets/units/unit34_agent_sdk_coding_agents/images/hero.png" alt="Hero: Agent SDK: Coding Agents" />
 </p>
 
 In the previous unit (Unit 33), you learned **general-purpose business automation agents** (reception, inventory lookup, payment, etc.) using commercial Agent SDKs. This unit extends that with **Agent SDKs specialized for coding and autonomous development**. Unlike business automation agents, autonomous development agents have powerful permissions over the file system and shell, so stricter safety design is required.
@@ -16,7 +16,7 @@ This unit covers architectures specific to autonomous development agents, safety
 
 ## 1. Explanation Phase
 
-<img src="../../../assets/units/unit34_agent_sdk_coding_agents/images/diagram-concept.svg" alt="Diagram: Coding agent flow" class="unit-diagram" />
+<img src="/en/assets/units/unit34_agent_sdk_coding_agents/images/diagram-concept.svg" alt="Diagram: Coding agent flow" class="unit-diagram" />
 
 
 ### 1.1 What Makes Autonomous Coding / Software Development Agents Different
@@ -24,7 +24,7 @@ While general business automation agents perform limited API integrations such a
 
 - **File system operations**: Read, create, overwrite, and delete project source code.
 - **Shell/terminal execution**: Run build commands, unit tests, compilation, and external module installation.
-- **Linter/LSP (Language Server Protocol) integration**: Real-time syntax checking and auto-fix.
+- **Linter/LSP (Language Server Protocol) integration**: A linter checks code style and suspicious patterns; LSP is a communication protocol that provides editor features such as completion, go-to-definition, and diagnostics. Together they support real-time checks and fixes.
 
 These operations can cause severe damage from a single mistake—infinite loops exhausting resources, accidental deletion of critical source, or unintended malicious commands—so commercial development Agent SDKs include strong built-in protections.
 
@@ -64,7 +64,7 @@ graph TD
 
 ---
 
-<img src="../../../assets/units/unit34_agent_sdk_coding_agents/images/diagram-workflow.svg" alt="Diagram: Best practices" class="unit-diagram" />
+<img src="/en/assets/units/unit34_agent_sdk_coding_agents/images/diagram-workflow.svg" alt="Diagram: Best practices" class="unit-diagram" />
 
 ## 2. Practice
 

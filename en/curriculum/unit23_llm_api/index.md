@@ -1,7 +1,7 @@
 # Unit 23: LLM API Usage and Prompt Engineering
 
 <p class="unit-hero">
-  <img src="../../../assets/units/unit23_llm_api/images/hero.png" alt="Hero: LLM API & Prompting" />
+  <img src="/en/assets/units/unit23_llm_api/images/hero.png" alt="Hero: LLM API & Prompting" />
 </p>
 
 > [!IMPORTANT]
@@ -12,7 +12,7 @@
 
 ## 1. Understanding LLM API Usage & Prompting
 
-<img src="../../../assets/units/unit23_llm_api/images/diagram-concept.svg" alt="Diagram: API call flow" class="unit-diagram" />
+<img src="/en/assets/units/unit23_llm_api/images/diagram-concept.svg" alt="Diagram: API call flow" class="unit-diagram" />
 
 
 
@@ -30,7 +30,7 @@ An API is like **“a gateway between programs.”**
 | :--- | :--- | :--- |
 | **User** | Human | Program (Python, etc.) |
 | **Purpose** | Personal Q&A and tasks | Automation, embedding in custom apps |
-| **Customization** | Limited | Fine control (temperature/randomness, etc.) |
+| **Customization** | Limited | Fine control such as `temperature`, a parameter for adjusting output randomness |
 | **Billing** | Often monthly subscription | Often pay-as-you-go |
 
 ### What is prompting?
@@ -44,7 +44,7 @@ AI is smart but poor at “reading the room,” so you must specify **role**, **
 
 ---
 
-<img src="../../../assets/units/unit23_llm_api/images/diagram-workflow.svg" alt="Diagram: Prompt patterns" class="unit-diagram" />
+<img src="/en/assets/units/unit23_llm_api/images/diagram-workflow.svg" alt="Diagram: Prompt patterns" class="unit-diagram" />
 
 ## 2. Three Core Prompt Engineering Techniques
 
@@ -107,7 +107,7 @@ Choose techniques by task difficulty in production systems.
 
 Use OpenAI’s API—the most widely used worldwide—to ask the AI a question from Python.
 
-> ※ Run `pip install openai` first and obtain an OpenAI API key.
+> ※ Run `pip install openai tiktoken` first and obtain an OpenAI API key. `tiktoken` is used later to measure token counts.
 
 ```python
 import os
@@ -138,6 +138,28 @@ print("AI answer:")
 print(response.choices[0].message.content)
 ```
 
+### Extension: inspect input token count
+
+Measuring tokens before sending a request helps estimate context usage and approximate cost. This calls a model tokenizer; it does not implement the tokenizer internals.
+
+```python
+import tiktoken
+
+text = "LLMs split text into tokens before processing it."
+
+try:
+    encoding = tiktoken.encoding_for_model("gpt-4o-mini")
+except KeyError:
+    encoding = tiktoken.get_encoding("cl100k_base")
+
+token_ids = encoding.encode(text)
+print("Characters:", len(text))
+print("Tokens:", len(token_ids))
+print("First token IDs:", token_ids[:10])
+```
+
+Compare English, Japanese, and code inputs. Character count and token count are not always proportional. For exact billing and model support, check the current model documentation.
+
 **🔍 Detailed code walkthrough**
 1. **API client setup**: `OpenAI` class sets your API key—like an ID proving you can pay for orders.
 2. **Prompt creation**: Put conversation history in the `messages` list as dicts. `system` sets persona (“friendly teacher”); `user` asks the question.
@@ -157,6 +179,18 @@ Now that you know the API, build a function for **sentiment analysis**.
 
 **💡 Hint**
 - In `system`, strongly instruct: “You are a sentiment analysis system. Output exactly one of Positive, Negative, or Neutral. No extra explanation.”
+
+### Extension: streaming responses
+
+After completing the sentiment-analysis exercise, change the API call to streaming mode.
+
+**Requirements**
+- Set `stream=True` and print each received chunk as it arrives.
+- Join all chunks into a final result.
+- Compare time-to-first-output and implementation differences with a normal response.
+- Do not treat an interrupted response as a completed business result.
+
+Streaming can make output appear sooner, but it does not guarantee correctness or safety.
 
 ---
 
@@ -204,3 +238,30 @@ if __name__ == "__main__":
     print(f'"{test_review_2}" -> {analyze_sentiment(test_review_2)}')
 ```
 </details>
+
+### Extension answer: streaming response
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+stream = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Explain AI in one sentence."}],
+    stream=True,
+)
+
+chunks = []
+try:
+    for chunk in stream:
+        content = chunk.choices[0].delta.content or ""
+        print(content, end="", flush=True)
+        chunks.append(content)
+    final_text = "".join(chunks)
+    print("\n\nFinal result:", final_text)
+except Exception as exc:
+    print(f"\nStreaming did not complete: {exc}")
+```
+
+If an exception occurs, do not save `final_text` as a confirmed business response.
