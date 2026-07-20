@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 860" role="img" aria-label="Linear regression finds the best-fit line between room size and rent">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#f8fbff"/><stop offset="1" stop-color="#eef2ff"/></linearGradient>
+    <linearGradient id="blue"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#4f46e5"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#172554" flood-opacity=".12"/></filter>
+  </defs>
+  <rect width="1536" height="860" rx="28" fill="url(#bg)"/>
+  <rect x="40" y="34" width="1456" height="112" rx="22" fill="#fff" filter="url(#shadow)"/>
+  <rect x="70" y="63" width="190" height="54" rx="27" fill="url(#blue)"/><text x="165" y="99" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#fff">LINEAR MODEL</text>
+  <text x="292" y="100" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#172554">Fit one line to explain the trend</text>
+  <text x="70" y="184" font-family="Arial,sans-serif" font-size="22" fill="#475569">More floor space usually means higher rent. The model learns the line that stays closest to all observations.</text>
+  <g filter="url(#shadow)"><rect x="40" y="224" width="1030" height="570" rx="24" fill="#fff"/><rect x="40" y="224" width="1030" height="74" rx="24" fill="url(#blue)"/><rect x="40" y="274" width="1030" height="24" fill="url(#blue)"/>
+    <text x="74" y="271" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#fff">Observed data → best-fit line</text>
+    <g stroke="#e2e8f0" stroke-width="2"><path d="M150 370H960M150 450H960M150 530H960M150 610H960M150 690H960"/><path d="M250 350V710M350 350V710M450 350V710M550 350V710M650 350V710M750 350V710M850 350V710M950 350V710"/></g>
+    <path d="M150 710H975M150 710V350" stroke="#334155" stroke-width="4"/><path d="M230 650L310 610L390 580L470 535L550 505L630 470L710 430L790 400L870 365L950 335" fill="none" stroke="#f97316" stroke-width="8" stroke-linecap="round"/>
+    <g fill="#2563eb" stroke="#fff" stroke-width="5"><circle cx="230" cy="635" r="12"/><circle cx="310" cy="590" r="12"/><circle cx="390" cy="600" r="12"/><circle cx="470" cy="515" r="12"/><circle cx="550" cy="520" r="12"/><circle cx="630" cy="445" r="12"/><circle cx="710" cy="455" r="12"/><circle cx="790" cy="385" r="12"/><circle cx="870" cy="390" r="12"/><circle cx="950" cy="320" r="12"/></g>
+    <text x="555" y="756" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#475569">Room size (x)</text><text x="82" y="535" transform="rotate(-90 82 535)" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#475569">Rent (y)</text>
+    <rect x="180" y="306" width="310" height="42" rx="12" fill="#fff7ed" stroke="#fdba74" stroke-width="3"/><text x="335" y="334" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" font-weight="700" fill="#c2410c">prediction = ax + b</text>
+  </g>
+  <g filter="url(#shadow)"><rect x="1110" y="224" width="386" height="570" rx="24" fill="#fff"/><rect x="1110" y="224" width="386" height="74" rx="24" fill="#0f766e"/><rect x="1110" y="274" width="386" height="24" fill="#0f766e"/>
+    <text x="1146" y="271" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#fff">What is learned?</text>
+    <circle cx="1303" cy="410" r="72" fill="#ecfdf5" stroke="#14b8a6" stroke-width="5"/><text x="1303" y="400" text-anchor="middle" font-family="Arial,sans-serif" font-size="26" font-weight="700" fill="#0f766e">a</text><text x="1303" y="435" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" fill="#475569">slope</text>
+    <circle cx="1303" cy="590" r="72" fill="#eff6ff" stroke="#60a5fa" stroke-width="5"/><text x="1303" y="580" text-anchor="middle" font-family="Arial,sans-serif" font-size="26" font-weight="700" fill="#1d4ed8">b</text><text x="1303" y="615" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" fill="#475569">intercept</text>
+    <text x="1303" y="718" text-anchor="middle" font-family="Arial,sans-serif" font-size="23" font-weight="700" fill="#0f766e">learn coefficients</text><text x="1303" y="752" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" fill="#475569">to predict a new rent</text>
+  </g>
+</svg>

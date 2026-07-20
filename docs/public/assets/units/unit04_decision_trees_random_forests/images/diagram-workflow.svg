@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Random forest combines independent decision trees with a majority vote">
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#64748b"/></marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#0f172a" flood-opacity=".10"/></filter>
+  </defs>
+  <rect width="900" height="520" rx="28" fill="#f7f9fc"/>
+  <rect x="32" y="28" width="836" height="76" rx="18" fill="#fff" stroke="#7c3aed" stroke-width="2" filter="url(#shadow)"/>
+  <text x="64" y="60" font-family="DejaVu Sans, sans-serif" font-size="14" letter-spacing="2" fill="#7c3aed" font-weight="700">RANDOM FOREST</text>
+  <text x="64" y="86" font-family="DejaVu Sans, sans-serif" font-size="22" fill="#0f172a" font-weight="700">Many imperfect trees, one steadier prediction</text>
+  <rect x="32" y="126" width="836" height="356" rx="22" fill="#fff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="76" y="164" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#64748b" font-weight="700">SAME INPUT • DIFFERENT RANDOM SAMPLES</text>
+  <g filter="url(#shadow)">
+    <rect x="96" y="192" width="164" height="92" rx="16" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <rect x="368" y="192" width="164" height="92" rx="16" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+    <rect x="640" y="192" width="164" height="92" rx="16" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+    <path d="M178 246l-20-25m20 25l20-25m-20 25v6" fill="none" stroke="#3b82f6" stroke-width="3"/>
+    <path d="M450 246l-20-25m20 25l20-25m-20 25v6" fill="none" stroke="#16a34a" stroke-width="3"/>
+    <path d="M722 246l-20-25m20 25l20-25m-20 25v6" fill="none" stroke="#f97316" stroke-width="3"/>
+    <circle cx="178" cy="222" r="18" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <circle cx="450" cy="222" r="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <circle cx="722" cy="222" r="18" fill="#ffedd5" stroke="#f97316" stroke-width="2"/>
+    <text x="178" y="228" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="12" fill="#1d4ed8" font-weight="700">T1</text>
+    <text x="450" y="228" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="12" fill="#15803d" font-weight="700">T2</text>
+    <text x="722" y="228" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="12" fill="#c2410c" font-weight="700">T3</text>
+    <text x="178" y="274" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#1d4ed8" font-weight="700">vote A</text>
+    <text x="450" y="274" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#15803d" font-weight="700">vote A</text>
+    <text x="722" y="274" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#c2410c" font-weight="700">vote B</text>
+    <rect x="308" y="382" width="284" height="58" rx="17" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+    <text x="450" y="418" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="19" fill="#6d28d9" font-weight="700">Majority vote → A</text>
+  </g>
+  <path d="M178 284V350H445" fill="none" stroke="#64748b" stroke-width="2.5"/>
+  <path d="M450 284V345" fill="none" stroke="#64748b" stroke-width="2.5"/>
+  <path d="M722 284V350H455" fill="none" stroke="#64748b" stroke-width="2.5"/>
+  <circle cx="450" cy="350" r="5" fill="#64748b"/>
+  <path d="M450 355V382" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="76" y="458" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#64748b">Randomness creates varied trees; aggregation reduces the impact of one biased tree.</text>
+</svg>

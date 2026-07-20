@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img" aria-label="Validated records are stored as reusable knowledge, queried, and turned into answers">
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#64748b"/></marker></defs>
+  <rect width="900" height="500" rx="24" fill="#f8fafc"/>
+  <text x="54" y="58" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#4c1d95">From Record to Knowledge</text>
+  <text x="54" y="88" font-family="Arial,sans-serif" font-size="15" fill="#64748b">Validated fields become reusable business knowledge</text>
+  <g font-family="Arial,sans-serif">
+    <rect x="50" y="172" width="180" height="112" rx="18" fill="#ecfdf5" stroke="#10b981" stroke-width="3"/><text x="140" y="212" text-anchor="middle" font-size="18" font-weight="700" fill="#047857">VALID RECORD</text><text x="140" y="244" text-anchor="middle" font-size="15" fill="#334155">date · amount</text><text x="140" y="268" text-anchor="middle" font-size="13" fill="#64748b">with evidence</text>
+    <line x1="230" y1="228" x2="270" y2="228" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="270" y="172" width="200" height="112" rx="18" fill="#eff6ff" stroke="#3b82f6" stroke-width="3"/><text x="370" y="212" text-anchor="middle" font-size="18" font-weight="700" fill="#1d4ed8">KNOWLEDGE STORE</text><text x="370" y="244" text-anchor="middle" font-size="15" fill="#334155">database + graph</text><text x="370" y="268" text-anchor="middle" font-size="13" fill="#64748b">queryable, linked facts</text>
+    <line x1="470" y1="228" x2="530" y2="228" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="530" y="172" width="150" height="112" rx="18" fill="#eef2ff" stroke="#6366f1" stroke-width="3"/><text x="605" y="212" text-anchor="middle" font-size="18" font-weight="700" fill="#4338ca">QUERY</text><text x="605" y="244" text-anchor="middle" font-size="15" fill="#334155">search · aggregate</text><text x="605" y="268" text-anchor="middle" font-size="13" fill="#64748b">evidence-backed</text>
+    <line x1="680" y1="228" x2="730" y2="228" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="730" y="172" width="120" height="112" rx="18" fill="#fff7ed" stroke="#f59e0b" stroke-width="3"/><text x="790" y="214" text-anchor="middle" font-size="17" font-weight="700" fill="#b45309">ANSWER</text><text x="790" y="244" text-anchor="middle" font-size="12" fill="#64748b">business</text><text x="790" y="264" text-anchor="middle" font-size="12" fill="#64748b">decision</text>
+    <rect x="180" y="362" width="556" height="54" rx="16" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><text x="458" y="396" text-anchor="middle" font-size="15" fill="#475569">Evidence and provenance stay attached to every field</text>
+  </g>
+</svg>

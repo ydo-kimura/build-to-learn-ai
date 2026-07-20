@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Neural network layers from input to output">
+<defs><style>.title{font:700 24px sans-serif;fill:#fff}.label{font:700 16px sans-serif;fill:#0f172a}.small{font:500 13px sans-serif;fill:#64748b}.node{stroke-width:3}</style><marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L8 3L0 6Z" fill="#94a3b8"/></marker></defs>
+<rect width="960" height="540" rx="24" fill="#f8fafc"/><rect x="28" y="24" width="904" height="68" rx="16" fill="#0f172a"/><text x="64" y="67" class="title" fill="#fff">Neural network layers</text><text x="896" y="66" text-anchor="end" class="small" fill="#cbd5e1">forward pass</text>
+<rect x="44" y="122" width="872" height="348" rx="20" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
+<text x="150" y="158" text-anchor="middle" class="label">Input</text><text x="480" y="158" text-anchor="middle" class="label">Hidden layer</text><text x="800" y="158" text-anchor="middle" class="label">Output</text>
+<g stroke="#cbd5e1" stroke-width="2" opacity=".9">
+  <path d="M180 220L450 220" marker-end="url(#arrow)"/><path d="M180 280L450 220" marker-end="url(#arrow)"/><path d="M180 340L450 220" marker-end="url(#arrow)"/>
+  <path d="M180 220L450 290" marker-end="url(#arrow)"/><path d="M180 280L450 290" marker-end="url(#arrow)"/><path d="M180 340L450 290" marker-end="url(#arrow)"/>
+  <path d="M180 220L450 360" marker-end="url(#arrow)"/><path d="M180 280L450 360" marker-end="url(#arrow)"/><path d="M180 340L450 360" marker-end="url(#arrow)"/>
+  <path d="M510 220L766 280" marker-end="url(#arrow)"/><path d="M510 290L766 280" marker-end="url(#arrow)"/><path d="M510 360L766 280" marker-end="url(#arrow)"/>
+</g>
+<g class="node"><circle cx="150" cy="220" r="30" fill="#dbeafe" stroke="#3b82f6"/><circle cx="150" cy="280" r="30" fill="#dbeafe" stroke="#3b82f6"/><circle cx="150" cy="340" r="30" fill="#dbeafe" stroke="#3b82f6"/><circle cx="480" cy="220" r="30" fill="#ede9fe" stroke="#8b5cf6"/><circle cx="480" cy="290" r="30" fill="#ede9fe" stroke="#8b5cf6"/><circle cx="480" cy="360" r="30" fill="#ede9fe" stroke="#8b5cf6"/><circle cx="800" cy="280" r="34" fill="#dcfce7" stroke="#22c55e"/></g>
+<g class="label" text-anchor="middle"><text x="150" y="226">x₁</text><text x="150" y="286">x₂</text><text x="150" y="346">x₃</text><text x="480" y="226">h₁</text><text x="480" y="296">h₂</text><text x="480" y="366">h₃</text><text x="800" y="286">ŷ</text></g>
+<rect x="84" y="412" width="792" height="34" rx="10" fill="#eff6ff"/><text x="480" y="435" text-anchor="middle" class="small">Each layer transforms the representation before the next layer receives it.</text>
+</svg>

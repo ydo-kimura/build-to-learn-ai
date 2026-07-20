@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">RNN unrolled through time</title>
+  <desc id="desc">An RNN passes a hidden state from one time step to the next while reading a sequence.</desc>
+  <defs><marker id="a" markerWidth="4" markerHeight="4" refX="8" refY="4" markerUnits="strokeWidth" viewBox="0 0 8 8" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#64748b"/></marker></defs>
+  <rect width="900" height="520" rx="24" fill="#f8fafc"/>
+  <rect x="32" y="28" width="836" height="72" rx="16" fill="#fff" stroke="#2563eb" stroke-width="3"/>
+  <text x="64" y="74" font-family="DejaVu Sans,sans-serif" font-size="28" font-weight="700" fill="#172554">RNN carries a memory through time</text>
+  <text x="838" y="73" text-anchor="end" font-family="DejaVu Sans,sans-serif" font-size="16" fill="#2563eb">sequence processing</text>
+  <text x="450" y="140" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="16" fill="#64748b">Each step combines the new input with the previous hidden state.</text>
+  <g font-family="DejaVu Sans,sans-serif">
+    <g fill="#dbeafe" stroke="#2563eb" stroke-width="2">
+      <rect x="74" y="214" width="112" height="78" rx="16"/>
+      <rect x="270" y="214" width="112" height="78" rx="16"/>
+      <rect x="466" y="214" width="112" height="78" rx="16"/>
+      <rect x="662" y="214" width="112" height="78" rx="16"/>
+    </g>
+    <g font-size="20" font-weight="700" fill="#1e3a8a">
+      <text x="130" y="260" text-anchor="middle">RNN</text>
+      <text x="326" y="260" text-anchor="middle">RNN</text>
+      <text x="522" y="260" text-anchor="middle">RNN</text>
+      <text x="718" y="260" text-anchor="middle">RNN</text>
+    </g>
+    <g stroke="#64748b" stroke-width="3" marker-end="url(#a)">
+      <line x1="186" y1="253" x2="270" y2="253"/>
+      <line x1="382" y1="253" x2="466" y2="253"/>
+      <line x1="578" y1="253" x2="662" y2="253"/>
+    </g>
+    <g font-size="15" fill="#475569">
+      <text x="228" y="229" text-anchor="middle">h₀ → h₁</text>
+      <text x="424" y="229" text-anchor="middle">h₁ → h₂</text>
+      <text x="620" y="229" text-anchor="middle">h₂ → h₃</text>
+    </g>
+    <g fill="#fff" stroke="#94a3b8" stroke-width="2">
+      <rect x="86" y="346" width="88" height="46" rx="12"/>
+      <rect x="282" y="346" width="88" height="46" rx="12"/>
+      <rect x="478" y="346" width="88" height="46" rx="12"/>
+      <rect x="674" y="346" width="88" height="46" rx="12"/>
+    </g>
+    <g font-size="18" font-weight="700" fill="#334155">
+      <text x="130" y="375" text-anchor="middle">x₁</text>
+      <text x="326" y="375" text-anchor="middle">x₂</text>
+      <text x="522" y="375" text-anchor="middle">x₃</text>
+      <text x="718" y="375" text-anchor="middle">x₄</text>
+    </g>
+    <g stroke="#94a3b8" stroke-width="2" marker-end="url(#a)">
+      <line x1="130" y1="346" x2="130" y2="292"/>
+      <line x1="326" y1="346" x2="326" y2="292"/>
+      <line x1="522" y1="346" x2="522" y2="292"/>
+      <line x1="718" y1="346" x2="718" y2="292"/>
+    </g>
+    <text x="450" y="442" text-anchor="middle" font-size="16" fill="#64748b">Earlier information must travel through many steps.</text>
+  </g>
+  <rect x="74" y="462" width="700" height="28" rx="10" fill="#fef3c7"/>
+  <text x="450" y="482" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" fill="#92400e">Long sequences can weaken the signal → vanishing-gradient risk.</text>
+</svg>

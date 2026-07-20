@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="K-Means alternates assigning points to the nearest centroid and moving centroids">
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#64748b"/></marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#0f172a" flood-opacity=".10"/></filter>
+  </defs>
+  <rect width="900" height="520" rx="28" fill="#f7f9fc"/>
+  <rect x="32" y="28" width="836" height="76" rx="18" fill="#fff" stroke="#2563eb" stroke-width="2" filter="url(#shadow)"/>
+  <text x="64" y="60" font-family="DejaVu Sans, sans-serif" font-size="14" letter-spacing="2" fill="#2563eb" font-weight="700">K-MEANS</text>
+  <text x="64" y="86" font-family="DejaVu Sans, sans-serif" font-size="22" fill="#0f172a" font-weight="700">Assign points, move centroids, repeat</text>
+  <rect x="32" y="126" width="836" height="356" rx="22" fill="#fff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="76" y="164" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#64748b" font-weight="700">ITERATIVE OPTIMIZATION</text>
+  <g filter="url(#shadow)">
+    <rect x="76" y="196" width="208" height="154" rx="18" fill="#fff" stroke="#dbe3ef" stroke-width="2"/>
+    <rect x="346" y="196" width="208" height="154" rx="18" fill="#fff" stroke="#dbe3ef" stroke-width="2"/>
+    <rect x="616" y="196" width="208" height="154" rx="18" fill="#fff" stroke="#dbe3ef" stroke-width="2"/>
+    <text x="180" y="226" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#1d4ed8" font-weight="700">1. Assign</text>
+    <text x="450" y="226" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#c2410c" font-weight="700">2. Move</text>
+    <text x="720" y="226" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#15803d" font-weight="700">3. Repeat</text>
+    <g transform="translate(92 238)"><circle cx="36" cy="42" r="7" fill="#f97316"/><circle cx="56" cy="30" r="7" fill="#f97316"/><circle cx="74" cy="50" r="7" fill="#f97316"/><circle cx="144" cy="28" r="7" fill="#8b5cf6"/><circle cx="164" cy="40" r="7" fill="#8b5cf6"/><circle cx="154" cy="58" r="7" fill="#8b5cf6"/><circle cx="56" cy="41" r="12" fill="none" stroke="#f97316" stroke-width="2"/><circle cx="154" cy="42" r="12" fill="none" stroke="#8b5cf6" stroke-width="2"/></g>
+    <g transform="translate(362 238)"><circle cx="42" cy="42" r="7" fill="#f97316"/><circle cx="62" cy="30" r="7" fill="#f97316"/><circle cx="80" cy="50" r="7" fill="#f97316"/><circle cx="140" cy="28" r="7" fill="#8b5cf6"/><circle cx="160" cy="40" r="7" fill="#8b5cf6"/><circle cx="150" cy="58" r="7" fill="#8b5cf6"/><path d="M70 42h24" stroke="#f97316" stroke-width="2.5" marker-end="url(#arrow)"/><path d="M140 42h-24" stroke="#8b5cf6" stroke-width="2.5" marker-end="url(#arrow)"/></g>
+    <g transform="translate(632 238)"><circle cx="36" cy="42" r="7" fill="#f97316"/><circle cx="56" cy="30" r="7" fill="#f97316"/><circle cx="74" cy="50" r="7" fill="#f97316"/><circle cx="144" cy="28" r="7" fill="#8b5cf6"/><circle cx="164" cy="40" r="7" fill="#8b5cf6"/><circle cx="154" cy="58" r="7" fill="#8b5cf6"/><circle cx="56" cy="41" r="12" fill="none" stroke="#f97316" stroke-width="2"/><circle cx="154" cy="42" r="12" fill="none" stroke="#8b5cf6" stroke-width="2"/></g>
+    <rect x="258" y="400" width="384" height="48" rx="15" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+    <text x="450" y="430" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#6d28d9" font-weight="700">stop when centroids no longer move</text>
+  </g>
+  <path d="M284 273H346" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M554 273H616" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M824 273H850V178H50V273H76" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#arrow)"/>
+  <text x="720" y="169" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#64748b" font-weight="700">repeat → assign</text>
+  <path d="M720 350V374H450V400" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#arrow)"/>
+  <text x="76" y="470" font-family="DejaVu Sans, sans-serif" font-size="14" fill="#64748b">K-Means works best when clusters are compact, round, and separated by distance.</text>
+</svg>

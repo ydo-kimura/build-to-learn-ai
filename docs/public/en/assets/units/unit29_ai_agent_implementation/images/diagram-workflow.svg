@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 430" role="img" aria-label="Scratch agent tool calling architecture">
+  <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#64748b"/></marker><style>.title{font:700 23px Inter,Arial,sans-serif;fill:#172554}.label{font:700 16px Inter,Arial,sans-serif}.note{font:500 13px Inter,Arial,sans-serif;fill:#475569}.small{font:600 12px Inter,Arial,sans-serif;fill:#64748b}</style></defs>
+  <rect width="760" height="430" rx="22" fill="#f8fafc"/><rect x="24" y="22" width="712" height="58" rx="15" fill="#fff" stroke="#7c3aed" stroke-width="2"/><text x="380" y="59" text-anchor="middle" class="title">From tool schema to tool result</text>
+  <text x="72" y="124" class="small">SCRATCH AGENT ARCHITECTURE</text>
+  <rect x="42" y="142" width="676" height="198" rx="20" fill="#fff" stroke="#dbe4f0" stroke-width="2"/>
+  <rect x="72" y="194" width="150" height="82" rx="16" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/><text x="147" y="225" text-anchor="middle" class="label" fill="#1d4ed8">LLM</text><text x="147" y="249" text-anchor="middle" class="note">choose a tool</text>
+  <line x1="222" y1="235" x2="266" y2="235" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="266" y="194" width="180" height="82" rx="16" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/><text x="356" y="225" text-anchor="middle" class="label" fill="#6d28d9">Tool schema</text><text x="356" y="249" text-anchor="middle" class="note">name + typed arguments</text>
+  <line x1="446" y1="235" x2="490" y2="235" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="490" y="194" width="198" height="82" rx="16" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/><text x="589" y="225" text-anchor="middle" class="label" fill="#047857">Tool runtime</text><text x="589" y="249" text-anchor="middle" class="note">execute real-world action</text>
+  <path d="M589 276V310H147V276" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#arrow)"/><text x="368" y="333" text-anchor="middle" class="small">return result → continue the loop</text>
+  <text x="380" y="391" text-anchor="middle" class="note">The schema is the contract between the model and your Python function.</text>
+</svg>
