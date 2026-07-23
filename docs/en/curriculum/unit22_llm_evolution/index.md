@@ -111,6 +111,8 @@ Exciting! Let’s take the first step in LLM app development.
 
 ## 2. Implementation Example
 
+> **Colab setup:** The current Colab runtime includes the OpenAI Python SDK, so no additional installation is required.
+
 Start with the simplest **API hello world**—the departure point for all LLM application development.
 Call OpenAI’s API from Python and have the AI greet you.
 

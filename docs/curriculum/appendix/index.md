@@ -18,39 +18,45 @@
 
 ---
 
-## 📦 2. ライブラリの一括インストール方法
+## 📦 2. Unit ごとの最小ライブラリをインストールする
 
-各Unitの実装で必要なライブラリは、Colab のセルで以下のコマンドを実行することで、一瞬でインストールできます。
+Colab には NumPy、pandas、scikit-learn、PyTorch など多くのライブラリが最初から入っています。ランタイムの構成は更新されるため、本カリキュラムでは全 Unit 分のライブラリを一括インストールしません。
 
-学習を始める前に、ノートブックの最初のセルで以下を実行してください：
+新しい Colab ランタイムで対象 Unit を開き、Unit 冒頭の「Colab セットアップ」にコマンドがある場合だけ、そのセルを実行してください。たとえば Unit 18 では `gensim` だけを追加します。
 
-```bash
-!pip install -r https://raw.githubusercontent.com/ydo-kimura/build-to-learn-ai/main/requirements.txt
+```python
+%pip install gensim
 ```
 
-> **💡 ローカル環境で実行する場合**
-> ローカル環境（Jupyter Labなど）で実行する場合は、プロジェクトのルートにある [requirements.txt](https://github.com/ydo-kimura/build-to-learn-ai/blob/main/requirements.txt) を使用して、ターミナルで以下を実行します。
+`%pip install` は、指定したパッケージが既に互換バージョンで存在する場合はそのまま利用します。`-U` や `--upgrade` を無条件に付けて、Colab の標準パッケージをまとめて更新しないでください。
+
+### 依存関係の警告が表示された場合
+
+`Successfully installed` の後に依存関係の警告が出ることがあります。この表示は「新しいパッケージの導入は完了したが、既存の Colab パッケージとの互換性は保証できない」という意味で、警告を無視して学習を続ける合図ではありません。
+
+1. メニューから **「ランタイム」→「ランタイムを接続解除して削除」** を選び、新しいランタイムに戻します。
+2. 対象 Unit に記載された最小コマンドだけを実行します。
+3. `previously imported` と表示された場合は、導入完了後に一度だけセッションを再起動してから import セルを実行します。
+
+> **💡 ローカル環境で一括準備する場合**
+> ルートの [requirements.txt](https://github.com/ydo-kimura/build-to-learn-ai/blob/main/requirements.txt) は、Colab ではなく分離したローカル仮想環境向けの集約ファイルです。
 >
 > ```bash
-> pip install -r requirements.txt
+> python -m venv .venv
+> source .venv/bin/activate
+> python -m pip install -r requirements.txt
 > ```
 
-### 後半ユニット（Unit 26 以降）で使う主なライブラリ
+### 後半ユニット（Unit 25 以降）で追加する主なライブラリ
 
-以下のライブラリは、いずれも上記の `requirements.txt` の一括インストールに含まれています。特定のユニットだけを個別環境（Colab の新しいノートブックなど）で進める場合は、以下のコマンドで該当分のみをインストールすることもできます。
+以下は各 Unit の実行時に必要なものだけを追加します。
 
-```bash
-!pip install llama-index-core llama-index-readers-file llama-index-llms-openai llama-index-embeddings-openai mcp smolagents pydantic langgraph tiktoken
-```
-
-| ライブラリ                             | 使用ユニット    | 用途                                       |
-| :------------------------------------- | :-------------- | :----------------------------------------- |
-| `llama-index-core` ほか llama-index 系 | Unit 26         | LlamaIndex による RAG 構築                 |
-| `mcp`                                  | Unit 30         | MCP サーバーの実装（FastMCP）              |
-| `smolagents`                           | Unit 31, 37, 40 | Code Agent・マルチエージェント構築         |
-| `pydantic`                             | Unit 39         | 構造化データのスキーマ定義とバリデーション |
-| `tiktoken`                             | Unit 22〜23     | Tokenizerの確認とToken数の測定             |
-| `langgraph`                            | Unit 32         | グラフベースのステートフルエージェント     |
+| ライブラリ                             | 使用ユニット    | 用途                           |
+| :------------------------------------- | :-------------- | :----------------------------- |
+| `langchain-openai`                     | Unit 25〜28     | LangChain と OpenAI の統合     |
+| `llama-index-core` ほか llama-index 系 | Unit 26         | LlamaIndex による RAG 構築     |
+| `mcp`                                  | Unit 30         | MCP サーバーの実装（FastMCP）  |
+| `smolagents[openai]`                   | Unit 31, 39, 42 | OpenAI モデルを使う Code Agent |
 
 ---
 

@@ -5,12 +5,11 @@
 </p>
 
 > [!IMPORTANT]
-> **前提知識とライブラリのインストール**
-> このユニットを進めるには、`langchain` および `langchain-openai` ライブラリが必要です。
-> 手元の環境で以下のコマンドを実行してインストールしてください。
+> **Colab セットアップ**
+> OpenAI 統合パッケージだけを追加します。`langchain-core` は依存関係として導入されます。
 >
-> ```bash
-> pip install langchain langchain-openai
+> ```python
+> %pip install langchain-openai
 > ```
 
 ---

@@ -34,7 +34,11 @@ LangChain is a general AI application toolkit; LlamaIndex is strongly focused on
 
 Use `LlamaIndex` to index text (`VectorStoreIndex`) and run a minimal RAG **QueryEngine** pipeline.
 
-Run `pip install llama-index-core llama-index-readers-file llama-index-llms-openai llama-index-embeddings-openai` and set `OPENAI_API_KEY`.
+> **Colab setup:** Add only the integrations required by the LlamaIndex example and the later LangChain comparison, then set `OPENAI_API_KEY`.
+>
+> ```python
+> %pip install llama-index-core llama-index-llms-openai llama-index-embeddings-openai langchain-openai
+> ```
 
 ```python
 import os

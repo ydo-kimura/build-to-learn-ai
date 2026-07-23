@@ -38,7 +38,7 @@
 
 ここでは、PyTorchと `torchvision` のユーティリティを使い、ラベルと相関を持たせた合成画像データをカスタムデータセットとして読み込み、`ResNet18` を転移学習させて訓練曲線と精度曲線をMatplotlibでプロットする完全なパイプラインを実装します。
 
-事前に `pip install torch torchvision matplotlib` を実行してください。
+> **Colab セットアップ:** 現行の Colab には PyTorch、torchvision、Matplotlib が含まれているため、追加インストールは不要です。
 
 ```python
 import torch

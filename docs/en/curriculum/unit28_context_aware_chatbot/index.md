@@ -43,6 +43,14 @@ LangChain can **automatically append conversation history** to prompts.
 
 ## 2. Implementation Example
 
+> **Colab setup:** Add only `langchain-openai` and set `OPENAI_API_KEY`. Its dependencies include `langchain-core`.
+>
+> ```python
+> %pip install langchain-openai
+> ```
+>
+> Current LangChain provides in-memory history as `InMemoryChatMessageHistory` from `langchain_core.chat_history`.
+
 Use LangChain’s `RunnableWithMessageHistory` for a chatbot that remembers past conversation.
 
 > ※ Newer LangChain recommends this over legacy `ConversationBufferMemory`.

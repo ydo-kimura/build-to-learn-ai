@@ -34,7 +34,7 @@ This capstone combines everything into a **professional image recognition pipeli
 
 Here you will use PyTorch and `torchvision` utilities to load randomly generated images as a custom dataset, fine-tune `ResNet18`, and plot training and accuracy curves with Matplotlib.
 
-Run `pip install torch torchvision matplotlib` first. For a local environment, you can also use [requirements.txt](../../requirements.txt) at the project root.
+> **Colab setup:** The current Colab runtime includes PyTorch, torchvision, and Matplotlib, so no additional installation is required.
 
 ```python
 import torch

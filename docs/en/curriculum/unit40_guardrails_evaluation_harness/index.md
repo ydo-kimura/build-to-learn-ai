@@ -55,6 +55,8 @@ Instead, **feed the main LLM's output to a more capable, objective evaluator LLM
 
 ## 2. Implementation Example — Basic Dual Harness System
 
+> **Colab setup:** The current Colab runtime includes the OpenAI Python SDK, so no additional installation is required.
+
 The code below implements a simple **input harness** detecting Prompt Injection (attempts to strip system prompts) and an **output harness (LLM-as-a-Judge)** evaluating whether the main LLM's output hallucinates beyond RAG source data.
 
 ```python

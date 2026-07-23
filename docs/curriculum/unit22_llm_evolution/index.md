@@ -123,6 +123,8 @@ graph TD
 
 ## 2. 実装例 (Implementation Example)
 
+> **Colab セットアップ:** 現行の Colab には OpenAI Python SDK が含まれているため、追加インストールは不要です。
+
 まずは、すべてのLLMアプリケーション開発の出発点となる、最もシンプルな **API ハローワールド** のコードを書いてみましょう。
 Python から OpenAI の API を呼び出し、AI に挨拶をさせます。
 

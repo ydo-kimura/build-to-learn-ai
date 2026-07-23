@@ -58,6 +58,12 @@
 
 ## 2. 実装例 (Implementation Example) - smolagents によるマルチエージェント協調
 
+> **Colab セットアップ:** `OpenAIServerModel` に必要な smolagents の OpenAI オプションだけを追加し、環境変数に `OPENAI_API_KEY` を設定します。
+>
+> ```python
+> %pip install "smolagents[openai]"
+> ```
+
 以下のコードは、Hugging Face のエージェントフレームワーク `smolagents` を使用し、配送状況・キャンセル手数料・返金をそれぞれ調べる3つの専門エージェント（Managed）を作成し、それらを束ねて顧客の問い合わせに対応する「メインサポートエージェント（Manager）」を構築する実装例です。
 
 ```python

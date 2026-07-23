@@ -42,6 +42,12 @@
 
 ## 2. 実装例 (Implementation Example) - スキーマ検証の最小パイプライン
 
+> **Colab セットアップ:** 現行の Colab には Pydantic が含まれています。後半の `OpenAIServerModel` を使う自己修正エージェントでは、smolagents の OpenAI オプションだけを追加します。
+>
+> ```python
+> %pip install "smolagents[openai]"
+> ```
+
 まず、LLMを呼び出す前に、構造化された候補データをPydanticで検証する最小例を動かします。これは「JSONの形・型・業務上の範囲」を検証する例であり、原文に本当に書かれているか、抽出内容が正しいかまでは保証しません。本番では、原文の引用、フィールドごとの根拠、信頼度、人間確認を追加します。
 
 ```python
