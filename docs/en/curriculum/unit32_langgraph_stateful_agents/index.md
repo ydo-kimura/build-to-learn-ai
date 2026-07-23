@@ -62,6 +62,8 @@ graph TD
 
 ## 2. Implementation Example
 
+> **Colab setup:** The current Colab runtime includes LangGraph, so no additional installation is required.
+
 This **local simulation** (no OpenAI API key required) reproduces LangGraph’s core ideas: **State / Nodes / conditional edges**. A simple keyword classifier routes support tickets through **classify ➔ billing / technical / escalate**.
 
 ```python

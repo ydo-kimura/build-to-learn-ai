@@ -30,7 +30,7 @@
 
 ここでは、PyTorchの `nn.Transformer` モジュールをベースとし、ごく少数のサンプル英文と日本文のデータセットを使って、Transformerを用いた「英語 ➔ 日本語」の簡易的な翻訳モデルを構築・学習・推論する動作例を実装します。
 
-事前に `pip install torch` を実行してください。
+> **Colab セットアップ:** 現行の Colab には PyTorch が含まれているため、追加インストールは不要です。
 
 ```python
 import math

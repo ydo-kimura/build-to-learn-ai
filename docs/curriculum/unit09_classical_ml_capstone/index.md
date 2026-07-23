@@ -37,7 +37,11 @@ Unit 8 では、候補をあらかじめ列挙して試す `GridSearchCV` を学
 
 このユニットでは、これまでのユニットで扱ったモデルに加えて、`pandas` の `DataFrame` 操作（`iloc`、`copy`、`fillna`、`Series`、`sort_values`）、`SimpleImputer`、`LassoCV` なども登場します。いずれもコード中のコメントで役割を示しているので、必要に応じて各関数のリンク先を確認しながら読み進めてください。
 
-事前に `pip install xgboost optuna scikit-learn` を実行してください。
+> **Colab セットアップ:** 現行の Colab に含まれていない `optuna` だけを追加します。NumPy、pandas、scikit-learn、XGBoost は Colab の既存パッケージを利用します。
+>
+> ```python
+> %pip install optuna
+> ```
 
 ```python
 import numpy as np

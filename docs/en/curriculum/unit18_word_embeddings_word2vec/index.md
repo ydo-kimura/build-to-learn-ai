@@ -78,8 +78,14 @@ Here you will train a simple Word2Vec model with Python's `gensim` library and c
 2. **Train model**: `Word2Vec` learns a vector ("coordinate") for each word.
 3. **Find similar words**: Input "king" and find nearest neighbors in space.
 
+> **Colab setup:** Add `gensim`, which is used by this Unit.
+>
+> ```python
+> %pip install gensim
+> ```
+
 ```python
-# Use the gensim library (pip install gensim required)
+# Use the gensim library
 from gensim.models import Word2Vec
 
 # 1. Prepare sentence data

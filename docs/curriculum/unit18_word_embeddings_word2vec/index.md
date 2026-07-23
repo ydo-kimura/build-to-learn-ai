@@ -82,8 +82,14 @@ gensimでは、`Word2Vec(sentences, sg=0)` でCBOW、`Word2Vec(sentences, sg=1)`
 2. **モデルの学習** : `Word2Vec` に文章を読み込ませて、各単語の「座標（ベクトル）」を計算させます。
 3. **類似単語の検索** : 「king」という単語を入力し、空間上で一番近くにある単語（意味が似ている単語）を探します。
 
+> **Colab セットアップ:** この Unit で使用する `gensim` を追加します。
+>
+> ```python
+> %pip install gensim
+> ```
+
 ```python
-# gensimというライブラリを使用します（pip install gensim が必要です）
+# gensim ライブラリを使用します
 from gensim.models import Word2Vec
 
 # 1. 文章データの準備

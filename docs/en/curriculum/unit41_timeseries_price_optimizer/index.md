@@ -62,6 +62,8 @@ The next step after forecasting is converting predictions into business profit v
 
 ## 2. Implementation Example — Time Series Leak Avoidance and Demand Curve Estimation
 
+> **Colab setup:** The current Colab runtime includes NumPy, pandas, scikit-learn, and XGBoost, so no additional installation is required.
+
 The code below runs safe cross-validation (time series split) on time series data and uses predictions to find the **optimal price that maximizes revenue** via grid search.
 
 ```python

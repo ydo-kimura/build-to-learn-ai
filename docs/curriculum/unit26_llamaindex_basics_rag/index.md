@@ -40,7 +40,11 @@ LangChainが「何でもできる汎用的なAIアプリ開発ツール」であ
 
 ここでは、`LlamaIndex` を用いて、テキストファイルをインデックス化（`VectorStoreIndex`）し、最もシンプルなコードで RAG クエリエンジン（`QueryEngine`）を構築・実行するプロフェッショナルなパイプラインを実装します。
 
-事前に `pip install llama-index-core llama-index-readers-file llama-index-llms-openai llama-index-embeddings-openai` を実行し、環境変数に `OPENAI_API_KEY` を設定してください。
+> **Colab セットアップ:** 実装例の LlamaIndex と、後半の LangChain 比較コードに必要な統合パッケージだけを追加し、環境変数に `OPENAI_API_KEY` を設定します。
+>
+> ```python
+> %pip install llama-index-core llama-index-llms-openai llama-index-embeddings-openai langchain-openai
+> ```
 
 ```python
 import os

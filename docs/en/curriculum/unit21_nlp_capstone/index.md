@@ -26,7 +26,7 @@ In this capstone, you bring those concepts together and implement a translation 
 
 Here we use PyTorch’s `nn.Transformer` module with a very small sample English–Japanese dataset to build, train, and run inference on a simple English ➔ Japanese translation model with a complete code example.
 
-Run `pip install torch` beforehand.
+> **Colab setup:** The current Colab runtime includes PyTorch, so no additional installation is required.
 
 ```python
 import torch
