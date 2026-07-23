@@ -53,33 +53,36 @@ Here we use Python and the `scikit-learn` library to build linear regression and
 
 <img src="/en/assets/units/unit01_linear_regression/images/diagram-train-test-split.svg" alt="Workflow: split data, fit model, predict and evaluate with MSE" class="unit-diagram" />
 
-First, import the libraries and prepare the data.
+First, import the libraries and prepare the data. To make Ridge's effect visible, we create 30 properties with 10 similar features derived from the same underlying "true size." Strong correlation among features is called **multicollinearity**, and it can make ordinary linear-regression coefficients unstable.
 
 ```python
 # Import required libraries
 import numpy as np
-import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.metrics import mean_squared_error
 
-# 1. Prepare data (we create dummy data this time)
-# np.random.seed(42) fixes the random numbers so results are reproducible
-np.random.seed(42)
+# 1. Prepare reproducible data
+rng = np.random.default_rng(42)
 
-# X: room size (100 samples between 20 and 80 square meters)
-X = np.random.randint(20, 80, size=(100, 1))
+# Create the true size of 30 properties between 20 and 80 square meters
+true_size = rng.uniform(20, 80, size=(30, 1))
 
-# y: rent (size * 0.2 plus a small random error term)
-y = X * 0.2 + np.random.randn(100, 1) * 2
+# X: 10 similar features made by adding small measurement errors to true size
+# The columns contain much of the same information, so they are strongly correlated
+X = true_size + rng.normal(0, 0.5, size=(30, 10))
 
-# 2. Split data into training and test sets
-# Use 80% for training (practice) and 20% for testing (final exam)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# y: rent in units of 10,000 yen, plus real-world variation
+y = true_size.ravel() * 0.2 + rng.normal(0, 3, size=30)
+
+# 2. Use 70% for training and 30% for testing
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
 ```
 
 **Code walkthrough**
-We created mock data to predict rent from room size. To prevent cheating, we used `train_test_split` to separate training data from test data used for scoring later.
+This mock dataset reproduces a situation where Ridge's "brake" can help. There are only 30 properties but 10 similar features, and rent also contains noise. Ordinary linear regression can therefore fit accidental variation in the training data. We use `train_test_split` to compare both models on test data that was not used for training.
 
 Next, train the model and make predictions.
 
@@ -95,20 +98,18 @@ model_lr.fit(X_train, y_train)
 y_pred_lr = model_lr.predict(X_test)
 
 # 5. Evaluate accuracy
-# MSE (mean squared error): how far predictions are from actual values
 mse_lr = mean_squared_error(y_test, y_pred_lr)
-print(f"Linear regression MSE: {mse_lr:.2f}")
 ```
 
 **Code walkthrough**
-Create a model with `LinearRegression()`, then call `.fit()` and the algorithm finds the best line. That is the training phase. After that, `.predict()` forecasts rent on unseen test data, and we measure error with MSE.
+Create a model with `LinearRegression()`, call `.fit()` to train it, and use `.predict()` to forecast rent for unseen test data. We then calculate its MSE.
 
 Let's also build a regularized (Ridge) version.
 
 ```python
 # 6. Prepare and train a regularized (Ridge) model
 # alpha controls regularization strength — larger values apply a stronger penalty
-model_ridge = Ridge(alpha=1.0)
+model_ridge = Ridge(alpha=100.0)
 model_ridge.fit(X_train, y_train)
 
 # Predict on the test set
@@ -116,10 +117,26 @@ y_pred_ridge = model_ridge.predict(X_test)
 
 # Evaluate accuracy
 mse_ridge = mean_squared_error(y_test, y_pred_ridge)
+improvement_rate = (mse_lr - mse_ridge) / mse_lr * 100
+
+print(f"Linear regression MSE: {mse_lr:.2f}")
 print(f"Ridge regression MSE: {mse_ridge:.2f}")
+print(f"MSE reduction: {improvement_rate:.1f}%")
 ```
 
-On this simple dataset the results are nearly identical, but with hundreds or thousands of features, Ridge's "brake" often improves accuracy.
+With these fixed conditions, ordinary linear regression produces an MSE of `20.34`, while Ridge produces `10.52`—a `48.3%` reduction. In this example, Ridge's "brake" prevents coefficients for the 10 similar features from becoming extreme, improving predictions on unseen test data.
+
+### How should you read an MSE value?
+
+MSE (mean squared error) is calculated by **squaring "prediction − actual value" for every sample and then taking the average**.
+
+- MSE is always `0` or greater. An MSE of `0` means every prediction exactly matches its actual value.
+- When the target, units, and test data are the same, the model with the smaller MSE has less prediction error. Here, `10.52 < 20.34`, so Ridge performs better.
+- MSE has no fixed upper limit. Larger misses produce larger values, and squaring makes it especially sensitive to outliers.
+- The target here is rent in units of 10,000 yen, but MSE uses squared units: `(10,000 yen)²`. Therefore, an MSE of `20.34` does not mean the prediction is off by 203,400 yen on average. Taking the square root gives RMSE in the original units: about `4.51` (45,100 yen) for ordinary linear regression and `3.24` (32,400 yen) for Ridge.
+- You cannot directly compare MSE values calculated with different targets, units, or test splits just by looking at their numbers.
+
+Ridge is not guaranteed to outperform ordinary linear regression on every dataset. Its effect depends on the data and the choice of `alpha`. This example intentionally recreates conditions where Ridge is useful: limited data, strongly correlated features, and noise.
 
 ---
 
