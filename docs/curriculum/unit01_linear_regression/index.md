@@ -61,33 +61,36 @@
 
 <img src="../../assets/units/unit01_linear_regression/images/diagram-train-test-split.svg" alt="図解：データ分割→学習→予測・評価のワークフロー" class="unit-diagram" />
 
-まずは必要なライブラリを読み込み、データを準備します。※ここで使うのはランダムに生成したダミーデータで、本文の例え話（20㎡ → 6万円）とは数値のスケールが異なる点にご注意ください。
+まずは必要なライブラリを読み込み、データを準備します。ここでは Ridge 回帰の効果を観察しやすくするため、30件の物件に対して、同じ「本当の広さ」をもとに作られた10個のよく似た特徴量を用意します。このように特徴量同士が強く相関する状態を **多重共線性** と呼び、通常の線形回帰では係数が不安定になりやすくなります。
 
 ```python
 # 必要なツールのインポート
 import numpy as np
-import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.metrics import mean_squared_error
 
-# 1. データの準備 (今回はダミーデータを作成します)
-# np.random.seed(42) で毎回同じランダムな数値が出るように固定します
-np.random.seed(42)
+# 1. データの準備（毎回同じ結果になるよう乱数を固定）
+rng = np.random.default_rng(42)
 
-# X: 部屋の広さ（20〜80平米のデータを100件）
-X = np.random.randint(20, 80, size=(100, 1))
+# 30件の物件について、本当の広さを20〜80㎡の範囲で作る
+true_size = rng.uniform(20, 80, size=(30, 1))
 
-# y: 家賃（広さ × 0.2 + 誤差を少し加える）
-y = X * 0.2 + np.random.randn(100, 1) * 2
+# X: 本当の広さに小さな測定誤差を加えた、よく似た10個の特徴量
+# 10列が同じ情報を多く含むため、特徴量同士が強く相関する
+X = true_size + rng.normal(0, 0.5, size=(30, 10))
 
-# 2. データを「学習用」と「テスト用」に分割
-# 全データのうち、80%を学習（過去問）に、20%をテスト（本番試験）に使います
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# y: 家賃（万円）。本当の広さ × 0.2 に、現実のばらつきを加える
+y = true_size.ravel() * 0.2 + rng.normal(0, 3, size=30)
+
+# 2. 全データの70%を学習用、30%をテスト用に分ける
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
 ```
 
 **【コードの解説】**
-ここでは、部屋の広さから家賃を予測するための「模擬データ」を作りました。モデルがズルをしないように、`train_test_split`という機能を使って、学習に使うデータと後で答え合わせをするテスト用のデータに分けています。
+これは Ridge 回帰の「ブレーキ」が役立つ場面を再現するための模擬データです。物件数は30件と少ない一方で、似た特徴量が10個あります。さらに家賃にはノイズも含まれるため、通常の線形回帰は学習データの偶然のばらつきまで拾いやすくなります。`train_test_split` を使い、学習に使わないテストデータで予測性能を比べます。
 
 次に、実際にモデルに学習させて予測を行います。
 
@@ -103,20 +106,18 @@ model_lr.fit(X_train, y_train)
 y_pred_lr = model_lr.predict(X_test)
 
 # 5. 答え合わせ（精度評価）
-# MSE (平均二乗誤差): 予測と実際の値がどれくらいズレているかを計算
 mse_lr = mean_squared_error(y_test, y_pred_lr)
-print(f"通常の線形回帰のMSE: {mse_lr:.2f}")
 ```
 
 **【コードの解説】**
-`LinearRegression()` でモデルを作成し、`.fit()` を呼ぶだけで、AIが最適な直線を計算してくれます。これが機械学習の「学習フェーズ」です。その後、`.predict()` を使って未知のデータ（テストデータ）の家賃を予測し、実際の正解とどれくらいズレているか（MSE）を計算しました。
+`LinearRegression()` でモデルを作成し、`.fit()` で学習します。その後、`.predict()` を使って未知のテストデータの家賃を予測し、MSE を計算します。
 
 同様に、正則化（Ridge）を使ったバージョンも書いてみましょう。
 
 ```python
 # 6. 正則化モデル (Ridge) の準備と学習
 # alpha はブレーキの強さです。大きいほどブレーキが強くかかります
-model_ridge = Ridge(alpha=1.0)
+model_ridge = Ridge(alpha=100.0)
 model_ridge.fit(X_train, y_train)
 
 # テストデータで予測
@@ -124,10 +125,26 @@ y_pred_ridge = model_ridge.predict(X_test)
 
 # 答え合わせ（精度評価）
 mse_ridge = mean_squared_error(y_test, y_pred_ridge)
+improvement_rate = (mse_lr - mse_ridge) / mse_lr * 100
+
+print(f"通常の線形回帰のMSE: {mse_lr:.2f}")
 print(f"Ridge回帰のMSE: {mse_ridge:.2f}")
+print(f"MSEの改善率: {improvement_rate:.1f}%")
 ```
 
-このシンプルなデータでは結果はほぼ同じになりますが、特徴量（列）が100個や1000個もあるような複雑なデータになると、Ridge回帰の「ブレーキ」が効果を発揮し、精度が良くなります。
+固定した条件で実行すると、通常の線形回帰の MSE は `20.34`、Ridge 回帰は `10.52` となり、Ridge 回帰の MSE は `48.3%` 小さくなります。この例では、互いによく似た10個の特徴量に対して係数が極端にならないよう Ridge の「ブレーキ」が働き、未知のテストデータへの予測が改善しました。
+
+### MSE の値はどう読む？
+
+MSE（Mean Squared Error、平均二乗誤差）は、各データについて **「予測値 − 正解値」を二乗し、その平均を取った値** です。
+
+- MSE は必ず `0` 以上になります。`0` なら、すべての予測が正解と完全に一致しています。
+- 同じ目的変数・単位・テストデータで比べる場合は、MSE が小さいモデルほど予測誤差が小さいと判断できます。ここでは `10.52 < 20.34` なので Ridge 回帰の方が良い結果です。
+- 固定された上限はありません。予測が大きく外れるほど値は大きくなり、差を二乗するため外れ値の影響も強く受けます。
+- 今回の目的変数は家賃の「万円」ですが、MSE の単位は二乗された「万円²」です。そのため、MSE `20.34` は「平均で20.34万円ずれた」という意味ではありません。元の万円単位で感覚をつかむには、MSE の平方根である RMSE を使うと、通常の線形回帰は約 `4.51` 万円、Ridge 回帰は約 `3.24` 万円です。
+- 目的変数の単位や値の大きさ、テストデータの分け方が違う MSE 同士は、数値だけで単純比較できません。
+
+なお、Ridge 回帰が常に通常の線形回帰より良くなるわけではありません。効果はデータの性質と `alpha` によって変わります。この例は、少ないデータに強く相関する特徴量とノイズがある、Ridge 回帰が役立ちやすい条件を意図的に再現しています。
 
 ---
 
