@@ -179,7 +179,6 @@ plt.legend()
 plt.show()
 ```
 
----
 
 ## 3. Practice — 🧠 Design and Choose Your Own Deep Learning Architecture
 
@@ -238,7 +237,6 @@ With only 120 training samples and small 64×64 images, **implement and compare 
    - Train for 3–5 epochs and compare validation loss and accuracy on 30 validation samples.
    - State **which model you chose for production and the logical reason**.
 
----
 
 ## 4. Answer Key — 💡 Professional Deep Learning Design and Decision-Making
 

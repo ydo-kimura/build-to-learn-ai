@@ -12,7 +12,6 @@
 > %pip install langchain-openai
 > ```
 
----
 
 ## 1. LangChainの基礎とRAGの理解
 
@@ -68,7 +67,6 @@ chain = prompt | model | output_parser
 
 <img src="../../assets/units/unit25_langchain_basics_rag/images/diagram-workflow.svg" alt="図解：LangChain の主要な抽象化" class="unit-diagram" />
 
----
 
 ## 2. 実装例 (Implementation Example)
 
@@ -162,7 +160,6 @@ if __name__ == "__main__":
    - `| StrOutputParser()`
      LLMから返された応答オブジェクトから、回答テキスト部分だけが抽出されます。
 
----
 
 ## 3. 実践 (Practice)
 
@@ -190,7 +187,6 @@ security_policies = [
 - 実装例と同様に、`InMemoryVectorStore.from_texts` を使ってベクトルデータベースを作成します。
 - プロンプトテンプレートを工夫して、「セキュリティポリシーに厳格に従うこと。記載がないルールについては『セキュリティ規約に該当する記載がありません』と答えること」と指示してください。
 
----
 
 ## 4. 答え合わせ (Answer Key)
 

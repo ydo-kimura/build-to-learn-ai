@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "docs:dev": "vitepress dev docs --host 0.0.0.0",
+    "docs:check-h2-separators": "node --test scripts/verify_markdown_h2_separators.test.mjs && node scripts/verify_markdown_h2_separators.mjs",
     "docs:check-ja-bold": "node --test scripts/verify_ja_markdown_bold.test.mjs && node scripts/verify_ja_markdown_bold.mjs",
     "docs:check-mermaid": "python3 scripts/verify_mermaid_blocks.py",
-    "docs:check-diagrams": "python3 scripts/verify_curriculum_diagrams.py && python3 scripts/verify_curriculum_diagram_geometry.py && pnpm run docs:check-mermaid && pnpm run docs:check-ja-bold",
+    "docs:check-diagrams": "python3 scripts/verify_curriculum_diagrams.py && python3 scripts/verify_curriculum_diagram_geometry.py && pnpm run docs:check-mermaid && pnpm run docs:check-ja-bold && pnpm run docs:check-h2-separators",
     "docs:build": "pnpm run docs:check-diagrams && vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "prepare": "husky"

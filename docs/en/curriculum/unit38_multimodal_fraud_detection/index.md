@@ -81,7 +81,6 @@ Design a fraud detection classifier that integrates **tabular (3D), text (16D), 
 4. **Final adoption decision**:
    - **State the model configuration you deploy to production and why.**
 
----
 
 ## 3. Answer Key — 💡 Professional Multimodal Design Guidelines
 

@@ -8,7 +8,6 @@
 > **Preparing your OpenAI API key**
 > Chapter 4 requires an **OpenAI API key**. For how to obtain a key, billing notes, and secure environment-variable setup with Google Colab secrets, read [Appendix (Learning Environment and API Setup)](../appendix/index.md#🔑-3-openai-api-key-acquisition-and-secure-management-chapter-4) first.
 
----
 
 ## 1. Understanding LLM API Usage & Prompting
 
@@ -106,7 +105,6 @@ Choose techniques by task difficulty in production systems.
 | **Few-shot**         | Strict JSON output, domain-specific sentiment tags, length control | Low (just prepare examples) | Medium                  | Very high        |
 | **Chain-of-Thought** | Math, complex legal/business logic, multi-condition reasoning      | Low–medium                  | High (reasoning length) | Very high        |
 
----
 
 ## 3. Implementation Example
 
@@ -172,7 +170,6 @@ Compare English, Japanese, and code inputs. Character count and token count are 
 3. **Send request**: `client.chat.completions.create` performs the call. `model` picks capability/speed; `temperature` adjusts randomness/creativity.
 4. **Extract answer**: The API returns a large object with metadata. Follow `response.choices[0].message.content` for the text only.
 
----
 
 ## 4. Practice
 
@@ -201,7 +198,6 @@ After completing the sentiment-analysis exercise, change the API call to streami
 
 Streaming can make output appear sooner, but it does not guarantee correctness or safety.
 
----
 
 ## 5. Answer Key
 

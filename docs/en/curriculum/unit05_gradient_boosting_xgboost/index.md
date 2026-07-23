@@ -99,7 +99,6 @@ print(f"XGBoost accuracy: {acc:.3f}")
 `xgb.XGBClassifier` mirrors scikit-learn's `.fit()` / `.predict()` API.
 `learning_rate` controls how aggressively each tree corrects errors — one of XGBoost's most important knobs.
 
----
 
 ## 3. Practice
 
@@ -117,7 +116,6 @@ Use the **Wine dataset** to classify three wine types with XGBoost.
 
 - Don't forget `import xgboost as xgb` and `from sklearn.metrics import accuracy_score`.
 
----
 
 ## 4. Answer Key
 

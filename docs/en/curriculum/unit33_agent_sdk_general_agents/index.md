@@ -10,7 +10,6 @@ In production AI systems, alongside OSS frameworks (LangGraph, smolagents, etc.)
 
 This unit covers the architecture of commercial Agent SDKs built for enterprise requirements, persistent state management, and seamless integration with business capabilities.
 
----
 
 ## 1. Explanation Phase
 
@@ -317,7 +316,6 @@ if __name__ == "__main__":
     print(f"Agent -> {res3}")
 ```
 
----
 
 ## 3. Independent Implementation (Assignment)
 
@@ -332,7 +330,6 @@ Extend the cooperative agent simulation above with a more advanced customer serv
    - For first-time users (empty purchase history), apply a flat **$10 new-registration discount**.
 4. After applying the discount, automatically return control to `ReceptionAgent`, present the discounted price, and prompt the user to purchase.
 
----
 
 ## 4. Answer Key
 

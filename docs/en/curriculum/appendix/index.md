@@ -2,7 +2,6 @@
 
 This guide covers learning with Google Colaboratory (Colab), installing required libraries, and preparing and securely managing the OpenAI API key needed from Chapter 4 onward.
 
----
 
 ## 🚀 1. Learning with Google Colaboratory
 
@@ -16,7 +15,6 @@ All implementation examples and assignments assume **Google Colaboratory**, wher
    - For deep learning (Units 10–16) and NLP (Units 17–21), we recommend enabling a GPU to speed up computation.
    - From the top menu, select **Runtime > Change runtime type**, choose **T4 GPU** (free tier) under hardware accelerator, and save.
 
----
 
 ## 📦 2. Install Only the Libraries Required by the Current Unit
 
@@ -58,7 +56,6 @@ Install only the packages required by the Unit you are currently running.
 | `mcp`                | Unit 30          | MCP server implementation with FastMCP |
 | `smolagents[openai]` | Units 31, 39, 42 | Code agents backed by OpenAI models    |
 
----
 
 ## 🔑 3. OpenAI API Key: Acquisition and Secure Management (Chapter 4)
 
@@ -89,7 +86,6 @@ In Colab, pass the key securely as follows:
    os.environ["OPENAI_API_KEY"] = userdata.get("OPENAI_API_KEY")
    ```
 
----
 
 ## 📊 4. Task Management with CSV (Linear / GitHub Projects)
 

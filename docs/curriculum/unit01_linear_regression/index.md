@@ -51,7 +51,6 @@
 - **小売店の売上予測** ：過去の売上実績、気温、休日の有無などのデータから、翌日の店舗ごとの売上高を予測し、発注量を最適化する。
 - **広告費のROI分析（マーケティング・ミックス・モデリング）** ：テレビCMやWeb広告などの各媒体への投資額が、最終的な売上にどれだけ貢献しているかを算出し、予算配分を最適化する。
 
----
 
 ## 2. 実装例 (Implementation Example)
 
@@ -146,7 +145,6 @@ MSE（Mean Squared Error、平均二乗誤差）は、各データについて *
 
 なお、Ridge 回帰が常に通常の線形回帰より良くなるわけではありません。効果はデータの性質と `alpha` によって変わります。この例は、少ないデータに強く相関する特徴量とノイズがある、Ridge 回帰が役立ちやすい条件を意図的に再現しています。
 
----
 
 ## 3. 実践 (Practice)
 
@@ -165,7 +163,6 @@ MSE（Mean Squared Error、平均二乗誤差）は、各データについて *
 - `from sklearn.linear_model import Lasso` を追加でインポートする必要があります。
 - データの読み込み方は `from sklearn.datasets import load_diabetes` とし、`data = load_diabetes()` の後に `X = data.data`、`y = data.target` とします。
 
----
 
 ## 4. 答え合わせ (Answer Key)
 

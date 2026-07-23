@@ -95,7 +95,6 @@ plt.show()
 `KMeans(n_clusters=4)` then `.fit(X)` — note we pass **only X, no labels**.
 `.predict(X)` returns cluster IDs (0, 1, 2, …). Coloring the plot shows four distinct groups.
 
----
 
 ## 3. Practice
 
@@ -113,7 +112,6 @@ Use the **Iris dataset**. True species labels exist, but **hide them** and clust
 
 - Unsupervised learning — no `train_test_split`. Fit on all data at once.
 
----
 
 ## 4. Answer Key
 

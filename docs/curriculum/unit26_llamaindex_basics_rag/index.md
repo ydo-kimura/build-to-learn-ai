@@ -83,7 +83,6 @@ print(f"質問: {question}")
 print(f"AIの回答:\n{response}")
 ```
 
----
 
 ## 3. 実践 (Practice) - 🧠 自分で比較し決定するRAGシステム設計
 
@@ -134,7 +133,6 @@ company_policies = [
 4. **最終適用意思決定** :
    - **あなたが社内システムの本番として採用したアプローチ（手組み、LangChain、またはLlamaIndex）と、その論理的な理由** を記述してください。
 
----
 
 ## 4. 答え合わせ (Answer Key) - 💡 プロのRAGシステム設計指針
 

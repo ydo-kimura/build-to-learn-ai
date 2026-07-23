@@ -52,7 +52,6 @@ When data cannot be separated by a straight line, the kernel "lifts" points into
 - **Visual inspection and anomaly detection (SVM)**: Learn complex boundaries between good and defective products from surface images to automate QC.
 - **Clinical decision support (SVM)**: Classify disease status from lab values and vitals with high accuracy to assist physicians.
 
----
 
 ## 2. Implementation Example
 
@@ -116,7 +115,6 @@ print(f"SVM accuracy:  {svm_acc:.3f}")
 **Code walkthrough**
 `SVC` (Support Vector Classification) is the SVM class. `kernel='rbf'` is the popular default for nonlinear boundaries. Both algorithms perform very well on this task!
 
----
 
 ## 3. Practice
 
@@ -136,7 +134,6 @@ Use the **Digits dataset** — coarse 8×8 pixel images of handwritten digits 0�
 
 - Load with `digits = load_digits()`. Images are already flattened to numeric vectors — use `X = digits.data` as usual.
 
----
 
 ## 4. Answer Key
 

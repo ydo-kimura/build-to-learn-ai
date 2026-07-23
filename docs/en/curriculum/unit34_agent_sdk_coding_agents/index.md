@@ -12,7 +12,6 @@ Because they can perform destructive, irreversible operations on the system (fil
 
 This unit covers architectures specific to autonomous development agents, safety policies (Deny by Default), and Human-in-the-loop (approval hook) implementation.
 
----
 
 ## 1. Explanation Phase
 
@@ -210,7 +209,6 @@ if __name__ == "__main__":
     print(f"Result: {success} | Message: {msg}")
 ```
 
----
 
 ## 3. Independent Implementation (Assignment)
 
@@ -225,7 +223,6 @@ Based on the `AntigravityAgentSandbox` system above, implement an **autonomous a
    - **Step 3 (Verification test)**: Call `sandbox.execute_command` with `pytest test_app.py` to verify the fix.
 3. During autonomous processing, verify on the console that **file writes and command execution complete safely through the approval hook without being blocked by safety policy**.
 
----
 
 ## 4. Answer Key
 

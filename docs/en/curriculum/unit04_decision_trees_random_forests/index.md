@@ -108,7 +108,6 @@ print(f"Random forest accuracy: {accuracy_score(y_test, rf_pred):.3f}")
 **Code walkthrough**
 `RandomForestClassifier` uses the same API as a single tree but trains 100 trees internally and votes. Random forest is usually more accurate and stable.
 
----
 
 ## 3. Practice
 
@@ -127,7 +126,6 @@ Use the **Diabetes dataset** from Unit 1 with random forest **regression**.
 - Import `from sklearn.ensemble import RandomForestRegressor`.
 - Also import `from sklearn.metrics import mean_squared_error`.
 
----
 
 ## 4. Answer Key
 

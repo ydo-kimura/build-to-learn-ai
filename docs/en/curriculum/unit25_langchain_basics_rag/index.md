@@ -12,7 +12,6 @@
 > %pip install langchain-openai
 > ```
 
----
 
 ## 1. Understanding LangChain Basics and RAG
 
@@ -153,7 +152,6 @@ if __name__ == "__main__":
    - `| StrOutputParser()`
      Extracts answer text from the response object.
 
----
 
 ## 3. Practice
 
@@ -181,7 +179,6 @@ security_policies = [
 - Like the example, use `InMemoryVectorStore.from_texts` for the vector database.
 - In the prompt template, instruct strict adherence to security policy; for unlisted rules answer “No matching entry found in the security policy”.
 
----
 
 ## 4. Answer Key
 

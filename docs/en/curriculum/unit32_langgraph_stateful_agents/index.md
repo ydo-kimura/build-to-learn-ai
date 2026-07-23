@@ -6,7 +6,6 @@
 
 In Unit 31 you learned **code-generation agents (Code Agent)** with smolagents. This unit introduces a different paradigm: **graph-based workflow control**. LangGraph models agent logic as **nodes** and **edges**, passing **shared state** between steps so you can add conditional routing and **human-in-the-loop** approval gates explicitly.
 
----
 
 ## 1. Understanding LangGraph and Stateful Workflows
 
@@ -144,7 +143,6 @@ if __name__ == "__main__":
 > [!TIP]
 > In production you register these nodes and edges with LangGraph’s `StateGraph`. This PoC focuses on **control-flow fundamentals** without an API key.
 
----
 
 ## 3. Practice
 
@@ -159,7 +157,6 @@ if __name__ == "__main__":
 - Why a **dedicated graph node** is easier to maintain than scattered `if` checks
 - Why LangGraph fits this task better than a Code Agent
 
----
 
 ## 4. Answer Key
 

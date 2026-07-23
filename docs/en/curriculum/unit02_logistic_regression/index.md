@@ -49,7 +49,6 @@ That's why we use several **metrics**:
 - **Subscription churn prediction**: Flag users likely to cancel next month from login frequency, feature usage, and support tickets — then run retention campaigns.
 - **Spam filtering**: Score emails from word frequencies and sender metadata and route likely spam automatically.
 
----
 
 ## 2. Implementation Example
 
@@ -106,7 +105,6 @@ print(f"F1-Score:  {f1:.3f}")
 **Code walkthrough**
 Compare predictions (`y_pred`) to labels (`y_test`) and compute all four metrics. `sklearn.metrics` has ready-made functions for each.
 
----
 
 ## 3. Practice
 
@@ -124,7 +122,6 @@ Use the **Wine dataset** to classify which of **three wineries** produced a wine
 
 - With three classes, precision/recall need extra settings. Start with simple `accuracy_score` only.
 
----
 
 ## 4. Answer Key
 

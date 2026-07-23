@@ -160,7 +160,6 @@ output = chat_pipeline("What is the price of AI-Shield Core and which languages 
 print(f"[Final output]: {output}")
 ```
 
----
 
 ## 3. Practice — 🧠 Design and Decide Automated Evaluation & Defense Harness
 
@@ -203,7 +202,6 @@ Build a harness that blocks all attacks accurately and only passes outputs that 
 4. **Final adoption decision**:
    - **State the full defense harness architecture you deliver to the enterprise and why.**
 
----
 
 ## 4. Answer Key — 💡 Professional Security Harness Design
 

@@ -54,7 +54,6 @@
 
 <img src="../../assets/units/unit42_multiagent_customer_support/images/diagram-workflow.svg" alt="図解：エージェント間の協調" class="unit-diagram" />
 
----
 
 ## 2. 実装例 (Implementation Example) - smolagents によるマルチエージェント協調
 
@@ -167,7 +166,6 @@ print("\n--- 📩 生成された最終顧客返信メール ---")
 print(response)
 ```
 
----
 
 ## 3. 実践 (Practice) - 🧠 自分で設計し決定するマルチエージェントサポート
 
@@ -230,7 +228,6 @@ point_refund_policy = """
 4. **最終適用意思決定** :
    - **あなたが本番のエンタープライズサポートシステムとしてリリースすると決定した、マルチエージェント全体の協調フローと、その論理的な理由** を記述してください。
 
----
 
 ## 4. 答え合わせ (Answer Key) - 💡 プロのマルチエージェントシステム設計
 

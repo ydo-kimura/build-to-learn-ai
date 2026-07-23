@@ -113,7 +113,6 @@ for case in test_cases:
     print(f"➔ Reason: {eval_result['reason']}")
 ```
 
----
 
 ## 3. Practice — 🧠 Compare and Decide Business Evaluation Metrics and Harness Design
 
@@ -165,7 +164,6 @@ As the hotel's brand auditor, **implement and compare both** contrasting automat
 3. **Quantitative evaluation and final decision**:
    - Compare audit cost (API fees), defect diversity detected, and maintainability; **state which harness you choose for production QA and why.**
 
----
 
 ## 4. Answer Key — 💡 Production Evaluation Design
 

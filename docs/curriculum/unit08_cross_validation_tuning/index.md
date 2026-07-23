@@ -50,7 +50,6 @@
 - **金融トレーディングアルゴリズムの最適化** ：株価予測アルゴリズムのパラメータをグリッドサーチで徹底的にチューニングし、バックテストでの収益率が最大かつリスクが最小になるような「究極の設定値」を探索する。
 - **AI開発プロジェクトの効率化** ：パイプライン構築時にハイパーパラメータ・チューニングを自動化することで、データサイエンティストが手動で設定を試行錯誤する時間を削減し、より本質的な特徴量エンジニアリングに時間を割けるようにする。
 
----
 
 ## 2. 実装例 (Implementation Example)
 
@@ -132,7 +131,6 @@ random_search.fit(X_train, y_train)
 print("ランダムサーチのベストパラメータ:", random_search.best_params_)
 ```
 
----
 
 ## 3. 実践 (Practice)
 
@@ -151,7 +149,6 @@ print("ランダムサーチのベストパラメータ:", random_search.best_pa
 - `from sklearn.neighbors import KNeighborsClassifier` をインポートします。
 - `param_grid` の書き方は、`{'n_neighbors': [1, 3, 5, 7, 9]}` となります。
 
----
 
 ## 4. 答え合わせ (Answer Key)
 

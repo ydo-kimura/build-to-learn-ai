@@ -149,7 +149,6 @@ print(f"📈 Predicted sales volume at that price: {final_model.predict(np.array
 print(f"💰 Expected maximum revenue: {max_revenue:.0f} yen")
 ```
 
----
 
 ## 3. Practice — 🧠 Design and Decide Demand Forecasting & Dynamic Pricing
 
@@ -211,7 +210,6 @@ Using the data above, find the **optimal price (yen)** that **maximizes revenue*
 4. **Final adoption decision**:
    - **Report the production price you present to executives and the mathematical/business justification.**
 
----
 
 ## 4. Answer Key — 💡 Professional Dynamic Pricing Design
 

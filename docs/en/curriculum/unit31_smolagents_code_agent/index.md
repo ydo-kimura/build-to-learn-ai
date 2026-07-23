@@ -100,7 +100,6 @@ result = agent.run(task)
 print(f"\nFinal answer:\n{result}")
 ```
 
----
 
 ## 3. Practice — 🧠 Compare and Decide Your Agent Paradigm
 
@@ -139,7 +138,6 @@ Compare and analyze the design intent of the two approaches below, then decide w
 4. **Final adoption decision**:
    - **State which agent approach you adopt for production and why.**
 
----
 
 ## 4. Answer Key — 💡 Professional Agent Design Guidelines
 
