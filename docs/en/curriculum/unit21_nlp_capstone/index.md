@@ -150,7 +150,6 @@ print(f"Source: {test_phrase}")
 print(f"Translation: {translate(test_phrase)}")
 ```
 
----
 
 ## 3. Practice — 🧠 Design Your Own NLP Architecture Through Comparison
 
@@ -197,7 +196,6 @@ With only five sentences—a harsh constraint—**implement and compare both app
 4. **Quantitative evaluation and final decision**:
    - Verify whether the test sentence translates to the expected output (`I adore studying`), and **document which model you chose for production and why**.
 
----
 
 ## 4. Answer Key — 💡 Professional NLP Architecture Design and Decision-Making
 

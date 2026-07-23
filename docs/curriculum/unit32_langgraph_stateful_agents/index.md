@@ -6,7 +6,6 @@
 
 Unit 31 では smolagents の **コード生成型エージェント（Code Agent）** を学びました。本ユニットでは、 **グラフベースのワークフロー制御** という別のパラダイムを学びます。LangGraph は、エージェントの処理を「ノード」と「エッジ」で明示的に設計し、 **共有ステート（State）** をノード間で受け渡しながら、条件分岐や人間の承認（Human-in-the-loop）を組み込めるフレームワークです。
 
----
 
 ## 1. LangGraph とステートフルワークフローの理解
 
@@ -62,7 +61,6 @@ graph TD
 
 <img src="../../assets/units/unit32_langgraph_stateful_agents/images/diagram-workflow.svg" alt="図解：チケット振り分け" class="unit-diagram" />
 
----
 
 ## 2. 実装例 (Implementation Example)
 
@@ -263,7 +261,6 @@ if __name__ == "__main__":
 > [!TIP]
 > 本番開発では 2.1 のように `langgraph` パッケージの `StateGraph` を使い、ノードとエッジを宣言的に登録するのが標準です。2.3 の手組み版は **LangGraph が内部で何をしているかを理解するための学習用** の位置づけです。
 
----
 
 ## 3. 実践 (Practice)
 
@@ -278,7 +275,6 @@ if __name__ == "__main__":
 - なぜ「暗黙の if 文」ではなく **グラフ上の専用ノード** として承認を切り出すと保守しやすいか
 - smolagents の Code Agent ではなく LangGraph を選ぶ理由（本課題の文脈で）
 
----
 
 ## 4. 答え合わせ (Answer Key)
 

@@ -111,7 +111,6 @@ for k, v in study.best_params.items():
     print(f"  {k}: {v}")
 ```
 
----
 
 ## 3. Practice — 🧠 Compare Models and Decide What to Ship
 
@@ -161,7 +160,6 @@ y = df['target']
    - Run proper **K-fold CV** and report mean RMSE for both.
    - Compare **accuracy (RMSE)**, **overfitting gap (train vs. validation)**, and **explainability**. State **which model you'd deploy and why**.
 
----
 
 ## 4. Answer Key — 💡 Professional Decision Matrix
 

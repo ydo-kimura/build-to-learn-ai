@@ -163,7 +163,6 @@ print("\n--- 📩 Generated Final Customer Reply Email ---")
 print(response)
 ```
 
----
 
 ## 3. Practice — 🧠 Design and Decide Multi-Agent Support
 
@@ -227,7 +226,6 @@ Automatically cross-search the intertwined policies and database above and build
 4. **Final adoption decision**:
    - **State the multi-agent coordination flow you release to production enterprise support and why.**
 
----
 
 ## 4. Answer Key — 💡 Professional Multi-Agent System Design
 

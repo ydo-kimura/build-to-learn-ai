@@ -77,7 +77,6 @@ print(f"Question: {question}")
 print(f"AI answer:\n{response}")
 ```
 
----
 
 ## 3. Practice — 🧠 Compare and Decide Your RAG System Design
 
@@ -121,7 +120,6 @@ Decide which approach to adopt for the company **internal policy FAQ (RAG)** sys
 4. **Final deployment decision**:
    - **Document your chosen production approach (scratch, LangChain, or LlamaIndex) and why.**
 
----
 
 ## 4. Answer Key — 💡 Professional RAG System Design Guidelines
 

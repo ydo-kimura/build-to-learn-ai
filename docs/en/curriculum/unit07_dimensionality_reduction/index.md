@@ -101,7 +101,6 @@ plt.show()
 **Code walkthrough**
 Even in 2D, malignant (0) and benign (1) cases often separate left vs. right — that's PCA's summarizing power.
 
----
 
 ## 3. Practice
 
@@ -119,7 +118,6 @@ Use the **Iris dataset** with **4 features**. Compress to **2 dimensions** with 
 
 - Always run `StandardScaler().fit_transform()` before PCA.
 
----
 
 ## 4. Answer Key
 

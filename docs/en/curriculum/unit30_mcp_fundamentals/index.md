@@ -166,7 +166,6 @@ Add this server path to `mcpServers` in Claude Desktop / Cursor config—it plug
 }
 ```
 
----
 
 ## 3. Practice
 
@@ -189,7 +188,6 @@ Using `FastMCP`, build **`support_mcp_server.py`**—a **customer-support MCP se
    - Validate inputs (e.g., negative amount) and return error strings.
 4. Complete runnable Python script starting with stdio transport.
 
----
 
 ## 4. Answer Key
 

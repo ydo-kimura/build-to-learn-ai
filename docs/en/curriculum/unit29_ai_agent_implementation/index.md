@@ -215,7 +215,6 @@ if __name__ == "__main__":
     print(f"\n======== Final Answer ========\n{final_answer}")
 ```
 
----
 
 ## 3. Practice
 
@@ -267,7 +266,6 @@ def execute_refund(order_id: str, amount: int) -> str:
    - **Final answer**: Report auto-approval and completed refund to the user.
 4. For `order_202` (49 days ago), verify the agent skips refund and responds that return is rejected because 30 days exceeded.
 
----
 
 ## 4. Answer Key
 

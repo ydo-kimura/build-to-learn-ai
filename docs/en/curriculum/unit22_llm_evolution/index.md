@@ -8,7 +8,6 @@
 > **Preparing your OpenAI API key**
 > Chapter 4 requires an **OpenAI API key**. For how to obtain a key, billing notes, and secure environment-variable setup with Google Colab secrets, read [Appendix (Learning Environment and API Setup)](../appendix/index.md#🔑-3-openai-api-key-acquisition-and-secure-management-chapter-4) first.
 
----
 
 ## 1. Understanding the Evolution from LLM to AI Agent
 
@@ -146,7 +145,6 @@ print(response.choices[0].message.content)
 2. **`client.chat.completions.create(...)`**: Main API method to request text generation from the LLM. Pass conversation turns in the `messages` list—here, a simple user message.
 3. **`response.choices[0].message.content`**: Extracts only the answer text from the large response object returned by the LLM.
 
----
 
 ## 3. Practice
 
@@ -163,7 +161,6 @@ After a successful API hello world, write a script that **sets a system prompt (
 
 - Message structure: `messages=[{"role": "system", "content": "..."}, {"role": "user", "content": "..."}]` as a list of dictionaries.
 
----
 
 ## 4. Answer Key
 

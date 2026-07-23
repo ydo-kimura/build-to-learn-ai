@@ -45,7 +45,6 @@ Think of it like **a student who memorizes past exam questions but cannot solve 
 - **Retail sales forecasting**: Predict next-day store revenue from past sales, temperature, and holidays to optimize ordering.
 - **Marketing mix modeling (ad ROI analysis)**: Estimate how much each channel (TV, web ads, etc.) contributes to revenue and optimize budget allocation.
 
----
 
 ## 2. Implementation Example
 
@@ -138,7 +137,6 @@ MSE (mean squared error) is calculated by **squaring "prediction − actual valu
 
 Ridge is not guaranteed to outperform ordinary linear regression on every dataset. Its effect depends on the data and the choice of `alpha`. This example intentionally recreates conditions where Ridge is useful: limited data, strongly correlated features, and noise.
 
----
 
 ## 3. Practice
 
@@ -157,7 +155,6 @@ Use the **Diabetes dataset** — predict one-year diabetes progression from nume
 - Add `from sklearn.linear_model import Lasso`.
 - Load with `from sklearn.datasets import load_diabetes`, then set `X = data.data` and `y = data.target` after `data = load_diabetes()`.
 
----
 
 ## 4. Answer Key
 

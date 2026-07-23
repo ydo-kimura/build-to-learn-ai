@@ -4,7 +4,6 @@ Welcome! This repository is a comprehensive curriculum designed to take you from
 
 This curriculum is structured as a collection of micro-PoCs (proof-of-concept projects), each designed to be completed in a few hours. By coding a little every day, you will steadily build genuine skills and confidence as an AI engineer.
 
----
 
 ## 💡 Why Learn Machine Learning and Deep Learning in the LLM Era?
 
@@ -60,7 +59,6 @@ Modern AI systems are not built from LLMs alone. In practice, **hybrid designs a
 1. **Right tool for the right job**: Learn each technology's strengths and limits so you can avoid wasted infrastructure cost and response-time degradation (degradation) as an architect.
 2. **Understanding model internals**: The heart of LLMs (Attention and Transformers) stands on the history of deep learning and NLP. Chapters 1–3 give you the foundation to reason about how modern LLMs and agents behave and to tune them seriously in production.
 
----
 
 ## 🗺️ Curriculum Structure
 
@@ -133,7 +131,6 @@ Apply everything you have learned—ML, DL, NLP, and LLMs—to high-difficulty p
 - **Unit 41**: [Time-Series Demand Forecasting & Dynamic Pricing](../unit41_timeseries_price_optimizer/index.md)
 - **Unit 42**: [Autonomous Multi-Agent Customer Support](../unit42_multiagent_customer_support/index.md)
 
----
 
 ## 📝 How to Learn
 
@@ -155,7 +152,6 @@ Using what you learned in step 2, implement a pipeline on a **different dataset*
 
 Solutions and explanations for the practice assignment. They are hidden inside `<details>` tags—try not to open them until you finish your own implementation. Compare your code with the reference and look for improvements.
 
----
 
 ## 📦 Topics Not Covered in Depth (Advanced Follow-ups)
 

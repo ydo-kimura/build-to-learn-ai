@@ -86,7 +86,6 @@ Build an agent system that takes the messy text above as input and **automatical
 3. **Final adoption decision**:
    - **State the agent evaluation pipeline you deliver to the enterprise and why.**
 
----
 
 ## 3. Answer Key — 💡 Professional Structured Data Extraction Design
 

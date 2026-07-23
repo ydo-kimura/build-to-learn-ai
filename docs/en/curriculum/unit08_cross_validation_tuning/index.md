@@ -109,7 +109,6 @@ print(f"Final test accuracy: {final_score:.3f}")
 **Code walkthrough**
 After `.fit()`, `best_params_` holds the winning settings and `best_estimator_` is the retrained best model. Score it once on `X_test` — complete tuning pipeline.
 
----
 
 ## 3. Practice
 
@@ -128,7 +127,6 @@ Use the **Wine dataset** and **K-NN** to find the best number of neighbors.
 - Import `from sklearn.neighbors import KNeighborsClassifier`.
 - `param_grid` looks like `{'n_neighbors': [1, 3, 5, 7, 9]}`.
 
----
 
 ## 4. Answer Key
 
