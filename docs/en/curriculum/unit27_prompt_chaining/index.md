@@ -52,6 +52,12 @@ LangChain’s `|` is not just part wiring—it **treats whole chains as input so
 
 ## 2. Implementation Example
 
+> **Colab setup:** Add only the OpenAI integration package.
+>
+> ```python
+> %pip install langchain-openai
+> ```
+
 Build a two-step LCEL chain:
 
 - **Step 1**: Generate a catchphrase from a given topic.

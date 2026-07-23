@@ -36,6 +36,12 @@ The professional architecture combines **LlamaIndex pinpoint retrieval (Retrieve
 
 ## 2. Practice — 🧠 Design and Decide Your Knowledge Extraction Pipeline
 
+> **Colab setup:** The current Colab runtime includes Pydantic. For the later self-correction agent using `OpenAIServerModel`, add only the smolagents OpenAI extra.
+>
+> ```python
+> %pip install "smolagents[openai]"
+> ```
+
 As a lead AI engineer, design and implement an architecture that **combines LlamaIndex retrieval with smolagents self-correction loops to reduce structured-output errors**.
 
 **Assignment Requirements**

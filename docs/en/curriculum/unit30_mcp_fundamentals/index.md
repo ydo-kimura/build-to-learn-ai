@@ -66,7 +66,11 @@ For local runs, **stdio** (stdin/stdout) avoids open network ports—strong loca
 
 Use the lightweight Python **`mcp` (MCP SDK)** library to build an MCP server so agents can **search a customer profile database via the standard protocol**.
 
-Run `pip install mcp` first.
+> **Colab setup:** Add only the MCP Python SDK.
+>
+> ```python
+> %pip install mcp
+> ```
 
 ### Sample implementation (mcp_server.py)
 

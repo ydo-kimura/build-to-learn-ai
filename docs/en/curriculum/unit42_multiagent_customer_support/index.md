@@ -54,6 +54,12 @@ Like company departments, create multiple **small child agents (Managed Agents)*
 
 ## 2. Implementation Example — Multi-Agent Coordination with smolagents
 
+> **Colab setup:** Add only the smolagents OpenAI extra required by `OpenAIServerModel`, then set `OPENAI_API_KEY`.
+>
+> ```python
+> %pip install "smolagents[openai]"
+> ```
+
 The code below uses Hugging Face's `smolagents` to build three specialist agents for **shipping tracking**, **cancellation fees**, and **refund policy**, orchestrated by a **main support agent (Manager)** that autonomously responds to an angry customer email.
 
 ```python

@@ -33,6 +33,8 @@ There are two opposing architectural philosophies for integrating different data
 
 ## 2. Practice — 🧠 Design and Decide Multimodal Fraud Detection
 
+> **Colab setup:** The current Colab runtime includes NumPy, pandas, scikit-learn, and XGBoost, so no additional installation is required.
+
 As a production AI system architect, decide **whether to apply early fusion (neural network concatenation) or late fusion (stacking)** and how to detect fraud, based on data characteristics and overfitting risk.
 
 **Assignment Requirements**

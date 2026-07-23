@@ -112,7 +112,7 @@ Choose techniques by task difficulty in production systems.
 
 Use OpenAI’s API—the most widely used worldwide—to ask the AI a question from Python.
 
-> ※ Run `pip install openai tiktoken` first and obtain an OpenAI API key. `tiktoken` is used later to measure token counts.
+> **Colab setup:** The current Colab runtime includes the OpenAI Python SDK and `tiktoken`, so no additional installation is required. An OpenAI API key is required.
 
 ```python
 import os

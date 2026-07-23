@@ -58,7 +58,9 @@ These three gates cooperate each step so LSTM can forget noise, retain important
 
 ## 2. Implementation Example
 
-Here you will use PyTorch to build a simple RNN/LSTM that **predicts the next character from one input character**, training on "hello." If PyTorch is not installed, run `pip install torch` first.
+Here you will use PyTorch to build a simple RNN/LSTM that **predicts the next character from one input character**, training on "hello."
+
+> **Colab setup:** The current Colab runtime includes PyTorch, so no additional installation is required.
 
 ### Code walkthrough
 

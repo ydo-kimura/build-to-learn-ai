@@ -5,12 +5,11 @@
 </p>
 
 > [!IMPORTANT]
-> **Prerequisites and library installation**
-> This unit requires `langchain` and `langchain-openai`.
-> Install on your environment:
+> **Colab setup**
+> Add only the OpenAI integration package. Its dependencies include `langchain-core`.
 >
-> ```bash
-> pip install langchain langchain-openai
+> ```python
+> %pip install langchain-openai
 > ```
 
 ---

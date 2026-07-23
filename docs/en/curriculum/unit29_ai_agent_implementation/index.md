@@ -57,7 +57,7 @@ The LLM does not execute code—it outputs **JSON instructions**; the host progr
 
 Use OpenAI Tool Calling for a full scratch ReAct loop where the agent autonomously uses a calculator and inventory lookup.
 
-Run `pip install openai` and set `OPENAI_API_KEY`.
+> **Colab setup:** The current Colab runtime includes the OpenAI Python SDK, so no additional installation is required. Set `OPENAI_API_KEY`.
 
 ### Sample implementation
 
