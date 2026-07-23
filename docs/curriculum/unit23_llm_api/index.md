@@ -119,7 +119,7 @@ AIは賢いですが、「空気を読む」ことは苦手です。そのため
 
 ここでは、世界中で最も使われているOpenAIのAPIを使って、PythonからAIに質問をする基本のコードを書いてみましょう。
 
-> ※ 事前に `pip install openai tiktoken` を実行し、OpenAIのAPIキーを取得しておく必要があります。`tiktoken` は後半のToken数測定で使用します。
+> **Colab セットアップ:** 現行の Colab には OpenAI Python SDK と `tiktoken` が含まれているため、追加インストールは不要です。OpenAI API キーは必要です。
 
 ```python
 import os

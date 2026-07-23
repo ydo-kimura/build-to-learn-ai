@@ -18,22 +18,45 @@ All implementation examples and assignments assume **Google Colaboratory**, wher
 
 ---
 
-## 📦 2. Bulk Library Installation
+## 📦 2. Install Only the Libraries Required by the Current Unit
 
-Install all libraries required for each unit in one Colab cell:
+Colab already includes many libraries such as NumPy, pandas, scikit-learn, and PyTorch. Because the runtime image changes over time, this curriculum does not install the dependencies for every Unit at once.
 
-Run this at the top of your notebook before you start learning:
+Start with a fresh Colab runtime and run a command only when the current Unit’s **Colab setup** note provides one. For example, Unit 18 adds only `gensim`:
 
-```bash
-!pip install -r https://raw.githubusercontent.com/[Your-Username]/[Your-Repo]/main/requirements.txt
+```python
+%pip install gensim
 ```
 
-> **💡 Running locally**
-> If you use a local environment (e.g., Jupyter Lab), use [requirements.txt](../../requirements.txt) at the project root and run:
+`%pip install` keeps an already installed compatible package. Do not add `-U` or `--upgrade` by default and upgrade a large part of Colab’s managed environment.
+
+### If pip Reports Dependency Conflicts
+
+A dependency warning can appear after `Successfully installed`. This means the requested packages were installed, but the resulting environment is not guaranteed to remain compatible with Colab’s existing packages. It is not a signal to ignore the warning and continue.
+
+1. Select **Runtime > Disconnect and delete runtime** to return to a fresh runtime.
+2. Run only the minimal command shown by the current Unit.
+3. If the output says a package was `previously imported`, restart the session once after installation and then run the import cell.
+
+> **💡 Preparing all dependencies locally**
+> The root [requirements.txt](https://github.com/ydo-kimura/build-to-learn-ai/blob/main/requirements.txt) is an aggregate for an isolated local virtual environment, not the Colab setup path.
 >
 > ```bash
-> pip install -r requirements.txt
+> python -m venv .venv
+> source .venv/bin/activate
+> python -m pip install -r requirements.txt
 > ```
+
+### Main Additional Libraries Used from Unit 25 Onward
+
+Install only the packages required by the Unit you are currently running.
+
+| Library              | Units            | Purpose                                |
+| :------------------- | :--------------- | :------------------------------------- |
+| `langchain-openai`   | Units 25–28      | LangChain integration with OpenAI      |
+| LlamaIndex packages  | Unit 26          | RAG with LlamaIndex                    |
+| `mcp`                | Unit 30          | MCP server implementation with FastMCP |
+| `smolagents[openai]` | Units 31, 39, 42 | Code agents backed by OpenAI models    |
 
 ---
 

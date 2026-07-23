@@ -44,7 +44,7 @@
 
 ここでは、テストケース（質問とドキュメント）を流し込んで、 **「生成された回答が、ドキュメントの事実にどれだけ忠実であるか（Faithfulness）」** を評価用のLLM APIを使って5段階で自動採点（LLM-as-a-Judge）する評価ハーネスを実装します。
 
-事前に `pip install openai` を実行し、`OPENAI_API_KEY` を環境変数に設定してください。
+> **Colab セットアップ:** 現行の Colab には OpenAI Python SDK が含まれているため追加インストールは不要です。`OPENAI_API_KEY` を環境変数に設定してください。
 
 ```python
 import os

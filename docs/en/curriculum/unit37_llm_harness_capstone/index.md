@@ -38,7 +38,7 @@ This unit implements **LLM-as-a-Judge** from scratch: static test input/output p
 
 Here you implement an evaluation harness that feeds test cases (questions and documents) and uses an evaluator LLM API to **automatically score on a 5-point scale how faithful the generated answer is to document facts (Faithfulness)**.
 
-Run `pip install openai` beforehand and set `OPENAI_API_KEY` in environment variables.
+> **Colab setup:** The current Colab runtime includes the OpenAI Python SDK, so no additional installation is required. Set `OPENAI_API_KEY` in environment variables.
 
 ```python
 import os

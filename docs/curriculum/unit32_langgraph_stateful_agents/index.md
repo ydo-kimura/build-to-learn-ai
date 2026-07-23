@@ -68,7 +68,7 @@ graph TD
 
 ここでは **OpenAI API キー不要** のローカル完結シミュレーションで、LangGraph を使ったステートフルワークフローを実装します。キーワードベースの簡易分類器で、カスタマーサポートチケットを **classify ➔ billing / technical / escalate** に振り分けます。
 
-事前に `pip install langgraph` を実行してください。
+> **Colab セットアップ:** 現行の Colab には LangGraph が含まれているため、追加インストールは不要です。
 
 ### 2.1 LangGraph（StateGraph）による実装
 

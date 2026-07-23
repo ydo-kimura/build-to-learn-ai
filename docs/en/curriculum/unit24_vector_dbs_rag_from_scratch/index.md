@@ -51,7 +51,7 @@ LLMs like ChatGPT only know training data— they cannot answer about latest new
 
 Build RAG from zero using basic Python and simple vector libraries—no heavy RAG framework.
 
-> ※ Install `pip install scikit-learn openai` first. (We use scikit-learn cosine similarity for clarity.)
+> **Colab setup:** The current Colab runtime includes NumPy, scikit-learn, and the OpenAI Python SDK, so no additional installation is required.
 
 ```python
 import os

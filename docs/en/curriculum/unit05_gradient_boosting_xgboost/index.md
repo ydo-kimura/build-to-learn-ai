@@ -51,6 +51,8 @@ Because of its speed and accuracy, XGBoost dominated competitions like **Kaggle*
 
 ## 2. Implementation Example
 
+> **Colab setup:** The current Colab runtime includes XGBoost, so no additional installation is required.
+
 We'll use the **XGBoost library** to classify breast cancer data. (`xgboost` is separate from scikit-learn and must be installed.)
 
 ```python

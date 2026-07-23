@@ -47,7 +47,11 @@ Instead of traditional text-based tool calling, `smolagents` introduces a design
 
 Here, you build a lightweight agent with `smolagents` `CodeAgent` where the LLM **writes Python code on its own and autonomously combines the provided tools**.
 
-Run `pip install smolagents openai` beforehand and set `OPENAI_API_KEY` in your environment variables.
+> **Colab setup:** Add the smolagents OpenAI extra required by `OpenAIServerModel`, then set `OPENAI_API_KEY`.
+>
+> ```python
+> %pip install "smolagents[openai]"
+> ```
 
 ```python
 import os
