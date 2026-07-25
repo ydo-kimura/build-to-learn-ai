@@ -11,6 +11,7 @@ All implementation examples and assignments assume **Google Colaboratory**, wher
    Go to [Google Colaboratory](https://colab.research.google.com/) and sign in with your Google account.
 2. **Create a new notebook**
    Click **New Notebook** to create a fresh workspace.
+   If notebook cells, execution order, and runtime state are new to you, continue with [Prep 1: Notebook and Colab Foundations](../prep01_notebook_colab/index.md) after creating it.
 3. **Enable GPU (recommended from Chapter 2 onward)**
    - For deep learning (Units 10–16) and NLP (Units 17–21), we recommend enabling a GPU to speed up computation.
    - From the top menu, select **Runtime > Change runtime type**, choose **T4 GPU** (free tier) under hardware accelerator, and save.
