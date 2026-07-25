@@ -334,3 +334,5 @@ You have completed Prep 1 when you can confirm all of the following:
 - You explained the difference between saved notebook content and runtime state
 
 If you turned off AI assistance for the hands-on exercise, you may enable it again from **Tools > Settings > AI Assistance** when appropriate.
+
+Next, continue to [Prep 2: Python Foundations](../prep02_python_basics/index.md) to learn the Python needed to read the code in Unit 01 and later units.
