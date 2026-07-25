@@ -793,3 +793,5 @@ You have completed Prep 2 when you can confirm all of the following:
 - You restarted the runtime and reproduced the hands-on result from the top.
 
 If you cannot explain an item, return to that section, change one value, and run it again. If you can explain how the result changes, you understand the behavior rather than only recognizing the finished code.
+
+Next, continue to [Prep 3: NumPy Foundations](../prep03_numpy/index.md) to work with multiple numeric values as arrays and inspect dimensions, shapes, rows, columns, and aggregate results.
