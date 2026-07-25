@@ -334,3 +334,5 @@ Notebook の名前と内容は Google Drive に保存されます。「ドライ
 - Notebook の保存内容とランタイムの状態の違いを説明できた
 
 実践のためにAIアシストをオフにした場合は、必要に応じて「ツール」→「設定」→「AI アシスタンス」から再び有効にしてかまいません。
+
+次は、[Prep 2: Python の基礎](../prep02_python_basics/index.md)で、Unit 01 以降のコードを読むために必要な Python を学びます。
