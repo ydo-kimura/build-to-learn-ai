@@ -672,4 +672,4 @@ You have completed Prep 3 when you can confirm all of the following:
 
 If you cannot explain an item, return to that section, select a different row or column, and run it again. When you can predict both the result’s value and its shape and meaning, you can inspect NumPy arrays for yourself.
 
-Prep 4 will introduce pandas tables with column names and row labels and will compare them with NumPy arrays.
+[Prep 4](../prep04_pandas/index.md) will introduce pandas tables with column names and row labels and will compare them with NumPy arrays.
