@@ -607,4 +607,4 @@ You have completed Prep 4 when you can confirm all of the following:
 - You can explain that `to_numpy()` keeps values and order but removes labels.
 - You restarted the notebook, ran it from the top, and reproduced the same results.
 
-If you cannot explain an item, return to that section, change one selected column or condition, and run it again. Prep 5 will cover why and how to preprocess data, including choices about filling or deleting missing values, scale adjustment, and categorical values.
+If you cannot explain an item, return to that section, change one selected column or condition, and run it again. Next, [Prep 5: Data Understanding and Preprocessing Basics](../prep05_data_preprocessing/index.md) will use the data to decide whether preprocessing is needed, then cover missing-value imputation, scale adjustment, and categorical values.
