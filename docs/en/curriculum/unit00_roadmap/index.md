@@ -4,7 +4,6 @@ Welcome! This repository is a comprehensive curriculum designed to take you from
 
 This curriculum is structured as a collection of micro-PoCs (proof-of-concept projects), each designed to be completed in a few hours. By coding a little every day, you will steadily build genuine skills and confidence as an AI engineer.
 
-
 ## 💡 Why Learn Machine Learning and Deep Learning in the LLM Era?
 
 LLMs (large language models) and autonomous agents—exemplified by ChatGPT—are at the center of AI today. However, to call yourself a top-tier **AI engineer or system architect** in practice, you need more than LLMs alone: foundational knowledge of machine learning (ML) and deep learning (DL) is essential.
@@ -58,7 +57,6 @@ Modern AI systems are not built from LLMs alone. In practice, **hybrid designs a
 
 1. **Right tool for the right job**: Learn each technology's strengths and limits so you can avoid wasted infrastructure cost and response-time degradation (degradation) as an architect.
 2. **Understanding model internals**: The heart of LLMs (Attention and Transformers) stands on the history of deep learning and NLP. Chapters 1–3 give you the foundation to reason about how modern LLMs and agents behave and to tune them seriously in production.
-
 
 ## 🗺️ Curriculum Structure
 
@@ -131,10 +129,27 @@ Apply everything you have learned—ML, DL, NLP, and LLMs—to high-difficulty p
 - **Unit 41**: [Time-Series Demand Forecasting & Dynamic Pricing](../unit41_timeseries_price_optimizer/index.md)
 - **Unit 42**: [Autonomous Multi-Agent Customer Support](../unit42_multiagent_customer_support/index.md)
 
-
 ## 📝 How to Learn
 
 Each unit's `index.md` follows four steps. Open your environment (Jupyter Notebook, etc.), copy the code, run it, and learn by doing.
+
+### Choose your Preparation (Prep 1–5)
+
+Unit 1 assumes that you can run code in a notebook and inspect Python, NumPy, pandas, and datasets. If these are new to you, open [Prep 1: Notebook and Colab Foundations](../prep01_notebook_colab/index.md) from the **Preparation** sidebar section, then continue through Prep 5 in order.
+
+Even if you already use Python, do not skip the whole Preparation chapter automatically. Check the **Skip check** in each Prep one at a time. Start from any Prep whose items you cannot explain.
+
+- [Prep 1](../prep01_notebook_colab/index.md): Notebook cells, execution order, runtime state, and reading errors
+- [Prep 2](../prep02_python_basics/index.md): Python values, control flow, functions, and imports
+- [Prep 3](../prep03_numpy/index.md): NumPy arrays, shapes, rows, columns, and aggregation
+- [Prep 4](../prep04_pandas/index.md): pandas tables, column names, `X`, and `y`
+- [Prep 5](../prep05_data_preprocessing/index.md): Data inspection, scaling, leakage, and preprocessing
+
+#### AI assistance during hands-on work
+
+Turn off code completion and code generation temporarily while doing hands-on exercises. The point is to create the cells yourself, predict the output, run the code, and read and correct errors. See [Prep 1: Turn off AI assistance before the hands-on exercise](../prep01_notebook_colab/index.md#_6-turn-off-ai-assistance-before-the-hands-on-exercise) for the Colab setting steps.
+
+This is not a permanent ban on AI assistance throughout the curriculum. After you finish a hands-on exercise, you may enable it again from the same settings.
 
 ### 1. [Topic Name] (Conceptual Understanding)
 
@@ -152,7 +167,6 @@ Using what you learned in step 2, implement a pipeline on a **different dataset*
 
 Solutions and explanations for the practice assignment. They are hidden inside `<details>` tags—try not to open them until you finish your own implementation. Compare your code with the reference and look for improvements.
 
-
 ## 📦 Topics Not Covered in Depth (Advanced Follow-ups)
 
 This curriculum focuses on understanding mechanisms through hands-on work. The topics below are covered at a foundational level in the main curriculum; production-scale details are left as follow-up work.
@@ -163,4 +177,4 @@ This curriculum focuses on understanding mechanisms through hands-on work. The t
 
 ---
 
-Start by reviewing the [Appendix (Environment & API Setup)](../appendix/index.md) to prepare your workspace, then begin your journey from [Unit 1](../unit01_linear_regression/index.md)!
+Start by reviewing the [Appendix (Environment & API Setup)](../appendix/index.md) to prepare your workspace. If notebooks or Python are new to you, begin with [Prep 1](../prep01_notebook_colab/index.md); otherwise, begin your journey from [Unit 1](../unit01_linear_regression/index.md)!

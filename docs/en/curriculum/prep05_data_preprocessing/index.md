@@ -480,4 +480,4 @@ You have completed Prep 5 when you can confirm all of the following:
 - You can explain why `Pipeline` keeps preprocessing and model work in one consistent order.
 - You can explain that score differences with and without preprocessing must be compared under the same evaluation conditions.
 
-If you cannot explain an item, return to the related section and restate what the displayed type, shape, or feature name means. In Unit 01, you will use this understanding of `X`, `y`, splitting, and evaluation to implement linear regression.
+If you cannot explain an item, return to the related section and restate what the displayed type, shape, or feature name means. Next, use this understanding of `X`, `y`, splitting, and evaluation to implement linear regression in [Unit 1: Linear & Regularized Regression](../unit01_linear_regression/index.md).

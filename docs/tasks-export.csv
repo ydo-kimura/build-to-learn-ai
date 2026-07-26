@@ -1,5 +1,10 @@
 Title,Description,Status,Label,Priority
 Setup: 学習環境とAPI準備 (Appendix),[教材](docs/curriculum/appendix/index.md) を確認し、Google Colabの準備、ライブラリのインストール、およびOpenAI APIキーの安全なシークレット設定を行います。,Todo,Setup,High
+Prep 1: Notebook／Colab の基礎,[教材](docs/curriculum/prep01_notebook_colab/index.md) | Colabのセル操作、実行順、ランタイム、エラーからの復帰を確認します。,Todo,Preparation,High
+Prep 2: Python の基礎,[教材](docs/curriculum/prep02_python_basics/index.md) | 変数、制御構文、関数、インポートを実行と予想を通して学びます。,Todo,Preparation,High
+Prep 3: NumPy の基礎,[教材](docs/curriculum/prep03_numpy/index.md) | 配列の形、行と列、選択、集計、Xとyの対応を確認します。,Todo,Preparation,High
+Prep 4: pandas の基礎,[教材](docs/curriculum/prep04_pandas/index.md) | 表の行と列、ラベル、欠損値の観察、Xとyの取り出しを学びます。,Todo,Preparation,High
+Prep 5: データ理解と前処理の基礎,[教材](docs/curriculum/prep05_data_preprocessing/index.md) | データの観察、尺度調整、データリークを避けた前処理を学びます。,Todo,Preparation,High
 Unit 01: Linear & Regularized Regression,[教材](docs/curriculum/unit01_linear_regression/index.md) | 広さと家賃予測の例え話で回帰を学び、Lasso回帰（糖尿病データセット）を独力で実装します。,Todo,Chapter-1: Classical-ML,Medium
 Unit 02: Logistic Regression & Classification Metrics,[教材](docs/curriculum/unit02_logistic_regression/index.md) | メールスパム判定などの例で分類と評価指標（混同行列・ROC）を学び、乳がんデータセットの分類モデルを実装します。,Todo,Chapter-1: Classical-ML,Medium
 Unit 03: K-NN & Support Vector Machines,[教材](docs/curriculum/unit03_knn_svm/index.md) | 「類は友を呼ぶ」K-NNと境界線SVMの概念を学び、ワインデータセットで多クラス分類を実装します。,Todo,Chapter-1: Classical-ML,Medium

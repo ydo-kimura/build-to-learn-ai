@@ -36,6 +36,31 @@ export default defineConfig({
             ],
           },
           {
+            text: "事前準備（Prep 1〜5）",
+            items: [
+              {
+                text: "Prep 1: Notebook／Colab の基礎",
+                link: "/curriculum/prep01_notebook_colab/",
+              },
+              {
+                text: "Prep 2: Python の基礎",
+                link: "/curriculum/prep02_python_basics/",
+              },
+              {
+                text: "Prep 3: NumPy の基礎",
+                link: "/curriculum/prep03_numpy/",
+              },
+              {
+                text: "Prep 4: pandas の基礎",
+                link: "/curriculum/prep04_pandas/",
+              },
+              {
+                text: "Prep 5: データ理解と前処理の基礎",
+                link: "/curriculum/prep05_data_preprocessing/",
+              },
+            ],
+          },
+          {
             text: "第1章: 機械学習の基礎と主要アルゴリズム",
             items: [
               {
@@ -257,6 +282,31 @@ export default defineConfig({
               {
                 text: "Environment Setup (Appendix)",
                 link: "/en/curriculum/appendix/",
+              },
+            ],
+          },
+          {
+            text: "Preparation (Prep 1–5)",
+            items: [
+              {
+                text: "Prep 1: Notebook and Colab Foundations",
+                link: "/en/curriculum/prep01_notebook_colab/",
+              },
+              {
+                text: "Prep 2: Python Foundations",
+                link: "/en/curriculum/prep02_python_basics/",
+              },
+              {
+                text: "Prep 3: NumPy Foundations",
+                link: "/en/curriculum/prep03_numpy/",
+              },
+              {
+                text: "Prep 4: pandas Foundations",
+                link: "/en/curriculum/prep04_pandas/",
+              },
+              {
+                text: "Prep 5: Data Understanding and Preprocessing Basics",
+                link: "/en/curriculum/prep05_data_preprocessing/",
               },
             ],
           },
