@@ -4,6 +4,18 @@
   <img src="/en/assets/units/unit01_linear_regression/images/hero.png" alt="Hero: predicting rent from room size with linear regression" />
 </p>
 
+## Check before starting this Unit
+
+This Unit uses a notebook to run Python and works with NumPy arrays, pandas tables, a dataset's `X` and `y`, and a train/test split. If any item is new or hard to explain, use the [Preparation guidance in Unit 0](../unit00_roadmap/index.md) and complete the relevant Prep's skip check.
+
+- Unsure about notebook cells or execution order: [Prep 1](../prep01_notebook_colab/index.md)
+- Unsure about Python variables, functions, or imports: [Prep 2](../prep02_python_basics/index.md)
+- Unsure about `ndarray` shapes, rows, or columns: [Prep 3](../prep03_numpy/index.md)
+- Unsure about table column names, `DataFrame`, `Series`, `X`, or `y`: [Prep 4](../prep04_pandas/index.md)
+- Unsure about data inspection, scaling, or preprocessing after a split: [Prep 5](../prep05_data_preprocessing/index.md)
+
+Each Prep uses what you can actually do and explain to decide whether to continue. Do not rely only on reading an answer; use the skip check and hands-on practice to verify it yourself.
+
 ## 1. Understanding Linear Regression and Regularization
 
 ### What Is Linear Regression? — Predicting Rent
@@ -46,7 +58,6 @@ In the practice section, you will compare ordinary linear regression, Ridge regr
 - **Real estate valuation AI**: Predict fair rent or sale price from features such as floor area, building age, and distance to the nearest station.
 - **Retail sales forecasting**: Predict next-day store revenue from past sales, temperature, and holidays to optimize ordering.
 - **Marketing mix modeling (ad ROI analysis)**: Estimate how much each channel (TV, web ads, etc.) contributes to revenue and optimize budget allocation.
-
 
 ## 2. Implementation Example
 
@@ -166,7 +177,6 @@ MSE (mean squared error) is calculated by **squaring "prediction − actual valu
 
 Ridge is not guaranteed to outperform ordinary linear regression on every dataset. Its effect depends on the data and the choice of `alpha`. This example intentionally recreates conditions where Ridge is useful: limited data, strongly correlated features, and noise.
 
-
 ## 3. Practice
 
 Now it is your turn. Instead of copying the implementation example, work with a different real dataset and complete the process yourself—from understanding the data through comparing models and interpreting the results.
@@ -250,7 +260,6 @@ Use the output to explain the following in your own words:
 3. Which Lasso coefficients are zero?
 4. What does a zero coefficient tell you about this training setup?
 5. What medical conclusion cannot be made from a zero coefficient alone?
-
 
 ## 4. Answer Key
 

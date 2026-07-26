@@ -1,5 +1,10 @@
 Title,Description,Status,Label,Priority
 Setup: Environment & API Preparation,"[Curriculum](docs/en/curriculum/appendix/index.md) Set up Google Colab, install the required libraries, and configure the OpenAI API key securely as a secret.",Todo,Setup,High
+Prep 1: Notebook and Colab Foundations,"[Curriculum](docs/en/curriculum/prep01_notebook_colab/index.md) Learn Colab cell operations, execution order, runtime state, and how to recover from errors.",Todo,Preparation,High
+Prep 2: Python Foundations,"[Curriculum](docs/en/curriculum/prep02_python_basics/index.md) Learn values, control flow, functions, and imports by predicting and running code.",Todo,Preparation,High
+Prep 3: NumPy Foundations,"[Curriculum](docs/en/curriculum/prep03_numpy/index.md) Inspect array shapes, rows, columns, selection, aggregation, and the relationship between X and y.",Todo,Preparation,High
+Prep 4: pandas Foundations,"[Curriculum](docs/en/curriculum/prep04_pandas/index.md) Work with table rows, columns, labels, missing-value observation, and extracting X and y.",Todo,Preparation,High
+Prep 5: Data Understanding and Preprocessing Basics,"[Curriculum](docs/en/curriculum/prep05_data_preprocessing/index.md) Learn data inspection, scaling, and preprocessing that avoids data leakage.",Todo,Preparation,High
 Unit 01: Linear & Regularized Regression,"[Curriculum](docs/en/curriculum/unit01_linear_regression/index.md) Learn regression through a room-size and rent example, then implement Lasso regression with the diabetes dataset.",Todo,Chapter-1: Classical-ML,Medium
 Unit 02: Logistic Regression & Classification Metrics,"[Curriculum](docs/en/curriculum/unit02_logistic_regression/index.md) Learn classification and metrics such as confusion matrices and ROC curves through examples like spam detection, then build a breast-cancer classifier.",Todo,Chapter-1: Classical-ML,Medium
 Unit 03: K-NN & Support Vector Machines,"[Curriculum](docs/en/curriculum/unit03_knn_svm/index.md) Learn K-NN and SVM decision boundaries, then implement multiclass classification with the wine dataset.",Todo,Chapter-1: Classical-ML,Medium

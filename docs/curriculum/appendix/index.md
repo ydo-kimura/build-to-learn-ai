@@ -2,6 +2,11 @@
 
 本カリキュラムをスムーズに進めるための、Google Colaboratory（以下 Colab）を利用した学習手順、ライブラリのインストール方法、および第4章で必要となる OpenAI APIキーの準備と安全な管理方法についての解説です。
 
+## Appendix と事前準備の役割
+
+この Appendix は、Colab へのアクセス、ライブラリのインストール、API キーの設定など、学習環境を用意するための参照ページです。Notebook の操作、Python、NumPy、pandas、データの観察と前処理を順に手を動かして学ぶ場所は、[Unit 0 の事前準備（Prep 1〜5）](../unit00_roadmap/index.md)です。
+
+環境を用意した後、Notebook の使い方が初めてなら [Prep 1: Notebook／Colab の基礎](../prep01_notebook_colab/index.md) から始めてください。すでに経験がある場合も、各 Prep のスキップ判定で、自分でできることと説明できることを確認してから次へ進みます。
 
 ## 🚀 1. Google Colaboratory での学習の進め方
 
@@ -15,7 +20,6 @@
 3. **GPU を有効にする（第2章以降で推奨）**
    - ディープラーニング（Unit 10〜16）や自然言語処理（Unit 17〜21）では、計算を高速化するためにGPUを使用することをおすすめします。
    - 画面上部のメニューから **「ランタイム」 > 「ランタイムのタイプを変更」** を選択し、ハードウェアアクセラレータで **「T4 GPU」** （無料枠）を選択して保存します。
-
 
 ## 📦 2. Unit ごとの最小ライブラリをインストールする
 
@@ -57,7 +61,6 @@ Colab には NumPy、pandas、scikit-learn、PyTorch など多くのライブラ
 | `mcp`                                  | Unit 30         | MCP サーバーの実装（FastMCP）  |
 | `smolagents[openai]`                   | Unit 31, 39, 42 | OpenAI モデルを使う Code Agent |
 
-
 ## 🔑 3. OpenAI APIキーの取得と安全な管理（第4章）
 
 第4章「LLM応用とAIエージェント」では、OpenAIのAPIを利用します。
@@ -86,7 +89,6 @@ Colab では、以下の手順で安全にAPIキーをプログラムに渡す�
    # Colabのシークレットからキーを取得し、環境変数にセットする
    os.environ["OPENAI_API_KEY"] = userdata.get("OPENAI_API_KEY")
    ```
-
 
 ## 📊 4. 進捗管理用 CSV を使ったタスク管理 (Linear / GitHub Projects)
 

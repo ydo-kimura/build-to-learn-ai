@@ -2,6 +2,11 @@
 
 This guide covers learning with Google Colaboratory (Colab), installing required libraries, and preparing and securely managing the OpenAI API key needed from Chapter 4 onward.
 
+## The roles of this Appendix and Preparation
+
+This Appendix is a reference for preparing your learning environment: accessing Colab, installing libraries, and configuring API keys. The place to work through notebook operation, Python, NumPy, pandas, data inspection, and preprocessing is [Unit 0's Preparation path (Prep 1–5)](../unit00_roadmap/index.md).
+
+After preparing the environment, begin with [Prep 1: Notebook and Colab Foundations](../prep01_notebook_colab/index.md) if notebook operation is new to you. Even if you have prior experience, use each Prep's skip check to confirm what you can do and explain before moving on.
 
 ## 🚀 1. Learning with Google Colaboratory
 
@@ -15,7 +20,6 @@ All implementation examples and assignments assume **Google Colaboratory**, wher
 3. **Enable GPU (recommended from Chapter 2 onward)**
    - For deep learning (Units 10–16) and NLP (Units 17–21), we recommend enabling a GPU to speed up computation.
    - From the top menu, select **Runtime > Change runtime type**, choose **T4 GPU** (free tier) under hardware accelerator, and save.
-
 
 ## 📦 2. Install Only the Libraries Required by the Current Unit
 
@@ -57,7 +61,6 @@ Install only the packages required by the Unit you are currently running.
 | `mcp`                | Unit 30          | MCP server implementation with FastMCP |
 | `smolagents[openai]` | Units 31, 39, 42 | Code agents backed by OpenAI models    |
 
-
 ## 🔑 3. OpenAI API Key: Acquisition and Secure Management (Chapter 4)
 
 Chapter 4, **LLM Applied & AI Agents**, uses the OpenAI API.
@@ -86,7 +89,6 @@ In Colab, pass the key securely as follows:
    # Load the key from Colab Secrets into the environment
    os.environ["OPENAI_API_KEY"] = userdata.get("OPENAI_API_KEY")
    ```
-
 
 ## 📊 4. Task Management with CSV (Linear / GitHub Projects)
 
