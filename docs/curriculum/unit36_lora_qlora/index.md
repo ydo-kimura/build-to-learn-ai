@@ -65,12 +65,26 @@ print("total parameters:", total)
 
 ## 3. 実践 (Practice)
 
-次の順番で小さな実験を行ってください。
+セクション 2 で定義した `LoRALinear` を使い、小規模な合成回帰データ上で LoRA のパラメータ削減と凍結の挙動を確認しましょう。まずは次のセットアップで入力 `X` と正解 `y` を用意してください。
 
-1. `rank`を1、2、4に変え、学習対象パラメータ数と表現力の違いを記録する。
-2. ベース重みの`requires_grad`がすべて`False`であることを確認する。
-3. 同じ小規模データを使い、全層更新とLoRA更新の学習対象パラメータ数を比較する。
-4. QLoRAについて、量子化によるメモリ削減の利点と、精度・速度・GPU依存性のトレードオフを説明する。
+```python
+import torch
+from torch import nn
+
+torch.manual_seed(42)
+in_features = 16
+out_features = 8
+X = torch.randn(64, in_features)
+true_weight = torch.randn(in_features, out_features) * 0.5
+y = X @ true_weight + 0.1 * torch.randn(64, out_features)
+```
+
+次の順番で実験と考察を行ってください。
+
+1. `rank in [1, 2, 4]` のループを回し、各 `rank` における学習対象パラメータ数、総パラメータ数、および全パラメータ更新の `nn.Linear(16, 8)` と比較した学習対象パラメータの割合を表示する。
+2. `all(not p.requires_grad for p in model.base.parameters())` を使い、ベース層のパラメータがすべて凍結されていることを確認する。
+3. 学習前に `model.base.weight`（および `adapter_a` / `adapter_b`）を `.detach().clone()` で保存し、学習対象パラメータのみを `torch.optim.Adam` に渡して `nn.MSELoss()` で 20 ステップ学習する。学習後に `torch.allclose` を使って `base.weight` が完全に不変である一方、`adapter_a` と `adapter_b` が変化し、損失（Loss）が減少したことを検証する。
+4. QLoRA について、量子化によるメモリ削減の利点と、精度・学習速度・GPU / ライブラリ依存性のトレードオフを説明する。
 
 本番モデルを学習する場合は、訓練データと評価データを分離し、元モデル、アダプター、Tokenizer、学習設定、評価結果を記録してください。
 
@@ -79,8 +93,101 @@ print("total parameters:", total)
 <details>
 <summary>解答例を見る（クリックで展開）</summary>
 
-- ランクを大きくするとアダプターのパラメータ数と表現力は増えますが、メモリ・学習時間・過学習リスクも増えます。
-- LoRAではベースモデルの重みを凍結し、低ランク行列だけを更新します。
-- QLoRAは「LoRAなら必ず量子化される」という意味ではなく、量子化ベースモデルとLoRAを組み合わせた構成です。実際の利用では使用ライブラリとGPUの対応を確認します。
+```python
+import torch
+from torch import nn
+
+
+class LoRALinear(nn.Module):
+    def __init__(self, in_features, out_features, rank=2, alpha=1.0):
+        super().__init__()
+        self.base = nn.Linear(in_features, out_features)
+        for parameter in self.base.parameters():
+            parameter.requires_grad = False
+        self.adapter_a = nn.Parameter(torch.randn(rank, in_features) * 0.01)
+        self.adapter_b = nn.Parameter(torch.zeros(out_features, rank))
+        self.scale = alpha / rank
+
+    def forward(self, x):
+        base_output = self.base(x)
+        update = (x @ self.adapter_a.T) @ self.adapter_b.T
+        return base_output + self.scale * update
+
+
+# 再現性のためのシード固定と小規模な合成回帰データの作成
+torch.manual_seed(42)
+in_features = 16
+out_features = 8
+X = torch.randn(64, in_features)
+true_weight = torch.randn(in_features, out_features) * 0.5
+y = X @ true_weight + 0.1 * torch.randn(64, out_features)
+
+# ステップ 1: rank ごとのパラメータ数を全パラメータ更新の nn.Linear と比較する
+full_layer = nn.Linear(in_features, out_features)
+full_trainable = sum(p.numel() for p in full_layer.parameters() if p.requires_grad)
+print(
+    f"Full nn.Linear({in_features}, {out_features}): "
+    f"trainable={full_trainable} (100.0%)"
+)
+
+for rank in [1, 2, 4]:
+    lora_layer = LoRALinear(in_features, out_features, rank=rank, alpha=float(rank))
+    trainable = sum(p.numel() for p in lora_layer.parameters() if p.requires_grad)
+    total = sum(p.numel() for p in lora_layer.parameters())
+    trainable_pct = trainable / total * 100
+    vs_full_pct = trainable / full_trainable * 100
+    print(
+        f"LoRA rank={rank}: trainable={trainable}, total={total}, "
+        f"trainable/total={trainable_pct:.1f}%, vs_full={vs_full_pct:.1f}%"
+    )
+
+# ステップ 2: ベース層のパラメータがすべて凍結されていることを確認する
+model = LoRALinear(in_features, out_features, rank=4, alpha=4.0)
+base_all_frozen = all(not p.requires_grad for p in model.base.parameters())
+print("base parameters all frozen:", base_all_frozen)
+assert base_all_frozen
+
+# ステップ 3: 学習前後の重み変化と損失の減少を検証する
+base_weight_before = model.base.weight.detach().clone()
+adapter_a_before = model.adapter_a.detach().clone()
+adapter_b_before = model.adapter_b.detach().clone()
+
+criterion = nn.MSELoss()
+trainable_params = [p for p in model.parameters() if p.requires_grad]
+optimizer = torch.optim.Adam(trainable_params, lr=0.05)
+
+with torch.no_grad():
+    initial_loss = criterion(model(X), y).item()
+
+for step in range(20):
+    optimizer.zero_grad()
+    predictions = model(X)
+    loss = criterion(predictions, y)
+    loss.backward()
+    optimizer.step()
+
+with torch.no_grad():
+    final_loss = criterion(model(X), y).item()
+
+base_unchanged = torch.allclose(base_weight_before, model.base.weight)
+adapter_a_changed = not torch.allclose(adapter_a_before, model.adapter_a)
+adapter_b_changed = not torch.allclose(adapter_b_before, model.adapter_b)
+
+print(f"initial_loss={initial_loss:.4f} -> final_loss={final_loss:.4f}")
+print("base.weight unchanged:", base_unchanged)
+print("adapter_a changed:", adapter_a_changed)
+print("adapter_b changed:", adapter_b_changed)
+
+assert base_unchanged
+assert adapter_a_changed
+assert adapter_b_changed
+assert final_loss < initial_loss
+```
+
+### 解説
+
+- **ランク (`rank`) のトレードオフ** : `LoRALinear(16, 8)` の学習対象パラメータ数は `(16 + 8) × rank` であり、`rank=1, 2, 4` ではそれぞれ 24 個、48 個、96 個となります（全パラメータ更新の `nn.Linear(16, 8)` は重み 128 + バイアス 8 = 136 個）。ランクを大きくすると表現力は増えますが、学習対象パラメータ数・メモリ消費・学習時間・過学習リスクも増えます。今回の小さな層では削減幅が小さく見えても、実際の LLM（例：4096×4096 の層）では低ランク近似により学習対象を元の 1% 未満まで抑えられます。
+- **`adapter_b` をゼロ初期化する理由** : `adapter_a` を小さな乱数、`adapter_b` をゼロで初期化しておくと、学習開始時（ステップ 0）には `ΔW = B × A = 0` になります。これにより、学習直前の出力が事前学習済みベースモデルの出力と完全に一致し、元の知識を壊さずに安定した状態から適応を始められます（1 ステップ目で `adapter_b` が更新され、2 ステップ目以降は `adapter_a` にも勾配が流れて両方が更新されます）。
+- **QLoRA の利点とトレードオフ** : QLoRA は「LoRA なら必ず量子化される」という意味ではなく、量子化（例：4-bit）したベースモデルを凍結し、その上に LoRA アダプターを組み合わせて学習する構成です。ベース重みが占める GPU メモリを大幅に削減できるため、限られた VRAM でも大規模モデルを扱いやすくなります。一方、計算時の逆量子化に伴う学習速度の低下、量子化誤差による精度への影響、さらに対応する量子化ライブラリ（bitsandbytes など）や GPU・CUDA 環境への依存性が高まる点がトレードオフです。
 
 </details>
