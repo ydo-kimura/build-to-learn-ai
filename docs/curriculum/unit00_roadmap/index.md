@@ -134,12 +134,15 @@ API利用の裏側にあるトークン化（BPE）とパラメータ効率的�
 
 これまでに身につけたすべての「武器（機械学習、DL、NLP、LLM）」を総動員し、実際のビジネス現場で最も頻繁に遭遇する高難易度な課題を、生徒自身がゼロからアーキテクチャ設計・実装・評価までを行う実践特化の最終章です。すべてのユニットが総合演習（Capstone）形式となっています。
 
-- **Unit 37** : [LLM自動評価・防御とエージェント総合演習 (Capstone)](../unit37_llm_harness_capstone/index.md)
+- **Unit 37** : [LLMオフライン自動評価ハーネス総合演習 (Capstone)](../unit37_llm_harness_capstone/index.md)
 - **Unit 38** : [マルチモーダル不正検知システム](../unit38_multimodal_fraud_detection/index.md)
 - **Unit 39** : [自律型ナレッジ抽出・構造化エージェント](../unit39_knowledge_structuring_agent/index.md)
-- **Unit 40** : [エンタープライズAI自動評価・防御ハーネス](../unit40_guardrails_evaluation_harness/index.md)
+- **Unit 40** : [ランタイム防御・入出力ガードレール設計](../unit40_guardrails_evaluation_harness/index.md)
 - **Unit 41** : [時系列需要予測・価格最適化システム](../unit41_timeseries_price_optimizer/index.md)
 - **Unit 42** : [自律型カスタマーサポート・マルチエージェント](../unit42_multiagent_customer_support/index.md)
+
+> [!TIP]
+> **Unit 37 と Unit 40 の役割の違い** : [Unit 37](../unit37_llm_harness_capstone/index.md) はリリース前・CI 上でプロンプトや RAG の品質劣化を測る **オフライン自動評価ハーネス** 、[Unit 40](../unit40_guardrails_evaluation_harness/index.md) は本番稼働中の入出力をリアルタイムに検査・遮断する **ランタイム防御・入出力ガードレール** を扱います。
 
 ## 📝 学習の進め方 (How to Learn)
 

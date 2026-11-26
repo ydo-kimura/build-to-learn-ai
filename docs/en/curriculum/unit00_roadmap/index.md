@@ -134,12 +134,15 @@ Explore how tokenization (BPE) and parameter-efficient fine-tuning (LoRA / QLoRA
 
 Apply everything you have learned—ML, DL, NLP, and LLMs—to high-difficulty problems common in real business settings. You will design architectures, implement, and evaluate from scratch. Every unit in this chapter is a comprehensive capstone.
 
-- **Unit 37**: [LLM Evaluation, Guardrails & Agent Capstone](../unit37_llm_harness_capstone/index.md)
+- **Unit 37**: [Offline LLM Evaluation Harness Capstone](../unit37_llm_harness_capstone/index.md)
 - **Unit 38**: [Multimodal Fraud Detection](../unit38_multimodal_fraud_detection/index.md)
 - **Unit 39**: [Autonomous Knowledge Extraction & Structuring Agent](../unit39_knowledge_structuring_agent/index.md)
-- **Unit 40**: [Enterprise AI Evaluation & Guardrails Harness](../unit40_guardrails_evaluation_harness/index.md)
+- **Unit 40**: [Runtime Input/Output Guardrails & Safety Policy](../unit40_guardrails_evaluation_harness/index.md)
 - **Unit 41**: [Time-Series Demand Forecasting & Dynamic Pricing](../unit41_timeseries_price_optimizer/index.md)
 - **Unit 42**: [Autonomous Multi-Agent Customer Support](../unit42_multiagent_customer_support/index.md)
+
+> [!TIP]
+> **Unit 37 vs. Unit 40**: [Unit 37](../unit37_llm_harness_capstone/index.md) builds a pre-release / CI **offline evaluation harness** to detect prompt and RAG quality regressions, whereas [Unit 40](../unit40_guardrails_evaluation_harness/index.md) builds live **runtime input/output guardrails** and safety policy enforcement for production traffic.
 
 ## 📝 How to Learn
 

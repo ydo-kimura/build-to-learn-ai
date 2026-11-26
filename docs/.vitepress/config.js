@@ -238,7 +238,7 @@ export default defineConfig({
             text: "第5章: 実務適用と総合応用実践 (Capstones)",
             items: [
               {
-                text: "Unit 37: LLM自動評価・防御とエージェント総合演習 (Capstone)",
+                text: "Unit 37: LLMオフライン自動評価ハーネス総合演習 (Capstone)",
                 link: "/curriculum/unit37_llm_harness_capstone/",
               },
               {
@@ -250,7 +250,7 @@ export default defineConfig({
                 link: "/curriculum/unit39_knowledge_structuring_agent/",
               },
               {
-                text: "Unit 40: エンタープライズAI自動評価・防御ハーネス",
+                text: "Unit 40: ランタイム防御・入出力ガードレール設計",
                 link: "/curriculum/unit40_guardrails_evaluation_harness/",
               },
               {
@@ -498,7 +498,7 @@ export default defineConfig({
             text: "Chapter 5: Real-World AI Application Capstones",
             items: [
               {
-                text: "Unit 37: LLM Harness & Agent Capstone",
+                text: "Unit 37: Offline LLM Evaluation Harness Capstone",
                 link: "/en/curriculum/unit37_llm_harness_capstone/",
               },
               {
@@ -510,7 +510,7 @@ export default defineConfig({
                 link: "/en/curriculum/unit39_knowledge_structuring_agent/",
               },
               {
-                text: "Unit 40: Guardrails & LLM-as-a-Judge",
+                text: "Unit 40: Runtime Input/Output Guardrails & Safety Policy",
                 link: "/en/curriculum/unit40_guardrails_evaluation_harness/",
               },
               {
