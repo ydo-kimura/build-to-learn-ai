@@ -5,7 +5,10 @@
 </p>
 
 > [!NOTE]
-> このUnitでは、LLMが文章をToken IDへ変換する流れを理解します。大規模モデルを訓練するのではなく、小さな例でBPEの考え方とToken数の影響を確認します。
+> このUnitは第4章の **LLM内部とモデル適応 (Unit 35〜36)** トラックに位置づけられ、LLMが文章をToken IDへ変換する流れを小さなBPEの例とToken数の影響から理解します（大規模モデルや実用Tokenizerを訓練する内容ではありません）。
+>
+> - **位置づけ・前提** : [Unit 22（LLMからAIエージェントへの進化）](../unit22_llm_evolution/index.md) と [Unit 23（LLM API の利用とプロンプトエンジニアリング）](../unit23_llm_api/index.md) が前提です。RAGのチャンク分割に入る前にトークン数の仕組みを押さえたい場合は、Unit 23 の直後に先取りして学習できます。
+> - **次のステップ** : [Unit 36（LoRA / QLoRAによるLLM適応の基礎）](../unit36_lora_qlora/index.md) へ進んだのち、[第5章の総合演習（Unit 37〜）](../unit37_llm_harness_capstone/index.md) に取り組みます。
 
 ## 1. TokenizerとBPEの理解
 

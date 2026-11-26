@@ -5,7 +5,10 @@
 </p>
 
 > [!NOTE]
-> This unit explains how an LLM converts text into tokens and token IDs. It uses small examples to make BPE understandable; it does not train a production-scale tokenizer.
+> This unit belongs to Chapter 4's **LLM Internals & Model Adaptation (Units 35–36)** track. It explains how an LLM converts text into tokens and token IDs using small BPE examples rather than training a production-scale tokenizer.
+>
+> - **Prerequisites & timing**: Builds on [Unit 22 (Evolution from LLM to AI Agent)](../unit22_llm_evolution/index.md) and [Unit 23 (LLM API Usage & Prompt Engineering)](../unit23_llm_api/index.md). If you want to understand token counting before RAG chunking, you can read this unit right after Unit 23.
+> - **Next steps**: Continue to [Unit 36 (LLM Adaptation with LoRA / QLoRA)](../unit36_lora_qlora/index.md), then move on to the [Chapter 5 Capstones (starting with Unit 37)](../unit37_llm_harness_capstone/index.md).
 
 ## 1. Understanding Tokenizers and BPE
 

@@ -100,7 +100,11 @@ From text-processing fundamentals through to Transformers, the core of modern LL
 
 ### Chapter 4: LLM Applied & AI Agents
 
-Use LLMs as components to build advanced reasoning pipelines and autonomous agents. The final part of this chapter also covers enterprise-grade commercial Agent SDKs.
+This chapter is organized into two tracks: building LLM applications and autonomous agents (Units 22–34), and understanding LLM internals and model adaptation (Units 35–36).
+
+#### LLM Applications & Agents (Units 22–34)
+
+Use LLMs as components to build RAG pipelines, stepwise reasoning workflows, autonomous agents, and enterprise-grade commercial Agent SDK applications.
 
 - **Unit 22**: [Evolution from LLM to AI Agent](../unit22_llm_evolution/index.md)
 - **Unit 23**: [LLM API Usage & Prompt Engineering](../unit23_llm_api/index.md)
@@ -115,8 +119,16 @@ Use LLMs as components to build advanced reasoning pipelines and autonomous agen
 - **Unit 32**: [LangGraph — Graph-Based Stateful Agents](../unit32_langgraph_stateful_agents/index.md)
 - **Unit 33**: [Agent SDK: General & Business Automation](../unit33_agent_sdk_general_agents/index.md)
 - **Unit 34**: [Agent SDK: Autonomous Coding & Software Engineering](../unit34_agent_sdk_coding_agents/index.md)
+
+#### LLM Internals & Model Adaptation (Units 35–36)
+
+Explore how tokenization (BPE) and parameter-efficient fine-tuning (LoRA / QLoRA) work behind the API using minimal implementations.
+
 - **Unit 35**: [Tokenizer and BPE Fundamentals](../unit35_tokenizer_bpe/index.md)
 - **Unit 36**: [LLM Adaptation with LoRA / QLoRA](../unit36_lora_qlora/index.md)
+
+> [!TIP]
+> **Suggested learning order (Units 35–36)**: Studying in numerical order works well. If you want to understand how token counting works before tackling RAG chunking, you can read [Unit 35](../unit35_tokenizer_bpe/index.md) right after [Unit 23](../unit23_llm_api/index.md). [Unit 36](../unit36_lora_qlora/index.md) builds on [Unit 15 (Transfer Learning)](../unit15_transfer_learning/index.md) and [Units 20](../unit20_attention_transformers/index.md)–[23](../unit23_llm_api/index.md).
 
 ### Chapter 5: Real-World AI Application Capstones
 

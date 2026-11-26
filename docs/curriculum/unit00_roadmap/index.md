@@ -100,7 +100,11 @@
 
 ### 第4章: LLM応用とAIエージェント (LLM Applied & AI Agents)
 
-LLMを「部品」として活用し、高度な推論パイプラインや自律エージェントを構築します。本章の最終パートでは、エンタープライズ向けの商用 Agent SDK もカバーします。
+LLMを「部品」として活用する応用・エージェント構築トラック（Unit 22〜34）と、トークン化やモデル適応の仕組みを押さえる内部理解トラック（Unit 35〜36）の2部構成です。
+
+#### LLM応用・エージェント構築 (Unit 22〜34)
+
+API利用やRAG、プロンプト連鎖、自律エージェント、商用 Agent SDK までを通して、LLMを組み込んだアプリケーション開発を学びます。
 
 - **Unit 22** : [LLMからAIエージェントへの進化](../unit22_llm_evolution/index.md)
 - **Unit 23** : [LLM API の利用とプロンプトエンジニアリング](../unit23_llm_api/index.md)
@@ -115,8 +119,16 @@ LLMを「部品」として活用し、高度な推論パイプラインや自�
 - **Unit 32** : [LangGraph — グラフベースのステートフルエージェント](../unit32_langgraph_stateful_agents/index.md)
 - **Unit 33** : [Agent SDK: 汎用・業務自動化](../unit33_agent_sdk_general_agents/index.md)
 - **Unit 34** : [Agent SDK: コーディング・自律開発](../unit34_agent_sdk_coding_agents/index.md)
+
+#### LLM内部とモデル適応 (Unit 35〜36)
+
+API利用の裏側にあるトークン化（BPE）とパラメータ効率的なファインチューニング（LoRA / QLoRA）の仕組みを、小さな実装で確認します。
+
 - **Unit 35** : [TokenizerとBPEの基礎](../unit35_tokenizer_bpe/index.md)
 - **Unit 36** : [LoRA / QLoRAによるLLM適応の基礎](../unit36_lora_qlora/index.md)
+
+> [!TIP]
+> **学習順の目安（Unit 35・36の取り入れ方）** : 基本は番号順に進めて問題ありません。RAGのチャンク分割に入る前にトークン数の仕組みを押さえたい場合は、[Unit 23](../unit23_llm_api/index.md) の直後に [Unit 35](../unit35_tokenizer_bpe/index.md) を先取りできます。[Unit 36](../unit36_lora_qlora/index.md) は、[Unit 15（転移学習）](../unit15_transfer_learning/index.md) と [Unit 20](../unit20_attention_transformers/index.md)〜[Unit 23](../unit23_llm_api/index.md) の理解を土台に進めてください。
 
 ### 第5章: 実務適用と総合応用実践 (Real-World AI Application Capstones)
 

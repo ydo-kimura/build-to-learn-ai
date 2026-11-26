@@ -4,6 +4,12 @@
   <img src="../../assets/units/unit36_lora_qlora/images/hero.svg" alt="ヒーロー画像：凍結したLLMに小さなLoRAアダプターを追加する" />
 </p>
 
+> [!NOTE]
+> このUnitは第4章の **LLM内部とモデル適応 (Unit 35〜36)** トラックの最終ユニットです。凍結したベースモデルに小さな低ランクアダプターを追加するLoRAの仕組みと、QLoRAの設計トレードオフを最小実装で確認します。
+>
+> - **位置づけ・前提** : [Unit 15（ResNet を用いた転移学習）](../unit15_transfer_learning/index.md) と [Unit 20（注意機構と Transformer）](../unit20_attention_transformers/index.md)〜[Unit 23（LLM API の利用とプロンプトエンジニアリング）](../unit23_llm_api/index.md) の理解を土台にします（[Unit 35（TokenizerとBPEの基礎）](../unit35_tokenizer_bpe/index.md) とあわせてモデル内部の基礎を固めます）。
+> - **次のステップ** : 第4章の締めくくりとして、[第5章の総合演習（Unit 37〜）](../unit37_llm_harness_capstone/index.md) へ進みます。
+
 > [!WARNING]
 > 学習データに個人情報や秘密情報を含めないでください。モデルとデータのライセンス、GPU費用、評価用データの分離も確認します。
 

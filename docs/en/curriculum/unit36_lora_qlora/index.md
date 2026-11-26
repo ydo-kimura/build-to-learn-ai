@@ -4,6 +4,12 @@
   <img src="/en/assets/units/unit36_lora_qlora/images/hero.svg" alt="Hero: adapting a frozen LLM with a small LoRA adapter" />
 </p>
 
+> [!NOTE]
+> This unit concludes Chapter 4's **LLM Internals & Model Adaptation (Units 35–36)** track. It uses a minimal PyTorch example to illustrate how LoRA adapts a frozen base model with small low-rank matrices and discusses QLoRA design trade-offs.
+>
+> - **Prerequisites**: Builds on [Unit 15 (Transfer Learning with ResNet)](../unit15_transfer_learning/index.md) and [Units 20](../unit20_attention_transformers/index.md)–[23](../unit23_llm_api/index.md), pairing with [Unit 35 (Tokenizer and BPE Fundamentals)](../unit35_tokenizer_bpe/index.md) to round out LLM internals.
+> - **Next steps**: After completing Chapter 4, continue to the [Chapter 5 Capstones (starting with Unit 37)](../unit37_llm_harness_capstone/index.md).
+
 > [!WARNING]
 > Do not include personal or secret information in training data. Check model and dataset licenses, GPU cost, and separation of training and evaluation data.
 
