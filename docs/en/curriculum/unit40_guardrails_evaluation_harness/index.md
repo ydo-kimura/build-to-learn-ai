@@ -1,12 +1,12 @@
 # Unit 40: Runtime Input/Output Guardrails & Safety Policy
 
 <p class="unit-hero">
-  <img src="/en/assets/units/unit40_guardrails_evaluation_harness/images/hero.png" alt="Hero: Guardrails & Evaluation" />
+  <img src="/en/assets/units/unit40_guardrails_evaluation_harness/images/hero.png" alt="Hero: Runtime Input/Output Guardrails" />
 </p>
 
 ## 1. Understanding LLM-as-a-Judge and Safety Guardrails
 
-<img src="/en/assets/units/unit40_guardrails_evaluation_harness/images/diagram-concept.svg" alt="Diagram: Evaluation harness" class="unit-diagram" />
+<img src="/en/assets/units/unit40_guardrails_evaluation_harness/images/diagram-concept.svg" alt="Diagram: Input and output guardrails" class="unit-diagram" />
 
 > [!NOTE]
 > **Scope vs. Unit 37**: Whereas [Unit 37: Offline LLM Evaluation Harness Capstone](../unit37_llm_harness_capstone/index.md) focuses on pre-release / CI offline quality regression testing, this unit focuses on **live runtime input/output gatekeeping and safety policy enforcement** for production traffic.

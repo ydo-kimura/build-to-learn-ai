@@ -8,7 +8,7 @@
 
 <img src="/en/assets/units/unit37_llm_harness_capstone/images/diagram-concept.svg" alt="Diagram: Dual harness" class="unit-diagram" />
 
-In Chapter 4, you covered LLM API usage, scratch RAG construction, LangChain basics, prompt chaining, Web UI chatbots, and autonomous AI agents.
+In Chapter 4, you covered LLM API usage, scratch RAG construction, LangChain basics, prompt chaining, context-aware chatbots, and autonomous AI agents.
 
 This capstone unit brings it together with **Harness Engineering (LLM evaluation harness)**—among the most important skills in enterprise AI system development.
 

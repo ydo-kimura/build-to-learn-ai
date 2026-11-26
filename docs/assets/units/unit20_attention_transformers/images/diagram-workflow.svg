@@ -58,6 +58,6 @@
     <text x="1403" y="284" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#fff">OUTPUT</text><circle cx="1403" cy="440" r="48" fill="#ecfdf5" stroke="#14b8a6" stroke-width="5"/><path d="M1379 440L1397 458L1429 422" fill="none" stroke="#0f766e" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><text x="1403" y="560" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" font-weight="700" fill="#0f766e">context</text><text x="1403" y="590" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" font-weight="700" fill="#0f766e">aware</text>
   </g>
 
-  <g fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" marker-end="url(#flow)"><path d="M280 430H320"/><path d="M560 414H600"/><path d="M900 629H950V404H1010"/><path d="M1240 649H1310"/></g>
+  <g fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#flow)"><path d="M280 430H320"/><path d="M560 414H600"/><path d="M900 629H950V404H1010"/><path d="M1240 649H1310"/></g>
   <text x="768" y="830" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#475569">Each sublayer combines a learned transform with a clean shortcut path.</text>
 </svg>

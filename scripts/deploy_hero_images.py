@@ -16,7 +16,8 @@ DEST_DIRS = (
     ROOT / "docs" / "public" / "en" / "assets" / "units",
 )
 
-# Units 04–42 that ship raster hero.png assets.
+# Units 04–42 that ship generated raster hero.png assets
+# (Units 01–03 use custom legacy hero banners; Units 35–36 use vector hero.svg).
 SLUGS = [
     "unit04_decision_trees_random_forests",
     "unit05_gradient_boosting_xgboost",

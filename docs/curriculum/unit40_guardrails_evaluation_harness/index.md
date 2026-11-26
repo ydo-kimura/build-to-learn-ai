@@ -1,7 +1,7 @@
 # Unit 40: ランタイム防御・入出力ガードレール設計
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit40_guardrails_evaluation_harness/images/hero.png" alt="ヒーロー画像：Guardrails & Evaluation" />
+  <img src="../../assets/units/unit40_guardrails_evaluation_harness/images/hero.png" alt="ヒーロー画像：Runtime Input/Output Guardrails" />
 </p>
 
 ## 1. LLM-as-a-Judge と安全ガードレールの理解

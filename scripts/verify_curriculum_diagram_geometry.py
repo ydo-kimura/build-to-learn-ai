@@ -11,7 +11,7 @@ It catches the recurrent failures that are reliably machine-detectable:
 * missing public runtime copies or stale copies
 * marker-end references to missing markers
 * one marker-end attached to multiple SVG subpaths
-* curved Bezier commands (C/S/Q/T) on marker-end connector paths
+* curved Bezier/arc commands (C/S/Q/T/A) on marker-end connector paths
 * empty connector paths
 
 Text/line intersections and semantic intent are deliberately left to the
@@ -38,8 +38,8 @@ UNIT_ASSET_ROOTS = (
     SITE / "public/assets/units",
     SITE / "public/en/assets/units",
 )
-MOVE_RE = re.compile(r"(?:^|\s)M(?:\s|$)", re.IGNORECASE)
-CURVE_CMD_RE = re.compile(r"[CSQT]", re.IGNORECASE)
+MOVE_RE = re.compile(r"[Mm]")
+CURVE_CMD_RE = re.compile(r"[CSQTA]", re.IGNORECASE)
 MARKER_RE = re.compile(r"url\(#([^\)]+)\)")
 
 
@@ -161,13 +161,15 @@ for source in source_files:
                     )
                 if CURVE_CMD_RE.search(path_data):
                     errors.append(
-                        f"{rel}: marker-end path uses curved Bezier command; "
+                        f"{rel}: marker-end path uses curved Bezier/arc command; "
                         "use orthogonal/straight path segments"
                     )
 
     for public_root in PUBLIC_ROOTS:
         runtime_copy = public_root / rel.relative_to("assets")
-        if runtime_copy.exists() and runtime_copy.read_bytes() != source.read_bytes():
+        if not runtime_copy.exists():
+            errors.append(f"{rel}: missing runtime copy {runtime_copy.relative_to(SITE)}")
+        elif runtime_copy.read_bytes() != source.read_bytes():
             errors.append(f"{rel}: stale runtime copy {runtime_copy.relative_to(SITE)}")
 
 print(f"checked {len(source_files)} curriculum SVGs")

@@ -251,12 +251,15 @@ HERO_PROMPTS: dict[str, str] = {
         "Unstructured to structured transformation."
     ),
     "unit40_guardrails_evaluation_harness": (
-        f'{HERO_STYLE} Title: "Guardrails & Evaluation Harness". '
-        "LEFT panel (dual checkpoint pipeline): User Input → Input Guardrail "
-        "(blocks prompt injection & jailbreaks) → Main LLM → Output Guardrail "
-        "(blocks hallucinations & PII leaks) → Safe Response. "
-        "RIGHT panel: Evaluation Harness with test suite cases, LLM Judge scoring "
-        "rubric, and pass/fail regression dashboard."
+        f'{HERO_STYLE} Title: "Runtime Input/Output Guardrails". '
+        "5-stage dual-checkpoint runtime safety pipeline flowing left to right with arrows: "
+        "(1) User Input → "
+        "(2) Input Guardrail (red checkpoint shielding against prompt injection & jailbreaks, "
+        'with downward branch labeled "BLOCKED") → '
+        "(3) Main LLM (blue model node) → "
+        "(4) Output Guardrail (LLM Judge checking PII leaks, hallucinations & policy compliance, "
+        'with downward branch labeled "BLOCK/REWRITE") → '
+        "(5) Safe Output (green verified response card)."
     ),
     "unit41_timeseries_price_optimizer": (
         f'{HERO_STYLE} Title: "Time Series & Dynamic Pricing". '

@@ -39,8 +39,8 @@ Unit 31: smolagents & AI Agent,[教材](docs/curriculum/unit31_smolagents_code_a
 Unit 32: LangGraph — グラフベースのステートフルエージェント,[教材](docs/curriculum/unit32_langgraph_stateful_agents/index.md) | State / Node / Edge によるグラフワークフロー制御を学び、カスタマーサポートチケットの自動振り分けと Human-in-the-loop 承認ゲートを API キー不要のローカルシミュレーションで実装します。,Todo,Chapter-4: LLM-Agents,High
 Unit 33: Agent SDK: 汎用・業務自動化,"[教材](docs/curriculum/unit33_agent_sdk_general_agents/index.md) | OpenAI, Bedrock, Llama Stackなどの提供SDKによるインプロセス/データ統合主体のエージェント構築を学び、状態永続化（Episodic Memory）と Stripe 決済API連携を実装します。",Todo,Chapter-4: LLM-Agents,High
 Unit 34: Agent SDK: コーディング・自律開発,[教材](docs/curriculum/unit34_agent_sdk_coding_agents/index.md) | CodexやGoogle Antigravityなどの自律開発・コーディングエージェントSDKの設計思想である、サンドボックス/ファイル・コマンド操作主体のアプローチを学び、「Deny-by-Default」安全ポリシーと人間承認フックを実装します。,Todo,Chapter-4: LLM-Agents,High
-Unit 35: Tokenizer & BPE Fundamentals,[教材](docs/curriculum/unit35_tokenizer_bpe/index.md) | Token、Token ID、BPEの最小実装、言語ごとのToken数を学びます。,Todo,Chapter-4: LLM-Applied,High
-Unit 36: LoRA / QLoRA Fundamentals,[教材](docs/curriculum/unit36_lora_qlora/index.md) | 凍結したベースモデルに低ランクアダプターを追加するLoRAの仕組みと、QLoRAの量子化トレードオフを学びます。,Todo,Chapter-4: LLM-Applied,High
+Unit 35: Tokenizer & BPE Fundamentals,[教材](docs/curriculum/unit35_tokenizer_bpe/index.md) | Token、Token ID、BPEの最小実装、言語ごとのToken数を学びます。,Todo,Chapter-4: LLM-Internals,High
+Unit 36: LoRA / QLoRA Fundamentals,[教材](docs/curriculum/unit36_lora_qlora/index.md) | 凍結したベースモデルに低ランクアダプターを追加するLoRAの仕組みと、QLoRAの量子化トレードオフを学びます。,Todo,Chapter-4: LLM-Internals,High
 Unit 37: LLMオフライン自動評価ハーネス総合演習 (Capstone),[教材](docs/curriculum/unit37_llm_harness_capstone/index.md) | 第5章の最初の総合演習。リリース前・CI上でプロンプトやRAGの品質劣化を測るLLM-as-a-Judgeオフライン自動評価ハーネスを実装・検証します。,Todo,Chapter-5: Real-World-Capstones,Critical
 Unit 38: マルチモーダル不正検知システム,[教材](docs/curriculum/unit38_multimodal_fraud_detection/index.md) | テーブル・テキスト・画像データを融合する不正検知分類モデルを実装します。,Todo,Chapter-5: Real-World-Capstones,High
 Unit 39: 自律型ナレッジ抽出・構造化エージェント,[教材](docs/curriculum/unit39_knowledge_structuring_agent/index.md) | 非構造化データから構造化JSONを抽出するパイプラインを実装します。,Todo,Chapter-5: Real-World-Capstones,High

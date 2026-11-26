@@ -68,6 +68,6 @@
     <text x="1313" y="710" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#475569">the right context</text>
     <rect x="1162" y="730" width="302" height="42" rx="10" fill="#ecfdf5"/><text x="1313" y="759" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#0f766e">attention output</text>
   </g>
-  <path d="M470 508 H520" stroke="#2563eb" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
-  <path d="M1080 508 H1130" stroke="#2563eb" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M470 508 H520" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M1080 508 H1130" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
 </svg>
