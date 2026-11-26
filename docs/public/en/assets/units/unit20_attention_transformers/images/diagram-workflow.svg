@@ -10,7 +10,7 @@
     <marker id="redArrow" markerWidth="4" markerHeight="4" refX="8" refY="4" markerUnits="strokeWidth" viewBox="0 0 8 8" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#dc2626"/></marker>
     <marker id="greenArrow" markerWidth="4" markerHeight="4" refX="8" refY="4" markerUnits="strokeWidth" viewBox="0 0 8 8" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#16a34a"/></marker>
   </defs>
-  <rect width="1536" height="920" rx="28" fill="url(#bg)"/>
+  <rect width="1536" height="860" rx="28" fill="url(#bg)"/>
   <rect x="40" y="34" width="1456" height="112" rx="22" fill="#fff" filter="url(#shadow)"/>
   <rect x="70" y="63" width="220" height="54" rx="27" fill="url(#blue)"/><text x="180" y="98" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing=".5" fill="#fff">TRANSFORMER</text>
   <text x="322" y="100" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#172554">Read in parallel, preserve order, refine meaning</text>
@@ -58,6 +58,6 @@
     <text x="1403" y="284" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#fff">OUTPUT</text><circle cx="1403" cy="440" r="48" fill="#ecfdf5" stroke="#14b8a6" stroke-width="5"/><path d="M1379 440L1397 458L1429 422" fill="none" stroke="#0f766e" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><text x="1403" y="560" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" font-weight="700" fill="#0f766e">context</text><text x="1403" y="590" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" font-weight="700" fill="#0f766e">aware</text>
   </g>
 
-  <g fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" marker-end="url(#flow)"><path d="M280 430H320"/><path d="M560 414H600"/><path d="M900 629H950V404H1010"/><path d="M1240 649H1310"/></g>
+  <g fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#flow)"><path d="M280 430H320"/><path d="M560 414H600"/><path d="M900 629H950V404H1010"/><path d="M1240 649H1310"/></g>
   <text x="768" y="830" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#475569">Each sublayer combines a learned transform with a clean shortcut path.</text>
 </svg>

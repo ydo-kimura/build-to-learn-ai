@@ -39,7 +39,7 @@ LangChain can **automatically append conversation history** to prompts.
 - **Long-term customer support (CRM chat)**: Reference purchase and inquiry history—“How is the product you bought last time?”
 - **Game/entertainment NPCs**: Remember player actions and dialogue; attitude and lines change on next meeting.
 
-<img src="/en/assets/units/unit28_context_aware_chatbot/images/diagram-workflow.svg" alt="Diagram: Streamlit UI" class="unit-diagram" />
+<img src="/en/assets/units/unit28_context_aware_chatbot/images/diagram-workflow.svg" alt="Diagram: Chat loop flow" class="unit-diagram" />
 
 ## 2. Implementation Example
 

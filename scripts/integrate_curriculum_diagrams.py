@@ -64,13 +64,13 @@ UNIT_CONFIG: dict[str, tuple[str, str, str, str]] = {
     ),
     "unit12_optimizers_loss": (
         "下図は、回帰向け **MSE** と分類向け **Cross-entropy** の損失曲線の違いです。",
-        "| **Adam (アダム)** |",
+        "| **Adam (アダム)**",
         "下図は、固定ステップの **SGD** と適応的な **Adam** の更新の違いです。",
         "### 💡 具体的なビジネスユースケース",
     ),
     "unit13_regularization": (
         "下図は、左の **過学習（ノイズへの追従）** と、右の **Dropout** による正則化を比較しています。",
-        "| **Dropout (ドロップアウト)** |",
+        "| **Dropout (ドロップアウト)**",
         "下図は、 **BatchNorm** による正規化→スケール→シフトの流れです。",
         "### 💡 具体的なビジネスユースケース",
     ),
@@ -192,51 +192,65 @@ UNIT_CONFIG: dict[str, tuple[str, str, str, str]] = {
         "下図は、 **Define agent → Add tools → Run task** という汎用エージェントの流れです。",
         "### 1.1 マネージド Agent SDK",
         "下図は、レポート生成・データ処理・自動化など **SDK エージェントのユースケース** です。",
-        "<<before>>## 2. 実践",
+        "<<before>>## 2. 実装例",
     ),
     "unit34_agent_sdk_coding_agents": (
         "下図は、 **Read repo → Edit code → Run tests** のコーディングエージェントの反復です。",
         "### 1.1 自律コーディング",
         "下図は、小さな差分とテスト実行を繰り返す **安全な開発プラクティス** です。",
-        "<<before>>## 2. 実践",
-    ),
-    "unit35_llm_harness_capstone": (
-        "下図は、 **Generation → Evaluation → Feedback** の二重ハーネス構成です。",
-        "### ハーネスエンジニアリングとは？",
-        "下図は、ポリシー検査・LLM ジャッジ・フォールバックによる **多層防御** です。",
         "<<before>>## 2. 実装例",
     ),
-    "unit36_multimodal_fraud_detection": (
+    "unit35_tokenizer_bpe": (
+        "下図は、文字単位から頻出ペアを結合し、再利用できるVocabularyを作る中心概念です。",
+        "### BPEの基本的な考え方",
+        "下図は、学習済みVocabularyを使うTokenizer実行時の流れです。",
+        "<<before>>## 2. 実装例",
+    ),
+    "unit36_lora_qlora": (
+        "下図は、凍結したベース重み`W`に、学習可能な低ランク更新`B × A`を加えるLoRAの構造です。",
+        "## 1. ファインチューニングとLoRAの理解",
+        "下図は、ベースモデルを凍結し、必要に応じて量子化してからLoRAアダプターを取り付け、学習・評価する流れです。",
+        "<<before>>## 2. 実装例",
+    ),
+    "unit37_llm_harness_capstone": (
+        "下図は、 **Generation → Evaluation → Feedback** の二重ハーネス構成です。",
+        "### ハーネスエンジニアリングとは？",
+        "下図は、本番運用時にこの評価器を組み込む発展形で、ポリシー検査・LLM ジャッジ・フォールバックを重ねる **多層防御** の構成です（ランタイム防御の詳細は Unit 40 で扱います）。",
+        "<<before>>## 2. 実装例",
+    ),
+    "unit38_multimodal_fraud_detection": (
         "下図は、 **Text / Image エンコーダ** のスコアを統合する Late fusion アーキテクチャです。",
         "### モーダル融合（Fusion）",
         "下図は、テキストと画像の **矛盾シグナル** から不正スコアを上げる流れです。",
-        "<<before>>## 2. 実践",
+        "<<before>>## 2. 実装例",
     ),
-    "unit37_knowledge_structuring_agent": (
+    "unit39_knowledge_structuring_agent": (
         "下図は、 **PDF → Agent 抽出 → JSON スキーマ** のナレッジ構造化パイプラインです。",
         "### 自律型構造化エージェント",
         "下図は、構造化データを **ナレッジグラフ・クエリ可能なレコード** として活用する流れです。",
-        "<<before>>## 2. 実践",
+        "<<before>>## 2. 実装例",
     ),
-    "unit38_guardrails_evaluation_harness": (
+    "unit40_guardrails_evaluation_harness": (
         "下図は、 **Input → Guardrail → Safe out** の入出力ガードレールです。",
         "### 🛡️ Guardrails の位置づけ",
         "下図は、 **Test cases → LLM judge → Scores** の評価ハーネスと回帰追跡です。",
         "### 🧠 LLM-as-a-Judge",
     ),
-    "unit39_timeseries_price_optimizer": (
+    "unit41_timeseries_price_optimizer": (
         "下図は、過去データのみで学習し **未来を予測する時系列 ML**（リーク回避）のイメージです。",
         "### 🚨 時系列データリーク",
         "下図は、需要曲線上の **最適価格点（optimal）** で収益を最大化するダイナミックプライシングです。",
         "### 📈 需要予測から価格最適化",
     ),
-    "unit40_multiagent_customer_support": (
+    "unit42_multiagent_customer_support": (
         "下図は、 **Triage** から Billing / Tech / Sales へ振り分けるマルチエージェントの流れです。",
-        "### マルチエージェント",
+        "### 🤝 マルチエージェント",
         "下図は、エージェント間で **共有コンテキストを引き継ぎ** 解決する協調の流れです。",
         "### 💡 具体的なビジネスユースケース",
     ),
 }
+
+FALLBACK_SECTION2 = re.compile(r"(\n## 2\.)")
 
 
 def _extract_img(pattern: re.Pattern[str], text: str) -> tuple[str, str]:
@@ -255,26 +269,31 @@ def _extract_img(pattern: re.Pattern[str], text: str) -> tuple[str, str]:
     return "", tag
 
 
-def _insert_after_anchor(text: str, anchor: str, bridge: str, img_tag: str) -> str:
+def _insert_after_anchor(
+    text: str, anchor: str, bridge: str, img_tag: str
+) -> tuple[str, bool]:
     if not img_tag or not anchor:
-        return text
+        return text, False
     if anchor.startswith("<<before>>"):
         anchor = anchor[len("<<before>>") :]
         idx = text.find(anchor)
         if idx < 0:
-            return text
-        block = f"\n\n{bridge}\n\n{img_tag}\n\n"
-        return text[:idx] + block + text[idx:]
+            return text, False
+        before = text[:idx].rstrip()
+        prefix = f"{before}\n\n" if before else ""
+        return f"{prefix}{bridge}\n\n{img_tag}\n\n{text[idx:]}", True
 
     idx = text.find(anchor)
     if idx < 0:
-        return text
+        return text, False
     # end of subsection: next ### or ## or --- at line start
     rest = text[idx:]
     m = re.search(r"\n(?=### |## |---\n)", rest[1:])
     end = idx + 1 + m.start() if m else len(text)
+    before = text[:end].rstrip()
+    after = text[end:]
     block = f"\n\n{bridge}\n\n{img_tag}\n"
-    return text[:end] + block + text[end:]
+    return before + block + after, True
 
 
 def _already_integrated(text: str, img_tag: str) -> bool:
@@ -287,33 +306,66 @@ def _already_integrated(text: str, img_tag: str) -> bool:
     return "下図" in before or "図は" in before
 
 
+def _find_img(pattern: re.Pattern[str], text: str) -> str:
+    m = pattern.search(text)
+    return m.group().strip() if m else ""
+
+
+def _integrate_img(
+    text: str, pattern: re.Pattern[str], anchor: str, bridge: str
+) -> str:
+    stripped, img_tag = _extract_img(pattern, text)
+    if not img_tag:
+        return text
+    updated, inserted = _insert_after_anchor(stripped, anchor, bridge, img_tag)
+    return updated if inserted else text
+
+
+def _integrate_fallback(text: str, pattern: re.Pattern[str]) -> str:
+    stripped, img_tag = _extract_img(pattern, text)
+    if not img_tag:
+        return text
+    sec2 = FALLBACK_SECTION2.search(stripped)
+    if not sec2:
+        return text
+    before = stripped[: sec2.start()].rstrip()
+    prefix = f"{before}\n\n" if before else ""
+    return f"{prefix}{img_tag}\n{sec2.group(1)}{stripped[sec2.end():]}"
+
+
 def process_file(path: Path, dry_run: bool) -> bool:
     slug = path.parent.name
     if slug in SKIP_SLUGS:
         return False
 
     original = path.read_text(encoding="utf-8")
-    text = original
-    text, concept_img = _extract_img(IMG_CONCEPT, text)
-    text, workflow_img = _extract_img(IMG_WORKFLOW, text)
-
-    if not concept_img and not workflow_img:
+    concept_tag = _find_img(IMG_CONCEPT, original)
+    workflow_tag = _find_img(IMG_WORKFLOW, original)
+    if not concept_tag and not workflow_tag:
         return False
 
+    need_concept = bool(concept_tag) and not _already_integrated(original, concept_tag)
+    need_workflow = bool(workflow_tag) and not _already_integrated(original, workflow_tag)
+    if not need_concept and not need_workflow:
+        return False
+
+    text = original
     cfg = UNIT_CONFIG.get(slug)
     if cfg:
         c_bridge, c_anchor, w_bridge, w_anchor = cfg
-        if concept_img and not _already_integrated(original, concept_img):
-            text = _insert_after_anchor(text, c_anchor, c_bridge, concept_img)
-        if workflow_img and not _already_integrated(original, workflow_img):
-            text = _insert_after_anchor(text, w_anchor, w_bridge, workflow_img)
+        if need_concept:
+            text = _integrate_img(text, IMG_CONCEPT, c_anchor, c_bridge)
+        if need_workflow:
+            text = _integrate_img(text, IMG_WORKFLOW, w_anchor, w_bridge)
     else:
-        # fallback: keep extracted imgs at end of section 1 before ---
-        if concept_img:
-            text = re.sub(r"(---\n\n## 2\.)", f"\n\n{concept_img}\n\n\\1", text, count=1)
-        if workflow_img:
-            text = re.sub(r"(---\n\n## 2\.)", f"\n\n{workflow_img}\n\n\\1", text, count=1)
+        # fallback: place un-integrated imgs at end of section 1 before ## 2.
+        if need_concept:
+            text = _integrate_fallback(text, IMG_CONCEPT)
+        if need_workflow:
+            text = _integrate_fallback(text, IMG_WORKFLOW)
 
+    if text == original:
+        return False
     text = re.sub(r"\n{4,}", "\n\n\n", text)
     if text == original:
         return False

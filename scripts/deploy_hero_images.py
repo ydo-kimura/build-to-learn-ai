@@ -1,15 +1,23 @@
 #!/usr/bin/env python3
-"""Copy generated hero PNGs from Cursor assets to unit image folders."""
+"""Copy generated hero PNGs into all synchronized unit image folders."""
 
 from __future__ import annotations
 
+import argparse
+import os
 import shutil
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC = Path("/home/node/.cursor/projects/workspaces-build-to-learn-ai/assets")
-DEST = ROOT / "docs" / "assets" / "units"
+DEST_DIRS = (
+    ROOT / "docs" / "assets" / "units",
+    ROOT / "docs" / "public" / "assets" / "units",
+    ROOT / "docs" / "public" / "en" / "assets" / "units",
+)
 
+# Units 04–42 that ship generated raster hero.png assets
+# (Units 01–03 use custom legacy hero banners; Units 35–36 use vector hero.svg).
 SLUGS = [
     "unit04_decision_trees_random_forests",
     "unit05_gradient_boosting_xgboost",
@@ -42,35 +50,69 @@ SLUGS = [
     "unit32_langgraph_stateful_agents",
     "unit33_agent_sdk_general_agents",
     "unit34_agent_sdk_coding_agents",
-    "unit35_llm_harness_capstone",
-    "unit36_multimodal_fraud_detection",
-    "unit37_knowledge_structuring_agent",
-    "unit38_guardrails_evaluation_harness",
-    "unit39_timeseries_price_optimizer",
-    "unit40_multiagent_customer_support",
+    # unit35_tokenizer_bpe and unit36_lora_qlora use vector hero.svg
+    "unit37_llm_harness_capstone",
+    "unit38_multimodal_fraud_detection",
+    "unit39_knowledge_structuring_agent",
+    "unit40_guardrails_evaluation_harness",
+    "unit41_timeseries_price_optimizer",
+    "unit42_multiagent_customer_support",
 ]
 
 
-def main() -> None:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description=(
+            "Copy generated unitNN-hero.png files to docs/assets/units, "
+            "docs/public/assets/units, and docs/public/en/assets/units."
+        )
+    )
+    parser.add_argument(
+        "src",
+        nargs="?",
+        default=os.environ.get("HERO_ASSETS_SRC"),
+        help="Source directory containing unitNN-hero.png files (or set HERO_ASSETS_SRC).",
+    )
+    args = parser.parse_args(argv)
+    if not args.src:
+        parser.error(
+            "Source directory is required: pass a directory path as a CLI argument "
+            "or set the HERO_ASSETS_SRC environment variable."
+        )
+    return args
+
+
+def main(argv: list[str] | None = None) -> None:
+    args = parse_args(argv)
+    src_dir = Path(args.src).expanduser()
+    if not src_dir.is_dir():
+        print(f"Error: source directory does not exist: {src_dir}", file=sys.stderr)
+        raise SystemExit(1)
+
     missing: list[str] = []
+    copied = 0
     for slug in SLUGS:
-        num = slug.split("_")[0].replace("unit", "")
-        src = SRC / f"unit{num}-hero.png"
-        dest_dir = DEST / slug / "images"
-        dest_dir.mkdir(parents=True, exist_ok=True)
-        dest = dest_dir / "hero.png"
-        if not src.exists():
+        num = slug.split("_", 1)[0].removeprefix("unit")
+        src = src_dir / f"unit{num}-hero.png"
+        if not src.is_file():
             missing.append(str(src))
             continue
-        shutil.copy2(src, dest)
+        for dest_root in DEST_DIRS:
+            dest_dir = dest_root / slug / "images"
+            dest_dir.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, dest_dir / "hero.png")
+        copied += 1
         print(f"  ✓ {slug}")
 
     if missing:
-        print("\nMissing:")
+        print("\nMissing:", file=sys.stderr)
         for m in missing:
-            print(f"  - {m}")
+            print(f"  - {m}", file=sys.stderr)
         raise SystemExit(1)
-    print(f"\nCopied {len(SLUGS)} hero images.")
+    print(
+        f"\nCopied {copied} hero images to {len(DEST_DIRS)} destinations "
+        f"({copied * len(DEST_DIRS)} files total)."
+    )
 
 
 if __name__ == "__main__":

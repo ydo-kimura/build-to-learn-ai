@@ -1,4 +1,4 @@
-# Unit 37: LLM Evaluation Harness Capstone
+# Unit 37: Offline LLM Evaluation Harness Capstone
 
 <p class="unit-hero">
   <img src="/en/assets/units/unit37_llm_harness_capstone/images/hero.png" alt="Hero: LLM Harness Capstone" />
@@ -8,7 +8,7 @@
 
 <img src="/en/assets/units/unit37_llm_harness_capstone/images/diagram-concept.svg" alt="Diagram: Dual harness" class="unit-diagram" />
 
-In Chapter 4, you covered LLM API usage, scratch RAG construction, LangChain basics, prompt chaining, Web UI chatbots, and autonomous AI agents.
+In Chapter 4, you covered LLM API usage, scratch RAG construction, LangChain basics, prompt chaining, context-aware chatbots, and autonomous AI agents.
 
 This capstone unit brings it together with **Harness Engineering (LLM evaluation harness)**—among the most important skills in enterprise AI system development.
 
@@ -29,6 +29,9 @@ An **automated evaluation system (evaluation harness)** automatically and quanti
 | **Answer Relevance** | Whether the generated answer appropriately addresses the user's original question.                         | Compare question and answer; judge whether irrelevant or off-topic content is included.                                      |
 
 This unit implements **LLM-as-a-Judge** from scratch: static test input/output pairs (question, reference document, AI answer) scored automatically by an evaluator LLM, quantifying accuracy before and after prompt improvements.
+
+> [!NOTE]
+> **Scope vs. Unit 40**: This unit builds an **offline pre-release / CI evaluation harness** to measure whether prompt or RAG changes improve quality or cause regressions. For live production traffic—real-time input/output gatekeeping and safety policy enforcement—see [Unit 40: Runtime Input/Output Guardrails & Safety Policy](../unit40_guardrails_evaluation_harness/index.md).
 
 ---
 

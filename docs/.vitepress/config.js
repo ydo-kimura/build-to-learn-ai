@@ -163,64 +163,74 @@ export default defineConfig({
             text: "第4章: LLM応用とAIエージェント",
             items: [
               {
-                text: "Unit 22: LLMからAIエージェントへの進化",
-                link: "/curriculum/unit22_llm_evolution/",
+                text: "LLM応用・エージェント構築 (Unit 22〜34)",
+                items: [
+                  {
+                    text: "Unit 22: LLMからAIエージェントへの進化",
+                    link: "/curriculum/unit22_llm_evolution/",
+                  },
+                  {
+                    text: "Unit 23: LLM API の利用とプロンプトエンジニアリング",
+                    link: "/curriculum/unit23_llm_api/",
+                  },
+                  {
+                    text: "Unit 24: ベクトルデータベースとスクラッチ RAG",
+                    link: "/curriculum/unit24_vector_dbs_rag_from_scratch/",
+                  },
+                  {
+                    text: "Unit 25: LangChainの基礎とRAG",
+                    link: "/curriculum/unit25_langchain_basics_rag/",
+                  },
+                  {
+                    text: "Unit 26: LlamaIndex の基礎と検索拡張生成",
+                    link: "/curriculum/unit26_llamaindex_basics_rag/",
+                  },
+                  {
+                    text: "Unit 27: プロンプトの連鎖による段階的推論",
+                    link: "/curriculum/unit27_prompt_chaining/",
+                  },
+                  {
+                    text: "Unit 28: 文脈を記憶するチャットボット",
+                    link: "/curriculum/unit28_context_aware_chatbot/",
+                  },
+                  {
+                    text: "Unit 29: AIエージェントの基本原理とスクラッチReAct実装",
+                    link: "/curriculum/unit29_ai_agent_implementation/",
+                  },
+                  {
+                    text: "Unit 30: Model Context Protocol (MCP) の基本原理とサーバー自作",
+                    link: "/curriculum/unit30_mcp_fundamentals/",
+                  },
+                  {
+                    text: "Unit 31: smolagents と自律型 AI エージェント",
+                    link: "/curriculum/unit31_smolagents_code_agent/",
+                  },
+                  {
+                    text: "Unit 32: LangGraph — グラフベースのステートフルエージェント",
+                    link: "/curriculum/unit32_langgraph_stateful_agents/",
+                  },
+                  {
+                    text: "Unit 33: Agent SDK: 汎用・業務自動化",
+                    link: "/curriculum/unit33_agent_sdk_general_agents/",
+                  },
+                  {
+                    text: "Unit 34: Agent SDK: コーディング・自律開発",
+                    link: "/curriculum/unit34_agent_sdk_coding_agents/",
+                  },
+                ],
               },
               {
-                text: "Unit 23: LLM API の利用とプロンプトエンジニアリング",
-                link: "/curriculum/unit23_llm_api/",
-              },
-              {
-                text: "Unit 24: ベクトルデータベースとスクラッチ RAG",
-                link: "/curriculum/unit24_vector_dbs_rag_from_scratch/",
-              },
-              {
-                text: "Unit 25: LangChainの基礎とRAG",
-                link: "/curriculum/unit25_langchain_basics_rag/",
-              },
-              {
-                text: "Unit 26: LlamaIndex の基礎と検索拡張生成",
-                link: "/curriculum/unit26_llamaindex_basics_rag/",
-              },
-              {
-                text: "Unit 27: プロンプトの連鎖による段階的推論",
-                link: "/curriculum/unit27_prompt_chaining/",
-              },
-              {
-                text: "Unit 28: 文脈を記憶するチャットボット",
-                link: "/curriculum/unit28_context_aware_chatbot/",
-              },
-              {
-                text: "Unit 29: AIエージェントの基本原理とスクラッチReAct実装",
-                link: "/curriculum/unit29_ai_agent_implementation/",
-              },
-              {
-                text: "Unit 30: Model Context Protocol (MCP) の基本原理とサーバー自作",
-                link: "/curriculum/unit30_mcp_fundamentals/",
-              },
-              {
-                text: "Unit 31: smolagents と自律型 AI エージェント",
-                link: "/curriculum/unit31_smolagents_code_agent/",
-              },
-              {
-                text: "Unit 32: LangGraph — グラフベースのステートフルエージェント",
-                link: "/curriculum/unit32_langgraph_stateful_agents/",
-              },
-              {
-                text: "Unit 33: Agent SDK: 汎用・業務自動化",
-                link: "/curriculum/unit33_agent_sdk_general_agents/",
-              },
-              {
-                text: "Unit 34: Agent SDK: コーディング・自律開発",
-                link: "/curriculum/unit34_agent_sdk_coding_agents/",
-              },
-              {
-                text: "Unit 35: TokenizerとBPEの基礎",
-                link: "/curriculum/unit35_tokenizer_bpe/",
-              },
-              {
-                text: "Unit 36: LoRA / QLoRAによるLLM適応の基礎",
-                link: "/curriculum/unit36_lora_qlora/",
+                text: "LLM内部とモデル適応 (Unit 35〜36)",
+                items: [
+                  {
+                    text: "Unit 35: TokenizerとBPEの基礎",
+                    link: "/curriculum/unit35_tokenizer_bpe/",
+                  },
+                  {
+                    text: "Unit 36: LoRA / QLoRAによるLLM適応の基礎",
+                    link: "/curriculum/unit36_lora_qlora/",
+                  },
+                ],
               },
             ],
           },
@@ -228,7 +238,7 @@ export default defineConfig({
             text: "第5章: 実務適用と総合応用実践 (Capstones)",
             items: [
               {
-                text: "Unit 37: LLM自動評価・防御とエージェント総合演習 (Capstone)",
+                text: "Unit 37: LLMオフライン自動評価ハーネス総合演習 (Capstone)",
                 link: "/curriculum/unit37_llm_harness_capstone/",
               },
               {
@@ -240,7 +250,7 @@ export default defineConfig({
                 link: "/curriculum/unit39_knowledge_structuring_agent/",
               },
               {
-                text: "Unit 40: エンタープライズAI自動評価・防御ハーネス",
+                text: "Unit 40: ランタイム防御・入出力ガードレール設計",
                 link: "/curriculum/unit40_guardrails_evaluation_harness/",
               },
               {
@@ -413,64 +423,74 @@ export default defineConfig({
             text: "Chapter 4: LLM Applied & AI Agents",
             items: [
               {
-                text: "Unit 22: Evolution from LLM to AI Agent",
-                link: "/en/curriculum/unit22_llm_evolution/",
+                text: "LLM Applications & Agents (Units 22–34)",
+                items: [
+                  {
+                    text: "Unit 22: Evolution from LLM to AI Agent",
+                    link: "/en/curriculum/unit22_llm_evolution/",
+                  },
+                  {
+                    text: "Unit 23: LLM API Usage & Prompting",
+                    link: "/en/curriculum/unit23_llm_api/",
+                  },
+                  {
+                    text: "Unit 24: Vector DBs & RAG From Scratch",
+                    link: "/en/curriculum/unit24_vector_dbs_rag_from_scratch/",
+                  },
+                  {
+                    text: "Unit 25: LangChain Basics & RAG",
+                    link: "/en/curriculum/unit25_langchain_basics_rag/",
+                  },
+                  {
+                    text: "Unit 26: LlamaIndex Basics & RAG",
+                    link: "/en/curriculum/unit26_llamaindex_basics_rag/",
+                  },
+                  {
+                    text: "Unit 27: Prompt Chaining",
+                    link: "/en/curriculum/unit27_prompt_chaining/",
+                  },
+                  {
+                    text: "Unit 28: Context-Aware Chatbot",
+                    link: "/en/curriculum/unit28_context_aware_chatbot/",
+                  },
+                  {
+                    text: "Unit 29: AI Agent Fundamentals & Scratch ReAct Implementation",
+                    link: "/en/curriculum/unit29_ai_agent_implementation/",
+                  },
+                  {
+                    text: "Unit 30: Model Context Protocol (MCP) Fundamentals & Server Implementation",
+                    link: "/en/curriculum/unit30_mcp_fundamentals/",
+                  },
+                  {
+                    text: "Unit 31: smolagents & AI Agent",
+                    link: "/en/curriculum/unit31_smolagents_code_agent/",
+                  },
+                  {
+                    text: "Unit 32: LangGraph — Graph-Based Stateful Agents",
+                    link: "/en/curriculum/unit32_langgraph_stateful_agents/",
+                  },
+                  {
+                    text: "Unit 33: Agent SDK: General & Business Automation",
+                    link: "/en/curriculum/unit33_agent_sdk_general_agents/",
+                  },
+                  {
+                    text: "Unit 34: Agent SDK: Autonomous Coding & Software Engineering",
+                    link: "/en/curriculum/unit34_agent_sdk_coding_agents/",
+                  },
+                ],
               },
               {
-                text: "Unit 23: LLM API Usage & Prompting",
-                link: "/en/curriculum/unit23_llm_api/",
-              },
-              {
-                text: "Unit 24: Vector DBs & RAG From Scratch",
-                link: "/en/curriculum/unit24_vector_dbs_rag_from_scratch/",
-              },
-              {
-                text: "Unit 25: LangChain Basics & RAG",
-                link: "/en/curriculum/unit25_langchain_basics_rag/",
-              },
-              {
-                text: "Unit 26: LlamaIndex Basics & RAG",
-                link: "/en/curriculum/unit26_llamaindex_basics_rag/",
-              },
-              {
-                text: "Unit 27: Prompt Chaining",
-                link: "/en/curriculum/unit27_prompt_chaining/",
-              },
-              {
-                text: "Unit 28: Context-Aware Chatbot",
-                link: "/en/curriculum/unit28_context_aware_chatbot/",
-              },
-              {
-                text: "Unit 29: AI Agent Fundamentals & Scratch ReAct Implementation",
-                link: "/en/curriculum/unit29_ai_agent_implementation/",
-              },
-              {
-                text: "Unit 30: Model Context Protocol (MCP) Fundamentals & Server Implementation",
-                link: "/en/curriculum/unit30_mcp_fundamentals/",
-              },
-              {
-                text: "Unit 31: smolagents & AI Agent",
-                link: "/en/curriculum/unit31_smolagents_code_agent/",
-              },
-              {
-                text: "Unit 32: LangGraph — Graph-Based Stateful Agents",
-                link: "/en/curriculum/unit32_langgraph_stateful_agents/",
-              },
-              {
-                text: "Unit 33: Agent SDK: General & Business Automation",
-                link: "/en/curriculum/unit33_agent_sdk_general_agents/",
-              },
-              {
-                text: "Unit 34: Agent SDK: Autonomous Coding & Software Engineering",
-                link: "/en/curriculum/unit34_agent_sdk_coding_agents/",
-              },
-              {
-                text: "Unit 35: Tokenizer and BPE Fundamentals",
-                link: "/en/curriculum/unit35_tokenizer_bpe/",
-              },
-              {
-                text: "Unit 36: LLM Adaptation with LoRA / QLoRA",
-                link: "/en/curriculum/unit36_lora_qlora/",
+                text: "LLM Internals & Model Adaptation (Units 35–36)",
+                items: [
+                  {
+                    text: "Unit 35: Tokenizer and BPE Fundamentals",
+                    link: "/en/curriculum/unit35_tokenizer_bpe/",
+                  },
+                  {
+                    text: "Unit 36: LLM Adaptation with LoRA / QLoRA",
+                    link: "/en/curriculum/unit36_lora_qlora/",
+                  },
+                ],
               },
             ],
           },
@@ -478,7 +498,7 @@ export default defineConfig({
             text: "Chapter 5: Real-World AI Application Capstones",
             items: [
               {
-                text: "Unit 37: LLM Harness & Agent Capstone",
+                text: "Unit 37: Offline LLM Evaluation Harness Capstone",
                 link: "/en/curriculum/unit37_llm_harness_capstone/",
               },
               {
@@ -490,7 +510,7 @@ export default defineConfig({
                 link: "/en/curriculum/unit39_knowledge_structuring_agent/",
               },
               {
-                text: "Unit 40: Guardrails & LLM-as-a-Judge",
+                text: "Unit 40: Runtime Input/Output Guardrails & Safety Policy",
                 link: "/en/curriculum/unit40_guardrails_evaluation_harness/",
               },
               {

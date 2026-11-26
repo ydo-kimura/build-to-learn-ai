@@ -1,16 +1,17 @@
-# Unit 40: Enterprise AI Automated Evaluation & Guardrails Harness
+# Unit 40: Runtime Input/Output Guardrails & Safety Policy
 
 <p class="unit-hero">
-  <img src="/en/assets/units/unit40_guardrails_evaluation_harness/images/hero.png" alt="Hero: Guardrails & Evaluation" />
+  <img src="/en/assets/units/unit40_guardrails_evaluation_harness/images/hero.png" alt="Hero: Runtime Input/Output Guardrails" />
 </p>
 
 ## 1. Understanding LLM-as-a-Judge and Safety Guardrails
 
-<img src="/en/assets/units/unit40_guardrails_evaluation_harness/images/diagram-concept.svg" alt="Diagram: Evaluation harness" class="unit-diagram" />
+<img src="/en/assets/units/unit40_guardrails_evaluation_harness/images/diagram-concept.svg" alt="Diagram: Input and output guardrails" class="unit-diagram" />
 
-You have learned many LLM application systems and AI agent construction methods. Unit 37 covered LLM-as-a-Judge fundamentals; this unit extends that into an **enterprise Guardrails architecture** that defends both input and output.
+> [!NOTE]
+> **Scope vs. Unit 37**: Whereas [Unit 37: Offline LLM Evaluation Harness Capstone](../unit37_llm_harness_capstone/index.md) focuses on pre-release / CI offline quality regression testing, this unit focuses on **live runtime input/output gatekeeping and safety policy enforcement** for production traffic.
 
-When deploying these systems in **real enterprise production**, the biggest unavoidable wall is guaranteeing **Safety** and **Reliability**.
+You have learned many LLM application systems and AI agent construction methods. When deploying these systems in **real enterprise production**, the biggest unavoidable wall is guaranteeing **Safety** and **Reliability**.
 
 These risks directly affect brand and legal liability:
 

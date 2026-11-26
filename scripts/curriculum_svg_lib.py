@@ -65,8 +65,9 @@ def _line(x1, y1, x2, y2, color="#64748b", sw=2, dash=None):
 
 
 def _arrow(x1, y1, x2, y2, color="#64748b", sw=2):
+    shaft_x2 = max(x1, x2 - 6)
     return (
-        f'{_line(x1, y1, x2, y2, color, sw)}'
+        f'{_line(x1, y1, shaft_x2, y2, color, sw)}'
         f'<polygon points="{x2},{y2} {x2 - 6},{y2 - 3} {x2 - 6},{y2 + 3}" fill="{color}"/>'
     )
 
@@ -154,7 +155,7 @@ def flow_horizontal(steps: list[tuple[str, str]], y: int = 50, max_width: int = 
         parts.append(_rect(x, y, bw, box_h, color + "22", color, 2, 8))
         parts.append(_t(x + bw / 2, y + box_h / 2 + _label_size(label) * 0.35, label, _label_size(label), color, "middle", "600"))
         if i < len(steps) - 1:
-            parts.append(_arrow(x + bw, y + box_h / 2, x + bw + gap - 8, y + box_h / 2, "#64748b", 1.5))
+            parts.append(_arrow(x + bw, y + box_h / 2, x + bw + gap, y + box_h / 2, "#64748b", 1.5))
         x += bw + gap
     return "\n".join(parts)
 
@@ -398,7 +399,7 @@ def mini_training_loop() -> str:
         ]
         tops.append((cx, y))
         if i < len(steps) - 1:
-            parts.append(_arrow(x + bw, y + bh / 2, x + bw + gap - 8, y + bh / 2, "#64748b", 1.5))
+            parts.append(_arrow(x + bw, y + bh / 2, x + bw + gap, y + bh / 2, "#64748b", 1.5))
         x += bw + gap
 
     first_cx, last_cx = tops[0][0], tops[-1][0]
@@ -730,7 +731,7 @@ def mini_react_loop() -> str:
         ]
         tops.append(cx)
         if i < len(steps) - 1:
-            parts.append(_arrow(x + bw, y + bh / 2, x + bw + gap - 8, y + bh / 2, "#64748b", 1.5))
+            parts.append(_arrow(x + bw, y + bh / 2, x + bw + gap, y + bh / 2, "#64748b", 1.5))
         x += bw + gap
     first_cx, last_cx = tops[0], tops[-1]
     bottom = y + bh

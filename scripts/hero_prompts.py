@@ -1,4 +1,4 @@
-"""Hero image prompts for units 4–39 (Unit 1–3 style educational infographics)."""
+"""Hero image prompts for units 4–42 (Unit 1–3 style educational infographics)."""
 
 HERO_STYLE = (
     "Wide educational hero banner, 3:2 aspect ratio. "
@@ -215,37 +215,59 @@ HERO_PROMPTS: dict[str, str] = {
         "runs tests → pass/fail. "
         "Software development agent loop."
     ),
-    "unit35_llm_harness_capstone": (
+    # Units 35–36 currently use vector hero.svg assets; prompts are kept here for parity.
+    "unit35_tokenizer_bpe": (
+        f'{HERO_STYLE} Title: "Tokenizer & BPE Fundamentals". '
+        'LEFT panel: raw text "unhappiness" split into subword tokens '
+        '["un", "happi", "ness"] with arrows to integer Token IDs [403, 1829, 1108]. '
+        "RIGHT panel: Byte Pair Encoding merge steps combining frequent adjacent pairs "
+        '("e", "s") → "es" into a Vocabulary table, annotated with token count and '
+        "context window budget."
+    ),
+    "unit36_lora_qlora": (
+        f'{HERO_STYLE} Title: "LoRA & QLoRA Adaptation". '
+        "LEFT panel: large frozen base weight matrix W (gray block with padlock icon) "
+        "in parallel with two small trainable low-rank matrices A and B (blue/green) "
+        'labeled "ΔW = B × A" summing into output h = Wx + BAx. '
+        "RIGHT panel: QLoRA diagram showing a 4-bit quantized frozen base model "
+        "+ lightweight trainable LoRA adapters to cut GPU memory usage."
+    ),
+    "unit37_llm_harness_capstone": (
         f'{HERO_STYLE} Title: "LLM Harness Capstone". '
         "Dual pipeline: Generation (LLM output) → Evaluation Harness "
         "(policy check + LLM judge score) → pass/reject/fallback. "
         "Quality and safety layers."
     ),
-    "unit36_multimodal_fraud_detection": (
+    "unit38_multimodal_fraud_detection": (
         f'{HERO_STYLE} Title: "Multimodal Fraud Detection". '
         "Text description + product image → separate encoders → late fusion → "
         "fraud score 0.87 (HIGH RISK). "
         "Show suspicious text/image mismatch."
     ),
-    "unit37_knowledge_structuring_agent": (
+    "unit39_knowledge_structuring_agent": (
         f'{HERO_STYLE} Title: "Knowledge Structuring Agent". '
         "PDF contract document → AI extraction agent → structured JSON "
         "with entities and relations. "
         "Unstructured to structured transformation."
     ),
-    "unit38_guardrails_evaluation_harness": (
-        f'{HERO_STYLE} Title: "Guardrails & Evaluation". '
-        "LEFT: input guardrail blocking harmful content. "
-        "RIGHT: evaluation harness with test cases, LLM judge scores, "
-        "regression dashboard."
+    "unit40_guardrails_evaluation_harness": (
+        f'{HERO_STYLE} Title: "Runtime Input/Output Guardrails". '
+        "5-stage dual-checkpoint runtime safety pipeline flowing left to right with arrows: "
+        "(1) User Input → "
+        "(2) Input Guardrail (red checkpoint shielding against prompt injection & jailbreaks, "
+        'with downward branch labeled "BLOCKED") → '
+        "(3) Main LLM (blue model node) → "
+        "(4) Output Guardrail (LLM Judge checking PII leaks, hallucinations & policy compliance, "
+        'with downward branch labeled "BLOCK/REWRITE") → '
+        "(5) Safe Output (green verified response card)."
     ),
-    "unit39_timeseries_price_optimizer": (
+    "unit41_timeseries_price_optimizer": (
         f'{HERO_STYLE} Title: "Time Series & Dynamic Pricing". '
         "LEFT: historical demand line chart over months. "
         "RIGHT: price vs revenue curve with optimal price point marked. "
         "Forecast + pricing optimization."
     ),
-    "unit40_multiagent_customer_support": (
+    "unit42_multiagent_customer_support": (
         f'{HERO_STYLE} Title: "Multi-Agent Customer Support". '
         "Incoming ticket → Triage agent routes to specialist agents "
         "(Billing, Tech, Sales) → resolved response. "

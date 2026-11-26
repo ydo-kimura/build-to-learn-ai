@@ -1,8 +1,25 @@
 #!/usr/bin/env python3
-"""Generate rich hero PNGs and section SVG diagrams for curriculum units 4–39."""
+"""Legacy SVG scaffolding generator for curriculum unit diagrams.
+
+IMPORTANT:
+- Production SVGs under ``docs/assets/units/`` are hand-refined bespoke SVGs and
+  are the canonical source of truth.
+- This script is legacy scaffolding for bootstrapping diagrams on new units only.
+- Existing ``diagram-concept.svg`` and ``diagram-workflow.svg`` files are NEVER
+  overwritten by default (they are skipped). To overwrite a single unit, pass
+  both ``--unit <slug>`` and ``--force-overwrite``. Bulk overwrite is refused
+  unless ``--force-overwrite-all`` is passed explicitly.
+
+Unit coverage:
+- Registers legacy builders for units 04–34 and 37–42 (capstones were shifted
+  from 35–40 to 37–42 when units 35 and 36 were inserted).
+- Units 01–03, ``unit35_tokenizer_bpe``, and ``unit36_lora_qlora`` use
+  hand-authored bespoke SVGs only and are not managed by this generator.
+"""
 
 from __future__ import annotations
 
+import argparse
 import subprocess
 import sys
 from pathlib import Path
@@ -61,6 +78,16 @@ from curriculum_svg_lib import (
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "docs" / "assets" / "units"
+
+# Units whose visuals are hand-authored bespoke SVGs only (no legacy builder here).
+# Inserting unit35_tokenizer_bpe and unit36_lora_qlora shifted capstones 35–40 -> 37–42.
+BESPOKE_ONLY_UNITS: frozenset[str] = frozenset({
+    "unit01_linear_regression",
+    "unit02_logistic_regression",
+    "unit03_knn_svm",
+    "unit35_tokenizer_bpe",
+    "unit36_lora_qlora",
+})
 
 # slug -> (title, hero_fn, concept_fn, workflow_fn)
 # Each *_fn returns SVG string
@@ -628,8 +655,11 @@ _register(
     ),
 )
 
+# Note: unit35_tokenizer_bpe and unit36_lora_qlora are hand-authored bespoke SVGs
+# only (see BESPOKE_ONLY_UNITS). Units 37–42 below were renumbered from 35–40.
+
 _register(
-    "unit35_llm_harness_capstone",
+    "unit37_llm_harness_capstone",
     "LLM Harness Capstone",
     lambda: hero_two_panel(
         "LLM Harness Capstone",
@@ -648,7 +678,7 @@ _register(
 )
 
 _register(
-    "unit36_multimodal_fraud_detection",
+    "unit38_multimodal_fraud_detection",
     "Multimodal Fraud Detection",
     lambda: hero_two_panel(
         "Multimodal Fraud Detection",
@@ -667,7 +697,7 @@ _register(
 )
 
 _register(
-    "unit37_knowledge_structuring_agent",
+    "unit39_knowledge_structuring_agent",
     "Knowledge Structuring Agent",
     lambda: hero_two_panel(
         "Knowledge Structuring Agent",
@@ -686,7 +716,7 @@ _register(
 )
 
 _register(
-    "unit38_guardrails_evaluation_harness",
+    "unit40_guardrails_evaluation_harness",
     "Guardrails & Evaluation",
     lambda: hero_two_panel(
         "Guardrails & Evaluation",
@@ -702,7 +732,7 @@ _register(
 )
 
 _register(
-    "unit39_timeseries_price_optimizer",
+    "unit41_timeseries_price_optimizer",
     "Time Series & Pricing",
     lambda: hero_two_panel(
         "Time Series & Dynamic Pricing",
@@ -717,7 +747,7 @@ _register(
 )
 
 _register(
-    "unit40_multiagent_customer_support",
+    "unit42_multiagent_customer_support",
     "Multi-Agent Customer Support",
     lambda: hero_two_panel(
         "Multi-Agent Customer Support",
@@ -757,34 +787,134 @@ def svg_to_png(svg_path: Path, png_path: Path) -> None:
         )
 
 
-def write_assets(slug: str) -> None:
+LEGACY_WARNING = (
+    "WARNING: Production SVGs under docs/assets/units/ are hand-refined bespoke SVGs\n"
+    "(canonical source of truth). This generator is legacy scaffolding for bootstrapping\n"
+    "new units only; existing SVGs are skipped by default."
+)
+
+
+def write_assets(slug: str, *, force_overwrite: bool = False) -> tuple[int, int, int]:
+    """Write diagram SVGs for ``slug`` without overwriting existing files by default.
+
+    Returns ``(created, overwritten, skipped)`` file counts.
+    """
     _, _, concept_fn, workflow_fn = UNIT_BUILDERS[slug]
     img_dir = ASSETS / slug / "images"
-    img_dir.mkdir(parents=True, exist_ok=True)
 
     # Hero PNG is generated separately via GenerateImage (see scripts/hero_prompts.py)
-    (img_dir / "diagram-concept.svg").write_text(concept_fn(), encoding="utf-8")
-    (img_dir / "diagram-workflow.svg").write_text(workflow_fn(), encoding="utf-8")
-    print(f"  ✓ diagrams: {slug}")
-
-
-def main() -> None:
-    diagrams_only = len(sys.argv) > 1 and sys.argv[1] == "--diagrams-only"
-    slugs = sorted(UNIT_BUILDERS.keys())
-
-    print(f"Generating visuals for {len(slugs)} units...")
-    for slug in slugs:
-        if diagrams_only:
-            _, _, concept_fn, workflow_fn = UNIT_BUILDERS[slug]
-            img_dir = ASSETS / slug / "images"
-            img_dir.mkdir(parents=True, exist_ok=True)
-            (img_dir / "diagram-concept.svg").write_text(concept_fn(), encoding="utf-8")
-            (img_dir / "diagram-workflow.svg").write_text(workflow_fn(), encoding="utf-8")
-            print(f"  ✓ diagrams: {slug}")
+    created = 0
+    overwritten = 0
+    skipped = 0
+    for filename, builder_fn in (
+        ("diagram-concept.svg", concept_fn),
+        ("diagram-workflow.svg", workflow_fn),
+    ):
+        out_path = img_dir / filename
+        rel_path = out_path.relative_to(ROOT)
+        existed = out_path.exists()
+        if existed and not force_overwrite:
+            print(f"  skip (exists): {rel_path}")
+            skipped += 1
+            continue
+        img_dir.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(builder_fn(), encoding="utf-8")
+        if existed:
+            print(f"  ✓ overwrite: {rel_path}")
+            overwritten += 1
         else:
-            write_assets(slug)
+            print(f"  ✓ create: {rel_path}")
+            created += 1
 
-    print("Done.")
+    return created, overwritten, skipped
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        description=(
+            "Legacy scaffolding generator for curriculum unit diagram SVGs. "
+            "Production SVGs under docs/assets/units/ are hand-refined bespoke SVGs "
+            "(canonical source of truth) and are skipped by default."
+        ),
+    )
+    parser.add_argument(
+        "--diagrams-only",
+        action="store_true",
+        help="Generate diagram SVGs only (default behavior; kept for CLI compatibility).",
+    )
+    parser.add_argument(
+        "--unit",
+        metavar="SLUG",
+        help="Process a single unit slug (required with --force-overwrite).",
+    )
+    parser.add_argument(
+        "--force-overwrite",
+        action="store_true",
+        help="Overwrite existing SVGs for a single --unit <slug> (refuses bulk overwrite).",
+    )
+    parser.add_argument(
+        "--force-overwrite-all",
+        action="store_true",
+        help=(
+            "DANGER: overwrite existing SVGs for ALL registered units, replacing "
+            "hand-refined production SVGs."
+        ),
+    )
+    return parser
+
+
+def main(argv: list[str] | None = None) -> None:
+    parser = build_parser()
+    args = parser.parse_args(argv)
+
+    print(LEGACY_WARNING, file=sys.stderr)
+
+    if args.force_overwrite_all and args.unit:
+        parser.error(
+            "--force-overwrite-all cannot be combined with --unit; "
+            "use --unit <slug> --force-overwrite instead."
+        )
+    if args.force_overwrite and not args.unit and not args.force_overwrite_all:
+        parser.error(
+            "Refusing bulk overwrite: --force-overwrite requires --unit <slug>. "
+            "To overwrite all registered units (destructive), pass --force-overwrite-all explicitly."
+        )
+
+    if args.unit:
+        slug = args.unit
+        if slug in BESPOKE_ONLY_UNITS:
+            print(
+                f"ERROR: '{slug}' uses hand-authored bespoke SVGs only "
+                f"(docs/assets/units/{slug}/images/) and is not managed by this legacy generator.",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        if slug not in UNIT_BUILDERS:
+            print(
+                f"ERROR: Unknown unit slug '{slug}'. "
+                "Use a current slug from docs/curriculum/ (note: capstones are unit37–unit42).",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        slugs = [slug]
+        force_overwrite = args.force_overwrite
+    else:
+        slugs = sorted(UNIT_BUILDERS.keys())
+        force_overwrite = args.force_overwrite_all
+
+    print(f"Checking visuals for {len(slugs)} unit(s)...")
+    total_created = 0
+    total_overwritten = 0
+    total_skipped = 0
+    for slug in slugs:
+        created, overwritten, skipped = write_assets(slug, force_overwrite=force_overwrite)
+        total_created += created
+        total_overwritten += overwritten
+        total_skipped += skipped
+
+    print(
+        f"Done. (created: {total_created}, overwritten: {total_overwritten}, skipped: {total_skipped})"
+    )
 
 
 if __name__ == "__main__":

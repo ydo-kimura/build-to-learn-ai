@@ -134,6 +134,13 @@ print(response.choices[0].message.content)
 4. **Prompt creation (Augmentation)**: Build “answer from this material” instructions and insert retrieved text.
 5. **Answer generation (Generation)**: Send the prompt to the LLM for an answer grounded in retrieved content.
 
+**💡 Production Next Step: Hybrid Search (BM25 / TF-IDF + Vector Search) and Reranking**
+
+While dense vector search excels at capturing paraphrases and semantic similarity, compressing text into a semantic vector can cause it to miss exact lexical matches such as **product codes, proper nouns, error codes, or regulation numbers**. Production RAG pipelines therefore commonly add two stages to improve retrieval precision:
+
+- **Hybrid Search**: Combines lexical search—such as **BM25**, which builds directly on the **TF-IDF** concepts from [Unit 17](../unit17_nlp_preprocessing_tfidf/index.md)—with dense vector similarity. Merging the two ranked lists via methods like **Reciprocal Rank Fusion (RRF)** preserves both semantic understanding and exact keyword matches.
+- **Reranking**: Takes a broader set of top candidates from retrieval (e.g., 20–50 chunks) and re-scores each query–document pair with a more accurate model such as a **Cross-Encoder**. Passing only the highest-scoring chunks into the LLM context window reduces noise and hallucinations while improving answer accuracy and token efficiency.
+
 ## 3. Practice
 
 Extend the example to retrieve **top 3 related documents** and embed all of them in the prompt.

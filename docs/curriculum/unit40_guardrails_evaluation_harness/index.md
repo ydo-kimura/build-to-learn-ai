@@ -1,12 +1,15 @@
-# Unit 40: エンタープライズAI自動評価・防御ハーネス
+# Unit 40: ランタイム防御・入出力ガードレール設計
 
 <p class="unit-hero">
-  <img src="../../assets/units/unit40_guardrails_evaluation_harness/images/hero.png" alt="ヒーロー画像：Guardrails & Evaluation" />
+  <img src="../../assets/units/unit40_guardrails_evaluation_harness/images/hero.png" alt="ヒーロー画像：Runtime Input/Output Guardrails" />
 </p>
 
 ## 1. LLM-as-a-Judge と安全ガードレールの理解
 
-これまで、さまざまな LLM 応用システムや AI エージェントの構築方法を学習してきました。Unit 37ではLLM-as-a-Judgeによる自動評価の基本原理を学びましたが、本Unitではその評価手法を、入力・出力の両面から防御する **エンタープライズ向けGuardrailsアーキテクチャ** に拡張します。これらを **「実際のエンタープライズ（企業実務）環境」** で一般公開するとなると、避けて通れない最大の壁が存在します。それが **「安全性（Safety）」** と **「信頼性（Reliability）」** の担保です。
+> [!NOTE]
+> **Unit 37 との役割の違い** : [Unit 37（LLMオフライン自動評価ハーネス総合演習）](../unit37_llm_harness_capstone/index.md) はリリース前・CI 上で品質劣化を検証する **オフライン自動評価ハーネス** を扱います。本ユニットは、本番稼働中の入出力をリアルタイムに検査・遮断し安全ポリシーを強制する **ランタイム防御・入出力ガードレール** に焦点を当てます。
+
+これまで、さまざまな LLM 応用システムや AI エージェントの構築方法を学習してきました。これらを **「実際のエンタープライズ（企業実務）環境」** で一般公開するとなると、避けて通れない最大の壁が存在します。それが **「安全性（Safety）」** と **「信頼性（Reliability）」** の担保です。
 
 特に、以下のリスクは企業のブランドや法的責任に直結します。
 
