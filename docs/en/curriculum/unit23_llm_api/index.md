@@ -8,7 +8,6 @@
 > **Preparing your OpenAI API key**
 > Chapter 4 requires an **OpenAI API key**. For how to obtain a key, billing notes, and secure environment-variable setup with Google Colab secrets, read [Appendix (Learning Environment and API Setup)](../appendix/index.md#🔑-3-openai-api-key-acquisition-and-secure-management-chapter-4) first.
 
-
 ## 1. Understanding LLM API Usage & Prompting
 
 <img src="/en/assets/units/unit23_llm_api/images/diagram-concept.svg" alt="Diagram: API call flow" class="unit-diagram" />
@@ -105,6 +104,9 @@ Choose techniques by task difficulty in production systems.
 | **Few-shot**         | Strict JSON output, domain-specific sentiment tags, length control | Low (just prepare examples) | Medium                  | Very high        |
 | **Chain-of-Thought** | Math, complex legal/business logic, multi-condition reasoning      | Low–medium                  | High (reasoning length) | Very high        |
 
+> [!TIP]
+> **Note: JSON Mode vs. Native Structured Outputs**
+> Rather than relying on prompts alone for structured output, you can enforce JSON constraints at the API level. Basic **JSON Mode** (`response_format={"type": "json_object"}`) guarantees syntactically valid JSON, but it does not enforce specific field names, required keys, or data types. With native **Structured Outputs**, you pass a Pydantic schema directly via `client.beta.chat.completions.parse` (`response_format=YourPydanticModel`) or the Responses API `client.responses.parse` (`text_format=YourPydanticModel`), enforcing schema compliance during decoding. Keep in mind that schema adherence only guarantees the shape of the output—not **factual accuracy**—so domain validation and evaluation remain essential.
 
 ## 3. Implementation Example
 
@@ -170,7 +172,6 @@ Compare English, Japanese, and code inputs. Character count and token count are 
 3. **Send request**: `client.chat.completions.create` performs the call. `model` picks capability/speed; `temperature` adjusts randomness/creativity.
 4. **Extract answer**: The API returns a large object with metadata. Follow `response.choices[0].message.content` for the text only.
 
-
 ## 4. Practice
 
 Now that you know the API, build a function for **sentiment analysis**.
@@ -197,7 +198,6 @@ After completing the sentiment-analysis exercise, change the API call to streami
 - Do not treat an interrupted response as a completed business result.
 
 Streaming can make output appear sooner, but it does not guarantee correctness or safety.
-
 
 ## 5. Answer Key
 
