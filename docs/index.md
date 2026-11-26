@@ -22,7 +22,7 @@ features:
   - title: "3. 自然言語処理とモダンアーキテクチャ"
     details: "TF-IDFやWord2Vecから、時系列での記憶を持つLSTM、そしてLLMの心臓部である「Attention機構」とTransformerのゼロからのスクラッチ実装までを徹底解説。"
   - title: "4. LLM応用とAIエージェント"
-    details: "OpenAI API、手組みRAG、LlamaIndexによる抽象化、プロンプトの連鎖（Chaining）、Streamlitチャットボット、`smolagents` によるコード実行型AIエージェント、さらにエンタープライズ向け Agent SDK による汎用・コーディングエージェントまでを構築します。"
+    details: "OpenAI API、手組みRAG、LlamaIndexによる抽象化、プロンプトの連鎖（Chaining）、会話履歴を持つ対話型チャットボット、`smolagents` によるコード実行型AIエージェント、さらにエンタープライズ向け Agent SDK による汎用・コーディングエージェントまでを構築します。"
   - title: "5. 実務適用と総合応用実践 (Capstones)"
-    details: "Late Fusion不正検知、契約書のナレッジ構造化、LLM-as-a-Judge自動評価・防御ハーネス、時系列需要予測ダイナミックプライシング、マルチエージェント協調など極上の実務に挑戦します。"
+    details: "オフライン自動評価ハーネス（LLM-as-a-Judge）、Late Fusion不正検知、契約書のナレッジ構造化、ランタイム入出力ガードレール、時系列需要予測ダイナミックプライシング、マルチエージェント協調など極上の実務に挑戦します。"
 ---

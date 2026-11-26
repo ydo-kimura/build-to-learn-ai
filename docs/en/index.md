@@ -22,7 +22,7 @@ features:
   - title: "3. Modern NLP & Transformers"
     details: "Trace the evolution of NLP from TF-IDF and Word2Vec to LSTMs and the revolutionary Attention mechanism, building your own scratch Transformer."
   - title: "4. LLM Applied & AI Agents"
-    details: "Harness OpenAI APIs, build hand-crafted RAG, abstract retrieval with LlamaIndex, chain prompts, build a Streamlit chatbot, implement code-executing AI agents with smolagents, and build enterprise-grade general-purpose and coding agents with Agent SDK."
+    details: "Harness OpenAI APIs, build hand-crafted RAG, abstract retrieval with LlamaIndex, chain prompts, build a context-aware interactive chatbot, implement code-executing AI agents with smolagents, and build enterprise-grade general-purpose and coding agents with Agent SDK."
   - title: "5. Real-World Capstones"
-    details: "Tackle complex business capstones: Late Fusion fraud detection, autonomous knowledge extraction, LLM-as-a-Judge guardrails, dynamic pricing, and multi-agent systems."
+    details: "Tackle complex business capstones: offline LLM-as-a-Judge evaluation harnesses, Late Fusion fraud detection, autonomous knowledge extraction, runtime input/output guardrails, dynamic pricing, and multi-agent systems."
 ---
