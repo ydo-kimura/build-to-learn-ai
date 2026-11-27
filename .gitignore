@@ -165,14 +165,10 @@ __pycache__
 # Local-only development tooling
 # ==============================================================================
 
-# AI-assisted development configuration and generated documentation
-/.agent/
+# AI-assisted generated documentation and rule details
 /.aidlc-rule-details/
 /aidlc-docs/
 /openwiki/
-/AGENTS.md
-/CLAUDE.md
-/GEMINI.md
 
 # Local development container
 /.devcontainer/
