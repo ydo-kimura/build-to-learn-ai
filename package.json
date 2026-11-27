@@ -11,15 +11,16 @@
     "docs:check-diagrams": "python3 scripts/verify_curriculum_diagrams.py && python3 scripts/verify_curriculum_diagram_geometry.py && pnpm run docs:check-mermaid && pnpm run docs:check-ja-bold && pnpm run docs:check-h2-separators",
     "docs:build": "pnpm run docs:check-diagrams && vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "prepare": "husky"
+    "prepare": "husky",
+    "security:trivy": "trivy fs --include-dev-deps --scanners vuln,secret,misconfig --severity MEDIUM,HIGH,CRITICAL --ignore-unfixed --exit-code 1 --skip-dirs node_modules,.pnpm-store,docs/.vitepress/cache,docs/.vitepress/dist,.devcontainer,.git,graft,openwiki,aidlc-docs,.aidlc-rule-details,__pycache__ ."
   },
   "devDependencies": {
     "husky": "^9.1.7",
-    "lint-staged": "^17.1.0",
-    "mermaid": "^11.15.0",
-    "prettier": "^3.9.5",
+    "lint-staged": "^17.6.2",
+    "mermaid": "^12.3.0",
+    "prettier": "^3.10.1",
     "vitepress": "^1.6.4",
-    "vitepress-mermaid-renderer": "1.1.28",
-    "vue": "^3.4.0"
+    "vitepress-mermaid-renderer": "^1.2.3",
+    "vue": "^3.5.46"
   }
 }
